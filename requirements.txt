@@ -1,0 +1,4 @@
+# Phase 0
+pydantic>=2.7
+pydantic-settings>=2.3
+pytest>=8.0
