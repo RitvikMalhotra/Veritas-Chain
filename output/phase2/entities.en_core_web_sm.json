@@ -1,0 +1,2240 @@
+{
+  "model": "en_core_web_sm",
+  "model_version": "3.8.0",
+  "spacy_version": "3.8.16",
+  "confidence_note": "fixed per method and label from veritas/config.py (NER values measured for en_core_web_md); not a model probability",
+  "documents": [
+    {
+      "document_id": "FIR-BLR-2025-0001",
+      "entities": [
+        {
+          "document_id": "FIR-BLR-2025-0001",
+          "node_type": "Person",
+          "text": "Shri Orinder Murthy",
+          "start_char": 16,
+          "end_char": 35,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "orinder_murthy"
+        },
+        {
+          "document_id": "FIR-BLR-2025-0001",
+          "node_type": "Phone",
+          "text": "+91-6454474647",
+          "start_char": 48,
+          "end_char": 62,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+916454474647"
+        },
+        {
+          "document_id": "FIR-BLR-2025-0001",
+          "node_type": "Location",
+          "text": "Shroff Tea Stall",
+          "start_char": 160,
+          "end_char": 176,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "FAC",
+          "canonical_key": "shroff_tea_stall"
+        },
+        {
+          "document_id": "FIR-BLR-2025-0001",
+          "node_type": "Location",
+          "text": "Bengaluru",
+          "start_char": 178,
+          "end_char": 187,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "GPE",
+          "canonical_key": "bengaluru"
+        },
+        {
+          "document_id": "FIR-BLR-2025-0001",
+          "node_type": "Person",
+          "text": "Anya Sarin",
+          "start_char": 267,
+          "end_char": 277,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "anya_sarin"
+        },
+        {
+          "document_id": "FIR-BLR-2025-0001",
+          "node_type": "Organization",
+          "text": "Raghavan Trading Pvt Ltd",
+          "start_char": 294,
+          "end_char": 318,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "raghavan_trading_pvt_ltd"
+        }
+      ]
+    },
+    {
+      "document_id": "FIR-BLR-2025-0002",
+      "entities": [
+        {
+          "document_id": "FIR-BLR-2025-0002",
+          "node_type": "Person",
+          "text": "Devika Rajan",
+          "start_char": 21,
+          "end_char": 33,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "devika_rajan"
+        },
+        {
+          "document_id": "FIR-BLR-2025-0002",
+          "node_type": "Phone",
+          "text": "82313 36700",
+          "start_char": 46,
+          "end_char": 57,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+918231336700"
+        },
+        {
+          "document_id": "FIR-BLR-2025-0002",
+          "node_type": "Location",
+          "text": "Ravi Tea Stall",
+          "start_char": 133,
+          "end_char": 147,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "FAC",
+          "canonical_key": "ravi_tea_stall"
+        },
+        {
+          "document_id": "FIR-BLR-2025-0002",
+          "node_type": "Location",
+          "text": "Bengaluru",
+          "start_char": 149,
+          "end_char": 158,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "GPE",
+          "canonical_key": "bengaluru"
+        }
+      ]
+    },
+    {
+      "document_id": "FIR-BLR-2025-0003",
+      "entities": [
+        {
+          "document_id": "FIR-BLR-2025-0003",
+          "node_type": "Phone",
+          "text": "86848 43529",
+          "start_char": 48,
+          "end_char": 59,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+918684843529"
+        },
+        {
+          "document_id": "FIR-BLR-2025-0003",
+          "node_type": "Location",
+          "text": "Modi Auto Works",
+          "start_char": 77,
+          "end_char": 92,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "FAC",
+          "canonical_key": "modi_auto_works"
+        },
+        {
+          "document_id": "FIR-BLR-2025-0003",
+          "node_type": "Location",
+          "text": "Bengaluru",
+          "start_char": 94,
+          "end_char": 103,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "GPE",
+          "canonical_key": "bengaluru"
+        },
+        {
+          "document_id": "FIR-BLR-2025-0003",
+          "node_type": "Phone",
+          "text": "+91-6369374146",
+          "start_char": 186,
+          "end_char": 200,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+916369374146"
+        }
+      ]
+    },
+    {
+      "document_id": "FIR-DEL-2025-0001",
+      "entities": [
+        {
+          "document_id": "FIR-DEL-2025-0001",
+          "node_type": "Person",
+          "text": "Shri Rahul Sharma",
+          "start_char": 16,
+          "end_char": 33,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "rahul_sharma"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0001",
+          "node_type": "Organization",
+          "text": "Raja Services Pvt Ltd",
+          "start_char": 48,
+          "end_char": 69,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "raja_services_pvt_ltd"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0001",
+          "node_type": "Phone",
+          "text": "+91 73462 14717",
+          "start_char": 155,
+          "end_char": 170,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+917346214717"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0001",
+          "node_type": "Location",
+          "text": "Hotel Yadav Residency",
+          "start_char": 254,
+          "end_char": 275,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "FAC",
+          "canonical_key": "hotel_yadav_residency"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0001",
+          "node_type": "Location",
+          "text": "Delhi",
+          "start_char": 277,
+          "end_char": 282,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "GPE",
+          "canonical_key": "delhi"
+        }
+      ]
+    },
+    {
+      "document_id": "FIR-DEL-2025-0002",
+      "entities": [
+        {
+          "document_id": "FIR-DEL-2025-0002",
+          "node_type": "Person",
+          "text": "Maruti Suzuki Swift",
+          "start_char": 46,
+          "end_char": 65,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "maruti_suzuki_swift"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0002",
+          "node_type": "Vehicle",
+          "text": "DL 3 CZ 3213",
+          "start_char": 94,
+          "end_char": 106,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "DL3CZ3213"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0002",
+          "node_type": "Person",
+          "text": "Aarna Choudhury",
+          "start_char": 118,
+          "end_char": 133,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "aarna_choudhury"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0002",
+          "node_type": "Organization",
+          "text": "Barad Trading Pvt Ltd",
+          "start_char": 150,
+          "end_char": 171,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "barad_trading_pvt_ltd"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0002",
+          "node_type": "Person",
+          "text": "Maruti Suzuki Swift",
+          "start_char": 194,
+          "end_char": 213,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "maruti_suzuki_swift"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0002",
+          "node_type": "Vehicle",
+          "text": "DL9CZ2042",
+          "start_char": 242,
+          "end_char": 251,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "DL9CZ2042"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0002",
+          "node_type": "Organization",
+          "text": "Raja Services Pvt Ltd",
+          "start_char": 291,
+          "end_char": 312,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "raja_services_pvt_ltd"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0002",
+          "node_type": "Location",
+          "text": "Sharma Tea Stall",
+          "start_char": 319,
+          "end_char": 335,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "FAC",
+          "canonical_key": "sharma_tea_stall"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0002",
+          "node_type": "Location",
+          "text": "Delhi",
+          "start_char": 337,
+          "end_char": 342,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "GPE",
+          "canonical_key": "delhi"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0002",
+          "node_type": "Person",
+          "text": "Dubey",
+          "start_char": 350,
+          "end_char": 355,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "dubey"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0002",
+          "node_type": "Organization",
+          "text": "Aarna Choudhury",
+          "start_char": 417,
+          "end_char": 432,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "aarna_choudhury"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0002",
+          "node_type": "Phone",
+          "text": "8981072749",
+          "start_char": 445,
+          "end_char": 455,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+918981072749"
+        }
+      ]
+    },
+    {
+      "document_id": "FIR-DEL-2025-0003",
+      "entities": [
+        {
+          "document_id": "FIR-DEL-2025-0003",
+          "node_type": "Person",
+          "text": "Shri Charan Pandya",
+          "start_char": 16,
+          "end_char": 34,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "charan_pandya"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0003",
+          "node_type": "Phone",
+          "text": "+91-6005959219",
+          "start_char": 47,
+          "end_char": 61,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+916005959219"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0003",
+          "node_type": "Location",
+          "text": "Bajwa Ganj Garage",
+          "start_char": 159,
+          "end_char": 176,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "FAC",
+          "canonical_key": "bajwa_ganj_garage"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0003",
+          "node_type": "Location",
+          "text": "Delhi",
+          "start_char": 178,
+          "end_char": 183,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "GPE",
+          "canonical_key": "delhi"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0003",
+          "node_type": "Person",
+          "text": "Atharv Chanda",
+          "start_char": 263,
+          "end_char": 276,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "atharv_chanda"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0003",
+          "node_type": "Organization",
+          "text": "Barad Trading Pvt Ltd",
+          "start_char": 293,
+          "end_char": 314,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "barad_trading_pvt_ltd"
+        }
+      ]
+    },
+    {
+      "document_id": "FIR-DEL-2025-0004",
+      "entities": [
+        {
+          "document_id": "FIR-DEL-2025-0004",
+          "node_type": "Person",
+          "text": "Ethan Sani",
+          "start_char": 21,
+          "end_char": 31,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "ethan_sani"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0004",
+          "node_type": "Phone",
+          "text": "+91 64064 67692",
+          "start_char": 44,
+          "end_char": 59,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+916406467692"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0004",
+          "node_type": "Location",
+          "text": "Singhal Tea Stall",
+          "start_char": 83,
+          "end_char": 100,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "FAC",
+          "canonical_key": "singhal_tea_stall"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0004",
+          "node_type": "Location",
+          "text": "Delhi",
+          "start_char": 102,
+          "end_char": 107,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "GPE",
+          "canonical_key": "delhi"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0004",
+          "node_type": "Phone",
+          "text": "+91 65183 01062",
+          "start_char": 188,
+          "end_char": 203,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+916518301062"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0004",
+          "node_type": "Person",
+          "text": "Ayaan Karnik",
+          "start_char": 238,
+          "end_char": 250,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "ayaan_karnik"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0004",
+          "node_type": "Person",
+          "text": "Imaran Nair",
+          "start_char": 384,
+          "end_char": 395,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "imaran_nair"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0004",
+          "node_type": "Person",
+          "text": "Imaran Nair",
+          "start_char": 411,
+          "end_char": 422,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "imaran_nair"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0004",
+          "node_type": "Organization",
+          "text": "Royal Enfield Classic 350",
+          "start_char": 440,
+          "end_char": 465,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "royal_enfield_classic_350"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0004",
+          "node_type": "Vehicle",
+          "text": "DL 4 CB 1155",
+          "start_char": 494,
+          "end_char": 506,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "DL4CB1155"
+        }
+      ]
+    },
+    {
+      "document_id": "FIR-DEL-2025-0005",
+      "entities": [
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "node_type": "Person",
+          "text": "Imaran Nair",
+          "start_char": 42,
+          "end_char": 53,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "imaran_nair"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "node_type": "Person",
+          "text": "Ayaan Karnik",
+          "start_char": 58,
+          "end_char": 70,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "ayaan_karnik"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "node_type": "Organization",
+          "text": "Royal Enfield Classic 350",
+          "start_char": 91,
+          "end_char": 116,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "royal_enfield_classic_350"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "node_type": "Vehicle",
+          "text": "DL-4-CB-1155",
+          "start_char": 145,
+          "end_char": 157,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "DL4CB1155"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "node_type": "Person",
+          "text": "Shri Gaurang Sachar",
+          "start_char": 173,
+          "end_char": 192,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "gaurang_sachar"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "node_type": "Location",
+          "text": "Delhi",
+          "start_char": 217,
+          "end_char": 222,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "GPE",
+          "canonical_key": "delhi"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "node_type": "Person",
+          "text": "Gaurang Sachar",
+          "start_char": 264,
+          "end_char": 278,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "gaurang_sachar"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "node_type": "Organization",
+          "text": "CCTV",
+          "start_char": 352,
+          "end_char": 356,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "cctv"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "node_type": "Person",
+          "text": "Imaran Nair",
+          "start_char": 404,
+          "end_char": 415,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "imaran_nair"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "node_type": "Person",
+          "text": "Finn Shere",
+          "start_char": 424,
+          "end_char": 434,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "finn_shere"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "node_type": "Person",
+          "text": "Murty Dhaba",
+          "start_char": 456,
+          "end_char": 467,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "murty_dhaba"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "node_type": "Location",
+          "text": "Delhi",
+          "start_char": 469,
+          "end_char": 474,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "GPE",
+          "canonical_key": "delhi"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "node_type": "Person",
+          "text": "Finn Shere",
+          "start_char": 500,
+          "end_char": 510,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "finn_shere"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "node_type": "Phone",
+          "text": "06852224261",
+          "start_char": 541,
+          "end_char": 552,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+916852224261"
+        }
+      ]
+    },
+    {
+      "document_id": "FIR-DEL-2025-0006",
+      "entities": [
+        {
+          "document_id": "FIR-DEL-2025-0006",
+          "node_type": "Person",
+          "text": "Shri Timothy Sane",
+          "start_char": 16,
+          "end_char": 33,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "timothy_sane"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0006",
+          "node_type": "Phone",
+          "text": "+91-9714026682",
+          "start_char": 46,
+          "end_char": 60,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+919714026682"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0006",
+          "node_type": "Person",
+          "text": "Madan",
+          "start_char": 84,
+          "end_char": 89,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "madan"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0006",
+          "node_type": "Person",
+          "text": "Finn Shere",
+          "start_char": 107,
+          "end_char": 117,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "finn_shere"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0006",
+          "node_type": "Location",
+          "text": "Sharma Tea Stall",
+          "start_char": 168,
+          "end_char": 184,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "LOC",
+          "canonical_key": "sharma_tea_stall"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0006",
+          "node_type": "Location",
+          "text": "Delhi",
+          "start_char": 186,
+          "end_char": 191,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "GPE",
+          "canonical_key": "delhi"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0006",
+          "node_type": "Person",
+          "text": "Madan",
+          "start_char": 239,
+          "end_char": 244,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "madan"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0006",
+          "node_type": "Phone",
+          "text": "6424188799",
+          "start_char": 287,
+          "end_char": 297,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+916424188799"
+        }
+      ]
+    },
+    {
+      "document_id": "FIR-HYD-2025-0001",
+      "entities": [
+        {
+          "document_id": "FIR-HYD-2025-0001",
+          "node_type": "Person",
+          "text": "Shri Farhan Bhandari",
+          "start_char": 16,
+          "end_char": 36,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "farhan_bhandari"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0001",
+          "node_type": "Phone",
+          "text": "93498 31082",
+          "start_char": 49,
+          "end_char": 60,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+919349831082"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0001",
+          "node_type": "Person",
+          "text": "Girik Biswas",
+          "start_char": 117,
+          "end_char": 129,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "girik_biswas"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0001",
+          "node_type": "Organization",
+          "text": "Dugal Zila Market",
+          "start_char": 194,
+          "end_char": 211,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "dugal_zila_market"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0001",
+          "node_type": "Person",
+          "text": "Dominic Mital",
+          "start_char": 252,
+          "end_char": 265,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "dominic_mital"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0001",
+          "node_type": "Organization",
+          "text": "Borah Services Pvt Ltd",
+          "start_char": 280,
+          "end_char": 302,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "borah_services_pvt_ltd"
+        }
+      ]
+    },
+    {
+      "document_id": "FIR-HYD-2025-0002",
+      "entities": [
+        {
+          "document_id": "FIR-HYD-2025-0002",
+          "node_type": "Person",
+          "text": "Tamanna Dar",
+          "start_char": 21,
+          "end_char": 32,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "tamanna_dar"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0002",
+          "node_type": "Phone",
+          "text": "9772591901",
+          "start_char": 45,
+          "end_char": 55,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+919772591901"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0002",
+          "node_type": "Organization",
+          "text": "Yogi Traders",
+          "start_char": 71,
+          "end_char": 83,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "yogi_traders"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0002",
+          "node_type": "Organization",
+          "text": "Dugal Zila Market",
+          "start_char": 99,
+          "end_char": 116,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "dugal_zila_market"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0002",
+          "node_type": "Organization",
+          "text": "Hyderabad",
+          "start_char": 118,
+          "end_char": 127,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "hyderabad"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0002",
+          "node_type": "Phone",
+          "text": "85246 24102",
+          "start_char": 213,
+          "end_char": 224,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+918524624102"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0002",
+          "node_type": "Organization",
+          "text": "KYC",
+          "start_char": 287,
+          "end_char": 290,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "kyc"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0002",
+          "node_type": "Phone",
+          "text": "85246 24102",
+          "start_char": 618,
+          "end_char": 629,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+918524624102"
+        }
+      ]
+    },
+    {
+      "document_id": "FIR-HYD-2025-0003",
+      "entities": [
+        {
+          "document_id": "FIR-HYD-2025-0003",
+          "node_type": "Person",
+          "text": "Shri Azaan Murthy",
+          "start_char": 16,
+          "end_char": 33,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "azaan_murthy"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0003",
+          "node_type": "Person",
+          "text": "Yogi Traders",
+          "start_char": 48,
+          "end_char": 60,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "yogi_traders"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0003",
+          "node_type": "Phone",
+          "text": "+91-6926118120",
+          "start_char": 148,
+          "end_char": 162,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+916926118120"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0003",
+          "node_type": "Location",
+          "text": "Deo Auto Works",
+          "start_char": 246,
+          "end_char": 260,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "FAC",
+          "canonical_key": "deo_auto_works"
+        }
+      ]
+    },
+    {
+      "document_id": "FIR-HYD-2025-0004",
+      "entities": [
+        {
+          "document_id": "FIR-HYD-2025-0004",
+          "node_type": "Organization",
+          "text": "Lanka Trading Pvt Ltd",
+          "start_char": 76,
+          "end_char": 97,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "lanka_trading_pvt_ltd"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0004",
+          "node_type": "Organization",
+          "text": "Bora Road Business Centre",
+          "start_char": 101,
+          "end_char": 126,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "bora_road_business_centre"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0004",
+          "node_type": "Person",
+          "text": "Balveer Kaul",
+          "start_char": 210,
+          "end_char": 222,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "balveer_kaul"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0004",
+          "node_type": "Person",
+          "text": "Chandresh Rai",
+          "start_char": 224,
+          "end_char": 237,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "chandresh_rai"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0004",
+          "node_type": "Person",
+          "text": "Liam Setty",
+          "start_char": 242,
+          "end_char": 252,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "liam_setty"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0004",
+          "node_type": "Organization",
+          "text": "KYC",
+          "start_char": 319,
+          "end_char": 322,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "kyc"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0004",
+          "node_type": "Person",
+          "text": "Ishaan Mann",
+          "start_char": 402,
+          "end_char": 413,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "ishaan_mann"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0004",
+          "node_type": "Organization",
+          "text": "Lanka Trading Pvt Ltd",
+          "start_char": 429,
+          "end_char": 450,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "lanka_trading_pvt_ltd"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0004",
+          "node_type": "Person",
+          "text": "David Radhakrishnan",
+          "start_char": 542,
+          "end_char": 561,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "david_radhakrishnan"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0004",
+          "node_type": "Phone",
+          "text": "8829009322",
+          "start_char": 586,
+          "end_char": 596,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+918829009322"
+        }
+      ]
+    },
+    {
+      "document_id": "FIR-MUM-2025-0001",
+      "entities": [
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "node_type": "Organization",
+          "text": "Balan Warehouse",
+          "start_char": 66,
+          "end_char": 81,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "balan_warehouse"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "node_type": "Location",
+          "text": "Mumbai",
+          "start_char": 83,
+          "end_char": 89,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "GPE",
+          "canonical_key": "mumbai"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "node_type": "Person",
+          "text": "Isaac Dewan",
+          "start_char": 131,
+          "end_char": 142,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "isaac_dewan"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "node_type": "Organization",
+          "text": "Dalaja Chahal",
+          "start_char": 147,
+          "end_char": 160,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "dalaja_chahal"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "node_type": "Person",
+          "text": "Ashok Leyland Dost",
+          "start_char": 309,
+          "end_char": 327,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "ashok_leyland_dost"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "node_type": "Vehicle",
+          "text": "MH14LY7909",
+          "start_char": 356,
+          "end_char": 366,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "MH14LY7909"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "node_type": "Person",
+          "text": "Ekaraj Koshy",
+          "start_char": 470,
+          "end_char": 482,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "ekaraj_koshy"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "node_type": "Organization",
+          "text": "Yohannan Logistics Pvt Ltd.",
+          "start_char": 498,
+          "end_char": 525,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "yohannan_logistics_pvt_ltd"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "node_type": "Person",
+          "text": "Isaac Dewan",
+          "start_char": 546,
+          "end_char": 557,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "isaac_dewan"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "node_type": "Person",
+          "text": "Daksh Bakshi",
+          "start_char": 604,
+          "end_char": 616,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "daksh_bakshi"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "node_type": "Phone",
+          "text": "+91-6375107792",
+          "start_char": 641,
+          "end_char": 655,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+916375107792"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "node_type": "Organization",
+          "text": "Dalaja Chahal",
+          "start_char": 657,
+          "end_char": 670,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "dalaja_chahal"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "node_type": "Person",
+          "text": "Daksh Bakshi",
+          "start_char": 700,
+          "end_char": 712,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "daksh_bakshi"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "node_type": "Organization",
+          "text": "Laksh Konda",
+          "start_char": 717,
+          "end_char": 728,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "laksh_konda"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "node_type": "Organization",
+          "text": "Bala Circle Bus Depot",
+          "start_char": 732,
+          "end_char": 753,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "bala_circle_bus_depot"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "node_type": "Location",
+          "text": "Mumbai",
+          "start_char": 755,
+          "end_char": 761,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "GPE",
+          "canonical_key": "mumbai"
+        }
+      ]
+    },
+    {
+      "document_id": "FIR-MUM-2025-0002",
+      "entities": [
+        {
+          "document_id": "FIR-MUM-2025-0002",
+          "node_type": "Person",
+          "text": "Yashica Issac",
+          "start_char": 21,
+          "end_char": 34,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "yashica_issac"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0002",
+          "node_type": "Phone",
+          "text": "7844273643",
+          "start_char": 47,
+          "end_char": 57,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+917844273643"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0002",
+          "node_type": "Organization",
+          "text": "Bhardwaj Services Pvt Ltd",
+          "start_char": 73,
+          "end_char": 98,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "bhardwaj_services_pvt_ltd"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0002",
+          "node_type": "Person",
+          "text": "Khosla Tea Stall",
+          "start_char": 114,
+          "end_char": 130,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "khosla_tea_stall"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0002",
+          "node_type": "Location",
+          "text": "Mumbai",
+          "start_char": 132,
+          "end_char": 138,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "GPE",
+          "canonical_key": "mumbai"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0002",
+          "node_type": "Phone",
+          "text": "7679658289",
+          "start_char": 224,
+          "end_char": 234,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+917679658289"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0002",
+          "node_type": "Organization",
+          "text": "KYC",
+          "start_char": 297,
+          "end_char": 300,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "kyc"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0002",
+          "node_type": "Phone",
+          "text": "7679658289",
+          "start_char": 628,
+          "end_char": 638,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+917679658289"
+        }
+      ]
+    },
+    {
+      "document_id": "FIR-MUM-2025-0003",
+      "entities": [
+        {
+          "document_id": "FIR-MUM-2025-0003",
+          "node_type": "Person",
+          "text": "Sudiksha Pathak",
+          "start_char": 21,
+          "end_char": 36,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "sudiksha_pathak"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0003",
+          "node_type": "Phone",
+          "text": "+91 96889 36655",
+          "start_char": 49,
+          "end_char": 64,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+919688936655"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0003",
+          "node_type": "Person",
+          "text": "Kakar Warehouse",
+          "start_char": 141,
+          "end_char": 156,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "kakar_warehouse"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0003",
+          "node_type": "Location",
+          "text": "Mumbai",
+          "start_char": 158,
+          "end_char": 164,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "GPE",
+          "canonical_key": "mumbai"
+        }
+      ]
+    },
+    {
+      "document_id": "FIR-MUM-2025-0004",
+      "entities": [
+        {
+          "document_id": "FIR-MUM-2025-0004",
+          "node_type": "Person",
+          "text": "Rahul Sharma",
+          "start_char": 68,
+          "end_char": 80,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "rahul_sharma"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0004",
+          "node_type": "Person",
+          "text": "Udyati Balay",
+          "start_char": 85,
+          "end_char": 97,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "udyati_balay"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0004",
+          "node_type": "Location",
+          "text": "Sarma Auto Works",
+          "start_char": 112,
+          "end_char": 128,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "FAC",
+          "canonical_key": "sarma_auto_works"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0004",
+          "node_type": "Location",
+          "text": "Mumbai",
+          "start_char": 130,
+          "end_char": 136,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "GPE",
+          "canonical_key": "mumbai"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0004",
+          "node_type": "Person",
+          "text": "Rahul Sharma",
+          "start_char": 249,
+          "end_char": 261,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "rahul_sharma"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0004",
+          "node_type": "Person",
+          "text": "Udyati Balay",
+          "start_char": 263,
+          "end_char": 275,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "udyati_balay"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0004",
+          "node_type": "Phone",
+          "text": "93848 22654",
+          "start_char": 319,
+          "end_char": 330,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+919384822654"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0004",
+          "node_type": "Person",
+          "text": "Rahul Sharma",
+          "start_char": 352,
+          "end_char": 364,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "rahul_sharma"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0004",
+          "node_type": "Organization",
+          "text": "Laksh Konda",
+          "start_char": 413,
+          "end_char": 424,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "laksh_konda"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0004",
+          "node_type": "Person",
+          "text": "Daksh Bakshi",
+          "start_char": 440,
+          "end_char": 452,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "daksh_bakshi"
+        }
+      ]
+    },
+    {
+      "document_id": "FIR-MUM-2025-0005",
+      "entities": [
+        {
+          "document_id": "FIR-MUM-2025-0005",
+          "node_type": "Person",
+          "text": "Gaurika Zacharia",
+          "start_char": 21,
+          "end_char": 37,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "gaurika_zacharia"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0005",
+          "node_type": "Phone",
+          "text": "+91 62755 52433",
+          "start_char": 50,
+          "end_char": 65,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+916275552433"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0005",
+          "node_type": "Person",
+          "text": "Adya Choudhury",
+          "start_char": 123,
+          "end_char": 137,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "adya_choudhury"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0005",
+          "node_type": "Location",
+          "text": "Hotel Lanka Residency",
+          "start_char": 202,
+          "end_char": 223,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "FAC",
+          "canonical_key": "hotel_lanka_residency"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0005",
+          "node_type": "Location",
+          "text": "Mumbai",
+          "start_char": 225,
+          "end_char": 231,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "GPE",
+          "canonical_key": "mumbai"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0005",
+          "node_type": "Person",
+          "text": "Sanya Raj",
+          "start_char": 261,
+          "end_char": 270,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "sanya_raj"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0005",
+          "node_type": "Organization",
+          "text": "Khatri Infra Pvt Ltd",
+          "start_char": 285,
+          "end_char": 305,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "khatri_infra_pvt_ltd"
+        }
+      ]
+    },
+    {
+      "document_id": "FIR-MUM-2025-0006",
+      "entities": [
+        {
+          "document_id": "FIR-MUM-2025-0006",
+          "node_type": "Person",
+          "text": "Shri Karan Tella",
+          "start_char": 16,
+          "end_char": 32,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "karan_tella"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0006",
+          "node_type": "Organization",
+          "text": "Bhardwaj Services Pvt Ltd",
+          "start_char": 47,
+          "end_char": 72,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "bhardwaj_services_pvt_ltd"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0006",
+          "node_type": "Phone",
+          "text": "7876457943",
+          "start_char": 157,
+          "end_char": 167,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+917876457943"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0006",
+          "node_type": "Organization",
+          "text": "Walia Tea Stall",
+          "start_char": 251,
+          "end_char": 266,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "walia_tea_stall"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0006",
+          "node_type": "Location",
+          "text": "Mumbai",
+          "start_char": 268,
+          "end_char": 274,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "GPE",
+          "canonical_key": "mumbai"
+        }
+      ]
+    },
+    {
+      "document_id": "FIR-PUN-2025-0001",
+      "entities": [
+        {
+          "document_id": "FIR-PUN-2025-0001",
+          "node_type": "Vehicle",
+          "text": "MH 12 V 9289",
+          "start_char": 92,
+          "end_char": 104,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "MH12V9289"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0001",
+          "node_type": "Person",
+          "text": "Darika Kothari",
+          "start_char": 116,
+          "end_char": 130,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "darika_kothari"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0001",
+          "node_type": "Organization",
+          "text": "Sami Infra Pvt Ltd",
+          "start_char": 147,
+          "end_char": 165,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "sami_infra_pvt_ltd"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0001",
+          "node_type": "Person",
+          "text": "Maruti Suzuki Ertiga",
+          "start_char": 190,
+          "end_char": 210,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "maruti_suzuki_ertiga"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0001",
+          "node_type": "Vehicle",
+          "text": "MH-12-A-8181",
+          "start_char": 239,
+          "end_char": 251,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "MH12A8181"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0001",
+          "node_type": "Organization",
+          "text": "Ekaja Solanki",
+          "start_char": 263,
+          "end_char": 276,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "ekaja_solanki"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0001",
+          "node_type": "Organization",
+          "text": "Goswami Services Pvt Ltd",
+          "start_char": 293,
+          "end_char": 317,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "goswami_services_pvt_ltd"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0001",
+          "node_type": "Location",
+          "text": "Hotel Bedi Residency",
+          "start_char": 324,
+          "end_char": 344,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "FAC",
+          "canonical_key": "hotel_bedi_residency"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0001",
+          "node_type": "Person",
+          "text": "Darika Kothari",
+          "start_char": 427,
+          "end_char": 441,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "darika_kothari"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0001",
+          "node_type": "Phone",
+          "text": "78633 62137",
+          "start_char": 454,
+          "end_char": 465,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+917863362137"
+        }
+      ]
+    },
+    {
+      "document_id": "FIR-PUN-2025-0002",
+      "entities": [
+        {
+          "document_id": "FIR-PUN-2025-0002",
+          "node_type": "Organization",
+          "text": "Shri Ishwar Kannan",
+          "start_char": 16,
+          "end_char": 34,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "shri_ishwar_kannan"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0002",
+          "node_type": "Phone",
+          "text": "+91 99947 38491",
+          "start_char": 47,
+          "end_char": 62,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+919994738491"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0002",
+          "node_type": "Person",
+          "text": "Gopal Gupta",
+          "start_char": 119,
+          "end_char": 130,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "gopal_gupta"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0002",
+          "node_type": "Person",
+          "text": "Chander Warehouse",
+          "start_char": 195,
+          "end_char": 212,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "chander_warehouse"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0002",
+          "node_type": "Organization",
+          "text": "Pune",
+          "start_char": 214,
+          "end_char": 218,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "pune"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0002",
+          "node_type": "Person",
+          "text": "Jagat Mallick",
+          "start_char": 248,
+          "end_char": 261,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "jagat_mallick"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0002",
+          "node_type": "Organization",
+          "text": "Sami Infra Pvt Ltd",
+          "start_char": 276,
+          "end_char": 294,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "sami_infra_pvt_ltd"
+        }
+      ]
+    },
+    {
+      "document_id": "FIR-PUN-2025-0003",
+      "entities": [
+        {
+          "document_id": "FIR-PUN-2025-0003",
+          "node_type": "Phone",
+          "text": "71909 94262",
+          "start_char": 44,
+          "end_char": 55,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+917190994262"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0003",
+          "node_type": "Location",
+          "text": "Kala Tea Stall",
+          "start_char": 73,
+          "end_char": 87,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "FAC",
+          "canonical_key": "kala_tea_stall"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0003",
+          "node_type": "Location",
+          "text": "Pune",
+          "start_char": 89,
+          "end_char": 93,
+          "method": "spacy_ner",
+          "confidence": 0.97,
+          "raw_label": "LOC",
+          "canonical_key": "pune"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0003",
+          "node_type": "Phone",
+          "text": "82916 88635",
+          "start_char": 179,
+          "end_char": 190,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+918291688635"
+        }
+      ]
+    },
+    {
+      "document_id": "FIR-PUN-2025-0004",
+      "entities": [
+        {
+          "document_id": "FIR-PUN-2025-0004",
+          "node_type": "Person",
+          "text": "Pallavi Bail",
+          "start_char": 21,
+          "end_char": 33,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "pallavi_bail"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0004",
+          "node_type": "Phone",
+          "text": "+91 78142 66084",
+          "start_char": 46,
+          "end_char": 61,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+917814266084"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0004",
+          "node_type": "Person",
+          "text": "Tata Nexon",
+          "start_char": 102,
+          "end_char": 112,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "tata_nexon"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0004",
+          "node_type": "Vehicle",
+          "text": "MH 12 D 9597",
+          "start_char": 141,
+          "end_char": 153,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "MH12D9597"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0004",
+          "node_type": "Person",
+          "text": "Marg Market",
+          "start_char": 176,
+          "end_char": 187,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "marg_market"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0004",
+          "node_type": "Organization",
+          "text": "CCTV",
+          "start_char": 247,
+          "end_char": 251,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "cctv"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0004",
+          "node_type": "Organization",
+          "text": "Ashok Leyland Dost",
+          "start_char": 333,
+          "end_char": 351,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "ashok_leyland_dost"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0004",
+          "node_type": "Vehicle",
+          "text": "MH 14 LY 7909",
+          "start_char": 380,
+          "end_char": 393,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "MH14LY7909"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0004",
+          "node_type": "Person",
+          "text": "Fariq Sami",
+          "start_char": 456,
+          "end_char": 466,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "fariq_sami"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0004",
+          "node_type": "Person",
+          "text": "Onkar Mall",
+          "start_char": 471,
+          "end_char": 481,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "onkar_mall"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0004",
+          "node_type": "Person",
+          "text": "Hardik Saini",
+          "start_char": 511,
+          "end_char": 523,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "hardik_saini"
+        }
+      ]
+    },
+    {
+      "document_id": "FIR-PUN-2025-0005",
+      "entities": [
+        {
+          "document_id": "FIR-PUN-2025-0005",
+          "node_type": "Organization",
+          "text": "Lalla Garage",
+          "start_char": 62,
+          "end_char": 74,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "lalla_garage"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0005",
+          "node_type": "Person",
+          "text": "Fariq Sami",
+          "start_char": 146,
+          "end_char": 156,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "fariq_sami"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0005",
+          "node_type": "Person",
+          "text": "Onkar Mall",
+          "start_char": 158,
+          "end_char": 168,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "onkar_mall"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0005",
+          "node_type": "Person",
+          "text": "Faras Kale",
+          "start_char": 173,
+          "end_char": 183,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "faras_kale"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0005",
+          "node_type": "Vehicle",
+          "text": "MH 14 P 5172",
+          "start_char": 287,
+          "end_char": 299,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "MH14P5172"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0005",
+          "node_type": "Person",
+          "text": "Fariq Sami",
+          "start_char": 383,
+          "end_char": 393,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "fariq_sami"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0005",
+          "node_type": "Person",
+          "text": "Hardik Saini",
+          "start_char": 428,
+          "end_char": 440,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "hardik_saini"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0005",
+          "node_type": "Person",
+          "text": "Imaran Sen",
+          "start_char": 445,
+          "end_char": 455,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "imaran_sen"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0005",
+          "node_type": "Person",
+          "text": "Hardik Saini",
+          "start_char": 466,
+          "end_char": 478,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "hardik_saini"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0005",
+          "node_type": "Person",
+          "text": "Karan Sangha",
+          "start_char": 512,
+          "end_char": 524,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "karan_sangha"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0005",
+          "node_type": "Organization",
+          "text": "Hyderabad",
+          "start_char": 528,
+          "end_char": 537,
+          "method": "spacy_ner",
+          "confidence": 0.29,
+          "raw_label": "ORG",
+          "canonical_key": "hyderabad"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0005",
+          "node_type": "Person",
+          "text": "Imaran Sen",
+          "start_char": 583,
+          "end_char": 593,
+          "method": "spacy_ner",
+          "confidence": 0.92,
+          "raw_label": "PERSON",
+          "canonical_key": "imaran_sen"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0005",
+          "node_type": "Phone",
+          "text": "+91-6665802686",
+          "start_char": 628,
+          "end_char": 642,
+          "method": "regex",
+          "confidence": 0.95,
+          "raw_label": "REGEX",
+          "canonical_key": "+916665802686"
+        }
+      ]
+    }
+  ]
+}

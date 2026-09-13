@@ -1,10 +1,10 @@
 [SYNTHETIC RECORD - generated test data, not a real case]
 FIR No: FIR-DEL-2025-0002
-Police Station: Lajpat Nagar Police Station, Delhi
-Date and Time of Report: 2025-01-17T15:17:00+05:30
-Date and Time of Occurrence: 2025-01-16T20:17:00+05:30
-Acts and Sections: BNS 2023 s.308(2), 351(2)
-Investigating Officer: PSI Dalbir Lal
+Police Station: Karol Bagh Police Station, Delhi
+Date and Time of Report: 2025-01-07T20:52:00+05:30
+Date and Time of Occurrence: 2025-01-07T09:52:00+05:30
+Acts and Sections: BNS 2023 s.281, 125(a)
+Investigating Officer: SI Darika Saraf
 
 NARRATIVE
-The complainant Smt. Falguni Banik (mobile no. +91 71876 98223), who runs a shop near Barad Marg Market, Delhi, reported receiving threatening calls over the past two days from mobile number +91 65183 01062. The caller, who gave his name as Ayaan Karnik, demanded ₹50,000 as protection money. On 16 January 2025 at about 20:17 hours, out of fear, the complainant paid ₹20,000 in cash to Imaran Nair near the shop. Imaran Nair came on a maroon Royal Enfield Classic 350 bearing registration number DL 4 CB 1155.
+On 7 January 2025 at about 09:52 hours, a red Maruti Suzuki Swift bearing registration number DL 3 CZ 3213, driven by Aarna Choudhury, an employee of Barad Trading Pvt Ltd, collided with a blue Maruti Suzuki Swift bearing registration number DL9CZ2042, driven by Tanvi Dubey, an employee of Raja Services Pvt Ltd, near Sharma Tea Stall, Delhi. Tanvi Dubey sustained minor injuries and was taken to a nearby hospital. Aarna Choudhury (mobile no. 8981072749) remained at the spot and cooperated with the police.

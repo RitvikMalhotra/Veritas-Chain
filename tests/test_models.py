@@ -246,6 +246,21 @@ def test_mention_defaults_and_span_check():
                       start_char=10, end_char=15, method="regex")
 
 
+def test_ner_mention_confidence_is_per_label(monkeypatch):
+    def mention(node_type, text):
+        return EntityMention(document_id="FIR-0001", node_type=node_type, text=text, start_char=0,
+                             end_char=len(text), method="spacy_ner")
+
+    assert (mention("Person", "Ravi Kumar").confidence, mention("Location", "Pune").confidence,
+            mention("Organization", "Sai Traders").confidence) == (0.92, 0.97, 0.29)
+    monkeypatch.setenv("VERITAS_CONF_MENTION_SPACY_NER_ORGANIZATION", "0.5")
+    get_confidence_settings.cache_clear()
+    try:
+        assert mention("Organization", "Sai Traders").confidence == 0.5
+    finally:
+        get_confidence_settings.cache_clear()
+
+
 def test_mention_method_restricted_to_its_node_types():
     with pytest.raises(ValidationError, match="not allowed"):
         EntityMention(document_id="FIR-0001", node_type="Phone", text="98765 43210",

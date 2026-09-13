@@ -5,5 +5,7 @@ pytest>=8.0
 # Phase 1
 Faker>=25
 networkx>=3.2
-# Phase 2 (installed now, used from Phase 2)
-spacy>=3.7,<4
+# Phase 2
+spacy>=3.8,<3.9
+en_core_web_md @ https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.8.0/en_core_web_md-3.8.0-py3-none-any.whl
+en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl

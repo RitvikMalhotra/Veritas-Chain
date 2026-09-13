@@ -65,6 +65,7 @@ class SynthPerson:
     bridges: list[str] | None = None
     tags: list[str] = field(default_factory=list)  # e.g. mule, merchant, isolated, second_sim
     reports_to: str | None = None
+    employer: str | None = None  # org_id; salaries in the bank data come from this company
     phones: list[str] = field(default_factory=list)  # 10-digit numbers, primary first
     account: Account | None = None
     vehicles: list[Vehicle] = field(default_factory=list)
@@ -84,6 +85,7 @@ class SynthOrg:
     appointed_on: datetime
     account: Account | None = None
     front_for: str | None = None  # cluster id when this is a front company
+    employees: list[str] = field(default_factory=list)  # true_ids
 
     @property
     def node_id(self) -> str:
@@ -311,9 +313,16 @@ def build_world(seed: int) -> World:
                 b.give_account(p)
                 if b.rng.random() < 0.4:
                     b.give_vehicle(p, catalog.GOODS)
-        for _ in range(2):
-            directors = b.rng.sample(individuals, b.rng.choice((1, 2)))
-            b.org(city, b.rng.choice(catalog.NOISE_ORG_TYPES), directors)
+        city_orgs = [b.org(city, b.rng.choice(catalog.NOISE_ORG_TYPES), b.rng.sample(individuals, b.rng.choice((1, 2))))
+                     for _ in range(2)]
+        for idx, p in enumerate(individuals):
+            director_of = [o for o in city_orgs if p.true_id in o.directors]
+            if director_of:
+                p.employer = director_of[0].org_id  # directors work at their own company
+            elif idx % 3 == 0 or b.rng.random() < 0.5:  # vehicle owners are always employed, so reports can name an employer
+                p.employer = b.rng.choice(city_orgs).org_id
+            if p.employer:
+                b.orgs[p.employer].employees.append(p.true_id)
         noise_places[city] = [b.place(city) for _ in range(8)]
         officers[city] = [f"{b.rng.choice(catalog.OFFICER_RANKS)} {b.name(b.rng.choice('MF'))}" for _ in range(2)]
 

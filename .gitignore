@@ -4,3 +4,5 @@ __pycache__/
 .venv/
 *.sqlite
 *.db
+# Held-out evaluation data is regenerated on demand
+output/holdout_seed*/

@@ -1,0 +1,700 @@
+{
+  "model": "en_core_web_sm",
+  "model_version": "3.8.0",
+  "data": "data",
+  "matching": {
+    "strict": "same start, end and type",
+    "lenient": "overlapping span and same type, matched one-to-one",
+    "same_key": "lenient match whose canonical key equals the gold mention's key (boundary error is harmless)"
+  },
+  "per_type": {
+    "Person": {
+      "gold": 79,
+      "predicted": 78,
+      "strict": {
+        "tp": 56,
+        "fp": 22,
+        "fn": 23,
+        "precision": 0.717948717948718,
+        "recall": 0.7088607594936709,
+        "f1": 0.713375796178344
+      },
+      "lenient": {
+        "tp": 67,
+        "fp": 11,
+        "fn": 12,
+        "precision": 0.8589743589743589,
+        "recall": 0.8481012658227848,
+        "f1": 0.8535031847133757
+      },
+      "same_key": {
+        "tp": 64,
+        "fp": 14,
+        "fn": 15,
+        "precision": 0.8205128205128205,
+        "recall": 0.810126582278481,
+        "f1": 0.8152866242038216
+      }
+    },
+    "Location": {
+      "gold": 53,
+      "predicted": 31,
+      "strict": {
+        "tp": 31,
+        "fp": 0,
+        "fn": 22,
+        "precision": 1.0,
+        "recall": 0.5849056603773585,
+        "f1": 0.738095238095238
+      },
+      "lenient": {
+        "tp": 31,
+        "fp": 0,
+        "fn": 22,
+        "precision": 1.0,
+        "recall": 0.5849056603773585,
+        "f1": 0.738095238095238
+      },
+      "same_key": {
+        "tp": 31,
+        "fp": 0,
+        "fn": 22,
+        "precision": 1.0,
+        "recall": 0.5849056603773585,
+        "f1": 0.738095238095238
+      }
+    },
+    "Organization": {
+      "gold": 17,
+      "predicted": 41,
+      "strict": {
+        "tp": 15,
+        "fp": 26,
+        "fn": 2,
+        "precision": 0.36585365853658536,
+        "recall": 0.8823529411764706,
+        "f1": 0.5172413793103449
+      },
+      "lenient": {
+        "tp": 16,
+        "fp": 25,
+        "fn": 1,
+        "precision": 0.3902439024390244,
+        "recall": 0.9411764705882353,
+        "f1": 0.5517241379310345
+      },
+      "same_key": {
+        "tp": 16,
+        "fp": 25,
+        "fn": 1,
+        "precision": 0.3902439024390244,
+        "recall": 0.9411764705882353,
+        "f1": 0.5517241379310345
+      }
+    },
+    "Phone": {
+      "gold": 32,
+      "predicted": 32,
+      "strict": {
+        "tp": 32,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "lenient": {
+        "tp": 32,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "same_key": {
+        "tp": 32,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      }
+    },
+    "Vehicle": {
+      "gold": 10,
+      "predicted": 10,
+      "strict": {
+        "tp": 10,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "lenient": {
+        "tp": 10,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "same_key": {
+        "tp": 10,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      }
+    }
+  },
+  "spacy_types_micro": {
+    "strict": {
+      "tp": 102,
+      "fp": 48,
+      "fn": 47,
+      "precision": 0.68,
+      "recall": 0.6845637583892618,
+      "f1": 0.6822742474916388
+    },
+    "lenient": {
+      "tp": 114,
+      "fp": 36,
+      "fn": 35,
+      "precision": 0.76,
+      "recall": 0.7651006711409396,
+      "f1": 0.7625418060200669
+    },
+    "same_key": {
+      "tp": 111,
+      "fp": 39,
+      "fn": 38,
+      "precision": 0.74,
+      "recall": 0.7449664429530202,
+      "f1": 0.7424749163879599
+    }
+  },
+  "regex_types_micro": {
+    "strict": {
+      "tp": 42,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "lenient": {
+      "tp": 42,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "same_key": {
+      "tp": 42,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  },
+  "errors": {
+    "boundary": [
+      {
+        "document_id": "FIR-BLR-2025-0001",
+        "gold": "Orinder Murthy",
+        "predicted": "Shri Orinder Murthy",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0001",
+        "gold": "Rahul Sharma",
+        "predicted": "Shri Rahul Sharma",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0002",
+        "gold": "Tanvi Dubey",
+        "predicted": "Dubey",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0003",
+        "gold": "Charan Pandya",
+        "predicted": "Shri Charan Pandya",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0005",
+        "gold": "Gaurang Sachar",
+        "predicted": "Shri Gaurang Sachar",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0006",
+        "gold": "Timothy Sane",
+        "predicted": "Shri Timothy Sane",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0006",
+        "gold": "Ranveer Madan",
+        "predicted": "Madan",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0006",
+        "gold": "Ranveer Madan",
+        "predicted": "Madan",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-HYD-2025-0001",
+        "gold": "Farhan Bhandari",
+        "predicted": "Shri Farhan Bhandari",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-HYD-2025-0003",
+        "gold": "Azaan Murthy",
+        "predicted": "Shri Azaan Murthy",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0001",
+        "gold": "Yohannan Logistics Pvt Ltd",
+        "predicted": "Yohannan Logistics Pvt Ltd.",
+        "type": "Organization"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0006",
+        "gold": "Karan Tella",
+        "predicted": "Shri Karan Tella",
+        "type": "Person"
+      }
+    ],
+    "wrong_type": [
+      {
+        "document_id": "FIR-DEL-2025-0002",
+        "text": "Aarna Choudhury",
+        "gold_type": "Person",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0005",
+        "text": "Murty Dhaba",
+        "gold_type": "Location",
+        "predicted_type": "Person",
+        "spacy_label": "PERSON"
+      },
+      {
+        "document_id": "FIR-HYD-2025-0001",
+        "text": "Dugal Zila Market",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-HYD-2025-0002",
+        "text": "Dugal Zila Market",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-HYD-2025-0002",
+        "text": "Hyderabad",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-HYD-2025-0003",
+        "text": "Yogi Traders",
+        "gold_type": "Organization",
+        "predicted_type": "Person",
+        "spacy_label": "PERSON"
+      },
+      {
+        "document_id": "FIR-HYD-2025-0004",
+        "text": "Bora Road Business Centre",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0001",
+        "text": "Balan Warehouse",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0001",
+        "text": "Dalaja Chahal",
+        "gold_type": "Person",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0001",
+        "text": "Dalaja Chahal",
+        "gold_type": "Person",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0001",
+        "text": "Laksh Konda",
+        "gold_type": "Person",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0001",
+        "text": "Bala Circle Bus Depot",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0002",
+        "text": "Khosla Tea Stall",
+        "gold_type": "Location",
+        "predicted_type": "Person",
+        "spacy_label": "PERSON"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0003",
+        "text": "Kakar Warehouse",
+        "gold_type": "Location",
+        "predicted_type": "Person",
+        "spacy_label": "PERSON"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0004",
+        "text": "Laksh Konda",
+        "gold_type": "Person",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0006",
+        "text": "Walia Tea Stall",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0001",
+        "text": "Ekaja Solanki",
+        "gold_type": "Person",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0002",
+        "text": "Shri Ishwar Kannan",
+        "gold_type": "Person",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0002",
+        "text": "Chander Warehouse",
+        "gold_type": "Location",
+        "predicted_type": "Person",
+        "spacy_label": "PERSON"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0002",
+        "text": "Pune",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0004",
+        "text": "Marg Market",
+        "gold_type": "Location",
+        "predicted_type": "Person",
+        "spacy_label": "PERSON"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0005",
+        "text": "Lalla Garage",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0005",
+        "text": "Hyderabad",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      }
+    ],
+    "false_positive": [
+      {
+        "document_id": "FIR-DEL-2025-0002",
+        "text": "Maruti Suzuki Swift",
+        "predicted_type": "Person",
+        "spacy_label": "PERSON"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0002",
+        "text": "Maruti Suzuki Swift",
+        "predicted_type": "Person",
+        "spacy_label": "PERSON"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0004",
+        "text": "Royal Enfield Classic 350",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0005",
+        "text": "Royal Enfield Classic 350",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0005",
+        "text": "CCTV",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-HYD-2025-0002",
+        "text": "KYC",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-HYD-2025-0004",
+        "text": "KYC",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0001",
+        "text": "Ashok Leyland Dost",
+        "predicted_type": "Person",
+        "spacy_label": "PERSON"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0002",
+        "text": "KYC",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0001",
+        "text": "Maruti Suzuki Ertiga",
+        "predicted_type": "Person",
+        "spacy_label": "PERSON"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0004",
+        "text": "Tata Nexon",
+        "predicted_type": "Person",
+        "spacy_label": "PERSON"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0004",
+        "text": "CCTV",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0004",
+        "text": "Ashok Leyland Dost",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      }
+    ],
+    "false_negative": [
+      {
+        "document_id": "FIR-BLR-2025-0003",
+        "text": "Aadi Venkatesh",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0002",
+        "text": "Tanvi Dubey",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0002",
+        "text": "Aarna Choudhury",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0005",
+        "text": "D’Alia Auto Works",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0005",
+        "text": "Ranveer Madan",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0005",
+        "text": "Murty Dhaba",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-HYD-2025-0001",
+        "text": "Dugal Zila Market",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-HYD-2025-0001",
+        "text": "Hyderabad",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-HYD-2025-0002",
+        "text": "Dugal Zila Market",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-HYD-2025-0002",
+        "text": "Hyderabad",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-HYD-2025-0003",
+        "text": "Yogi Traders",
+        "type": "Organization"
+      },
+      {
+        "document_id": "FIR-HYD-2025-0003",
+        "text": "Hyderabad",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-HYD-2025-0004",
+        "text": "Bora Road Business Centre",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-HYD-2025-0004",
+        "text": "Hyderabad",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0001",
+        "text": "Balan Warehouse",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0001",
+        "text": "Dalaja Chahal",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0001",
+        "text": "Dalaja Chahal",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0001",
+        "text": "Laksh Konda",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0001",
+        "text": "Bala Circle Bus Depot",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0002",
+        "text": "Khosla Tea Stall",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0003",
+        "text": "Kakar Warehouse",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0004",
+        "text": "Laksh Konda",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0006",
+        "text": "Walia Tea Stall",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0001",
+        "text": "Ekaja Solanki",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0001",
+        "text": "Pune",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0001",
+        "text": "Ekaja Solanki",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0002",
+        "text": "Ishwar Kannan",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0002",
+        "text": "Chander Warehouse",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0002",
+        "text": "Pune",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0003",
+        "text": "Udarsh Dey",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0004",
+        "text": "Agate Marg Market",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0004",
+        "text": "Pune",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0005",
+        "text": "Lalla Garage",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0005",
+        "text": "Pune",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0005",
+        "text": "Hyderabad",
+        "type": "Location"
+      }
+    ]
+  }
+}

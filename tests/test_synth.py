@@ -198,6 +198,38 @@ def test_relations_follow_schema_and_decision_3(data):
                 assert not {rel["source"], rel["target"]} & phone_users, (fir_id, rel)
 
 
+def test_enough_organization_mentions_to_measure(data):
+    reports = _truth(data)["fir_annotations"]["reports"].values()
+    assert sum(m["node_type"] == "Organization" for r in reports for m in r["mentions"]) >= 12
+
+
+def test_report_employment_claims_match_structured_data(data):
+    truth = _truth(data)
+    by_node = defaultdict(list)
+    for p in truth["persons"]:
+        by_node[p["expected_node_id"]].append(p)
+    salary_payers = defaultdict(set)  # account -> accounts that paid it
+    for r in _rows(data, "transactions.csv"):
+        salary_payers[_acct(r, "to")].add(_acct(r, "from"))
+    org_accounts = {r["holder_name"]: f"BankAccount:{r['ifsc']}:{r['account_number']}"
+                    for r in _rows(data, "bank_accounts.csv") if r["holder_type"] == "organization"}
+    org_names = {m["expected_node_id"]: m["text"] for r in truth["fir_annotations"]["reports"].values()
+                 for m in r["mentions"] if m["node_type"] == "Organization"}
+    checked = 0
+    for ann in truth["fir_annotations"]["reports"].values():
+        for rel in ann["relations"]:
+            if rel["type"] != "MEMBER_OF":
+                continue
+            people = by_node[rel["source"]]
+            assert any(rel["target"] in (p["employer"], *p["director_of"]) for p in people), rel
+            employee = next(p for p in people if rel["target"] in (p["employer"], *p["director_of"]))
+            if employee["account"] and rel["target"] == employee["employer"] and "director" not in employee["tags"]:
+                org_account = org_accounts[org_names[rel["target"]]]
+                if org_account in salary_payers[employee["account"]]:
+                    checked += 1
+    assert checked >= 1  # at least some named employees visibly receive salary from that employer
+
+
 # ---------- Money cycles ----------
 
 

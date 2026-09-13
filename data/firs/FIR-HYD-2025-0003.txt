@@ -1,10 +1,10 @@
 [SYNTHETIC RECORD - generated test data, not a real case]
 FIR No: FIR-HYD-2025-0003
 Police Station: Secunderabad Police Station, Hyderabad
-Date and Time of Report: 2025-02-10T17:07:00+05:30
-Date and Time of Occurrence: 2025-02-09T20:07:00+05:30
+Date and Time of Report: 2025-02-28T08:54:00+05:30
+Date and Time of Occurrence: 2025-02-27T11:54:00+05:30
 Acts and Sections: BNS 2023 s.303(2)
-Investigating Officer: SI Madhavi Manda
+Investigating Officer: PSI Onveer Jani
 
 NARRATIVE
-The complainant Smt. Siya Deep reported that on 9 February 2025 at about 20:07 hours, a mobile phone bearing number +91-6017179896 belonging to the complainant was stolen from the complainant's bag in a crowd near Deo Auto Works, Hyderabad. The IMEI details have been submitted.
+The complainant Shri Azaan Murthy, who works at Yogi Traders, reported that on 27 February 2025 at about 11:54 hours, a mobile phone bearing number +91-6926118120 belonging to the complainant was stolen from the complainant's bag in a crowd near Deo Auto Works, Hyderabad. The IMEI details have been submitted.

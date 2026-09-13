@@ -104,10 +104,14 @@ an environment variable, for example `VERITAS_CONF_TEXT_PATTERN=0.8`.
 | `mention_regex` | 0.95 | accepted, no measurement planned | phone and plate mentions | A deterministic format match. A valid format still doesn't prove the number is real. |
 | `text_pattern` | 0.7 | **unvalidated prior** | edges from an explicit relation phrase | The text states the relationship, but parsing can be wrong. |
 | `text_cooccurrence` | 0.4 | **unvalidated prior** | `ASSOCIATED_WITH` from being in the same sentence | Being mentioned together is weak evidence. |
-| `mention_spacy_ner` | 0.6 | **unvalidated prior** | Person, Location and Organization mentions | See the caveat below. |
+| `mention_spacy_ner_person` | 0.92 | measured (upper bound) | Person mentions | spaCy `en_core_web_md` precision, 146/159 |
+| `mention_spacy_ner_location` | 0.97 | measured (upper bound) | Location mentions | 65/67 |
+| `mention_spacy_ner_organization` | 0.29 | measured (upper bound) | Organization mentions | 34/116: businesses, acronyms and vehicle models tagged ORG |
 
-The three **unvalidated priors** are guesses. They will be measured against the Phase 1 ground
-truth, and each one is marked with a `TODO` in `config.py` until then.
+The two **unvalidated priors** are guesses, marked with a `TODO` in `config.py` until relation extraction (Phase 3) is scored against the Phase 1 ground truth.
+
+The three NER values replaced a single unvalidated 0.6 (approved after Phase 2). They are lenient precision pooled over seeds 42 and 7.
+They come from clean, templated text, so they are **upper bounds**. They were measured for `en_core_web_md` and would need re-measuring for any other model.
 
 **Caveat on NER confidence.** spaCy's standard NER pipeline does **not** give a probability for
 each entity. The Phase 2 "confidence scores" will therefore be a fixed value per method (and possibly

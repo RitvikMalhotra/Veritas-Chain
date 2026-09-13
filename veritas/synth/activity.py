@@ -217,11 +217,10 @@ def generate_transactions(world: World, scenarios: list[Scenario]) -> list[Txn]:
             for _ in range(rng.randint(2, 4)):
                 pay(p.account, rng.choice(merchants[p.city]).account, _rupees(rng.lognormvariate(math.log(1500), 0.8), 10),
                     day(month * 30 + rng.randrange(30)), "retail")
+    free_ids = {p.true_id for p in free_individuals}
     for org in world.orgs.values():
-        if org.front_for or org.org_type == "transport company":
-            continue
-        staff = [p for p in free_individuals if p.city == org.city]
-        for p in rng.sample(staff, min(len(staff), rng.randint(2, 4))):
+        # Salaries go to the employees named in reports ("who works at ..."), so text and bank data agree.
+        for p in (P[i] for i in org.employees if i in free_ids):
             salary = _rupees(rng.uniform(18000, 65000), 500)
             for month in range(3):
                 pay(org.account, p.account, salary, day(month * 30 + rng.randrange(3), 9, 12), "salary", "NEFT")

@@ -1,10 +1,10 @@
 [SYNTHETIC RECORD - generated test data, not a real case]
 FIR No: FIR-DEL-2025-0006
 Police Station: Karol Bagh Police Station, Delhi
-Date and Time of Report: 2025-03-23T02:02:00+05:30
-Date and Time of Occurrence: 2025-03-22T15:02:00+05:30
-Acts and Sections: BNS 2023 s.281, 125(a)
-Investigating Officer: SI Hemal Lanka
+Date and Time of Report: 2025-03-10T15:50:00+05:30
+Date and Time of Occurrence: 2025-03-09T19:50:00+05:30
+Acts and Sections: BNS 2023 s.308(2)
+Investigating Officer: PSI Kevin Barad
 
 NARRATIVE
-On 22 March 2025 at about 15:02 hours, a white Ashok Leyland Dost bearing registration number DL 9 CY 4833, driven by Tripti Kothari, collided with a maroon TVS Apache RTR 160 bearing registration number DL5CML9941, driven by Upasna Datta, near Sharma Dhaba, Delhi. Upasna Datta sustained minor injuries and was taken to a nearby hospital. Tripti Kothari (mobile no. 7888064876) remained at the spot and cooperated with the police.
+The complainant Shri Timothy Sane (mobile no. +91-9714026682) reported that Ranveer Madan, an associate of Finn Shere, has been demanding money from shopkeepers around Sharma Tea Stall, Delhi. On 9 March 2025 at about 19:50 hours, Ranveer Madan called the complainant from mobile number 6424188799 and demanded ₹1,00,000. The complainant paid ₹25,000 through UPI out of fear and has now approached the police.

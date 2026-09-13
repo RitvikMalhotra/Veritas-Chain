@@ -1,10 +1,10 @@
 [SYNTHETIC RECORD - generated test data, not a real case]
 FIR No: FIR-DEL-2025-0004
 Police Station: Lajpat Nagar Police Station, Delhi
-Date and Time of Report: 2025-02-28T17:16:00+05:30
-Date and Time of Occurrence: 2025-02-28T16:16:00+05:30
-Acts and Sections: BNS 2023 s.308(2), 324(4), 351(3), 3(5)
-Investigating Officer: SI Hemal Lanka
+Date and Time of Report: 2025-01-17T15:17:00+05:30
+Date and Time of Occurrence: 2025-01-16T20:17:00+05:30
+Acts and Sections: BNS 2023 s.308(2), 351(2)
+Investigating Officer: PSI Kevin Barad
 
 NARRATIVE
-On 28 February 2025 at about 16:16 hours, Imaran Nair and Ayaan Karnik arrived on a maroon Royal Enfield Classic 350 bearing registration number DL-4-CB-1155 at the shop of Smt. Garima Khalsa near Bala Path Garage, Delhi, damaged the shop counter and threatened Garima Khalsa for not paying protection money. The incident was recorded on the shop's CCTV camera. As per information from local sources, Imaran Nair had met Finn Shere and Ranveer Madan at Murty Dhaba, Delhi on the previous evening. Finn Shere is known to use mobile number 06852224261.
+The complainant Shri Ethan Sani (mobile no. +91 64064 67692), who runs a shop near Singhal Tea Stall, Delhi, reported receiving threatening calls over the past two days from mobile number +91 65183 01062. The caller, who gave his name as Ayaan Karnik, demanded ₹50,000 as protection money. On 16 January 2025 at about 20:17 hours, out of fear, the complainant paid ₹20,000 in cash to Imaran Nair near the shop. Imaran Nair came on a maroon Royal Enfield Classic 350 bearing registration number DL 4 CB 1155.

@@ -1,10 +1,10 @@
 [SYNTHETIC RECORD - generated test data, not a real case]
 FIR No: FIR-DEL-2025-0003
 Police Station: Seelampur Police Station, Delhi
-Date and Time of Report: 2025-02-02T13:09:00+05:30
-Date and Time of Occurrence: 2025-02-01T12:09:00+05:30
+Date and Time of Report: 2025-01-13T11:22:00+05:30
+Date and Time of Occurrence: 2025-01-12T10:22:00+05:30
 Acts and Sections: BNS 2023 s.331(4), 305(a)
-Investigating Officer: SI Hemal Lanka
+Investigating Officer: SI Darika Saraf
 
 NARRATIVE
-The complainant Smt. Yashawini Suresh (mobile no. +91-8843189740) reported that on 1 February 2025 at about 12:09 hours, the lock of the complainant's house near Ratta Circle Garage, Delhi was found broken and cash and jewellery were missing. The complainant suspects Raagini Ray, an employee of Loke Traders, who had visited the house a week earlier for repair work.
+The complainant Shri Charan Pandya (mobile no. +91-6005959219) reported that on 12 January 2025 at about 10:22 hours, the lock of the complainant's house near Bajwa Ganj Garage, Delhi was found broken and cash and jewellery were missing. The complainant suspects Atharv Chanda, an employee of Barad Trading Pvt Ltd, who had visited the house a week earlier for repair work.

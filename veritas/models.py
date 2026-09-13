@@ -353,14 +353,16 @@ class EntityMention(BaseModel):
     start_char: int = Field(ge=0)
     end_char: int
     method: MentionMethod
-    confidence: float = Field(ge=0.0, le=1.0)  # filled from config by method if omitted
+    confidence: float = Field(ge=0.0, le=1.0)  # filled from config by method and node type if omitted
 
     @model_validator(mode="before")
     @classmethod
     def _fill_confidence(cls, data: Any) -> Any:
-        if isinstance(data, dict) and data.get("confidence") is None and "method" in data:
-            method = MentionMethod(data["method"])
-            data = {**data, "confidence": get_confidence_settings().mention_default(method.value)}
+        if isinstance(data, dict) and data.get("confidence") is None and "method" in data and "node_type" in data:
+            method, node_type = MentionMethod(data["method"]), NodeType(data["node_type"])
+            if node_type not in cls.METHOD_NODE_TYPES[method]:  # reject before looking up a per-label default that can't exist
+                raise ValueError(f"{method} is not allowed to produce {node_type} mentions")
+            data = {**data, "confidence": get_confidence_settings().mention_default(method.value, node_type.value)}
         return data
 
     @model_validator(mode="after")

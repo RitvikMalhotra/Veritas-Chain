@@ -1,0 +1,681 @@
+{
+  "model": "en_core_web_md",
+  "model_version": "3.8.0",
+  "data": "data",
+  "matching": {
+    "strict": "same start, end and type",
+    "lenient": "overlapping span and same type, matched one-to-one",
+    "same_key": "lenient match whose canonical key equals the gold mention's key (boundary error is harmless)"
+  },
+  "per_type": {
+    "Person": {
+      "gold": 79,
+      "predicted": 76,
+      "strict": {
+        "tp": 66,
+        "fp": 10,
+        "fn": 13,
+        "precision": 0.868421052631579,
+        "recall": 0.8354430379746836,
+        "f1": 0.8516129032258065
+      },
+      "lenient": {
+        "tp": 70,
+        "fp": 6,
+        "fn": 9,
+        "precision": 0.9210526315789473,
+        "recall": 0.8860759493670886,
+        "f1": 0.9032258064516129
+      },
+      "same_key": {
+        "tp": 70,
+        "fp": 6,
+        "fn": 9,
+        "precision": 0.9210526315789473,
+        "recall": 0.8860759493670886,
+        "f1": 0.9032258064516129
+      }
+    },
+    "Location": {
+      "gold": 53,
+      "predicted": 33,
+      "strict": {
+        "tp": 33,
+        "fp": 0,
+        "fn": 20,
+        "precision": 1.0,
+        "recall": 0.6226415094339622,
+        "f1": 0.7674418604651162
+      },
+      "lenient": {
+        "tp": 33,
+        "fp": 0,
+        "fn": 20,
+        "precision": 1.0,
+        "recall": 0.6226415094339622,
+        "f1": 0.7674418604651162
+      },
+      "same_key": {
+        "tp": 33,
+        "fp": 0,
+        "fn": 20,
+        "precision": 1.0,
+        "recall": 0.6226415094339622,
+        "f1": 0.7674418604651162
+      }
+    },
+    "Organization": {
+      "gold": 17,
+      "predicted": 56,
+      "strict": {
+        "tp": 16,
+        "fp": 40,
+        "fn": 1,
+        "precision": 0.2857142857142857,
+        "recall": 0.9411764705882353,
+        "f1": 0.4383561643835616
+      },
+      "lenient": {
+        "tp": 17,
+        "fp": 39,
+        "fn": 0,
+        "precision": 0.30357142857142855,
+        "recall": 1.0,
+        "f1": 0.4657534246575342
+      },
+      "same_key": {
+        "tp": 17,
+        "fp": 39,
+        "fn": 0,
+        "precision": 0.30357142857142855,
+        "recall": 1.0,
+        "f1": 0.4657534246575342
+      }
+    },
+    "Phone": {
+      "gold": 32,
+      "predicted": 32,
+      "strict": {
+        "tp": 32,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "lenient": {
+        "tp": 32,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "same_key": {
+        "tp": 32,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      }
+    },
+    "Vehicle": {
+      "gold": 10,
+      "predicted": 10,
+      "strict": {
+        "tp": 10,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "lenient": {
+        "tp": 10,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "same_key": {
+        "tp": 10,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      }
+    }
+  },
+  "spacy_types_micro": {
+    "strict": {
+      "tp": 115,
+      "fp": 50,
+      "fn": 34,
+      "precision": 0.696969696969697,
+      "recall": 0.7718120805369127,
+      "f1": 0.7324840764331211
+    },
+    "lenient": {
+      "tp": 120,
+      "fp": 45,
+      "fn": 29,
+      "precision": 0.7272727272727273,
+      "recall": 0.8053691275167785,
+      "f1": 0.7643312101910829
+    },
+    "same_key": {
+      "tp": 120,
+      "fp": 45,
+      "fn": 29,
+      "precision": 0.7272727272727273,
+      "recall": 0.8053691275167785,
+      "f1": 0.7643312101910829
+    }
+  },
+  "regex_types_micro": {
+    "strict": {
+      "tp": 42,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "lenient": {
+      "tp": 42,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "same_key": {
+      "tp": 42,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  },
+  "errors": {
+    "boundary": [
+      {
+        "document_id": "FIR-BLR-2025-0001",
+        "gold": "Orinder Murthy",
+        "predicted": "Shri Orinder Murthy",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-BLR-2025-0003",
+        "gold": "Aadi Venkatesh",
+        "predicted": "Shri Aadi Venkatesh",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0001",
+        "gold": "Rahul Sharma",
+        "predicted": "Shri Rahul Sharma",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0001",
+        "gold": "Yohannan Logistics Pvt Ltd",
+        "predicted": "Yohannan Logistics Pvt Ltd.",
+        "type": "Organization"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0006",
+        "gold": "Karan Tella",
+        "predicted": "Shri Karan Tella",
+        "type": "Person"
+      }
+    ],
+    "wrong_type": [
+      {
+        "document_id": "FIR-BLR-2025-0001",
+        "text": "Shroff Tea Stall",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-BLR-2025-0002",
+        "text": "Ravi Tea Stall",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-BLR-2025-0003",
+        "text": "Modi Auto Works",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0001",
+        "text": "Hotel Yadav Residency",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0002",
+        "text": "Sharma Tea Stall",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0003",
+        "text": "Bajwa Ganj Garage",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0004",
+        "text": "Singhal Tea Stall",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0006",
+        "text": "Sharma Tea Stall",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-HYD-2025-0003",
+        "text": "Deo Auto Works",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0001",
+        "text": "Balan Warehouse",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0001",
+        "text": "Daksh Bakshi",
+        "gold_type": "Person",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0001",
+        "text": "Daksh Bakshi",
+        "gold_type": "Person",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0002",
+        "text": "Khosla Tea Stall",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0003",
+        "text": "Kakar Warehouse",
+        "gold_type": "Location",
+        "predicted_type": "Person",
+        "spacy_label": "PERSON"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0004",
+        "text": "Sarma Auto Works",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0004",
+        "text": "Daksh Bakshi",
+        "gold_type": "Person",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0005",
+        "text": "Hotel Lanka Residency",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0006",
+        "text": "Walia Tea Stall",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0001",
+        "text": "Hotel Bedi Residency",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0002",
+        "text": "Chander Warehouse",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0003",
+        "text": "Kala Tea Stall",
+        "gold_type": "Location",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0004",
+        "text": "Agate Marg Market",
+        "gold_type": "Location",
+        "predicted_type": "Person",
+        "spacy_label": "PERSON"
+      }
+    ],
+    "false_positive": [
+      {
+        "document_id": "FIR-BLR-2025-0002",
+        "text": "Smt",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0001",
+        "text": "IMEI",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0002",
+        "text": "Maruti Suzuki Swift",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0002",
+        "text": "Maruti Suzuki Swift",
+        "predicted_type": "Person",
+        "spacy_label": "PERSON"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0004",
+        "text": "Royal Enfield Classic 350",
+        "predicted_type": "Person",
+        "spacy_label": "PERSON"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0005",
+        "text": "Royal Enfield Classic 350",
+        "predicted_type": "Person",
+        "spacy_label": "PERSON"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0005",
+        "text": "CCTV",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0006",
+        "text": "UPI",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-HYD-2025-0002",
+        "text": "Smt",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-HYD-2025-0002",
+        "text": "KYC",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-HYD-2025-0003",
+        "text": "IMEI",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-HYD-2025-0004",
+        "text": "KYC",
+        "predicted_type": "Person",
+        "spacy_label": "PERSON"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0001",
+        "text": "Ashok Leyland Dost",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0002",
+        "text": "Smt",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0002",
+        "text": "KYC",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0003",
+        "text": "Smt",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0005",
+        "text": "Smt",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0006",
+        "text": "IMEI",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0001",
+        "text": "Maruti Suzuki Ertiga",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0004",
+        "text": "Smt",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0004",
+        "text": "Tata",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0004",
+        "text": "CCTV",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0004",
+        "text": "Ashok Leyland Dost",
+        "predicted_type": "Organization",
+        "spacy_label": "ORG"
+      }
+    ],
+    "false_negative": [
+      {
+        "document_id": "FIR-BLR-2025-0001",
+        "text": "Shroff Tea Stall",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-BLR-2025-0002",
+        "text": "Ravi Tea Stall",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-BLR-2025-0003",
+        "text": "Modi Auto Works",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0001",
+        "text": "Hotel Yadav Residency",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0002",
+        "text": "Sharma Tea Stall",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0002",
+        "text": "Aarna Choudhury",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0003",
+        "text": "Bajwa Ganj Garage",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0004",
+        "text": "Singhal Tea Stall",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0005",
+        "text": "D’Alia Auto Works",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0006",
+        "text": "Timothy Sane",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-DEL-2025-0006",
+        "text": "Sharma Tea Stall",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-HYD-2025-0003",
+        "text": "Deo Auto Works",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0001",
+        "text": "Balan Warehouse",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0001",
+        "text": "Daksh Bakshi",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0001",
+        "text": "Daksh Bakshi",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0002",
+        "text": "Khosla Tea Stall",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0003",
+        "text": "Kakar Warehouse",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0004",
+        "text": "Sarma Auto Works",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0004",
+        "text": "Daksh Bakshi",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0005",
+        "text": "Hotel Lanka Residency",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-MUM-2025-0006",
+        "text": "Walia Tea Stall",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0001",
+        "text": "Hotel Bedi Residency",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0002",
+        "text": "Ishwar Kannan",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0002",
+        "text": "Chander Warehouse",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0003",
+        "text": "Udarsh Dey",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0003",
+        "text": "Kala Tea Stall",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0004",
+        "text": "Pallavi Bail",
+        "type": "Person"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0004",
+        "text": "Agate Marg Market",
+        "type": "Location"
+      },
+      {
+        "document_id": "FIR-PUN-2025-0005",
+        "text": "Onkar Mall",
+        "type": "Person"
+      }
+    ]
+  }
+}

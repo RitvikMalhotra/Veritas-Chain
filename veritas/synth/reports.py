@@ -21,12 +21,13 @@ TEMPLATES: dict[str, tuple[str, list[tuple[str, str, str]]]] = {
         "Acting on specific information, a police team conducted a raid at {place}, {city} on {when}. "
         "{acc1} and {acc2} were apprehended at the spot and 240 grams of a white crystalline substance suspected to be "
         "mephedrone was recovered from their possession. A {veh_color} {veh_model} bearing registration number {veh} "
-        "was found parked at the spot and was seized. As per registration records, the vehicle is registered to {owner}. "
+        "was found parked at the spot and was seized. As per registration records, the vehicle is registered to {owner}, "
+        "a director of {owner_org}. "
         "During questioning, {acc1} disclosed that the contraband was supplied by {leader}, who uses mobile number "
         "{leader_phone}. {acc2} further disclosed having met {leader} and {lt} at {meet_place}, {meet_city} two days "
         "before the raid to collect the consignment. Further investigation is in progress.",
         [("PRESENT_AT_EVENT", "acc1", "EVENT"), ("PRESENT_AT_EVENT", "acc2", "EVENT"), ("PRESENT_AT_EVENT", "veh", "EVENT"),
-         ("OWNS_VEHICLE", "owner", "veh"), ("USES_PHONE", "leader", "leader_phone"),
+         ("OWNS_VEHICLE", "owner", "veh"), ("MEMBER_OF", "owner", "owner_org"), ("USES_PHONE", "leader", "leader_phone"),
          ("MET_AT", "acc2", "meet_place"), ("MET_AT", "leader", "meet_place"), ("MET_AT", "lt", "meet_place")],
     ),
     "A_PATROL": (
@@ -56,12 +57,13 @@ TEMPLATES: dict[str, tuple[str, list[tuple[str, str, str]]]] = {
          ("USES_PHONE", "lt", "lt_phone")],
     ),
     "C_COMPLAINT": (
-        "The complainant {c_title}{complainant} (mobile no. {c_phone}), who lives near {place}, {city}, reported that on "
-        "{when}, a caller using mobile number {fraud_phone} claimed to be a bank official and said that the complainant's "
+        "The complainant {c_title}{complainant} (mobile no. {c_phone}), who works at {employer} and lives near {place}, "
+        "{city}, reported that on {when}, a caller using mobile number {fraud_phone} claimed to be a bank official and said that the complainant's "
         "KYC had expired. On the caller's instructions, the complainant installed a screen-sharing application, after "
         "which ₹{amount} was debited from the complainant's account in {n_txn}. The complainant has submitted the bank "
         "statement. A request has been sent to the telecom service provider for subscriber details of mobile number {fraud_phone}.",
-        [("USES_PHONE", "complainant", "c_phone"), ("CALLED", "fraud_phone", "c_phone")],
+        [("USES_PHONE", "complainant", "c_phone"), ("CALLED", "fraud_phone", "c_phone"),
+         ("MEMBER_OF", "complainant", "employer")],
     ),
     "C_RAID": (
         "On {when}, a raid was conducted at the office of {front} at {place}, {city} on information that fraudulent calls "
@@ -105,18 +107,20 @@ TEMPLATES: dict[str, tuple[str, list[tuple[str, str, str]]]] = {
         [("USES_PHONE", "complainant", "c_phone"), ("PRESENT_AT_EVENT", "complainant", "EVENT")],
     ),
     "PHONE_THEFT": (
-        "The complainant {c_title}{complainant} reported that on {when}, a mobile phone bearing number {c_phone} belonging "
-        "to the complainant was stolen from the complainant's bag in a crowd near {place}, {city}. The IMEI details have "
-        "been submitted.",
-        [("USES_PHONE", "complainant", "c_phone"), ("PRESENT_AT_EVENT", "complainant", "EVENT")],
+        "The complainant {c_title}{complainant}, who works at {employer}, reported that on {when}, a mobile phone bearing "
+        "number {c_phone} belonging to the complainant was stolen from the complainant's bag in a crowd near {place}, "
+        "{city}. The IMEI details have been submitted.",
+        [("USES_PHONE", "complainant", "c_phone"), ("PRESENT_AT_EVENT", "complainant", "EVENT"),
+         ("MEMBER_OF", "complainant", "employer")],
     ),
     "ACCIDENT": (
-        "On {when}, a {veh1_color} {veh1_model} bearing registration number {veh1}, driven by {driver1}, collided with a "
-        "{veh2_color} {veh2_model} bearing registration number {veh2}, driven by {driver2}, near {place}, {city}. "
-        "{driver2} sustained minor injuries and was taken to a nearby hospital. {driver1} (mobile no. {d1_phone}) "
-        "remained at the spot and cooperated with the police.",
+        "On {when}, a {veh1_color} {veh1_model} bearing registration number {veh1}, driven by {driver1}, an employee of "
+        "{d1_employer}, collided with a {veh2_color} {veh2_model} bearing registration number {veh2}, driven by "
+        "{driver2}, an employee of {d2_employer}, near {place}, {city}. {driver2} sustained minor injuries and was taken "
+        "to a nearby hospital. {driver1} (mobile no. {d1_phone}) remained at the spot and cooperated with the police.",
         [("PRESENT_AT_EVENT", "driver1", "EVENT"), ("PRESENT_AT_EVENT", "driver2", "EVENT"),
-         ("PRESENT_AT_EVENT", "veh1", "EVENT"), ("PRESENT_AT_EVENT", "veh2", "EVENT"), ("USES_PHONE", "driver1", "d1_phone")],
+         ("PRESENT_AT_EVENT", "veh1", "EVENT"), ("PRESENT_AT_EVENT", "veh2", "EVENT"), ("USES_PHONE", "driver1", "d1_phone"),
+         ("MEMBER_OF", "driver1", "d1_employer"), ("MEMBER_OF", "driver2", "d2_employer")],
     ),
     "ONLINE_CHEAT": (
         "The complainant {c_title}{complainant} (mobile no. {c_phone}), who lives near {place}, {city}, reported that on "
@@ -126,10 +130,11 @@ TEMPLATES: dict[str, tuple[str, list[tuple[str, str, str]]]] = {
     ),
     "DISPUTE": (
         "The complainant {c_title}{complainant} (mobile no. {c_phone}) reported that on {when}, {accused}, a neighbour, "
-        "quarrelled with the complainant over parking near {place}, {city} and slapped the complainant. {witness} "
-        "witnessed the incident.",
+        "quarrelled with the complainant over parking near {place}, {city} and slapped the complainant. {witness}, who "
+        "works at {w_employer}, witnessed the incident.",
         [("USES_PHONE", "complainant", "c_phone"), ("PRESENT_AT_EVENT", "complainant", "EVENT"),
-         ("PRESENT_AT_EVENT", "accused", "EVENT"), ("PRESENT_AT_EVENT", "witness", "EVENT")],
+         ("PRESENT_AT_EVENT", "accused", "EVENT"), ("PRESENT_AT_EVENT", "witness", "EVENT"),
+         ("MEMBER_OF", "witness", "w_employer")],
     ),
     "BURGLARY": (
         "The complainant {c_title}{complainant} (mobile no. {c_phone}) reported that on {when}, the lock of the "

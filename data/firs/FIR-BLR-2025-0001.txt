@@ -1,10 +1,10 @@
 [SYNTHETIC RECORD - generated test data, not a real case]
 FIR No: FIR-BLR-2025-0001
-Police Station: Yeshwanthpur Police Station, Bengaluru
-Date and Time of Report: 2025-02-02T12:30:00+05:30
-Date and Time of Occurrence: 2025-02-02T09:30:00+05:30
-Acts and Sections: BNS 2023 s.304(2)
-Investigating Officer: SI Nilima Kar
+Police Station: Jayanagar Police Station, Bengaluru
+Date and Time of Report: 2025-01-24T17:43:00+05:30
+Date and Time of Occurrence: 2025-01-23T19:43:00+05:30
+Acts and Sections: BNS 2023 s.331(4), 305(a)
+Investigating Officer: PSI Nilima Kar
 
 NARRATIVE
-The complainant Smt. Anjali Chopra (mobile no. 92750 70531) reported that on 2 February 2025 at about 09:30 hours, while walking near Mitra Warehouse, Bengaluru, two unidentified persons on a motorcycle snatched a gold chain weighing about 20 grams from the complainant's neck and fled. The registration number of the motorcycle could not be noted.
+The complainant Shri Orinder Murthy (mobile no. +91-6454474647) reported that on 23 January 2025 at about 19:43 hours, the lock of the complainant's house near Shroff Tea Stall, Bengaluru was found broken and cash and jewellery were missing. The complainant suspects Anya Sarin, an employee of Raghavan Trading Pvt Ltd, who had visited the house a week earlier for repair work.

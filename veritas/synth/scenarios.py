@@ -118,7 +118,8 @@ def build_scenarios(world: World) -> list[Scenario]:
     out.append(Scenario(
         "A1", "A_RAID", "Mumbai", "A", "drug seizure", "NDPS Act 1985 s.8(c), 21, 29", t, A.meeting_places[0],
         {"acc1": acc1, "acc2": acc2, "leader": a_leader, "lt": a_lt, "leader_phone": PhoneRef(a_leader.phones[0]),
-         "owner": bridge1, "place": A.meeting_places[0], "city": CityRef("Mumbai"),
+         "owner": bridge1, "owner_org": next(o for o in world.orgs.values() if bridge1.true_id in o.directors),
+         "place": A.meeting_places[0], "city": CityRef("Mumbai"),
          "meet_place": A.meeting_places[1], "meet_city": CityRef("Mumbai"), **_vehicle_slots("veh", bridge1.vehicles[0])},
         spike_ids=[acc1.true_id, acc2.true_id, a_leader.true_id, *A.lieutenants, bridge1.true_id],
     ))
@@ -166,7 +167,7 @@ def build_scenarios(world: World) -> list[Scenario]:
     callers = [P[m] for m in C.members[2:]] + [P[i] for i in C.lieutenants]
     for key, city, caller in (("C1", "Hyderabad", callers[0]), ("C2", "Mumbai", callers[-1])):
         # Individuals only: a merchant victim also receives cluster spending, which closes unplanted money cycles.
-        victim = pick.take(city, lambda p: p.account is not None and "individual" in p.tags)
+        victim = pick.take(city, lambda p: p.account is not None and "individual" in p.tags and p.employer is not None)
         t = _at(rng, 5, 80, 10, 18)
         n_txn = rng.randint(1, 3)
         amounts = [Decimal(rng.randrange(15000, 70000, 500)) for _ in range(n_txn)]
@@ -178,6 +179,7 @@ def build_scenarios(world: World) -> list[Scenario]:
             key, "C_COMPLAINT", city, "C", "online fraud", "BNS 2023 s.318(4), 319(2); IT Act 2000 s.66D", t, home,
             {"complainant": victim, "c_title": "Shri " if victim.gender == "M" else "Smt. ",
              "c_phone": PhoneRef(victim.phones[0]), "fraud_phone": PhoneRef(caller.phones[0]),
+             "employer": world.orgs[victim.employer],
              "amount": inr(sum(amounts)), "n_txn": "a single transaction" if n_txn == 1 else f"{n_txn} transactions", "place": home, "city": CityRef(city)},
             scripted_calls=[(caller.phones[0], victim.phones[0], t, rng.randint(420, 900))],
             payments=payments,
@@ -257,15 +259,19 @@ def build_scenarios(world: World) -> list[Scenario]:
     for n, (template, city, forced) in enumerate(background, start=1):
         t = _at(rng, 2, 87, 7, 21)
         place = noise_place(city)
-        complainant = pick.take(city, (lambda p: p.gender == "F") if template == "SNATCH" else (lambda p: True), forced)
+        needs = {"SNATCH": lambda p: p.gender == "F", "PHONE_THEFT": lambda p: p.employer is not None}
+        complainant = pick.take(city, needs.get(template, lambda p: True), forced)
         slots: dict[str, Any] = {"complainant": complainant, "c_title": "Shri " if complainant.gender == "M" else "Smt. ",
                                  "c_phone": PhoneRef(complainant.phones[0]), "place": place, "city": CityRef(city)}
         calls: list[tuple[str, str, datetime, int]] = []
-        if template == "ACCIDENT":
+        if template == "PHONE_THEFT":
+            slots["employer"] = world.orgs[complainant.employer]
+        elif template == "ACCIDENT":
             pick.used.discard(complainant.true_id)  # accident FIRs name the drivers, not a separate complainant
-            driver1 = pick.take(city, lambda p: bool(p.vehicles))
-            driver2 = pick.take(city, lambda p: bool(p.vehicles))
+            driver1 = pick.take(city, lambda p: bool(p.vehicles) and p.employer is not None)
+            driver2 = pick.take(city, lambda p: bool(p.vehicles) and p.employer is not None)
             slots = {"driver1": driver1, "d1_phone": PhoneRef(driver1.phones[0]), "driver2": driver2,
+                     "d1_employer": world.orgs[driver1.employer], "d2_employer": world.orgs[driver2.employer],
                      **_vehicle_slots("veh1", driver1.vehicles[0]), **_vehicle_slots("veh2", driver2.vehicles[0]),
                      "place": place, "city": CityRef(city)}
         elif template == "ONLINE_CHEAT":
@@ -273,11 +279,11 @@ def build_scenarios(world: World) -> list[Scenario]:
             slots |= {"scam_phone": PhoneRef(scam_number), "amount": inr(rng.randrange(1500, 9000, 100))}
             calls.append((scam_number, complainant.phones[0], t, rng.randint(200, 500)))
         elif template == "DISPUTE":
-            slots |= {"accused": pick.take(city), "witness": pick.take(city)}
+            witness = pick.take(city, lambda p: p.employer is not None)
+            slots |= {"accused": pick.take(city), "witness": witness, "w_employer": world.orgs[witness.employer]}
         elif template == "BURGLARY":
-            org = next(o for o in world.orgs.values() if o.city == city and o.front_for is None
-                       and o.org_type != "transport company")
-            slots |= {"suspect": pick.take(city), "org": org}
+            suspect = pick.take(city, lambda p: p.employer is not None)
+            slots |= {"suspect": suspect, "org": world.orgs[suspect.employer]}
         event_type, sec = sections[template]
         out.append(Scenario(f"N{n:02d}", template, city, None, event_type, sec, t, place, slots, scripted_calls=calls))
 

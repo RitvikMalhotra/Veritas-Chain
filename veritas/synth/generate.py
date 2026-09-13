@@ -189,6 +189,8 @@ def _ground_truth(world, scenarios, txns, txn_ids, reports, calls) -> dict[str, 
             "phones": ["+91" + n for n in p.phones],
             "account": p.account.node_id if p.account else None,
             "vehicles": [v.node_id for v in p.vehicles],
+            "employer": world.orgs[p.employer].node_id if p.employer else None,
+            "director_of": [o.node_id for o in world.orgs.values() if p.true_id in o.directors],
         }
 
     b1, b2 = (P[i] for i in world.bridge_ids)
