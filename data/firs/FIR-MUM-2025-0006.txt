@@ -1,0 +1,10 @@
+[SYNTHETIC RECORD - generated test data, not a real case]
+FIR No: FIR-MUM-2025-0006
+Police Station: Kurla Police Station, Mumbai
+Date and Time of Report: 2025-02-28T01:45:00+05:30
+Date and Time of Occurrence: 2025-02-27T18:45:00+05:30
+Acts and Sections: BNS 2023 s.115(2), 352
+Investigating Officer: SI Darpan Kota
+
+NARRATIVE
+The complainant Smt. Gaurika Zacharia (mobile no. +91 62755 52433) reported that on 27 February 2025 at about 18:45 hours, Zilmil Acharya, a neighbour, quarrelled with the complainant over parking near Sampath Circle Bus Depot, Mumbai and slapped the complainant. Sanya Raj witnessed the incident.

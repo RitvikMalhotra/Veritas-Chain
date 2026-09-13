@@ -1,0 +1,10 @@
+[SYNTHETIC RECORD - generated test data, not a real case]
+FIR No: FIR-BLR-2025-0003
+Police Station: Shivajinagar Police Station, Bengaluru
+Date and Time of Report: 2025-02-26T03:36:00+05:30
+Date and Time of Occurrence: 2025-02-25T20:36:00+05:30
+Acts and Sections: BNS 2023 s.318(4); IT Act 2000 s.66D
+Investigating Officer: SI Nilima Kar
+
+NARRATIVE
+The complainant Shri Anthony Sarin (mobile no. 79191 04175), who lives near Kade Road Market, Bengaluru, reported that on 25 February 2025 at about 20:36 hours, a caller using mobile number +91-7994279003 offered a part-time online job and asked for a registration fee. The complainant paid ₹2,300 online, after which the caller stopped responding.

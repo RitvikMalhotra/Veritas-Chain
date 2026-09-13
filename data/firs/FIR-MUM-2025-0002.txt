@@ -1,0 +1,10 @@
+[SYNTHETIC RECORD - generated test data, not a real case]
+FIR No: FIR-MUM-2025-0002
+Police Station: Kurla Police Station, Mumbai
+Date and Time of Report: 2025-01-27T01:12:00+05:30
+Date and Time of Occurrence: 2025-01-26T23:12:00+05:30
+Acts and Sections: NDPS Act 1985 s.8(c), 21, 29
+Investigating Officer: PSI Jeevika Bhatt
+
+NARRATIVE
+Acting on specific information, a police team conducted a raid at Balan Warehouse, Mumbai on 26 January 2025 at about 23:12 hours. Isaac Dewan and Dalaja Chahal were apprehended at the spot and 240 grams of a white crystalline substance suspected to be mephedrone was recovered from their possession. A black Ashok Leyland Dost bearing registration number MH14LY7909 was found parked at the spot and was seized. As per registration records, the vehicle is registered to Ekaraj Koshy. During questioning, Isaac Dewan disclosed that the contraband was supplied by Daksh Bakshi, who uses mobile number +91-6375107792. Dalaja Chahal further disclosed having met Daksh Bakshi and Laksh Konda at Bala Circle Bus Depot, Mumbai two days before the raid to collect the consignment. Further investigation is in progress.

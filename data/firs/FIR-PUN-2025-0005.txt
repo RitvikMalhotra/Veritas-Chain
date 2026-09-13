@@ -1,0 +1,10 @@
+[SYNTHETIC RECORD - generated test data, not a real case]
+FIR No: FIR-PUN-2025-0005
+Police Station: Pimpri Police Station, Pune
+Date and Time of Report: 2025-03-01T18:08:00+05:30
+Date and Time of Occurrence: 2025-03-01T15:08:00+05:30
+Acts and Sections: BNS 2023 s.303(2), 317(2), 3(5)
+Investigating Officer: PSI Utkarsh Mangal
+
+NARRATIVE
+On 1 March 2025 at about 15:08 hours, a raid was conducted at Lalla Garage, Pune on information that stolen vehicles were being dismantled there. Fariq Sami, Onkar Mall and Faras Kale were found removing parts from motorcycles and were detained. A motorcycle bearing registration number MH 12 AR 0301, whose owner is being traced, was recovered from the premises. During questioning, Fariq Sami disclosed that the gang is run by Hardik Saini and Imaran Sen, and that Hardik Saini handed over ₹3,50,000 in cash to Karan Sangha of Hyderabad last month for disposing of stolen vehicles. Imaran Sen can be contacted on mobile number +91-6665802686.

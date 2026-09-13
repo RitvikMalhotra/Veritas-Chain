@@ -1,0 +1,10 @@
+[SYNTHETIC RECORD - generated test data, not a real case]
+FIR No: FIR-MUM-2025-0003
+Police Station: Andheri Police Station, Mumbai
+Date and Time of Report: 2025-02-10T18:22:00+05:30
+Date and Time of Occurrence: 2025-02-09T17:22:00+05:30
+Acts and Sections: BNS 2023 s.318(4), 319(2); IT Act 2000 s.66D
+Investigating Officer: PSI Jeevika Bhatt
+
+NARRATIVE
+The complainant Smt. Vasana Aggarwal (mobile no. 7288961107), who lives near Khosla Dhaba, Mumbai, reported that on 9 February 2025 at about 17:22 hours, a caller using mobile number 7679658289 claimed to be a bank official and said that the complainant's KYC had expired. On the caller's instructions, the complainant installed a screen-sharing application, after which ₹83,500 was debited from the complainant's account in 2 transactions. The complainant has submitted the bank statement. A request has been sent to the telecom service provider for subscriber details of mobile number 7679658289.

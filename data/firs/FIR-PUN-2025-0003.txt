@@ -1,0 +1,10 @@
+[SYNTHETIC RECORD - generated test data, not a real case]
+FIR No: FIR-PUN-2025-0003
+Police Station: Yerawada Police Station, Pune
+Date and Time of Report: 2025-01-29T10:43:00+05:30
+Date and Time of Occurrence: 2025-01-28T18:43:00+05:30
+Acts and Sections: BNS 2023 s.318(4); IT Act 2000 s.66D
+Investigating Officer: PSI Utkarsh Mangal
+
+NARRATIVE
+The complainant Shri Ayushman Karnik (mobile no. 78376 17691), who lives near Ray Warehouse, Pune, reported that on 28 January 2025 at about 18:43 hours, a caller using mobile number 91367 51526 offered a part-time online job and asked for a registration fee. The complainant paid ₹4,000 online, after which the caller stopped responding.

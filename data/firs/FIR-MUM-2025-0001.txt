@@ -1,0 +1,10 @@
+[SYNTHETIC RECORD - generated test data, not a real case]
+FIR No: FIR-MUM-2025-0001
+Police Station: Malad Police Station, Mumbai
+Date and Time of Report: 2025-01-08T03:44:00+05:30
+Date and Time of Occurrence: 2025-01-07T08:44:00+05:30
+Acts and Sections: BNS 2023 s.303(2)
+Investigating Officer: PSI Jeevika Bhatt
+
+NARRATIVE
+The complainant Shri Siddharth Bhatt reported that on 7 January 2025 at about 08:44 hours, a mobile phone bearing number 6555122302 belonging to the complainant was stolen from the complainant's bag in a crowd near Muni Tea Stall, Mumbai. The IMEI details have been submitted.

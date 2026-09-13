@@ -1,0 +1,25 @@
+record_id,event_ref,event_type,occurred_at,location_name,city,police_station
+INC-0001,FIR-BLR-2025-0001,chain snatching,2025-02-02T09:30:00+05:30,Mitra Warehouse,Bengaluru,Yeshwanthpur Police Station
+INC-0002,FIR-BLR-2025-0002,house burglary,2025-02-13T21:17:00+05:30,Gara Warehouse,Bengaluru,Jayanagar Police Station
+INC-0003,FIR-BLR-2025-0003,online job fraud,2025-02-25T20:36:00+05:30,Kade Road Market,Bengaluru,Shivajinagar Police Station
+INC-0004,FIR-DEL-2025-0001,mobile phone theft,2025-01-07T13:07:00+05:30,Ratta Circle Garage,Delhi,Karol Bagh Police Station
+INC-0005,FIR-DEL-2025-0002,extortion,2025-01-16T20:17:00+05:30,Barad Marg Market,Delhi,Lajpat Nagar Police Station
+INC-0006,FIR-DEL-2025-0003,house burglary,2025-02-01T12:09:00+05:30,Ratta Circle Garage,Delhi,Seelampur Police Station
+INC-0007,FIR-DEL-2025-0004,extortion and mischief,2025-02-28T16:16:00+05:30,Bala Path Garage,Delhi,Lajpat Nagar Police Station
+INC-0008,FIR-DEL-2025-0005,extortion,2025-03-09T19:50:00+05:30,Iyengar Ganj Bus Depot,Delhi,Karol Bagh Police Station
+INC-0009,FIR-DEL-2025-0006,road accident,2025-03-22T15:02:00+05:30,Sharma Dhaba,Delhi,Karol Bagh Police Station
+INC-0010,FIR-HYD-2025-0001,assault,2025-01-15T17:17:00+05:30,Lalla Street Market,Hyderabad,LB Nagar Police Station
+INC-0011,FIR-HYD-2025-0002,online fraud,2025-01-16T13:43:00+05:30,Lalla Street Market,Hyderabad,Madhapur Police Station
+INC-0012,FIR-HYD-2025-0003,mobile phone theft,2025-02-09T20:07:00+05:30,Deo Auto Works,Hyderabad,Secunderabad Police Station
+INC-0013,FIR-HYD-2025-0004,fraud call centre raid,2025-03-03T15:23:00+05:30,Bora Road Business Centre,Hyderabad,LB Nagar Police Station
+INC-0014,FIR-MUM-2025-0001,mobile phone theft,2025-01-07T08:44:00+05:30,Muni Tea Stall,Mumbai,Malad Police Station
+INC-0015,FIR-MUM-2025-0002,drug seizure,2025-01-26T23:12:00+05:30,Balan Warehouse,Mumbai,Kurla Police Station
+INC-0016,FIR-MUM-2025-0003,online fraud,2025-02-09T17:22:00+05:30,Khosla Dhaba,Mumbai,Andheri Police Station
+INC-0017,FIR-MUM-2025-0004,chain snatching,2025-02-14T19:01:00+05:30,Hotel Kakar Residency,Mumbai,Malad Police Station
+INC-0018,FIR-MUM-2025-0005,drug seizure,2025-02-22T19:20:00+05:30,Seth Circle Market,Mumbai,Govandi Police Station
+INC-0019,FIR-MUM-2025-0006,assault,2025-02-27T18:45:00+05:30,Sampath Circle Bus Depot,Mumbai,Kurla Police Station
+INC-0020,FIR-PUN-2025-0001,road accident,2025-01-05T18:24:00+05:30,Hotel Borra Residency,Pune,Pimpri Police Station
+INC-0021,FIR-PUN-2025-0002,assault,2025-01-09T07:49:00+05:30,Krish Chowk Bus Depot,Pune,Pimpri Police Station
+INC-0022,FIR-PUN-2025-0003,online job fraud,2025-01-28T18:43:00+05:30,Ray Warehouse,Pune,Yerawada Police Station
+INC-0023,FIR-PUN-2025-0004,vehicle theft,2025-02-03T02:34:00+05:30,Hotel Kala Residency,Pune,Pimpri Police Station
+INC-0024,FIR-PUN-2025-0005,stolen vehicle recovery,2025-03-01T15:08:00+05:30,Lalla Garage,Pune,Pimpri Police Station

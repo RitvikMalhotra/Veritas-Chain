@@ -1,0 +1,10 @@
+[SYNTHETIC RECORD - generated test data, not a real case]
+FIR No: FIR-DEL-2025-0005
+Police Station: Karol Bagh Police Station, Delhi
+Date and Time of Report: 2025-03-10T15:50:00+05:30
+Date and Time of Occurrence: 2025-03-09T19:50:00+05:30
+Acts and Sections: BNS 2023 s.308(2)
+Investigating Officer: PSI Dalbir Lal
+
+NARRATIVE
+The complainant Shri Dhruv Lala (mobile no. +91-8382865694) reported that Ranveer Madan, an associate of Finn Shere, has been demanding money from shopkeepers around Iyengar Ganj Bus Depot, Delhi. On 9 March 2025 at about 19:50 hours, Ranveer Madan called the complainant from mobile number 6424188799 and demanded ₹1,00,000. The complainant paid ₹25,000 through UPI out of fear and has now approached the police.

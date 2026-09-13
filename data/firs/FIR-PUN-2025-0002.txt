@@ -1,0 +1,10 @@
+[SYNTHETIC RECORD - generated test data, not a real case]
+FIR No: FIR-PUN-2025-0002
+Police Station: Pimpri Police Station, Pune
+Date and Time of Report: 2025-01-10T06:49:00+05:30
+Date and Time of Occurrence: 2025-01-09T07:49:00+05:30
+Acts and Sections: BNS 2023 s.115(2), 352
+Investigating Officer: PSI Saumya Lanka
+
+NARRATIVE
+The complainant Shri Saksham Nori (mobile no. +91 66537 93670) reported that on 9 January 2025 at about 07:49 hours, Chavvi Bhat, a neighbour, quarrelled with the complainant over parking near Krish Chowk Bus Depot, Pune and slapped the complainant. Yasti Khanna witnessed the incident.

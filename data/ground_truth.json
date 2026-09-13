@@ -1,0 +1,5504 @@
+{
+  "_readme": "Evaluation-only ground truth for synthetic data. The pipeline (Phases 2-6) must never read this file; it exists to score pipeline output. All people, numbers and records are fictional.",
+  "generator": {
+    "seed": 42,
+    "window_start": "2025-01-01T00:00:00+05:30",
+    "window_days": 90
+  },
+  "clusters": [
+    {
+      "cluster_id": "A",
+      "theme": "drug distribution",
+      "city": "Mumbai",
+      "size": 6,
+      "leader": "TP-0001",
+      "lieutenants": [
+        "TP-0002"
+      ],
+      "members": [
+        "TP-0003",
+        "TP-0004",
+        "TP-0005",
+        "TP-0006"
+      ],
+      "meeting_places": [
+        "Location:balan_warehouse:mumbai",
+        "Location:bala_circle_bus_depot:mumbai"
+      ],
+      "front_organization": null
+    },
+    {
+      "cluster_id": "B",
+      "theme": "vehicle theft",
+      "city": "Pune",
+      "size": 9,
+      "leader": "TP-0007",
+      "lieutenants": [
+        "TP-0008",
+        "TP-0009"
+      ],
+      "members": [
+        "TP-0010",
+        "TP-0011",
+        "TP-0012",
+        "TP-0013",
+        "TP-0014",
+        "TP-0015"
+      ],
+      "meeting_places": [
+        "Location:lalla_garage:pune",
+        "Location:yadav_chowk_market:pune"
+      ],
+      "front_organization": null
+    },
+    {
+      "cluster_id": "C",
+      "theme": "online fraud",
+      "city": "Hyderabad",
+      "size": 10,
+      "leader": "TP-0016",
+      "lieutenants": [
+        "TP-0017",
+        "TP-0018"
+      ],
+      "members": [
+        "TP-0019",
+        "TP-0020",
+        "TP-0021",
+        "TP-0022",
+        "TP-0023",
+        "TP-0024",
+        "TP-0025"
+      ],
+      "meeting_places": [
+        "Location:bora_road_business_centre:hyderabad",
+        "Location:garg_warehouse:hyderabad"
+      ],
+      "front_organization": "Organization:lanka_trading_pvt_ltd"
+    },
+    {
+      "cluster_id": "D",
+      "theme": "extortion",
+      "city": "Delhi",
+      "size": 7,
+      "leader": "TP-0026",
+      "lieutenants": [
+        "TP-0027"
+      ],
+      "members": [
+        "TP-0028",
+        "TP-0029",
+        "TP-0030",
+        "TP-0031",
+        "TP-0032"
+      ],
+      "meeting_places": [
+        "Location:murty_dhaba:delhi",
+        "Location:dhar_chowk_market:delhi"
+      ],
+      "front_organization": null
+    }
+  ],
+  "key_individuals": [
+    {
+      "true_id": "TP-0001",
+      "role": "leader",
+      "cluster": "A",
+      "why": "runs the cluster; calls mainly its lieutenants"
+    },
+    {
+      "true_id": "TP-0007",
+      "role": "leader",
+      "cluster": "B",
+      "why": "runs the cluster; calls mainly its lieutenants"
+    },
+    {
+      "true_id": "TP-0016",
+      "role": "leader",
+      "cluster": "C",
+      "why": "runs the cluster; calls mainly its lieutenants"
+    },
+    {
+      "true_id": "TP-0026",
+      "role": "leader",
+      "cluster": "D",
+      "why": "runs the cluster; calls mainly its lieutenants"
+    },
+    {
+      "true_id": "TP-0002",
+      "role": "lieutenant",
+      "cluster": "A",
+      "why": "relays between leader and members"
+    },
+    {
+      "true_id": "TP-0008",
+      "role": "lieutenant",
+      "cluster": "B",
+      "why": "relays between leader and members"
+    },
+    {
+      "true_id": "TP-0009",
+      "role": "lieutenant",
+      "cluster": "B",
+      "why": "relays between leader and members"
+    },
+    {
+      "true_id": "TP-0017",
+      "role": "lieutenant",
+      "cluster": "C",
+      "why": "relays between leader and members"
+    },
+    {
+      "true_id": "TP-0018",
+      "role": "lieutenant",
+      "cluster": "C",
+      "why": "relays between leader and members"
+    },
+    {
+      "true_id": "TP-0027",
+      "role": "lieutenant",
+      "cluster": "D",
+      "why": "relays between leader and members"
+    },
+    {
+      "true_id": "TP-0033",
+      "role": "bridge",
+      "cluster": null,
+      "why": "only call link between clusters A and B (transporter)"
+    },
+    {
+      "true_id": "TP-0034",
+      "role": "bridge",
+      "cluster": null,
+      "why": "only call link between clusters B and C (money handler)"
+    }
+  ],
+  "planted_structure_notes": [
+    "Calls follow an insulated hierarchy: members call their lieutenants far more than the leader, and the leader talks mainly to lieutenants. Whether the leader or a lieutenant is the busiest caller varies by cluster (see signal_visibility).",
+    "Bridges have ordinary call volume; what makes them important is connectivity, not traffic.",
+    "Money A: buyers -> street members -> lieutenant -> leader (flows converge on the leader).",
+    "Money B: leader -> bridge2 -> cluster C's front company (the leader sends money out; no inflow from members).",
+    "Money C: fraud victims -> mule1 -> mule2 -> front company; the planted cycle runs through the leader.",
+    "Money D: shopkeepers -> collector -> leader (flows converge on the leader).",
+    "No per-metric outcome (degree, betweenness, PageRank) is promised here; Phase 4 measures it."
+  ],
+  "signal_visibility": {
+    "note": "rank 1 = most calls / most distinct contacts among all people; ties broken by true_id. Computed from true identities, so real pipeline output can only be noisier.",
+    "population": 136,
+    "people": [
+      {
+        "true_id": "TP-0001",
+        "role": "leader",
+        "call_count": 137,
+        "call_count_rank": 26,
+        "distinct_contacts": 7,
+        "distinct_contacts_rank": 39
+      },
+      {
+        "true_id": "TP-0007",
+        "role": "leader",
+        "call_count": 289,
+        "call_count_rank": 3,
+        "distinct_contacts": 13,
+        "distinct_contacts_rank": 1
+      },
+      {
+        "true_id": "TP-0016",
+        "role": "leader",
+        "call_count": 232,
+        "call_count_rank": 8,
+        "distinct_contacts": 10,
+        "distinct_contacts_rank": 9
+      },
+      {
+        "true_id": "TP-0026",
+        "role": "leader",
+        "call_count": 104,
+        "call_count_rank": 51,
+        "distinct_contacts": 6,
+        "distinct_contacts_rank": 70
+      },
+      {
+        "true_id": "TP-0002",
+        "role": "lieutenant",
+        "call_count": 287,
+        "call_count_rank": 4,
+        "distinct_contacts": 10,
+        "distinct_contacts_rank": 8
+      },
+      {
+        "true_id": "TP-0008",
+        "role": "lieutenant",
+        "call_count": 258,
+        "call_count_rank": 6,
+        "distinct_contacts": 9,
+        "distinct_contacts_rank": 15
+      },
+      {
+        "true_id": "TP-0009",
+        "role": "lieutenant",
+        "call_count": 239,
+        "call_count_rank": 7,
+        "distinct_contacts": 8,
+        "distinct_contacts_rank": 23
+      },
+      {
+        "true_id": "TP-0017",
+        "role": "lieutenant",
+        "call_count": 297,
+        "call_count_rank": 1,
+        "distinct_contacts": 11,
+        "distinct_contacts_rank": 4
+      },
+      {
+        "true_id": "TP-0018",
+        "role": "lieutenant",
+        "call_count": 260,
+        "call_count_rank": 5,
+        "distinct_contacts": 12,
+        "distinct_contacts_rank": 3
+      },
+      {
+        "true_id": "TP-0027",
+        "role": "lieutenant",
+        "call_count": 290,
+        "call_count_rank": 2,
+        "distinct_contacts": 9,
+        "distinct_contacts_rank": 16
+      },
+      {
+        "true_id": "TP-0033",
+        "role": "bridge",
+        "call_count": 88,
+        "call_count_rank": 73,
+        "distinct_contacts": 6,
+        "distinct_contacts_rank": 72
+      },
+      {
+        "true_id": "TP-0034",
+        "role": "bridge",
+        "call_count": 89,
+        "call_count_rank": 71,
+        "distinct_contacts": 6,
+        "distinct_contacts_rank": 73
+      }
+    ],
+    "top_10_by_call_count_roles": [
+      "lieutenant",
+      "lieutenant",
+      "leader",
+      "lieutenant",
+      "lieutenant",
+      "lieutenant",
+      "lieutenant",
+      "leader",
+      "noise",
+      "noise"
+    ]
+  },
+  "bridges": [
+    {
+      "true_id": "TP-0033",
+      "connects": [
+        "A",
+        "B"
+      ],
+      "member_of_cluster": null,
+      "scoring_rule": "not a cluster member; a community assignment to either connected cluster counts as correct"
+    },
+    {
+      "true_id": "TP-0034",
+      "connects": [
+        "B",
+        "C"
+      ],
+      "member_of_cluster": null,
+      "scoring_rule": "not a cluster member; a community assignment to either connected cluster counts as correct"
+    }
+  ],
+  "planted_collisions": [
+    {
+      "name": "Rahul Sharma",
+      "expected_node_id": "Person:rahul_sharma",
+      "true_persons": [
+        {
+          "true_id": "TP-0003",
+          "role": "member",
+          "cluster": "A",
+          "city": "Mumbai",
+          "phones": [
+            "+919600233059"
+          ]
+        },
+        {
+          "true_id": "TP-0099",
+          "role": "noise",
+          "cluster": null,
+          "city": "Delhi",
+          "phones": [
+            "+917876587248"
+          ]
+        }
+      ],
+      "intended": "two distinct people who share a common name",
+      "expected_pipeline_behavior": "exact normalized-name matching merges both into one Person node (known false merge, schema.md section 7)",
+      "expected_effect": "the merged node holds both phones, so cluster A appears linked to the Delhi contacts of the unrelated Rahul Sharma"
+    }
+  ],
+  "money_cycles": {
+    "planted": [
+      {
+        "cluster": "C",
+        "account_cycle": [
+          "BankAccount:ZARV0094460:24117828051503",
+          "BankAccount:ZGDV0543292:3337619347987285",
+          "BankAccount:ZARV0556607:8182324692435618",
+          "BankAccount:ZNMD0235052:22140184865"
+        ],
+        "rounds": [
+          {
+            "round": 1,
+            "transactions": [
+              "TXN-000151",
+              "TXN-000164",
+              "TXN-000173",
+              "TXN-000178"
+            ]
+          },
+          {
+            "round": 2,
+            "transactions": [
+              "TXN-000606",
+              "TXN-000613",
+              "TXN-000622",
+              "TXN-000629"
+            ]
+          }
+        ],
+        "pattern": "every hop happens after the previous one and is 2-4% smaller (layering with commission)"
+      }
+    ],
+    "decoys": [
+      {
+        "account_cycle": [
+          "BankAccount:ZARV0823959:79149726467227",
+          "BankAccount:ZGDV0248469:3143709638627207",
+          "BankAccount:ZKVR0639665:81715651721"
+        ],
+        "transactions": [
+          "TXN-000555",
+          "TXN-000324",
+          "TXN-000094"
+        ],
+        "why_decoy": "friends' payments: dates run backwards around the loop and amounts differ by over 5x"
+      }
+    ],
+    "incidental": [],
+    "note": "loan repayments create 2-cycles (A->B->A) by design; only cycles of length 3+ are listed"
+  },
+  "events": [
+    {
+      "event_ref": "FIR-BLR-2025-0001",
+      "scenario": "N08",
+      "cluster": null,
+      "event_type": "chain snatching",
+      "occurred_at": "2025-02-02T09:30:00+05:30",
+      "planted_call_spike": false,
+      "spike_window": null,
+      "spike_participants": [],
+      "spike_measured": null
+    },
+    {
+      "event_ref": "FIR-BLR-2025-0002",
+      "scenario": "N12",
+      "cluster": null,
+      "event_type": "house burglary",
+      "occurred_at": "2025-02-13T21:17:00+05:30",
+      "planted_call_spike": false,
+      "spike_window": null,
+      "spike_participants": [],
+      "spike_measured": null
+    },
+    {
+      "event_ref": "FIR-BLR-2025-0003",
+      "scenario": "N04",
+      "cluster": null,
+      "event_type": "online job fraud",
+      "occurred_at": "2025-02-25T20:36:00+05:30",
+      "planted_call_spike": false,
+      "spike_window": null,
+      "spike_participants": [],
+      "spike_measured": null
+    },
+    {
+      "event_ref": "FIR-DEL-2025-0001",
+      "scenario": "N02",
+      "cluster": null,
+      "event_type": "mobile phone theft",
+      "occurred_at": "2025-01-07T13:07:00+05:30",
+      "planted_call_spike": false,
+      "spike_window": null,
+      "spike_participants": [],
+      "spike_measured": null
+    },
+    {
+      "event_ref": "FIR-DEL-2025-0002",
+      "scenario": "D1",
+      "cluster": "D",
+      "event_type": "extortion",
+      "occurred_at": "2025-01-16T20:17:00+05:30",
+      "planted_call_spike": false,
+      "spike_window": null,
+      "spike_participants": [],
+      "spike_measured": null
+    },
+    {
+      "event_ref": "FIR-DEL-2025-0003",
+      "scenario": "N06",
+      "cluster": null,
+      "event_type": "house burglary",
+      "occurred_at": "2025-02-01T12:09:00+05:30",
+      "planted_call_spike": false,
+      "spike_window": null,
+      "spike_participants": [],
+      "spike_measured": null
+    },
+    {
+      "event_ref": "FIR-DEL-2025-0004",
+      "scenario": "D2",
+      "cluster": "D",
+      "event_type": "extortion and mischief",
+      "occurred_at": "2025-02-28T16:16:00+05:30",
+      "planted_call_spike": true,
+      "spike_window": [
+        "2025-02-26T16:16:00+05:30",
+        "2025-03-01T04:16:00+05:30"
+      ],
+      "spike_participants": [
+        "TP-0028",
+        "TP-0029",
+        "TP-0026",
+        "TP-0027"
+      ],
+      "spike_measured": {
+        "calls_in_window": 20,
+        "baseline_calls_per_window": 3.14,
+        "ratio": 6.36
+      }
+    },
+    {
+      "event_ref": "FIR-DEL-2025-0005",
+      "scenario": "D3",
+      "cluster": "D",
+      "event_type": "extortion",
+      "occurred_at": "2025-03-09T19:50:00+05:30",
+      "planted_call_spike": false,
+      "spike_window": null,
+      "spike_participants": [],
+      "spike_measured": null
+    },
+    {
+      "event_ref": "FIR-DEL-2025-0006",
+      "scenario": "N10",
+      "cluster": null,
+      "event_type": "road accident",
+      "occurred_at": "2025-03-22T15:02:00+05:30",
+      "planted_call_spike": false,
+      "spike_window": null,
+      "spike_participants": [],
+      "spike_measured": null
+    },
+    {
+      "event_ref": "FIR-HYD-2025-0001",
+      "scenario": "N05",
+      "cluster": null,
+      "event_type": "assault",
+      "occurred_at": "2025-01-15T17:17:00+05:30",
+      "planted_call_spike": false,
+      "spike_window": null,
+      "spike_participants": [],
+      "spike_measured": null
+    },
+    {
+      "event_ref": "FIR-HYD-2025-0002",
+      "scenario": "C1",
+      "cluster": "C",
+      "event_type": "online fraud",
+      "occurred_at": "2025-01-16T13:43:00+05:30",
+      "planted_call_spike": false,
+      "spike_window": null,
+      "spike_participants": [],
+      "spike_measured": null
+    },
+    {
+      "event_ref": "FIR-HYD-2025-0003",
+      "scenario": "N07",
+      "cluster": null,
+      "event_type": "mobile phone theft",
+      "occurred_at": "2025-02-09T20:07:00+05:30",
+      "planted_call_spike": false,
+      "spike_window": null,
+      "spike_participants": [],
+      "spike_measured": null
+    },
+    {
+      "event_ref": "FIR-HYD-2025-0004",
+      "scenario": "C3",
+      "cluster": "C",
+      "event_type": "fraud call centre raid",
+      "occurred_at": "2025-03-03T15:23:00+05:30",
+      "planted_call_spike": true,
+      "spike_window": [
+        "2025-03-01T15:23:00+05:30",
+        "2025-03-04T03:23:00+05:30"
+      ],
+      "spike_participants": [
+        "TP-0021",
+        "TP-0022",
+        "TP-0023",
+        "TP-0020",
+        "TP-0016",
+        "TP-0017",
+        "TP-0018"
+      ],
+      "spike_measured": {
+        "calls_in_window": 44,
+        "baseline_calls_per_window": 9.17,
+        "ratio": 4.8
+      }
+    },
+    {
+      "event_ref": "FIR-MUM-2025-0001",
+      "scenario": "N14",
+      "cluster": null,
+      "event_type": "mobile phone theft",
+      "occurred_at": "2025-01-07T08:44:00+05:30",
+      "planted_call_spike": false,
+      "spike_window": null,
+      "spike_participants": [],
+      "spike_measured": null
+    },
+    {
+      "event_ref": "FIR-MUM-2025-0002",
+      "scenario": "A1",
+      "cluster": "A",
+      "event_type": "drug seizure",
+      "occurred_at": "2025-01-26T23:12:00+05:30",
+      "planted_call_spike": true,
+      "spike_window": [
+        "2025-01-24T23:12:00+05:30",
+        "2025-01-27T11:12:00+05:30"
+      ],
+      "spike_participants": [
+        "TP-0004",
+        "TP-0005",
+        "TP-0001",
+        "TP-0002",
+        "TP-0033"
+      ],
+      "spike_measured": {
+        "calls_in_window": 20,
+        "baseline_calls_per_window": 4.46,
+        "ratio": 4.49
+      }
+    },
+    {
+      "event_ref": "FIR-MUM-2025-0003",
+      "scenario": "C2",
+      "cluster": "C",
+      "event_type": "online fraud",
+      "occurred_at": "2025-02-09T17:22:00+05:30",
+      "planted_call_spike": false,
+      "spike_window": null,
+      "spike_participants": [],
+      "spike_measured": null
+    },
+    {
+      "event_ref": "FIR-MUM-2025-0004",
+      "scenario": "N01",
+      "cluster": null,
+      "event_type": "chain snatching",
+      "occurred_at": "2025-02-14T19:01:00+05:30",
+      "planted_call_spike": false,
+      "spike_window": null,
+      "spike_participants": [],
+      "spike_measured": null
+    },
+    {
+      "event_ref": "FIR-MUM-2025-0005",
+      "scenario": "A2",
+      "cluster": "A",
+      "event_type": "drug seizure",
+      "occurred_at": "2025-02-22T19:20:00+05:30",
+      "planted_call_spike": true,
+      "spike_window": [
+        "2025-02-20T19:20:00+05:30",
+        "2025-02-23T07:20:00+05:30"
+      ],
+      "spike_participants": [
+        "TP-0003",
+        "TP-0006",
+        "TP-0002",
+        "TP-0001"
+      ],
+      "spike_measured": {
+        "calls_in_window": 19,
+        "baseline_calls_per_window": 4.03,
+        "ratio": 4.72
+      }
+    },
+    {
+      "event_ref": "FIR-MUM-2025-0006",
+      "scenario": "N09",
+      "cluster": null,
+      "event_type": "assault",
+      "occurred_at": "2025-02-27T18:45:00+05:30",
+      "planted_call_spike": false,
+      "spike_window": null,
+      "spike_participants": [],
+      "spike_measured": null
+    },
+    {
+      "event_ref": "FIR-PUN-2025-0001",
+      "scenario": "N03",
+      "cluster": null,
+      "event_type": "road accident",
+      "occurred_at": "2025-01-05T18:24:00+05:30",
+      "planted_call_spike": false,
+      "spike_window": null,
+      "spike_participants": [],
+      "spike_measured": null
+    },
+    {
+      "event_ref": "FIR-PUN-2025-0002",
+      "scenario": "N13",
+      "cluster": null,
+      "event_type": "assault",
+      "occurred_at": "2025-01-09T07:49:00+05:30",
+      "planted_call_spike": false,
+      "spike_window": null,
+      "spike_participants": [],
+      "spike_measured": null
+    },
+    {
+      "event_ref": "FIR-PUN-2025-0003",
+      "scenario": "N11",
+      "cluster": null,
+      "event_type": "online job fraud",
+      "occurred_at": "2025-01-28T18:43:00+05:30",
+      "planted_call_spike": false,
+      "spike_window": null,
+      "spike_participants": [],
+      "spike_measured": null
+    },
+    {
+      "event_ref": "FIR-PUN-2025-0004",
+      "scenario": "B1",
+      "cluster": "B",
+      "event_type": "vehicle theft",
+      "occurred_at": "2025-02-03T02:34:00+05:30",
+      "planted_call_spike": true,
+      "spike_window": [
+        "2025-02-01T02:34:00+05:30",
+        "2025-02-03T14:34:00+05:30"
+      ],
+      "spike_participants": [
+        "TP-0010",
+        "TP-0011",
+        "TP-0007",
+        "TP-0008",
+        "TP-0009",
+        "TP-0033"
+      ],
+      "spike_measured": {
+        "calls_in_window": 28,
+        "baseline_calls_per_window": 7.46,
+        "ratio": 3.75
+      }
+    },
+    {
+      "event_ref": "FIR-PUN-2025-0005",
+      "scenario": "B2",
+      "cluster": "B",
+      "event_type": "stolen vehicle recovery",
+      "occurred_at": "2025-03-01T15:08:00+05:30",
+      "planted_call_spike": true,
+      "spike_window": [
+        "2025-02-27T15:08:00+05:30",
+        "2025-03-02T03:08:00+05:30"
+      ],
+      "spike_participants": [
+        "TP-0010",
+        "TP-0011",
+        "TP-0012",
+        "TP-0007",
+        "TP-0008",
+        "TP-0009"
+      ],
+      "spike_measured": {
+        "calls_in_window": 44,
+        "baseline_calls_per_window": 7.74,
+        "ratio": 5.68
+      }
+    }
+  ],
+  "spike_parameters": {
+    "hours_before": 48.0,
+    "hours_after": 12.0,
+    "rate_multiplier": 5.0,
+    "applies_to": "calls between two spike participants inside the window",
+    "note": "planted as a rate multiplier, so the realized rise is random; small groups can come out weaker than 5x. Check spike_measured per event."
+  },
+  "unregistered_numbers": [
+    "+916705754068",
+    "+918063398568",
+    "+917134946256",
+    "+918447344267",
+    "+917994279003",
+    "+918840103823",
+    "+917123981476",
+    "+918129866499",
+    "+916022038739",
+    "+917846947792",
+    "+918081943102",
+    "+919136751526",
+    "+916055439146",
+    "+916293377920",
+    "+919600308487"
+  ],
+  "persons": [
+    {
+      "true_id": "TP-0001",
+      "name": "Daksh Bakshi",
+      "expected_node_id": "Person:daksh_bakshi",
+      "role": "leader",
+      "cluster": "A",
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "second_sim"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916375107792",
+        "+918771974035"
+      ],
+      "account": "BankAccount:ZGDV0281209:997066433929",
+      "vehicles": [
+        "Vehicle:MH03X0523"
+      ]
+    },
+    {
+      "true_id": "TP-0002",
+      "name": "Laksh Konda",
+      "expected_node_id": "Person:laksh_konda",
+      "role": "lieutenant",
+      "cluster": "A",
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [],
+      "reports_to": "TP-0001",
+      "phones": [
+        "+916309630372"
+      ],
+      "account": "BankAccount:ZARV0617958:49173696680314",
+      "vehicles": [
+        "Vehicle:MH02WJ7359"
+      ]
+    },
+    {
+      "true_id": "TP-0003",
+      "name": "Rahul Sharma",
+      "expected_node_id": "Person:rahul_sharma",
+      "role": "member",
+      "cluster": "A",
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [],
+      "reports_to": "TP-0002",
+      "phones": [
+        "+919600233059"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0004",
+      "name": "Isaac Dewan",
+      "expected_node_id": "Person:isaac_dewan",
+      "role": "member",
+      "cluster": "A",
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [],
+      "reports_to": "TP-0002",
+      "phones": [
+        "+919896703780"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0005",
+      "name": "Dalaja Chahal",
+      "expected_node_id": "Person:dalaja_chahal",
+      "role": "member",
+      "cluster": "A",
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [],
+      "reports_to": "TP-0002",
+      "phones": [
+        "+916997171985"
+      ],
+      "account": "BankAccount:ZKVR0546415:36465882156067",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0006",
+      "name": "Udyati Balay",
+      "expected_node_id": "Person:udyati_balay",
+      "role": "member",
+      "cluster": "A",
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [],
+      "reports_to": "TP-0002",
+      "phones": [
+        "+919384822654"
+      ],
+      "account": "BankAccount:ZNMD0484562:198354875355",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0007",
+      "name": "Hardik Saini",
+      "expected_node_id": "Person:hardik_saini",
+      "role": "leader",
+      "cluster": "B",
+      "bridges": null,
+      "city": "Pune",
+      "tags": [],
+      "reports_to": null,
+      "phones": [
+        "+916637885677"
+      ],
+      "account": "BankAccount:ZKVR0138643:6435835492797107",
+      "vehicles": [
+        "Vehicle:MH12NS1273"
+      ]
+    },
+    {
+      "true_id": "TP-0008",
+      "name": "Imaran Sen",
+      "expected_node_id": "Person:imaran_sen",
+      "role": "lieutenant",
+      "cluster": "B",
+      "bridges": null,
+      "city": "Pune",
+      "tags": [],
+      "reports_to": "TP-0007",
+      "phones": [
+        "+916665802686"
+      ],
+      "account": "BankAccount:ZGDV0489435:4267221805213723",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0009",
+      "name": "Liam Ahuja",
+      "expected_node_id": "Person:liam_ahuja",
+      "role": "lieutenant",
+      "cluster": "B",
+      "bridges": null,
+      "city": "Pune",
+      "tags": [],
+      "reports_to": "TP-0007",
+      "phones": [
+        "+918437653138"
+      ],
+      "account": "BankAccount:ZKVR0982026:84187635538",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0010",
+      "name": "Fariq Sami",
+      "expected_node_id": "Person:fariq_sami",
+      "role": "member",
+      "cluster": "B",
+      "bridges": null,
+      "city": "Pune",
+      "tags": [],
+      "reports_to": "TP-0008",
+      "phones": [
+        "+916787800822"
+      ],
+      "account": null,
+      "vehicles": [
+        "Vehicle:MH14FR3024"
+      ]
+    },
+    {
+      "true_id": "TP-0011",
+      "name": "Onkar Mall",
+      "expected_node_id": "Person:onkar_mall",
+      "role": "member",
+      "cluster": "B",
+      "bridges": null,
+      "city": "Pune",
+      "tags": [],
+      "reports_to": "TP-0009",
+      "phones": [
+        "+918600238302"
+      ],
+      "account": "BankAccount:ZNMD0324711:20354713714",
+      "vehicles": [
+        "Vehicle:MH14L9646"
+      ]
+    },
+    {
+      "true_id": "TP-0012",
+      "name": "Faras Kale",
+      "expected_node_id": "Person:faras_kale",
+      "role": "member",
+      "cluster": "B",
+      "bridges": null,
+      "city": "Pune",
+      "tags": [],
+      "reports_to": "TP-0008",
+      "phones": [
+        "+916217338638"
+      ],
+      "account": "BankAccount:ZNMD0532558:22645406307458",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0013",
+      "name": "Om Chaudry",
+      "expected_node_id": "Person:om_chaudry",
+      "role": "member",
+      "cluster": "B",
+      "bridges": null,
+      "city": "Pune",
+      "tags": [],
+      "reports_to": "TP-0009",
+      "phones": [
+        "+917485979569"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0014",
+      "name": "Chakradhar Rai",
+      "expected_node_id": "Person:chakradhar_rai",
+      "role": "member",
+      "cluster": "B",
+      "bridges": null,
+      "city": "Pune",
+      "tags": [],
+      "reports_to": "TP-0008",
+      "phones": [
+        "+917447202903"
+      ],
+      "account": "BankAccount:ZGDV0105287:3660851609801178",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0015",
+      "name": "Chasmum Parmer",
+      "expected_node_id": "Person:chasmum_parmer",
+      "role": "member",
+      "cluster": "B",
+      "bridges": null,
+      "city": "Pune",
+      "tags": [],
+      "reports_to": "TP-0009",
+      "phones": [
+        "+916435668733"
+      ],
+      "account": "BankAccount:ZGDV0117620:40739235064",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0016",
+      "name": "David Radhakrishnan",
+      "expected_node_id": "Person:david_radhakrishnan",
+      "role": "leader",
+      "cluster": "C",
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [],
+      "reports_to": null,
+      "phones": [
+        "+918829009322"
+      ],
+      "account": "BankAccount:ZARV0094460:24117828051503",
+      "vehicles": [
+        "Vehicle:TS10KF9919"
+      ]
+    },
+    {
+      "true_id": "TP-0017",
+      "name": "Balveer Memon",
+      "expected_node_id": "Person:balveer_memon",
+      "role": "lieutenant",
+      "cluster": "C",
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [],
+      "reports_to": "TP-0016",
+      "phones": [
+        "+919415717273"
+      ],
+      "account": "BankAccount:ZKVR0853805:42349026862",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0018",
+      "name": "Pratyush Handa",
+      "expected_node_id": "Person:pratyush_handa",
+      "role": "lieutenant",
+      "cluster": "C",
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [],
+      "reports_to": "TP-0016",
+      "phones": [
+        "+917679658289"
+      ],
+      "account": "BankAccount:ZGDV0722792:76055036575658",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0019",
+      "name": "Bakhshi Bath",
+      "expected_node_id": "Person:bakhshi_bath",
+      "role": "member",
+      "cluster": "C",
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [
+        "mule"
+      ],
+      "reports_to": "TP-0017",
+      "phones": [
+        "+918224632063"
+      ],
+      "account": "BankAccount:ZGDV0543292:3337619347987285",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0020",
+      "name": "Ishaan Mann",
+      "expected_node_id": "Person:ishaan_mann",
+      "role": "member",
+      "cluster": "C",
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [
+        "mule",
+        "director"
+      ],
+      "reports_to": "TP-0018",
+      "phones": [
+        "+916876538782"
+      ],
+      "account": "BankAccount:ZARV0556607:8182324692435618",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0021",
+      "name": "Balveer Kaul",
+      "expected_node_id": "Person:balveer_kaul",
+      "role": "member",
+      "cluster": "C",
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [],
+      "reports_to": "TP-0017",
+      "phones": [
+        "+918524624102"
+      ],
+      "account": "BankAccount:ZKVR0189294:281714034673",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0022",
+      "name": "Chandresh Rai",
+      "expected_node_id": "Person:chandresh_rai",
+      "role": "member",
+      "cluster": "C",
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [],
+      "reports_to": "TP-0018",
+      "phones": [
+        "+918238710435"
+      ],
+      "account": "BankAccount:ZARV0090477:4459654850131962",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0023",
+      "name": "Liam Setty",
+      "expected_node_id": "Person:liam_setty",
+      "role": "member",
+      "cluster": "C",
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [],
+      "reports_to": "TP-0017",
+      "phones": [
+        "+916694321946"
+      ],
+      "account": "BankAccount:ZARV0745844:778088674514",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0024",
+      "name": "Rajata Gaba",
+      "expected_node_id": "Person:rajata_gaba",
+      "role": "member",
+      "cluster": "C",
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [],
+      "reports_to": "TP-0018",
+      "phones": [
+        "+917500083076"
+      ],
+      "account": "BankAccount:ZNMD0853761:95412555046339",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0025",
+      "name": "Reva Pant",
+      "expected_node_id": "Person:reva_pant",
+      "role": "member",
+      "cluster": "C",
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [],
+      "reports_to": "TP-0017",
+      "phones": [
+        "+918525720621"
+      ],
+      "account": "BankAccount:ZARV0150108:10564200188213",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0026",
+      "name": "Finn Shere",
+      "expected_node_id": "Person:finn_shere",
+      "role": "leader",
+      "cluster": "D",
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [],
+      "reports_to": null,
+      "phones": [
+        "+916852224261"
+      ],
+      "account": "BankAccount:ZGDV0060249:95785738510033",
+      "vehicles": [
+        "Vehicle:DL4CZU2827"
+      ]
+    },
+    {
+      "true_id": "TP-0027",
+      "name": "Ranveer Madan",
+      "expected_node_id": "Person:ranveer_madan",
+      "role": "lieutenant",
+      "cluster": "D",
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [],
+      "reports_to": "TP-0026",
+      "phones": [
+        "+916424188799"
+      ],
+      "account": "BankAccount:ZKVR0320968:76508528899717",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0028",
+      "name": "Imaran Nair",
+      "expected_node_id": "Person:imaran_nair",
+      "role": "member",
+      "cluster": "D",
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "mule"
+      ],
+      "reports_to": "TP-0027",
+      "phones": [
+        "+919797302867"
+      ],
+      "account": "BankAccount:ZARV0495419:52382165134",
+      "vehicles": [
+        "Vehicle:DL4CB1155"
+      ]
+    },
+    {
+      "true_id": "TP-0029",
+      "name": "Ayaan Karnik",
+      "expected_node_id": "Person:ayaan_karnik",
+      "role": "member",
+      "cluster": "D",
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [],
+      "reports_to": "TP-0027",
+      "phones": [
+        "+916518301062"
+      ],
+      "account": "BankAccount:ZKVR0587534:7290333581499695",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0030",
+      "name": "Amol Mutti",
+      "expected_node_id": "Person:amol_mutti",
+      "role": "member",
+      "cluster": "D",
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [],
+      "reports_to": "TP-0027",
+      "phones": [
+        "+916935101816"
+      ],
+      "account": "BankAccount:ZARV0297900:81086604544",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0031",
+      "name": "Sai Loyal",
+      "expected_node_id": "Person:sai_loyal",
+      "role": "member",
+      "cluster": "D",
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [],
+      "reports_to": "TP-0027",
+      "phones": [
+        "+916931872820"
+      ],
+      "account": "BankAccount:ZGDV0851267:3896253381492550",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0032",
+      "name": "Bhavini Kakar",
+      "expected_node_id": "Person:bhavini_kakar",
+      "role": "member",
+      "cluster": "D",
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [],
+      "reports_to": "TP-0027",
+      "phones": [
+        "+916367453616"
+      ],
+      "account": "BankAccount:ZARV0210017:157887662652",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0033",
+      "name": "Ekaraj Koshy",
+      "expected_node_id": "Person:ekaraj_koshy",
+      "role": "bridge",
+      "cluster": null,
+      "bridges": [
+        "A",
+        "B"
+      ],
+      "city": "Pune",
+      "tags": [
+        "transporter"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917970653224"
+      ],
+      "account": "BankAccount:ZNMD0555777:7846825674975564",
+      "vehicles": [
+        "Vehicle:MH14LY7909"
+      ]
+    },
+    {
+      "true_id": "TP-0034",
+      "name": "Karan Sangha",
+      "expected_node_id": "Person:karan_sangha",
+      "role": "bridge",
+      "cluster": null,
+      "bridges": [
+        "B",
+        "C"
+      ],
+      "city": "Hyderabad",
+      "tags": [
+        "money_handler"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916729640279"
+      ],
+      "account": "BankAccount:ZNMD0832635:5760355546659049",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0035",
+      "name": "Sudiksha Pathak",
+      "expected_node_id": "Person:sudiksha_pathak",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+919688936655"
+      ],
+      "account": "BankAccount:ZNMD0520427:8802759075214784",
+      "vehicles": [
+        "Vehicle:MH01UC6272"
+      ]
+    },
+    {
+      "true_id": "TP-0036",
+      "name": "Januja Devi",
+      "expected_node_id": "Person:januja_devi",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916849321768"
+      ],
+      "account": "BankAccount:ZNMD0544711:43197849240367",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0037",
+      "name": "Yatin Chand",
+      "expected_node_id": "Person:yatin_chand",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916691567852"
+      ],
+      "account": "BankAccount:ZKVR0669376:4131711564511189",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0038",
+      "name": "Arunima Choudhary",
+      "expected_node_id": "Person:arunima_choudhary",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+919571619646"
+      ],
+      "account": "BankAccount:ZGDV0055332:40104018190",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0039",
+      "name": "Ganga Dutta",
+      "expected_node_id": "Person:ganga_dutta",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916561718843"
+      ],
+      "account": "BankAccount:ZARV0979572:585873296710",
+      "vehicles": [
+        "Vehicle:MH03B9452"
+      ]
+    },
+    {
+      "true_id": "TP-0040",
+      "name": "Siddharth Bhatt",
+      "expected_node_id": "Person:siddharth_bhatt",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916555122302"
+      ],
+      "account": "BankAccount:ZGDV0891267:55801883709482",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0041",
+      "name": "Sanya Raj",
+      "expected_node_id": "Person:sanya_raj",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916912523398"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0042",
+      "name": "Vivaan Wadhwa",
+      "expected_node_id": "Person:vivaan_wadhwa",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917730176490"
+      ],
+      "account": "BankAccount:ZARV0105785:89505366673",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0043",
+      "name": "Ladli Apte",
+      "expected_node_id": "Person:ladli_apte",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916960990031"
+      ],
+      "account": "BankAccount:ZGDV0524175:80468702410",
+      "vehicles": [
+        "Vehicle:MH01EH4395"
+      ]
+    },
+    {
+      "true_id": "TP-0044",
+      "name": "Dakshesh Yadav",
+      "expected_node_id": "Person:dakshesh_yadav",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916888840554"
+      ],
+      "account": "BankAccount:ZARV0095529:4584116110641260",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0045",
+      "name": "Lila Oak",
+      "expected_node_id": "Person:lila_oak",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "isolated"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916987256607"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0046",
+      "name": "Dayita Memon",
+      "expected_node_id": "Person:dayita_memon",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916702951376"
+      ],
+      "account": "BankAccount:ZNMD0977718:1059547734120898",
+      "vehicles": [
+        "Vehicle:MH02S3702"
+      ]
+    },
+    {
+      "true_id": "TP-0047",
+      "name": "Urishilla Dugar",
+      "expected_node_id": "Person:urishilla_dugar",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916641395672"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0048",
+      "name": "Vasana Aggarwal",
+      "expected_node_id": "Person:vasana_aggarwal",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917288961107"
+      ],
+      "account": "BankAccount:ZARV0104756:56663037718416",
+      "vehicles": [
+        "Vehicle:MH02K9398"
+      ]
+    },
+    {
+      "true_id": "TP-0049",
+      "name": "Karan Tella",
+      "expected_node_id": "Person:karan_tella",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917876457943"
+      ],
+      "account": "BankAccount:ZGDV0197465:51846197404069",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0050",
+      "name": "Hemal Tripathi",
+      "expected_node_id": "Person:hemal_tripathi",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+919647323963"
+      ],
+      "account": "BankAccount:ZKVR0201615:135967096137",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0051",
+      "name": "Damyanti Misra",
+      "expected_node_id": "Person:damyanti_misra",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917147613772"
+      ],
+      "account": "BankAccount:ZKVR0604643:67609492345319",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0052",
+      "name": "Yashica Issac",
+      "expected_node_id": "Person:yashica_issac",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917844273643"
+      ],
+      "account": "BankAccount:ZGDV0279182:64596092578",
+      "vehicles": [
+        "Vehicle:MH47L8257"
+      ]
+    },
+    {
+      "true_id": "TP-0053",
+      "name": "Ganga Prakash",
+      "expected_node_id": "Person:ganga_prakash",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916540081641"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0054",
+      "name": "Gaurika Zacharia",
+      "expected_node_id": "Person:gaurika_zacharia",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916275552433"
+      ],
+      "account": "BankAccount:ZGDV0698481:214148069153",
+      "vehicles": [
+        "Vehicle:MH02ZE1098"
+      ]
+    },
+    {
+      "true_id": "TP-0055",
+      "name": "Zilmil Acharya",
+      "expected_node_id": "Person:zilmil_acharya",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917989228447"
+      ],
+      "account": "BankAccount:ZNMD0007921:8521044047953883",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0056",
+      "name": "Neel Suresh",
+      "expected_node_id": "Person:neel_suresh",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "isolated"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916300516718"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0057",
+      "name": "Adya Choudhury",
+      "expected_node_id": "Person:adya_choudhury",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918184188031"
+      ],
+      "account": null,
+      "vehicles": [
+        "Vehicle:MH02JN2916"
+      ]
+    },
+    {
+      "true_id": "TP-0058",
+      "name": "Radhika Mohanty",
+      "expected_node_id": "Person:radhika_mohanty",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Mumbai",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+919153442407"
+      ],
+      "account": "BankAccount:ZGDV0403647:419432812783",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0059",
+      "name": "Pallavi Bail",
+      "expected_node_id": "Person:pallavi_bail",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Pune",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918547024696"
+      ],
+      "account": "BankAccount:ZNMD0990233:7781796239256157",
+      "vehicles": [
+        "Vehicle:MH14M8812"
+      ]
+    },
+    {
+      "true_id": "TP-0060",
+      "name": "Jyoti Kannan",
+      "expected_node_id": "Person:jyoti_kannan",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Pune",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918680810632"
+      ],
+      "account": "BankAccount:ZKVR0711349:311217374552",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0061",
+      "name": "Aarush Bobal",
+      "expected_node_id": "Person:aarush_bobal",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Pune",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918452335165"
+      ],
+      "account": "BankAccount:ZARV0519176:95519852701",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0062",
+      "name": "Ayushman Karnik",
+      "expected_node_id": "Person:ayushman_karnik",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Pune",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917837617691"
+      ],
+      "account": "BankAccount:ZGDV0836188:81300741571",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0063",
+      "name": "Bahadurjit Balay",
+      "expected_node_id": "Person:bahadurjit_balay",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Pune",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+919690393547"
+      ],
+      "account": "BankAccount:ZARV0254988:88934470906800",
+      "vehicles": [
+        "Vehicle:MH12AR0301"
+      ]
+    },
+    {
+      "true_id": "TP-0064",
+      "name": "Oni Bobal",
+      "expected_node_id": "Person:oni_bobal",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Pune",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917353300525"
+      ],
+      "account": "BankAccount:ZNMD0324866:50984351846399",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0065",
+      "name": "Yasti Khanna",
+      "expected_node_id": "Person:yasti_khanna",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Pune",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917814266084"
+      ],
+      "account": "BankAccount:ZARV0880251:3842947850229483",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0066",
+      "name": "Liam Sunder",
+      "expected_node_id": "Person:liam_sunder",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Pune",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+919994738491"
+      ],
+      "account": "BankAccount:ZKVR0316645:155592538756",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0067",
+      "name": "Jalsa Zacharia",
+      "expected_node_id": "Person:jalsa_zacharia",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Pune",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916543832315"
+      ],
+      "account": null,
+      "vehicles": [
+        "Vehicle:MH14ZF1852"
+      ]
+    },
+    {
+      "true_id": "TP-0068",
+      "name": "Dominic Solanki",
+      "expected_node_id": "Person:dominic_solanki",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Pune",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916812873288"
+      ],
+      "account": "BankAccount:ZGDV0575368:80258747958",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0069",
+      "name": "Jairaj Solanki",
+      "expected_node_id": "Person:jairaj_solanki",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Pune",
+      "tags": [
+        "isolated"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+919847874879"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0070",
+      "name": "Samar Gupta",
+      "expected_node_id": "Person:samar_gupta",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Pune",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917556372626"
+      ],
+      "account": "BankAccount:ZNMD0498591:530299490847",
+      "vehicles": [
+        "Vehicle:MH12S8387"
+      ]
+    },
+    {
+      "true_id": "TP-0071",
+      "name": "Champak Chatterjee",
+      "expected_node_id": "Person:champak_chatterjee",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Pune",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917545969696"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0072",
+      "name": "Upasna Pandya",
+      "expected_node_id": "Person:upasna_pandya",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Pune",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918851286499"
+      ],
+      "account": "BankAccount:ZARV0007961:649524061246",
+      "vehicles": [
+        "Vehicle:MH12T9390"
+      ]
+    },
+    {
+      "true_id": "TP-0073",
+      "name": "Udyati Roy",
+      "expected_node_id": "Person:udyati_roy",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Pune",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917311481954"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0074",
+      "name": "Vinaya Bhagat",
+      "expected_node_id": "Person:vinaya_bhagat",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Pune",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918517802039"
+      ],
+      "account": "BankAccount:ZGDV0264737:650442899703",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0075",
+      "name": "Chavvi Bhat",
+      "expected_node_id": "Person:chavvi_bhat",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Pune",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+919119219019"
+      ],
+      "account": "BankAccount:ZNMD0524253:552337400089",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0076",
+      "name": "Saksham Nori",
+      "expected_node_id": "Person:saksham_nori",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Pune",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916653793670"
+      ],
+      "account": "BankAccount:ZKVR0890873:2960023587937843",
+      "vehicles": [
+        "Vehicle:MH12LU2411"
+      ]
+    },
+    {
+      "true_id": "TP-0077",
+      "name": "Chatura Kothari",
+      "expected_node_id": "Person:chatura_kothari",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Pune",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916325845808"
+      ],
+      "account": "BankAccount:ZARV0745949:93522187504411",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0078",
+      "name": "Gopal Gupta",
+      "expected_node_id": "Person:gopal_gupta",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Pune",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917260443015"
+      ],
+      "account": "BankAccount:ZGDV0842838:6489677170416477",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0079",
+      "name": "Udyati Sur",
+      "expected_node_id": "Person:udyati_sur",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917388520357"
+      ],
+      "account": "BankAccount:ZARV0094591:56243893730",
+      "vehicles": [
+        "Vehicle:TS10X8822"
+      ]
+    },
+    {
+      "true_id": "TP-0080",
+      "name": "Faras Gupta",
+      "expected_node_id": "Person:faras_gupta",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917952549560"
+      ],
+      "account": "BankAccount:ZARV0319947:7357326534972855",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0081",
+      "name": "Manbir Kalla",
+      "expected_node_id": "Person:manbir_kalla",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918766270784"
+      ],
+      "account": "BankAccount:ZARV0599465:26965979895120",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0082",
+      "name": "Barkha Bhat",
+      "expected_node_id": "Person:barkha_bhat",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+919747267016"
+      ],
+      "account": "BankAccount:ZKVR0278239:273925885283",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0083",
+      "name": "Naksh Bhandari",
+      "expected_node_id": "Person:naksh_bhandari",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916051518115"
+      ],
+      "account": "BankAccount:ZNMD0700572:31986695700793",
+      "vehicles": [
+        "Vehicle:TS13DM6426"
+      ]
+    },
+    {
+      "true_id": "TP-0084",
+      "name": "Aryan Sood",
+      "expected_node_id": "Person:aryan_sood",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916082251340"
+      ],
+      "account": "BankAccount:ZKVR0264416:2920955977193273",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0085",
+      "name": "Zayan Wali",
+      "expected_node_id": "Person:zayan_wali",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+919540149042"
+      ],
+      "account": "BankAccount:ZARV0086950:10465577896",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0086",
+      "name": "Farhan Bhandari",
+      "expected_node_id": "Person:farhan_bhandari",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917930732092"
+      ],
+      "account": "BankAccount:ZNMD0123026:409772186664",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0087",
+      "name": "Banjeet Grewal",
+      "expected_node_id": "Person:banjeet_grewal",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+919577944637"
+      ],
+      "account": "BankAccount:ZNMD0587919:365036192686",
+      "vehicles": [
+        "Vehicle:TS11T8563"
+      ]
+    },
+    {
+      "true_id": "TP-0088",
+      "name": "Bhavya Bir",
+      "expected_node_id": "Person:bhavya_bir",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916509638924"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0089",
+      "name": "Jacob Raval",
+      "expected_node_id": "Person:jacob_raval",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [
+        "isolated"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+919179697814"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0090",
+      "name": "Dipta Koshy",
+      "expected_node_id": "Person:dipta_koshy",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918510841654"
+      ],
+      "account": "BankAccount:ZNMD0947097:30344625994126",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0091",
+      "name": "Anusha Bumb",
+      "expected_node_id": "Person:anusha_bumb",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916855008436"
+      ],
+      "account": "BankAccount:ZKVR0186058:346793746876",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0092",
+      "name": "Shaurya Virk",
+      "expected_node_id": "Person:shaurya_virk",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916026997648"
+      ],
+      "account": "BankAccount:ZARV0919996:386172292609",
+      "vehicles": [
+        "Vehicle:TS10PV2280"
+      ]
+    },
+    {
+      "true_id": "TP-0093",
+      "name": "Nakul Lal",
+      "expected_node_id": "Person:nakul_lal",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918973120296"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0094",
+      "name": "Ishani Murthy",
+      "expected_node_id": "Person:ishani_murthy",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+919772591901"
+      ],
+      "account": "BankAccount:ZKVR0231395:59372838131746",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0095",
+      "name": "Kashvi Lanka",
+      "expected_node_id": "Person:kashvi_lanka",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917630871663"
+      ],
+      "account": "BankAccount:ZARV0613886:29424441603891",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0096",
+      "name": "Siya Deep",
+      "expected_node_id": "Person:siya_deep",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916017179896"
+      ],
+      "account": "BankAccount:ZGDV0860546:6445806238546018",
+      "vehicles": [
+        "Vehicle:TS08N2058"
+      ]
+    },
+    {
+      "true_id": "TP-0097",
+      "name": "Netra Shankar",
+      "expected_node_id": "Person:netra_shankar",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+919326047954"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0098",
+      "name": "Nakul Bora",
+      "expected_node_id": "Person:nakul_bora",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Hyderabad",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918845716772"
+      ],
+      "account": "BankAccount:ZGDV0955625:70494902607167",
+      "vehicles": [
+        "Vehicle:TS11ZL3737"
+      ]
+    },
+    {
+      "true_id": "TP-0099",
+      "name": "Rahul Sharma",
+      "expected_node_id": "Person:rahul_sharma",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917876587248"
+      ],
+      "account": "BankAccount:ZKVR0098532:91924037155",
+      "vehicles": [
+        "Vehicle:DL9CH0616"
+      ]
+    },
+    {
+      "true_id": "TP-0100",
+      "name": "Ishani Lalla",
+      "expected_node_id": "Person:ishani_lalla",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918227250029"
+      ],
+      "account": "BankAccount:ZNMD0778339:65642075982039",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0101",
+      "name": "Yashawini Suresh",
+      "expected_node_id": "Person:yashawini_suresh",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918843189740"
+      ],
+      "account": "BankAccount:ZARV0396941:8956830896202038",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0102",
+      "name": "Ladli Behl",
+      "expected_node_id": "Person:ladli_behl",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918065255396"
+      ],
+      "account": "BankAccount:ZNMD0110114:5305601891569179",
+      "vehicles": [
+        "Vehicle:DL9SY3355"
+      ]
+    },
+    {
+      "true_id": "TP-0103",
+      "name": "Charita Sampath",
+      "expected_node_id": "Person:charita_sampath",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917616371951"
+      ],
+      "account": "BankAccount:ZARV0779368:247347502388",
+      "vehicles": [
+        "Vehicle:DL9SA3086"
+      ]
+    },
+    {
+      "true_id": "TP-0104",
+      "name": "Manya Basu",
+      "expected_node_id": "Person:manya_basu",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918485143212"
+      ],
+      "account": "BankAccount:ZGDV0068266:986554721182",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0105",
+      "name": "Aadhya Nath",
+      "expected_node_id": "Person:aadhya_nath",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918823052386"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0106",
+      "name": "Dhruv Lala",
+      "expected_node_id": "Person:dhruv_lala",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918382865694"
+      ],
+      "account": "BankAccount:ZARV0831528:81660304011",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0107",
+      "name": "Gaurika Sathe",
+      "expected_node_id": "Person:gaurika_sathe",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918251165584"
+      ],
+      "account": "BankAccount:ZKVR0268028:46154561864689",
+      "vehicles": [
+        "Vehicle:DL8CLY3357"
+      ]
+    },
+    {
+      "true_id": "TP-0108",
+      "name": "Tanay Andra",
+      "expected_node_id": "Person:tanay_andra",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916194464851"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0109",
+      "name": "Daksh Borra",
+      "expected_node_id": "Person:daksh_borra",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "isolated"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918596852538"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0110",
+      "name": "Falguni Banik",
+      "expected_node_id": "Person:falguni_banik",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917187698223"
+      ],
+      "account": "BankAccount:ZKVR0261171:4350429360999554",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0111",
+      "name": "Reva Divan",
+      "expected_node_id": "Person:reva_divan",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916996582331"
+      ],
+      "account": "BankAccount:ZARV0278780:5585485901880963",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0112",
+      "name": "Upasna Datta",
+      "expected_node_id": "Person:upasna_datta",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916479900999"
+      ],
+      "account": null,
+      "vehicles": [
+        "Vehicle:DL5CML9941"
+      ]
+    },
+    {
+      "true_id": "TP-0113",
+      "name": "Anvi Morar",
+      "expected_node_id": "Person:anvi_morar",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918572218538"
+      ],
+      "account": "BankAccount:ZGDV0199050:13791179552",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0114",
+      "name": "Qabil Baral",
+      "expected_node_id": "Person:qabil_baral",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+919371826549"
+      ],
+      "account": "BankAccount:ZGDV0050806:2296589735015940",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0115",
+      "name": "Praneel Kade",
+      "expected_node_id": "Person:praneel_kade",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+919742990720"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0116",
+      "name": "Kritika Chauhan",
+      "expected_node_id": "Person:kritika_chauhan",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917469027111"
+      ],
+      "account": "BankAccount:ZNMD0368668:713450472269",
+      "vehicles": [
+        "Vehicle:DL3CZ3213"
+      ]
+    },
+    {
+      "true_id": "TP-0117",
+      "name": "Raagini Ray",
+      "expected_node_id": "Person:raagini_ray",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916535545166"
+      ],
+      "account": "BankAccount:ZKVR0469965:4576041253223734",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0118",
+      "name": "Garima Khalsa",
+      "expected_node_id": "Person:garima_khalsa",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918047654190"
+      ],
+      "account": "BankAccount:ZKVR0474112:38690428120812",
+      "vehicles": [
+        "Vehicle:DL8CZ7356"
+      ]
+    },
+    {
+      "true_id": "TP-0119",
+      "name": "Finn Goel",
+      "expected_node_id": "Person:finn_goel",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917914834602"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0120",
+      "name": "Samuel Bakshi",
+      "expected_node_id": "Person:samuel_bakshi",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "isolated"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918260450704"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0121",
+      "name": "Hemal Natarajan",
+      "expected_node_id": "Person:hemal_natarajan",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917538776094"
+      ],
+      "account": "BankAccount:ZGDV0711806:21409016372851",
+      "vehicles": [
+        "Vehicle:DL5SPG9326"
+      ]
+    },
+    {
+      "true_id": "TP-0122",
+      "name": "Tripti Kothari",
+      "expected_node_id": "Person:tripti_kothari",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Delhi",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917888064876"
+      ],
+      "account": "BankAccount:ZKVR0122101:1416049978764998",
+      "vehicles": [
+        "Vehicle:DL9CY4833"
+      ]
+    },
+    {
+      "true_id": "TP-0123",
+      "name": "Anjali Chopra",
+      "expected_node_id": "Person:anjali_chopra",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Bengaluru",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+919275070531"
+      ],
+      "account": "BankAccount:ZARV0823959:79149726467227",
+      "vehicles": [
+        "Vehicle:KA03V0035"
+      ]
+    },
+    {
+      "true_id": "TP-0124",
+      "name": "Urishilla Pai",
+      "expected_node_id": "Person:urishilla_pai",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Bengaluru",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916937699779"
+      ],
+      "account": "BankAccount:ZGDV0248469:3143709638627207",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0125",
+      "name": "Nirja Sarin",
+      "expected_node_id": "Person:nirja_sarin",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Bengaluru",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917268526587"
+      ],
+      "account": "BankAccount:ZKVR0639665:81715651721",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0126",
+      "name": "Dalbir Rajan",
+      "expected_node_id": "Person:dalbir_rajan",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Bengaluru",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+919714540957"
+      ],
+      "account": "BankAccount:ZNMD0112876:65105240589",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0127",
+      "name": "Girish Kumar",
+      "expected_node_id": "Person:girish_kumar",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Bengaluru",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+919342059358"
+      ],
+      "account": "BankAccount:ZKVR0329204:4482253497910906",
+      "vehicles": [
+        "Vehicle:KA51J4010"
+      ]
+    },
+    {
+      "true_id": "TP-0128",
+      "name": "Anthony Sarin",
+      "expected_node_id": "Person:anthony_sarin",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Bengaluru",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+917919104175"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0129",
+      "name": "Aadi Venkatesh",
+      "expected_node_id": "Person:aadi_venkatesh",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Bengaluru",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916770012075"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0130",
+      "name": "Indira Patla",
+      "expected_node_id": "Person:indira_patla",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Bengaluru",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916223553521"
+      ],
+      "account": "BankAccount:ZGDV0914516:7027511489681119",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0131",
+      "name": "Upasna Boase",
+      "expected_node_id": "Person:upasna_boase",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Bengaluru",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+916122729730"
+      ],
+      "account": "BankAccount:ZNMD0676603:445065079507",
+      "vehicles": [
+        "Vehicle:KA05FD7009"
+      ]
+    },
+    {
+      "true_id": "TP-0132",
+      "name": "Noah Murthy",
+      "expected_node_id": "Person:noah_murthy",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Bengaluru",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+919744215949"
+      ],
+      "account": "BankAccount:ZNMD0696084:6446483955427888",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0133",
+      "name": "David Mital",
+      "expected_node_id": "Person:david_mital",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Bengaluru",
+      "tags": [
+        "isolated"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918116559423"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0134",
+      "name": "Zehaan More",
+      "expected_node_id": "Person:zehaan_more",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Bengaluru",
+      "tags": [
+        "merchant"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918332441743"
+      ],
+      "account": "BankAccount:ZGDV0121914:63592870665356",
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0135",
+      "name": "Tara Narain",
+      "expected_node_id": "Person:tara_narain",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Bengaluru",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918527357736"
+      ],
+      "account": null,
+      "vehicles": []
+    },
+    {
+      "true_id": "TP-0136",
+      "name": "Saksham Merchant",
+      "expected_node_id": "Person:saksham_merchant",
+      "role": "noise",
+      "cluster": null,
+      "bridges": null,
+      "city": "Bengaluru",
+      "tags": [
+        "individual"
+      ],
+      "reports_to": null,
+      "phones": [
+        "+918772528373"
+      ],
+      "account": "BankAccount:ZNMD0235079:2525131583921333",
+      "vehicles": [
+        "Vehicle:KA01C5841"
+      ]
+    }
+  ],
+  "fir_annotations": {
+    "offsets": "character offsets into the narrative line (the line after 'NARRATIVE'), counted in Python str indices",
+    "reports": {
+      "FIR-BLR-2025-0001": {
+        "scenario": "N08",
+        "cluster": null,
+        "mentions": [
+          {
+            "text": "Anjali Chopra",
+            "node_type": "Person",
+            "start": 21,
+            "end": 34,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:anjali_chopra",
+            "true_id": "TP-0123"
+          },
+          {
+            "text": "92750 70531",
+            "node_type": "Phone",
+            "start": 47,
+            "end": 58,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+919275070531",
+            "true_id": null
+          },
+          {
+            "text": "Mitra Warehouse",
+            "node_type": "Location",
+            "start": 134,
+            "end": 149,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:mitra_warehouse:bengaluru",
+            "true_id": null
+          },
+          {
+            "text": "Bengaluru",
+            "node_type": "Location",
+            "start": 151,
+            "end": 160,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:bengaluru",
+            "true_id": null
+          }
+        ],
+        "relations": [
+          {
+            "type": "USES_PHONE",
+            "source": "Person:anjali_chopra",
+            "target": "Phone:+919275070531"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:anjali_chopra",
+            "target": "Event:fir_blr_2025_0001"
+          }
+        ]
+      },
+      "FIR-BLR-2025-0002": {
+        "scenario": "N12",
+        "cluster": null,
+        "mentions": [
+          {
+            "text": "Dalbir Rajan",
+            "node_type": "Person",
+            "start": 21,
+            "end": 33,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:dalbir_rajan",
+            "true_id": "TP-0126"
+          },
+          {
+            "text": "+91-9714540957",
+            "node_type": "Phone",
+            "start": 46,
+            "end": 60,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+919714540957",
+            "true_id": null
+          },
+          {
+            "text": "Gara Warehouse",
+            "node_type": "Location",
+            "start": 159,
+            "end": 173,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:gara_warehouse:bengaluru",
+            "true_id": null
+          },
+          {
+            "text": "Bengaluru",
+            "node_type": "Location",
+            "start": 175,
+            "end": 184,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:bengaluru",
+            "true_id": null
+          },
+          {
+            "text": "Indira Patla",
+            "node_type": "Person",
+            "start": 264,
+            "end": 276,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:indira_patla",
+            "true_id": "TP-0130"
+          },
+          {
+            "text": "Datta Traders",
+            "node_type": "Organization",
+            "start": 293,
+            "end": 306,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Organization:datta_traders",
+            "true_id": null
+          }
+        ],
+        "relations": [
+          {
+            "type": "USES_PHONE",
+            "source": "Person:dalbir_rajan",
+            "target": "Phone:+919714540957"
+          },
+          {
+            "type": "MEMBER_OF",
+            "source": "Person:indira_patla",
+            "target": "Organization:datta_traders"
+          }
+        ]
+      },
+      "FIR-BLR-2025-0003": {
+        "scenario": "N04",
+        "cluster": null,
+        "mentions": [
+          {
+            "text": "Anthony Sarin",
+            "node_type": "Person",
+            "start": 21,
+            "end": 34,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:anthony_sarin",
+            "true_id": "TP-0128"
+          },
+          {
+            "text": "79191 04175",
+            "node_type": "Phone",
+            "start": 47,
+            "end": 58,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+917919104175",
+            "true_id": null
+          },
+          {
+            "text": "Kade Road Market",
+            "node_type": "Location",
+            "start": 76,
+            "end": 92,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:kade_road_market:bengaluru",
+            "true_id": null
+          },
+          {
+            "text": "Bengaluru",
+            "node_type": "Location",
+            "start": 94,
+            "end": 103,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:bengaluru",
+            "true_id": null
+          },
+          {
+            "text": "+91-7994279003",
+            "node_type": "Phone",
+            "start": 190,
+            "end": 204,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+917994279003",
+            "true_id": null
+          }
+        ],
+        "relations": [
+          {
+            "type": "USES_PHONE",
+            "source": "Person:anthony_sarin",
+            "target": "Phone:+917919104175"
+          },
+          {
+            "type": "CALLED",
+            "source": "Phone:+917994279003",
+            "target": "Phone:+917919104175"
+          }
+        ]
+      },
+      "FIR-DEL-2025-0001": {
+        "scenario": "N02",
+        "cluster": null,
+        "mentions": [
+          {
+            "text": "Rahul Sharma",
+            "node_type": "Person",
+            "start": 21,
+            "end": 33,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:rahul_sharma",
+            "true_id": "TP-0099"
+          },
+          {
+            "text": "+91 78765 87248",
+            "node_type": "Phone",
+            "start": 118,
+            "end": 133,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+917876587248",
+            "true_id": null
+          },
+          {
+            "text": "Ratta Circle Garage",
+            "node_type": "Location",
+            "start": 217,
+            "end": 236,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:ratta_circle_garage:delhi",
+            "true_id": null
+          },
+          {
+            "text": "Delhi",
+            "node_type": "Location",
+            "start": 238,
+            "end": 243,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:delhi",
+            "true_id": null
+          }
+        ],
+        "relations": [
+          {
+            "type": "USES_PHONE",
+            "source": "Person:rahul_sharma",
+            "target": "Phone:+917876587248"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:rahul_sharma",
+            "target": "Event:fir_del_2025_0001"
+          }
+        ]
+      },
+      "FIR-DEL-2025-0002": {
+        "scenario": "D1",
+        "cluster": "D",
+        "mentions": [
+          {
+            "text": "Falguni Banik",
+            "node_type": "Person",
+            "start": 21,
+            "end": 34,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:falguni_banik",
+            "true_id": "TP-0110"
+          },
+          {
+            "text": "+91 71876 98223",
+            "node_type": "Phone",
+            "start": 47,
+            "end": 62,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+917187698223",
+            "true_id": null
+          },
+          {
+            "text": "Barad Marg Market",
+            "node_type": "Location",
+            "start": 86,
+            "end": 103,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:barad_marg_market:delhi",
+            "true_id": null
+          },
+          {
+            "text": "Delhi",
+            "node_type": "Location",
+            "start": 105,
+            "end": 110,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:delhi",
+            "true_id": null
+          },
+          {
+            "text": "+91 65183 01062",
+            "node_type": "Phone",
+            "start": 191,
+            "end": 206,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+916518301062",
+            "true_id": null
+          },
+          {
+            "text": "Ayaan Karnik",
+            "node_type": "Person",
+            "start": 241,
+            "end": 253,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:ayaan_karnik",
+            "true_id": "TP-0029"
+          },
+          {
+            "text": "Imaran Nair",
+            "node_type": "Person",
+            "start": 387,
+            "end": 398,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:imaran_nair",
+            "true_id": "TP-0028"
+          },
+          {
+            "text": "Imaran Nair",
+            "node_type": "Person",
+            "start": 414,
+            "end": 425,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:imaran_nair",
+            "true_id": "TP-0028"
+          },
+          {
+            "text": "DL 4 CB 1155",
+            "node_type": "Vehicle",
+            "start": 497,
+            "end": 509,
+            "expected_method": "regex",
+            "expected_node_id": "Vehicle:DL4CB1155",
+            "true_id": null
+          }
+        ],
+        "relations": [
+          {
+            "type": "USES_PHONE",
+            "source": "Person:falguni_banik",
+            "target": "Phone:+917187698223"
+          },
+          {
+            "type": "CALLED",
+            "source": "Phone:+916518301062",
+            "target": "Phone:+917187698223"
+          },
+          {
+            "type": "USES_PHONE",
+            "source": "Person:ayaan_karnik",
+            "target": "Phone:+916518301062"
+          },
+          {
+            "type": "TRANSFERRED_MONEY_TO",
+            "source": "Person:falguni_banik",
+            "target": "Person:imaran_nair"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:falguni_banik",
+            "target": "Event:fir_del_2025_0002"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:imaran_nair",
+            "target": "Event:fir_del_2025_0002"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Vehicle:DL4CB1155",
+            "target": "Event:fir_del_2025_0002"
+          }
+        ]
+      },
+      "FIR-DEL-2025-0003": {
+        "scenario": "N06",
+        "cluster": null,
+        "mentions": [
+          {
+            "text": "Yashawini Suresh",
+            "node_type": "Person",
+            "start": 21,
+            "end": 37,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:yashawini_suresh",
+            "true_id": "TP-0101"
+          },
+          {
+            "text": "+91-8843189740",
+            "node_type": "Phone",
+            "start": 50,
+            "end": 64,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+918843189740",
+            "true_id": null
+          },
+          {
+            "text": "Ratta Circle Garage",
+            "node_type": "Location",
+            "start": 162,
+            "end": 181,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:ratta_circle_garage:delhi",
+            "true_id": null
+          },
+          {
+            "text": "Delhi",
+            "node_type": "Location",
+            "start": 183,
+            "end": 188,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:delhi",
+            "true_id": null
+          },
+          {
+            "text": "Raagini Ray",
+            "node_type": "Person",
+            "start": 268,
+            "end": 279,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:raagini_ray",
+            "true_id": "TP-0117"
+          },
+          {
+            "text": "Loke Traders",
+            "node_type": "Organization",
+            "start": 296,
+            "end": 308,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Organization:loke_traders",
+            "true_id": null
+          }
+        ],
+        "relations": [
+          {
+            "type": "USES_PHONE",
+            "source": "Person:yashawini_suresh",
+            "target": "Phone:+918843189740"
+          },
+          {
+            "type": "MEMBER_OF",
+            "source": "Person:raagini_ray",
+            "target": "Organization:loke_traders"
+          }
+        ]
+      },
+      "FIR-DEL-2025-0004": {
+        "scenario": "D2",
+        "cluster": "D",
+        "mentions": [
+          {
+            "text": "Imaran Nair",
+            "node_type": "Person",
+            "start": 42,
+            "end": 53,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:imaran_nair",
+            "true_id": "TP-0028"
+          },
+          {
+            "text": "Ayaan Karnik",
+            "node_type": "Person",
+            "start": 58,
+            "end": 70,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:ayaan_karnik",
+            "true_id": "TP-0029"
+          },
+          {
+            "text": "DL-4-CB-1155",
+            "node_type": "Vehicle",
+            "start": 145,
+            "end": 157,
+            "expected_method": "regex",
+            "expected_node_id": "Vehicle:DL4CB1155",
+            "true_id": null
+          },
+          {
+            "text": "Garima Khalsa",
+            "node_type": "Person",
+            "start": 178,
+            "end": 191,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:garima_khalsa",
+            "true_id": "TP-0118"
+          },
+          {
+            "text": "Bala Path Garage",
+            "node_type": "Location",
+            "start": 197,
+            "end": 213,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:bala_path_garage:delhi",
+            "true_id": null
+          },
+          {
+            "text": "Delhi",
+            "node_type": "Location",
+            "start": 215,
+            "end": 220,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:delhi",
+            "true_id": null
+          },
+          {
+            "text": "Garima Khalsa",
+            "node_type": "Person",
+            "start": 262,
+            "end": 275,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:garima_khalsa",
+            "true_id": "TP-0118"
+          },
+          {
+            "text": "Imaran Nair",
+            "node_type": "Person",
+            "start": 401,
+            "end": 412,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:imaran_nair",
+            "true_id": "TP-0028"
+          },
+          {
+            "text": "Finn Shere",
+            "node_type": "Person",
+            "start": 421,
+            "end": 431,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:finn_shere",
+            "true_id": "TP-0026"
+          },
+          {
+            "text": "Ranveer Madan",
+            "node_type": "Person",
+            "start": 436,
+            "end": 449,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:ranveer_madan",
+            "true_id": "TP-0027"
+          },
+          {
+            "text": "Murty Dhaba",
+            "node_type": "Location",
+            "start": 453,
+            "end": 464,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:murty_dhaba:delhi",
+            "true_id": null
+          },
+          {
+            "text": "Delhi",
+            "node_type": "Location",
+            "start": 466,
+            "end": 471,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:delhi",
+            "true_id": null
+          },
+          {
+            "text": "Finn Shere",
+            "node_type": "Person",
+            "start": 497,
+            "end": 507,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:finn_shere",
+            "true_id": "TP-0026"
+          },
+          {
+            "text": "06852224261",
+            "node_type": "Phone",
+            "start": 538,
+            "end": 549,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+916852224261",
+            "true_id": null
+          }
+        ],
+        "relations": [
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:imaran_nair",
+            "target": "Event:fir_del_2025_0004"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:ayaan_karnik",
+            "target": "Event:fir_del_2025_0004"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Vehicle:DL4CB1155",
+            "target": "Event:fir_del_2025_0004"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:garima_khalsa",
+            "target": "Event:fir_del_2025_0004"
+          },
+          {
+            "type": "MET_AT",
+            "source": "Person:imaran_nair",
+            "target": "Location:murty_dhaba:delhi"
+          },
+          {
+            "type": "MET_AT",
+            "source": "Person:finn_shere",
+            "target": "Location:murty_dhaba:delhi"
+          },
+          {
+            "type": "MET_AT",
+            "source": "Person:ranveer_madan",
+            "target": "Location:murty_dhaba:delhi"
+          },
+          {
+            "type": "USES_PHONE",
+            "source": "Person:finn_shere",
+            "target": "Phone:+916852224261"
+          }
+        ]
+      },
+      "FIR-DEL-2025-0005": {
+        "scenario": "D3",
+        "cluster": "D",
+        "mentions": [
+          {
+            "text": "Dhruv Lala",
+            "node_type": "Person",
+            "start": 21,
+            "end": 31,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:dhruv_lala",
+            "true_id": "TP-0106"
+          },
+          {
+            "text": "+91-8382865694",
+            "node_type": "Phone",
+            "start": 44,
+            "end": 58,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+918382865694",
+            "true_id": null
+          },
+          {
+            "text": "Ranveer Madan",
+            "node_type": "Person",
+            "start": 74,
+            "end": 87,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:ranveer_madan",
+            "true_id": "TP-0027"
+          },
+          {
+            "text": "Finn Shere",
+            "node_type": "Person",
+            "start": 105,
+            "end": 115,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:finn_shere",
+            "true_id": "TP-0026"
+          },
+          {
+            "text": "Iyengar Ganj Bus Depot",
+            "node_type": "Location",
+            "start": 166,
+            "end": 188,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:iyengar_ganj_bus_depot:delhi",
+            "true_id": null
+          },
+          {
+            "text": "Delhi",
+            "node_type": "Location",
+            "start": 190,
+            "end": 195,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:delhi",
+            "true_id": null
+          },
+          {
+            "text": "Ranveer Madan",
+            "node_type": "Person",
+            "start": 235,
+            "end": 248,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:ranveer_madan",
+            "true_id": "TP-0027"
+          },
+          {
+            "text": "6424188799",
+            "node_type": "Phone",
+            "start": 291,
+            "end": 301,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+916424188799",
+            "true_id": null
+          }
+        ],
+        "relations": [
+          {
+            "type": "USES_PHONE",
+            "source": "Person:dhruv_lala",
+            "target": "Phone:+918382865694"
+          },
+          {
+            "type": "USES_PHONE",
+            "source": "Person:ranveer_madan",
+            "target": "Phone:+916424188799"
+          },
+          {
+            "type": "CALLED",
+            "source": "Phone:+916424188799",
+            "target": "Phone:+918382865694"
+          }
+        ]
+      },
+      "FIR-DEL-2025-0006": {
+        "scenario": "N10",
+        "cluster": null,
+        "mentions": [
+          {
+            "text": "DL 9 CY 4833",
+            "node_type": "Vehicle",
+            "start": 94,
+            "end": 106,
+            "expected_method": "regex",
+            "expected_node_id": "Vehicle:DL9CY4833",
+            "true_id": null
+          },
+          {
+            "text": "Tripti Kothari",
+            "node_type": "Person",
+            "start": 118,
+            "end": 132,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:tripti_kothari",
+            "true_id": "TP-0122"
+          },
+          {
+            "text": "DL5CML9941",
+            "node_type": "Vehicle",
+            "start": 204,
+            "end": 214,
+            "expected_method": "regex",
+            "expected_node_id": "Vehicle:DL5CML9941",
+            "true_id": null
+          },
+          {
+            "text": "Upasna Datta",
+            "node_type": "Person",
+            "start": 226,
+            "end": 238,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:upasna_datta",
+            "true_id": "TP-0112"
+          },
+          {
+            "text": "Sharma Dhaba",
+            "node_type": "Location",
+            "start": 245,
+            "end": 257,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:sharma_dhaba:delhi",
+            "true_id": null
+          },
+          {
+            "text": "Delhi",
+            "node_type": "Location",
+            "start": 259,
+            "end": 264,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:delhi",
+            "true_id": null
+          },
+          {
+            "text": "Upasna Datta",
+            "node_type": "Person",
+            "start": 266,
+            "end": 278,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:upasna_datta",
+            "true_id": "TP-0112"
+          },
+          {
+            "text": "Tripti Kothari",
+            "node_type": "Person",
+            "start": 340,
+            "end": 354,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:tripti_kothari",
+            "true_id": "TP-0122"
+          },
+          {
+            "text": "7888064876",
+            "node_type": "Phone",
+            "start": 367,
+            "end": 377,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+917888064876",
+            "true_id": null
+          }
+        ],
+        "relations": [
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:tripti_kothari",
+            "target": "Event:fir_del_2025_0006"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:upasna_datta",
+            "target": "Event:fir_del_2025_0006"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Vehicle:DL9CY4833",
+            "target": "Event:fir_del_2025_0006"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Vehicle:DL5CML9941",
+            "target": "Event:fir_del_2025_0006"
+          },
+          {
+            "type": "USES_PHONE",
+            "source": "Person:tripti_kothari",
+            "target": "Phone:+917888064876"
+          }
+        ]
+      },
+      "FIR-HYD-2025-0001": {
+        "scenario": "N05",
+        "cluster": null,
+        "mentions": [
+          {
+            "text": "Aryan Sood",
+            "node_type": "Person",
+            "start": 21,
+            "end": 31,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:aryan_sood",
+            "true_id": "TP-0084"
+          },
+          {
+            "text": "60822 51340",
+            "node_type": "Phone",
+            "start": 44,
+            "end": 55,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+916082251340",
+            "true_id": null
+          },
+          {
+            "text": "Farhan Bhandari",
+            "node_type": "Person",
+            "start": 112,
+            "end": 127,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:farhan_bhandari",
+            "true_id": "TP-0086"
+          },
+          {
+            "text": "Lalla Street Market",
+            "node_type": "Location",
+            "start": 192,
+            "end": 211,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:lalla_street_market:hyderabad",
+            "true_id": null
+          },
+          {
+            "text": "Hyderabad",
+            "node_type": "Location",
+            "start": 213,
+            "end": 222,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:hyderabad",
+            "true_id": null
+          },
+          {
+            "text": "Manbir Kalla",
+            "node_type": "Person",
+            "start": 252,
+            "end": 264,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:manbir_kalla",
+            "true_id": "TP-0081"
+          }
+        ],
+        "relations": [
+          {
+            "type": "USES_PHONE",
+            "source": "Person:aryan_sood",
+            "target": "Phone:+916082251340"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:aryan_sood",
+            "target": "Event:fir_hyd_2025_0001"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:farhan_bhandari",
+            "target": "Event:fir_hyd_2025_0001"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:manbir_kalla",
+            "target": "Event:fir_hyd_2025_0001"
+          }
+        ]
+      },
+      "FIR-HYD-2025-0002": {
+        "scenario": "C1",
+        "cluster": "C",
+        "mentions": [
+          {
+            "text": "Anusha Bumb",
+            "node_type": "Person",
+            "start": 21,
+            "end": 32,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:anusha_bumb",
+            "true_id": "TP-0091"
+          },
+          {
+            "text": "6855008436",
+            "node_type": "Phone",
+            "start": 45,
+            "end": 55,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+916855008436",
+            "true_id": null
+          },
+          {
+            "text": "Lalla Street Market",
+            "node_type": "Location",
+            "start": 73,
+            "end": 92,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:lalla_street_market:hyderabad",
+            "true_id": null
+          },
+          {
+            "text": "Hyderabad",
+            "node_type": "Location",
+            "start": 94,
+            "end": 103,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:hyderabad",
+            "true_id": null
+          },
+          {
+            "text": "85246 24102",
+            "node_type": "Phone",
+            "start": 189,
+            "end": 200,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+918524624102",
+            "true_id": null
+          },
+          {
+            "text": "85246 24102",
+            "node_type": "Phone",
+            "start": 594,
+            "end": 605,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+918524624102",
+            "true_id": null
+          }
+        ],
+        "relations": [
+          {
+            "type": "USES_PHONE",
+            "source": "Person:anusha_bumb",
+            "target": "Phone:+916855008436"
+          },
+          {
+            "type": "CALLED",
+            "source": "Phone:+918524624102",
+            "target": "Phone:+916855008436"
+          }
+        ]
+      },
+      "FIR-HYD-2025-0003": {
+        "scenario": "N07",
+        "cluster": null,
+        "mentions": [
+          {
+            "text": "Siya Deep",
+            "node_type": "Person",
+            "start": 21,
+            "end": 30,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:siya_deep",
+            "true_id": "TP-0096"
+          },
+          {
+            "text": "+91-6017179896",
+            "node_type": "Phone",
+            "start": 116,
+            "end": 130,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+916017179896",
+            "true_id": null
+          },
+          {
+            "text": "Deo Auto Works",
+            "node_type": "Location",
+            "start": 214,
+            "end": 228,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:deo_auto_works:hyderabad",
+            "true_id": null
+          },
+          {
+            "text": "Hyderabad",
+            "node_type": "Location",
+            "start": 230,
+            "end": 239,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:hyderabad",
+            "true_id": null
+          }
+        ],
+        "relations": [
+          {
+            "type": "USES_PHONE",
+            "source": "Person:siya_deep",
+            "target": "Phone:+916017179896"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:siya_deep",
+            "target": "Event:fir_hyd_2025_0003"
+          }
+        ]
+      },
+      "FIR-HYD-2025-0004": {
+        "scenario": "C3",
+        "cluster": "C",
+        "mentions": [
+          {
+            "text": "Lanka Trading Pvt Ltd",
+            "node_type": "Organization",
+            "start": 76,
+            "end": 97,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Organization:lanka_trading_pvt_ltd",
+            "true_id": null
+          },
+          {
+            "text": "Bora Road Business Centre",
+            "node_type": "Location",
+            "start": 101,
+            "end": 126,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:bora_road_business_centre:hyderabad",
+            "true_id": null
+          },
+          {
+            "text": "Hyderabad",
+            "node_type": "Location",
+            "start": 128,
+            "end": 137,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:hyderabad",
+            "true_id": null
+          },
+          {
+            "text": "Balveer Kaul",
+            "node_type": "Person",
+            "start": 210,
+            "end": 222,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:balveer_kaul",
+            "true_id": "TP-0021"
+          },
+          {
+            "text": "Chandresh Rai",
+            "node_type": "Person",
+            "start": 224,
+            "end": 237,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:chandresh_rai",
+            "true_id": "TP-0022"
+          },
+          {
+            "text": "Liam Setty",
+            "node_type": "Person",
+            "start": 242,
+            "end": 252,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:liam_setty",
+            "true_id": "TP-0023"
+          },
+          {
+            "text": "Ishaan Mann",
+            "node_type": "Person",
+            "start": 402,
+            "end": 413,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:ishaan_mann",
+            "true_id": "TP-0020"
+          },
+          {
+            "text": "Lanka Trading Pvt Ltd",
+            "node_type": "Organization",
+            "start": 429,
+            "end": 450,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Organization:lanka_trading_pvt_ltd",
+            "true_id": null
+          },
+          {
+            "text": "David Radhakrishnan",
+            "node_type": "Person",
+            "start": 542,
+            "end": 561,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:david_radhakrishnan",
+            "true_id": "TP-0016"
+          },
+          {
+            "text": "8829009322",
+            "node_type": "Phone",
+            "start": 586,
+            "end": 596,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+918829009322",
+            "true_id": null
+          }
+        ],
+        "relations": [
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:balveer_kaul",
+            "target": "Event:fir_hyd_2025_0004"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:chandresh_rai",
+            "target": "Event:fir_hyd_2025_0004"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:liam_setty",
+            "target": "Event:fir_hyd_2025_0004"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:ishaan_mann",
+            "target": "Event:fir_hyd_2025_0004"
+          },
+          {
+            "type": "MEMBER_OF",
+            "source": "Person:ishaan_mann",
+            "target": "Organization:lanka_trading_pvt_ltd"
+          },
+          {
+            "type": "USES_PHONE",
+            "source": "Person:david_radhakrishnan",
+            "target": "Phone:+918829009322"
+          }
+        ]
+      },
+      "FIR-MUM-2025-0001": {
+        "scenario": "N14",
+        "cluster": null,
+        "mentions": [
+          {
+            "text": "Siddharth Bhatt",
+            "node_type": "Person",
+            "start": 21,
+            "end": 36,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:siddharth_bhatt",
+            "true_id": "TP-0040"
+          },
+          {
+            "text": "6555122302",
+            "node_type": "Phone",
+            "start": 121,
+            "end": 131,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+916555122302",
+            "true_id": null
+          },
+          {
+            "text": "Muni Tea Stall",
+            "node_type": "Location",
+            "start": 215,
+            "end": 229,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:muni_tea_stall:mumbai",
+            "true_id": null
+          },
+          {
+            "text": "Mumbai",
+            "node_type": "Location",
+            "start": 231,
+            "end": 237,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:mumbai",
+            "true_id": null
+          }
+        ],
+        "relations": [
+          {
+            "type": "USES_PHONE",
+            "source": "Person:siddharth_bhatt",
+            "target": "Phone:+916555122302"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:siddharth_bhatt",
+            "target": "Event:fir_mum_2025_0001"
+          }
+        ]
+      },
+      "FIR-MUM-2025-0002": {
+        "scenario": "A1",
+        "cluster": "A",
+        "mentions": [
+          {
+            "text": "Balan Warehouse",
+            "node_type": "Location",
+            "start": 66,
+            "end": 81,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:balan_warehouse:mumbai",
+            "true_id": null
+          },
+          {
+            "text": "Mumbai",
+            "node_type": "Location",
+            "start": 83,
+            "end": 89,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:mumbai",
+            "true_id": null
+          },
+          {
+            "text": "Isaac Dewan",
+            "node_type": "Person",
+            "start": 131,
+            "end": 142,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:isaac_dewan",
+            "true_id": "TP-0004"
+          },
+          {
+            "text": "Dalaja Chahal",
+            "node_type": "Person",
+            "start": 147,
+            "end": 160,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:dalaja_chahal",
+            "true_id": "TP-0005"
+          },
+          {
+            "text": "MH14LY7909",
+            "node_type": "Vehicle",
+            "start": 356,
+            "end": 366,
+            "expected_method": "regex",
+            "expected_node_id": "Vehicle:MH14LY7909",
+            "true_id": null
+          },
+          {
+            "text": "Ekaraj Koshy",
+            "node_type": "Person",
+            "start": 470,
+            "end": 482,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:ekaraj_koshy",
+            "true_id": "TP-0033"
+          },
+          {
+            "text": "Isaac Dewan",
+            "node_type": "Person",
+            "start": 504,
+            "end": 515,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:isaac_dewan",
+            "true_id": "TP-0004"
+          },
+          {
+            "text": "Daksh Bakshi",
+            "node_type": "Person",
+            "start": 562,
+            "end": 574,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:daksh_bakshi",
+            "true_id": "TP-0001"
+          },
+          {
+            "text": "+91-6375107792",
+            "node_type": "Phone",
+            "start": 599,
+            "end": 613,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+916375107792",
+            "true_id": null
+          },
+          {
+            "text": "Dalaja Chahal",
+            "node_type": "Person",
+            "start": 615,
+            "end": 628,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:dalaja_chahal",
+            "true_id": "TP-0005"
+          },
+          {
+            "text": "Daksh Bakshi",
+            "node_type": "Person",
+            "start": 658,
+            "end": 670,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:daksh_bakshi",
+            "true_id": "TP-0001"
+          },
+          {
+            "text": "Laksh Konda",
+            "node_type": "Person",
+            "start": 675,
+            "end": 686,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:laksh_konda",
+            "true_id": "TP-0002"
+          },
+          {
+            "text": "Bala Circle Bus Depot",
+            "node_type": "Location",
+            "start": 690,
+            "end": 711,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:bala_circle_bus_depot:mumbai",
+            "true_id": null
+          },
+          {
+            "text": "Mumbai",
+            "node_type": "Location",
+            "start": 713,
+            "end": 719,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:mumbai",
+            "true_id": null
+          }
+        ],
+        "relations": [
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:isaac_dewan",
+            "target": "Event:fir_mum_2025_0002"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:dalaja_chahal",
+            "target": "Event:fir_mum_2025_0002"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Vehicle:MH14LY7909",
+            "target": "Event:fir_mum_2025_0002"
+          },
+          {
+            "type": "OWNS_VEHICLE",
+            "source": "Person:ekaraj_koshy",
+            "target": "Vehicle:MH14LY7909"
+          },
+          {
+            "type": "USES_PHONE",
+            "source": "Person:daksh_bakshi",
+            "target": "Phone:+916375107792"
+          },
+          {
+            "type": "MET_AT",
+            "source": "Person:dalaja_chahal",
+            "target": "Location:bala_circle_bus_depot:mumbai"
+          },
+          {
+            "type": "MET_AT",
+            "source": "Person:daksh_bakshi",
+            "target": "Location:bala_circle_bus_depot:mumbai"
+          },
+          {
+            "type": "MET_AT",
+            "source": "Person:laksh_konda",
+            "target": "Location:bala_circle_bus_depot:mumbai"
+          }
+        ]
+      },
+      "FIR-MUM-2025-0003": {
+        "scenario": "C2",
+        "cluster": "C",
+        "mentions": [
+          {
+            "text": "Vasana Aggarwal",
+            "node_type": "Person",
+            "start": 21,
+            "end": 36,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:vasana_aggarwal",
+            "true_id": "TP-0048"
+          },
+          {
+            "text": "7288961107",
+            "node_type": "Phone",
+            "start": 49,
+            "end": 59,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+917288961107",
+            "true_id": null
+          },
+          {
+            "text": "Khosla Dhaba",
+            "node_type": "Location",
+            "start": 77,
+            "end": 89,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:khosla_dhaba:mumbai",
+            "true_id": null
+          },
+          {
+            "text": "Mumbai",
+            "node_type": "Location",
+            "start": 91,
+            "end": 97,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:mumbai",
+            "true_id": null
+          },
+          {
+            "text": "7679658289",
+            "node_type": "Phone",
+            "start": 183,
+            "end": 193,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+917679658289",
+            "true_id": null
+          },
+          {
+            "text": "7679658289",
+            "node_type": "Phone",
+            "start": 587,
+            "end": 597,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+917679658289",
+            "true_id": null
+          }
+        ],
+        "relations": [
+          {
+            "type": "USES_PHONE",
+            "source": "Person:vasana_aggarwal",
+            "target": "Phone:+917288961107"
+          },
+          {
+            "type": "CALLED",
+            "source": "Phone:+917679658289",
+            "target": "Phone:+917288961107"
+          }
+        ]
+      },
+      "FIR-MUM-2025-0004": {
+        "scenario": "N01",
+        "cluster": null,
+        "mentions": [
+          {
+            "text": "Sudiksha Pathak",
+            "node_type": "Person",
+            "start": 21,
+            "end": 36,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:sudiksha_pathak",
+            "true_id": "TP-0035"
+          },
+          {
+            "text": "+91 96889 36655",
+            "node_type": "Phone",
+            "start": 49,
+            "end": 64,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+919688936655",
+            "true_id": null
+          },
+          {
+            "text": "Hotel Kakar Residency",
+            "node_type": "Location",
+            "start": 141,
+            "end": 162,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:hotel_kakar_residency:mumbai",
+            "true_id": null
+          },
+          {
+            "text": "Mumbai",
+            "node_type": "Location",
+            "start": 164,
+            "end": 170,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:mumbai",
+            "true_id": null
+          }
+        ],
+        "relations": [
+          {
+            "type": "USES_PHONE",
+            "source": "Person:sudiksha_pathak",
+            "target": "Phone:+919688936655"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:sudiksha_pathak",
+            "target": "Event:fir_mum_2025_0004"
+          }
+        ]
+      },
+      "FIR-MUM-2025-0005": {
+        "scenario": "A2",
+        "cluster": "A",
+        "mentions": [
+          {
+            "text": "Rahul Sharma",
+            "node_type": "Person",
+            "start": 68,
+            "end": 80,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:rahul_sharma",
+            "true_id": "TP-0003"
+          },
+          {
+            "text": "Udyati Balay",
+            "node_type": "Person",
+            "start": 85,
+            "end": 97,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:udyati_balay",
+            "true_id": "TP-0006"
+          },
+          {
+            "text": "Seth Circle Market",
+            "node_type": "Location",
+            "start": 112,
+            "end": 130,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:seth_circle_market:mumbai",
+            "true_id": null
+          },
+          {
+            "text": "Mumbai",
+            "node_type": "Location",
+            "start": 132,
+            "end": 138,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:mumbai",
+            "true_id": null
+          },
+          {
+            "text": "Rahul Sharma",
+            "node_type": "Person",
+            "start": 251,
+            "end": 263,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:rahul_sharma",
+            "true_id": "TP-0003"
+          },
+          {
+            "text": "Udyati Balay",
+            "node_type": "Person",
+            "start": 265,
+            "end": 277,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:udyati_balay",
+            "true_id": "TP-0006"
+          },
+          {
+            "text": "93848 22654",
+            "node_type": "Phone",
+            "start": 321,
+            "end": 332,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+919384822654",
+            "true_id": null
+          },
+          {
+            "text": "Rahul Sharma",
+            "node_type": "Person",
+            "start": 354,
+            "end": 366,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:rahul_sharma",
+            "true_id": "TP-0003"
+          },
+          {
+            "text": "Laksh Konda",
+            "node_type": "Person",
+            "start": 415,
+            "end": 426,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:laksh_konda",
+            "true_id": "TP-0002"
+          },
+          {
+            "text": "Daksh Bakshi",
+            "node_type": "Person",
+            "start": 442,
+            "end": 454,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:daksh_bakshi",
+            "true_id": "TP-0001"
+          }
+        ],
+        "relations": [
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:rahul_sharma",
+            "target": "Event:fir_mum_2025_0005"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:udyati_balay",
+            "target": "Event:fir_mum_2025_0005"
+          },
+          {
+            "type": "USES_PHONE",
+            "source": "Person:udyati_balay",
+            "target": "Phone:+919384822654"
+          }
+        ]
+      },
+      "FIR-MUM-2025-0006": {
+        "scenario": "N09",
+        "cluster": null,
+        "mentions": [
+          {
+            "text": "Gaurika Zacharia",
+            "node_type": "Person",
+            "start": 21,
+            "end": 37,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:gaurika_zacharia",
+            "true_id": "TP-0054"
+          },
+          {
+            "text": "+91 62755 52433",
+            "node_type": "Phone",
+            "start": 50,
+            "end": 65,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+916275552433",
+            "true_id": null
+          },
+          {
+            "text": "Zilmil Acharya",
+            "node_type": "Person",
+            "start": 123,
+            "end": 137,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:zilmil_acharya",
+            "true_id": "TP-0055"
+          },
+          {
+            "text": "Sampath Circle Bus Depot",
+            "node_type": "Location",
+            "start": 202,
+            "end": 226,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:sampath_circle_bus_depot:mumbai",
+            "true_id": null
+          },
+          {
+            "text": "Mumbai",
+            "node_type": "Location",
+            "start": 228,
+            "end": 234,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:mumbai",
+            "true_id": null
+          },
+          {
+            "text": "Sanya Raj",
+            "node_type": "Person",
+            "start": 264,
+            "end": 273,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:sanya_raj",
+            "true_id": "TP-0041"
+          }
+        ],
+        "relations": [
+          {
+            "type": "USES_PHONE",
+            "source": "Person:gaurika_zacharia",
+            "target": "Phone:+916275552433"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:gaurika_zacharia",
+            "target": "Event:fir_mum_2025_0006"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:zilmil_acharya",
+            "target": "Event:fir_mum_2025_0006"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:sanya_raj",
+            "target": "Event:fir_mum_2025_0006"
+          }
+        ]
+      },
+      "FIR-PUN-2025-0001": {
+        "scenario": "N03",
+        "cluster": null,
+        "mentions": [
+          {
+            "text": "MH 14 ZF 1852",
+            "node_type": "Vehicle",
+            "start": 98,
+            "end": 111,
+            "expected_method": "regex",
+            "expected_node_id": "Vehicle:MH14ZF1852",
+            "true_id": null
+          },
+          {
+            "text": "Jalsa Zacharia",
+            "node_type": "Person",
+            "start": 123,
+            "end": 137,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:jalsa_zacharia",
+            "true_id": "TP-0067"
+          },
+          {
+            "text": "MH-12-T-9390",
+            "node_type": "Vehicle",
+            "start": 207,
+            "end": 219,
+            "expected_method": "regex",
+            "expected_node_id": "Vehicle:MH12T9390",
+            "true_id": null
+          },
+          {
+            "text": "Upasna Pandya",
+            "node_type": "Person",
+            "start": 231,
+            "end": 244,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:upasna_pandya",
+            "true_id": "TP-0072"
+          },
+          {
+            "text": "Hotel Borra Residency",
+            "node_type": "Location",
+            "start": 251,
+            "end": 272,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:hotel_borra_residency:pune",
+            "true_id": null
+          },
+          {
+            "text": "Pune",
+            "node_type": "Location",
+            "start": 274,
+            "end": 278,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:pune",
+            "true_id": null
+          },
+          {
+            "text": "Upasna Pandya",
+            "node_type": "Person",
+            "start": 280,
+            "end": 293,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:upasna_pandya",
+            "true_id": "TP-0072"
+          },
+          {
+            "text": "Jalsa Zacharia",
+            "node_type": "Person",
+            "start": 355,
+            "end": 369,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:jalsa_zacharia",
+            "true_id": "TP-0067"
+          },
+          {
+            "text": "65438 32315",
+            "node_type": "Phone",
+            "start": 382,
+            "end": 393,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+916543832315",
+            "true_id": null
+          }
+        ],
+        "relations": [
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:jalsa_zacharia",
+            "target": "Event:fir_pun_2025_0001"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:upasna_pandya",
+            "target": "Event:fir_pun_2025_0001"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Vehicle:MH14ZF1852",
+            "target": "Event:fir_pun_2025_0001"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Vehicle:MH12T9390",
+            "target": "Event:fir_pun_2025_0001"
+          },
+          {
+            "type": "USES_PHONE",
+            "source": "Person:jalsa_zacharia",
+            "target": "Phone:+916543832315"
+          }
+        ]
+      },
+      "FIR-PUN-2025-0002": {
+        "scenario": "N13",
+        "cluster": null,
+        "mentions": [
+          {
+            "text": "Saksham Nori",
+            "node_type": "Person",
+            "start": 21,
+            "end": 33,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:saksham_nori",
+            "true_id": "TP-0076"
+          },
+          {
+            "text": "+91 66537 93670",
+            "node_type": "Phone",
+            "start": 46,
+            "end": 61,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+916653793670",
+            "true_id": null
+          },
+          {
+            "text": "Chavvi Bhat",
+            "node_type": "Person",
+            "start": 117,
+            "end": 128,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:chavvi_bhat",
+            "true_id": "TP-0075"
+          },
+          {
+            "text": "Krish Chowk Bus Depot",
+            "node_type": "Location",
+            "start": 193,
+            "end": 214,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:krish_chowk_bus_depot:pune",
+            "true_id": null
+          },
+          {
+            "text": "Pune",
+            "node_type": "Location",
+            "start": 216,
+            "end": 220,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:pune",
+            "true_id": null
+          },
+          {
+            "text": "Yasti Khanna",
+            "node_type": "Person",
+            "start": 250,
+            "end": 262,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:yasti_khanna",
+            "true_id": "TP-0065"
+          }
+        ],
+        "relations": [
+          {
+            "type": "USES_PHONE",
+            "source": "Person:saksham_nori",
+            "target": "Phone:+916653793670"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:saksham_nori",
+            "target": "Event:fir_pun_2025_0002"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:chavvi_bhat",
+            "target": "Event:fir_pun_2025_0002"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:yasti_khanna",
+            "target": "Event:fir_pun_2025_0002"
+          }
+        ]
+      },
+      "FIR-PUN-2025-0003": {
+        "scenario": "N11",
+        "cluster": null,
+        "mentions": [
+          {
+            "text": "Ayushman Karnik",
+            "node_type": "Person",
+            "start": 21,
+            "end": 36,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:ayushman_karnik",
+            "true_id": "TP-0062"
+          },
+          {
+            "text": "78376 17691",
+            "node_type": "Phone",
+            "start": 49,
+            "end": 60,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+917837617691",
+            "true_id": null
+          },
+          {
+            "text": "Ray Warehouse",
+            "node_type": "Location",
+            "start": 78,
+            "end": 91,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:ray_warehouse:pune",
+            "true_id": null
+          },
+          {
+            "text": "Pune",
+            "node_type": "Location",
+            "start": 93,
+            "end": 97,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:pune",
+            "true_id": null
+          },
+          {
+            "text": "91367 51526",
+            "node_type": "Phone",
+            "start": 183,
+            "end": 194,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+919136751526",
+            "true_id": null
+          }
+        ],
+        "relations": [
+          {
+            "type": "USES_PHONE",
+            "source": "Person:ayushman_karnik",
+            "target": "Phone:+917837617691"
+          },
+          {
+            "type": "CALLED",
+            "source": "Phone:+919136751526",
+            "target": "Phone:+917837617691"
+          }
+        ]
+      },
+      "FIR-PUN-2025-0004": {
+        "scenario": "B1",
+        "cluster": "B",
+        "mentions": [
+          {
+            "text": "Pallavi Bail",
+            "node_type": "Person",
+            "start": 21,
+            "end": 33,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:pallavi_bail",
+            "true_id": "TP-0059"
+          },
+          {
+            "text": "+91 85470 24696",
+            "node_type": "Phone",
+            "start": 46,
+            "end": 61,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+918547024696",
+            "true_id": null
+          },
+          {
+            "text": "MH 14 M 8812",
+            "node_type": "Vehicle",
+            "start": 150,
+            "end": 162,
+            "expected_method": "regex",
+            "expected_node_id": "Vehicle:MH14M8812",
+            "true_id": null
+          },
+          {
+            "text": "Hotel Kala Residency",
+            "node_type": "Location",
+            "start": 179,
+            "end": 199,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:hotel_kala_residency:pune",
+            "true_id": null
+          },
+          {
+            "text": "Pune",
+            "node_type": "Location",
+            "start": 201,
+            "end": 205,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:pune",
+            "true_id": null
+          },
+          {
+            "text": "MH 14 LY 7909",
+            "node_type": "Vehicle",
+            "start": 392,
+            "end": 405,
+            "expected_method": "regex",
+            "expected_node_id": "Vehicle:MH14LY7909",
+            "true_id": null
+          },
+          {
+            "text": "Fariq Sami",
+            "node_type": "Person",
+            "start": 468,
+            "end": 478,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:fariq_sami",
+            "true_id": "TP-0010"
+          },
+          {
+            "text": "Onkar Mall",
+            "node_type": "Person",
+            "start": 483,
+            "end": 493,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:onkar_mall",
+            "true_id": "TP-0011"
+          },
+          {
+            "text": "Hardik Saini",
+            "node_type": "Person",
+            "start": 523,
+            "end": 535,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:hardik_saini",
+            "true_id": "TP-0007"
+          }
+        ],
+        "relations": [
+          {
+            "type": "USES_PHONE",
+            "source": "Person:pallavi_bail",
+            "target": "Phone:+918547024696"
+          },
+          {
+            "type": "OWNS_VEHICLE",
+            "source": "Person:pallavi_bail",
+            "target": "Vehicle:MH14M8812"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Vehicle:MH14LY7909",
+            "target": "Event:fir_pun_2025_0004"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:fariq_sami",
+            "target": "Event:fir_pun_2025_0004"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:onkar_mall",
+            "target": "Event:fir_pun_2025_0004"
+          }
+        ]
+      },
+      "FIR-PUN-2025-0005": {
+        "scenario": "B2",
+        "cluster": "B",
+        "mentions": [
+          {
+            "text": "Lalla Garage",
+            "node_type": "Location",
+            "start": 62,
+            "end": 74,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:lalla_garage:pune",
+            "true_id": null
+          },
+          {
+            "text": "Pune",
+            "node_type": "Location",
+            "start": 76,
+            "end": 80,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:pune",
+            "true_id": null
+          },
+          {
+            "text": "Fariq Sami",
+            "node_type": "Person",
+            "start": 146,
+            "end": 156,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:fariq_sami",
+            "true_id": "TP-0010"
+          },
+          {
+            "text": "Onkar Mall",
+            "node_type": "Person",
+            "start": 158,
+            "end": 168,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:onkar_mall",
+            "true_id": "TP-0011"
+          },
+          {
+            "text": "Faras Kale",
+            "node_type": "Person",
+            "start": 173,
+            "end": 183,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:faras_kale",
+            "true_id": "TP-0012"
+          },
+          {
+            "text": "MH 12 AR 0301",
+            "node_type": "Vehicle",
+            "start": 287,
+            "end": 300,
+            "expected_method": "regex",
+            "expected_node_id": "Vehicle:MH12AR0301",
+            "true_id": null
+          },
+          {
+            "text": "Fariq Sami",
+            "node_type": "Person",
+            "start": 384,
+            "end": 394,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:fariq_sami",
+            "true_id": "TP-0010"
+          },
+          {
+            "text": "Hardik Saini",
+            "node_type": "Person",
+            "start": 429,
+            "end": 441,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:hardik_saini",
+            "true_id": "TP-0007"
+          },
+          {
+            "text": "Imaran Sen",
+            "node_type": "Person",
+            "start": 446,
+            "end": 456,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:imaran_sen",
+            "true_id": "TP-0008"
+          },
+          {
+            "text": "Hardik Saini",
+            "node_type": "Person",
+            "start": 467,
+            "end": 479,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:hardik_saini",
+            "true_id": "TP-0007"
+          },
+          {
+            "text": "Karan Sangha",
+            "node_type": "Person",
+            "start": 513,
+            "end": 525,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:karan_sangha",
+            "true_id": "TP-0034"
+          },
+          {
+            "text": "Hyderabad",
+            "node_type": "Location",
+            "start": 529,
+            "end": 538,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Location:hyderabad",
+            "true_id": null
+          },
+          {
+            "text": "Imaran Sen",
+            "node_type": "Person",
+            "start": 584,
+            "end": 594,
+            "expected_method": "spacy_ner",
+            "expected_node_id": "Person:imaran_sen",
+            "true_id": "TP-0008"
+          },
+          {
+            "text": "+91-6665802686",
+            "node_type": "Phone",
+            "start": 629,
+            "end": 643,
+            "expected_method": "regex",
+            "expected_node_id": "Phone:+916665802686",
+            "true_id": null
+          }
+        ],
+        "relations": [
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:fariq_sami",
+            "target": "Event:fir_pun_2025_0005"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:onkar_mall",
+            "target": "Event:fir_pun_2025_0005"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Person:faras_kale",
+            "target": "Event:fir_pun_2025_0005"
+          },
+          {
+            "type": "PRESENT_AT_EVENT",
+            "source": "Vehicle:MH12AR0301",
+            "target": "Event:fir_pun_2025_0005"
+          },
+          {
+            "type": "TRANSFERRED_MONEY_TO",
+            "source": "Person:hardik_saini",
+            "target": "Person:karan_sangha"
+          },
+          {
+            "type": "USES_PHONE",
+            "source": "Person:imaran_sen",
+            "target": "Phone:+916665802686"
+          }
+        ]
+      }
+    }
+  }
+}

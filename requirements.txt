@@ -2,3 +2,8 @@
 pydantic>=2.7
 pydantic-settings>=2.3
 pytest>=8.0
+# Phase 1
+Faker>=25
+networkx>=3.2
+# Phase 2 (installed now, used from Phase 2)
+spacy>=3.7,<4

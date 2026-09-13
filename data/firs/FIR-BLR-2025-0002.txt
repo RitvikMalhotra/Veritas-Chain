@@ -1,0 +1,10 @@
+[SYNTHETIC RECORD - generated test data, not a real case]
+FIR No: FIR-BLR-2025-0002
+Police Station: Jayanagar Police Station, Bengaluru
+Date and Time of Report: 2025-02-14T19:17:00+05:30
+Date and Time of Occurrence: 2025-02-13T21:17:00+05:30
+Acts and Sections: BNS 2023 s.331(4), 305(a)
+Investigating Officer: SI Nilima Kar
+
+NARRATIVE
+The complainant Shri Dalbir Rajan (mobile no. +91-9714540957) reported that on 13 February 2025 at about 21:17 hours, the lock of the complainant's house near Gara Warehouse, Bengaluru was found broken and cash and jewellery were missing. The complainant suspects Indira Patla, an employee of Datta Traders, who had visited the house a week earlier for repair work.

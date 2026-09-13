@@ -1,0 +1,2 @@
+# Generated data stays byte-identical across platforms (FIR offsets and the seed-42 digest test rely on it).
+data/** text eol=lf

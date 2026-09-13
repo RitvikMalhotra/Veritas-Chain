@@ -1,0 +1,43 @@
+record_id,registration_number,make_model,color,owner_name,owner_type,registered_on
+VEH-0001,MH-03-X-0523,Maruti Suzuki Swift,white,Daksh Bakshi,person,2015-01-26T12:33:00+05:30
+VEH-0002,MH-02-WJ-7359,Tata Nexon,white,Laksh Konda,person,2020-10-10T13:49:00+05:30
+VEH-0003,MH-12-NS-1273,Maruti Suzuki Swift,red,Hardik Saini,person,2018-01-06T12:09:00+05:30
+VEH-0004,MH-14-FR-3024,TVS Apache RTR 160,silver,Fariq Sami,person,2018-08-04T10:06:00+05:30
+VEH-0005,MH-14-L-9646,Royal Enfield Classic 350,red,Onkar Mall,person,2020-09-06T16:18:00+05:30
+VEH-0006,TS-10-KF-9919,Maruti Suzuki Ertiga,red,David Radhakrishnan,person,2017-10-20T12:20:00+05:30
+VEH-0007,DL-4-CZU-2827,Maruti Suzuki Swift,maroon,Finn Shere,person,2019-05-05T11:31:00+05:30
+VEH-0008,DL-4-CB-1155,Royal Enfield Classic 350,maroon,Imaran Nair,person,2016-08-07T10:31:00+05:30
+VEH-0009,MH-14-LY-7909,Ashok Leyland Dost,black,Ekaraj Koshy,person,2015-03-10T10:44:00+05:30
+VEH-0010,MH-01-UC-6272,Hyundai Creta,black,Sudiksha Pathak,person,2019-02-16T11:02:00+05:30
+VEH-0011,MH-03-B-9452,Bajaj Pulsar 150,maroon,Ganga Dutta,person,2023-02-03T12:44:00+05:30
+VEH-0012,MH-01-EH-4395,Mahindra Scorpio,blue,Ladli Apte,person,2016-04-12T17:12:00+05:30
+VEH-0013,MH-02-S-3702,Tata Ace,grey,Dayita Memon,person,2015-10-18T15:23:00+05:30
+VEH-0014,MH-02-K-9398,Bajaj Pulsar 150,silver,Vasana Aggarwal,person,2021-03-13T15:11:00+05:30
+VEH-0015,MH-47-L-8257,Toyota Innova Crysta,white,Yashica Issac,person,2019-03-26T10:14:00+05:30
+VEH-0016,MH-02-ZE-1098,Ashok Leyland Dost,silver,Gaurika Zacharia,person,2021-05-07T13:55:00+05:30
+VEH-0017,MH-02-JN-2916,Hero Splendor Plus,red,Adya Choudhury,person,2019-08-15T14:38:00+05:30
+VEH-0018,MH-14-M-8812,Maruti Suzuki Ertiga,black,Pallavi Bail,person,2015-08-23T13:00:00+05:30
+VEH-0019,MH-12-AR-0301,Honda Activa,blue,Bahadurjit Balay,person,2022-09-12T12:34:00+05:30
+VEH-0020,MH-14-ZF-1852,Toyota Innova Crysta,maroon,Jalsa Zacharia,person,2023-11-28T10:20:00+05:30
+VEH-0021,MH-12-S-8387,Mahindra Bolero Pickup,red,Samar Gupta,person,2020-04-05T11:08:00+05:30
+VEH-0022,MH-12-T-9390,Hero Splendor Plus,blue,Upasna Pandya,person,2019-03-11T12:48:00+05:30
+VEH-0023,MH-12-LU-2411,Maruti Suzuki Swift,maroon,Saksham Nori,person,2019-05-04T13:11:00+05:30
+VEH-0024,TS-10-X-8822,Toyota Innova Crysta,maroon,Udyati Sur,person,2019-11-22T15:36:00+05:30
+VEH-0025,TS-13-DM-6426,Royal Enfield Classic 350,white,Naksh Bhandari,person,2017-01-24T11:40:00+05:30
+VEH-0026,TS-11-T-8563,Toyota Innova Crysta,silver,Banjeet Grewal,person,2017-09-09T13:30:00+05:30
+VEH-0027,TS-10-PV-2280,Bajaj Pulsar 150,white,Shaurya Virk,person,2019-12-28T10:01:00+05:30
+VEH-0028,TS-08-N-2058,Tata Nexon,white,Siya Deep,person,2020-04-20T12:38:00+05:30
+VEH-0029,TS-11-ZL-3737,Ashok Leyland Dost,blue,Nakul Bora,person,2020-05-20T11:18:00+05:30
+VEH-0030,DL-9-CH-0616,Mahindra Scorpio,white,Rahul Sharma,person,2020-06-22T15:18:00+05:30
+VEH-0031,DL-9-SY-3355,Ashok Leyland Dost,silver,Ladli Behl,person,2019-06-11T11:45:00+05:30
+VEH-0032,DL-9-SA-3086,Hero Splendor Plus,white,Charita Sampath,person,2019-04-05T11:01:00+05:30
+VEH-0033,DL-8-CLY-3357,Tata Nexon,silver,Gaurika Sathe,person,2015-02-01T16:52:00+05:30
+VEH-0034,DL-5-CML-9941,TVS Apache RTR 160,maroon,Upasna Datta,person,2023-12-19T10:35:00+05:30
+VEH-0035,DL-3-CZ-3213,Maruti Suzuki Swift,red,Kritika Chauhan,person,2021-04-15T12:55:00+05:30
+VEH-0036,DL-8-CZ-7356,Ashok Leyland Dost,white,Garima Khalsa,person,2015-12-18T16:13:00+05:30
+VEH-0037,DL-5-SPG-9326,Hero Splendor Plus,white,Hemal Natarajan,person,2021-12-05T14:51:00+05:30
+VEH-0038,DL-9-CY-4833,Ashok Leyland Dost,white,Tripti Kothari,person,2018-04-11T17:37:00+05:30
+VEH-0039,KA-03-V-0035,Maruti Suzuki Ertiga,silver,Anjali Chopra,person,2015-11-09T17:25:00+05:30
+VEH-0040,KA-51-J-4010,Hero Splendor Plus,black,Girish Kumar,person,2021-04-08T15:44:00+05:30
+VEH-0041,KA-05-FD-7009,Maruti Suzuki Swift,white,Upasna Boase,person,2016-03-05T11:51:00+05:30
+VEH-0042,KA-01-C-5841,Bajaj Pulsar 150,silver,Saksham Merchant,person,2022-06-04T11:53:00+05:30
