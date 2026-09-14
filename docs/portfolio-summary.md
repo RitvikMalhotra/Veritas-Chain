@@ -25,7 +25,7 @@ Each item says who or what caught it:
 - **Claude Code**, usually in its own work before I saw it;
 - **an automated check**.
 
-Most items are recorded in the [README](../README.md) or the commit messages. Three are marked because they appear only in a phase report or were fixed before reaching me.
+Most items are recorded in the [README](../README.md) or the commit messages. Five are marked because they appear only in a phase report or were fixed before reaching me.
 
 ### Wrong claims in the documentation
 
@@ -52,58 +52,64 @@ Most items are recorded in the [README](../README.md) or the commit messages. Th
 
    *What caught it:* Claude Code, in the end-to-end README read I asked for.
    *What changed:* corrected, and listed in the README.
+6. **The ground truth predicted results nobody had checked** (in the Phase 1 report, not the repo). Claude Code wrote a note into `ground_truth.json` saying the planted leaders would rank near the top on degree and PageRank.
+   *What caught it:* Claude Code, before reporting Phase 1. It ranked everyone by call volume and distinct contacts, to check that the planted signal wasn't too obvious, and the leaders of clusters A and D were nowhere near the top. Its first replacement note, "the busiest caller in each cluster is a lieutenant", was then caught by the test it wrote for that note: on seed 42, cluster B's leader made more calls than both lieutenants.
+   *What changed:* the notes now state only what holds by construction, each checked by a test. Measured call-volume ranks are recorded separately, and no Phase 4 result is predicted. Claude Code put the design choice (leaders who stay out of the busiest call paths) to me as a decision, and I approved it.
 
 ### Bugs
 
-6. **A relation rule made a business's city optional.** As a result, "who works at X" was read as a place, and 8 membership edges were lost.
+7. **A relation rule made a business's city optional.** As a result, "who works at X" was read as a place, and 8 membership edges were lost.
    *What caught it:* Claude Code, in the errors from the first scoring run. It reported the fix to me as a mismatch between the code and the stated design, not as tuning to the evaluation data.
    *What changed:* the rule was fixed. Claude Code then put the bug back on purpose to confirm a test fails (a mutation check).
-7. **"around" was missing from the list of place words,** although the report templates use it.
+8. **"around" was missing from the list of place words,** although the report templates use it.
    *What caught it:* Claude Code, in the same first run. The list broke its own stated rule.
    *What changed:* added.
-8. **Nested community detection gave different answers from run to run.** `graph.subgraph(set)` iterates in hash order.
+9. **Nested community detection gave different answers from run to run.** `graph.subgraph(set)` iterates in hash order.
    *What caught it:* Claude Code noticed that two runs on the same graph disagreed.
    *What changed:* fixed, with a regression test that runs it under 3 hash seeds; the old code gives 3 different answers. The revision still failed under all 6 hash seeds tried, so its verdict didn't depend on the bug.
-9. **A committed results file started each money loop at a different account depending on hash order.**
-   *What caught it:* after fixing item 8, Claude Code compared the analytics output files across two hash seeds.
-   *What changed:* each loop now starts at its smallest account ID.
-10. **An evaluation file listed its items in a different order on every run.** When Claude Code first saw the reordering, it assumed the regenerated data caused it, and its Phase 4 follow-up report gave no cause. The real cause was a scorer iterating over a set.
+10. **A committed results file started each money loop at a different account depending on hash order.**
+    *What caught it:* after fixing item 9, Claude Code compared the analytics output files across two hash seeds.
+    *What changed:* each loop now starts at its smallest account ID.
+11. **An evaluation file listed its items in a different order on every run.** When Claude Code first saw the reordering, it assumed the regenerated data caused it, and its Phase 4 follow-up report gave no cause. The real cause was a scorer iterating over a set.
     *What caught it:* Claude Code's determinism check in Phase 5, which rebuilt everything under two hash seeds and compared the outputs. Its Phase 5 report told me the first assumption had been wrong.
     *What changed:* the output is sorted, with a regression test. Every committed output is now byte-identical across hash seeds.
-11. **Verifying the audit log could quietly repair a tampered copy.** Verification opened the log through the writer, which re-runs its setup script. On a copy whose protective triggers had been dropped, that would recreate them.
+12. **Verifying the audit log could quietly repair a tampered copy.** Verification opened the log through the writer, which re-runs its setup script. On a copy whose protective triggers had been dropped, that would recreate them.
     *What caught it:* Claude Code, while designing the verification endpoint.
     *What changed:* verification uses a read-only connection, and a test checks that a dropped trigger stays dropped.
-12. **Faker's Indian phone generator produces invalid mobile numbers** (for example `5868344978`).
+13. **Faker's Indian phone generator produces invalid mobile numbers** (for example `5868344978`).
     *What caught it:* Claude Code sampled Faker's output before relying on it.
     *What changed:* the generator creates its own numbers and validates them.
-13. **Choosing a merchant as a fraud victim created 3 unplanted money loops in the generated data** (in the Phase 1 report, not the repo).
+14. **Choosing a merchant as a fraud victim created 3 unplanted money loops in the generated data** (in the Phase 1 report, not the repo).
     *What caught it:* an existing test, the generator check that no loops exist except the planted ones.
     *What changed:* fixed before Phase 1 was committed.
-14. **Switching to per-label NER confidence made an invalid mention crash** instead of being rejected (in the Phase 3 report, not the repo).
+15. **Switching to per-label NER confidence made an invalid mention crash** instead of being rejected (in the Phase 3 report, not the repo).
     *What caught it:* an existing test.
     *What changed:* invalid combinations are rejected before the confidence is looked up.
+16. **The generator crashed on seeds other than the two the tests use** (in the Phase 1 report, not the repo). With every test passing on seeds 42 and 7, Claude Code ran five more seeds, and four of them crashed: a city had no merchant left to receive a payment, or no unassigned person left for a role. The Phase 1 report summarised this as "4 of 20 seeds"; it was 4 of the 5 extra seeds tried.
+    *What caught it:* Claude Code's spot check on extra seeds, run after all the tests passed.
+    *What changed:* Claude Code fixed the causes rather than avoiding those seeds: more merchants per city, and guaranteed vehicle and account owners in each city. A 20-seed sweep then generated every seed, and 19 pass every data check. The one failure is a spike that came out weak by chance, left visible rather than hidden by loosening the test.
 
 ### Weak expectations, tests and evidence
 
-15. **An expectation passed without showing anything.** "Each planted cluster is ≥ 80% inside one community" was met, but the communities were whole cities: only 19–33% of each community belonged to the cluster (purity). Claude Code wrote the expectation without a purity condition.
+17. **An expectation passed without showing anything.** "Each planted cluster is ≥ 80% inside one community" was met, but the communities were whole cities: only 19–33% of each community belonged to the cluster (purity). Claude Code wrote the expectation without a purity condition.
     *What caught it:* Claude Code flagged it in its Phase 4 report.
     *What changed:* I chose to commit Phase 4 with the result as it stood, labelled "met, but hollow". Claude Code proposed a revised method with a purity condition. I approved it as a separately declared expectation, with one attempt on a seed nothing had touched. It failed, so the city-level result stands.
-16. **"Decoy loop not flagged" passed, but proved nothing about the time check.** The decoy broke two rules at once, so the amount check alone rejected it.
+18. **"Decoy loop not flagged" passed, but proved nothing about the time check.** The decoy broke two rules at once, so the amount check alone rejected it.
     *What caught it:* Claude Code flagged it in the same report.
     *What changed:* Claude Code proposed a second decoy that only the time check can reject. I approved it as its own declared expectation. It was met on the unseen seed.
-17. **The NLP confidence defaults were guesses,** including 0.6 for all NER.
+19. **The NLP confidence defaults were guesses,** including 0.6 for all NER.
     *What caught it:* Claude Code called them guesses when proposing them in Phase 0. I required each to be marked in the code as an unvalidated prior, and listed as a known limitation until measured.
     *What changed:* Claude Code measured precision per label in Phase 2 and recommended per-label values, which I approved. Organization precision is 0.29.
-18. **The generated reports had only 4 Organization mentions,** too few to measure accuracy.
+20. **The generated reports had only 4 Organization mentions,** too few to measure accuracy.
     *What caught it:* Claude Code flagged it in the Phase 1 report.
     *What changed:* I approved its fix and had it done first in Phase 2, before extraction was scored. The generator now adds employer mentions (17), each backed by salary payments in the bank data.
-19. **A proposed fix would have looked perfect for the wrong reason.** Claude Code proposed relabelling spans tagged as organizations when they exactly match a registered person, and noted that it would look perfect here because every person in this data is in a registry.
+21. **A proposed fix would have looked perfect for the wrong reason.** Claude Code proposed relabelling spans tagged as organizations when they exactly match a registered person, and noted that it would look perfect here because every person in this data is in a registry.
     *What caught it:* I rejected it because it only looks right when the registry is complete. This synthetic data guarantees that; real data doesn't.
     *What changed:* it was kept out of the pipeline and documented as future work, with the circularity caveat stated explicitly.
-20. **A spike rule fitted to the results.** After two revisions failed, Claude Code noticed that flagging an incident when *either* spike rule fires would catch 4, 5 and 6 of 6 planted spikes on the three seeds. It pointed out that it found this only after seeing all three.
+22. **A spike rule fitted to the results.** After two revisions failed, Claude Code noticed that flagging an incident when *either* spike rule fires would catch 4, 5 and 6 of 6 planted spikes on the three seeds. It pointed out that it found this only after seeing all three.
     *What caught it:* I rejected adopting it, or opening another seed to test it, because it was derived from looking at test results.
     *What changed:* it is recorded as unvalidated future work.
-21. **Two edit methods had tests but no caller.** Claude Code built `update_node` and `update_edge` for future analyst edits, flagged that only their own tests used them, and recommended keeping them.
+23. **Two edit methods had tests but no caller.** Claude Code built `update_node` and `update_edge` for future analyst edits, flagged that only their own tests used them, and recommended keeping them.
     *What caught it:* I required them to be removed, or wired to a real caller, before Phase 5 could be committed, rather than kept speculatively.
     *What changed:* removed, along with the tests that tested nothing else.
 
@@ -111,13 +117,13 @@ Most items are recorded in the [README](../README.md) or the commit messages. Th
 
 *What caught them:* Claude Code's Playwright check of the page, one of the Phase 6 checks it wrote down before building. All four were found after the API tests were already passing.
 
-22. **The page froze for 6.6 seconds** while the browser computed the graph layout.
+24. **The page froze for 6.6 seconds** while the browser computed the graph layout.
     *What changed:* the server computes a seeded layout once, and the browser draws in 136 ms.
-23. **The browser kept running an old `app.js`** after it had changed.
+25. **The browser kept running an old `app.js`** after it had changed.
     *What changed:* a `no-cache` header, now covered by a test.
-24. **Selecting a person left 5 of the 8 nodes in their neighbourhood off-screen.**
+26. **Selecting a person left 5 of the 8 nodes in their neighbourhood off-screen.**
     *What changed:* the view fits the whole neighbourhood.
-25. **A missing favicon logged a console error.**
+27. **A missing favicon logged a console error.**
     *What changed:* an inline icon.
 
 ## How claims were kept honest
