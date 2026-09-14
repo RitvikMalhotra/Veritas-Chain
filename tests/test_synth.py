@@ -274,6 +274,20 @@ def test_decoy_cycle_has_no_time_respecting_order(data):
     assert max(amounts) / min(amounts) > 5
 
 
+def test_time_only_decoy_shrinks_like_a_round_but_runs_backwards(data):
+    txns = _txn_index(data)
+    decoy = _truth(data)["money_cycles"]["decoys"][1]
+    assert decoy["pattern"] == {"time_ordered": False, "amounts_shrink_slightly": True}
+    hops = [txns[t] for t in decoy["transactions"]]
+    cycle = decoy["account_cycle"]
+    for i, hop in enumerate(hops):
+        assert (_acct(hop, "from"), _acct(hop, "to")) == (cycle[i], cycle[(i + 1) % len(cycle)])
+    times = [datetime.fromisoformat(h["timestamp"]) for h in hops]
+    assert times == sorted(times, reverse=True) and len(set(times)) == len(times)  # every hop earlier than the last
+    amounts = [float(h["amount_inr"]) for h in hops]
+    assert all(0.95 <= b / a <= 0.99 for a, b in zip(amounts, amounts[1:]))  # same band as the planted rounds
+
+
 # ---------- Call spikes ----------
 
 

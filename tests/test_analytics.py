@@ -1,12 +1,15 @@
 """Phase 4 tests: actor projection, rankings, Louvain determinism, spike and cycle rules, evaluation helpers."""
 
+import os
+import subprocess
+import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import pytest
 
 from veritas.analytics.anomalies import detect_call_spikes, detect_money_cycles
-from veritas.analytics.centrality import centrality_rankings, louvain
+from veritas.analytics.centrality import centrality_rankings, louvain, nested_louvain
 from veritas.analytics.evaluate import evaluate_communities
 from veritas.analytics.projection import actor_graph
 from veritas.config import AnalyticsSettings
@@ -109,6 +112,39 @@ def test_louvain_is_repeatable_with_a_seed_and_partitions_all_actors(structured_
     assert sorted(n for c in first for n in c) == sorted(structured_actors.nodes)
 
 
+def test_nested_louvain_only_refines_top_level_communities(structured_actors):
+    top = louvain(structured_actors, seed=3, resolution=1.0)
+    nested = nested_louvain(structured_actors, seed=3, resolution=1.0, min_modularity=0.3)
+    assert sorted(n for c in nested for n in c) == sorted(structured_actors.nodes)
+    assert all(any(set(c) <= set(t) for t in top) for c in nested)  # every sub-community sits inside one top-level one
+    assert nested_louvain(structured_actors, seed=3, resolution=1.0, min_modularity=0.3) == nested
+
+
+_NESTED_DIGEST = """
+import hashlib, json
+from pathlib import Path
+from veritas.analytics.centrality import nested_louvain
+from veritas.analytics.projection import actor_graph
+from veritas.graph.builder import GraphBuilder
+from veritas.graph.loaders import load_structured
+b = GraphBuilder()
+load_structured(b, Path("data"))
+print(hashlib.sha256(json.dumps(nested_louvain(actor_graph(b.finalize(), "structured_only"), 3, 1.0, 0.3)).encode()).hexdigest())
+"""
+
+
+def test_nested_louvain_is_identical_across_hash_seeds():
+    # Regression: splitting via und.subgraph(set) followed hash order and gave 3 different answers for 3 hash seeds.
+    digests = {subprocess.run([sys.executable, "-c", _NESTED_DIGEST], cwd=ROOT, env={**os.environ, "PYTHONHASHSEED": hs},
+                              capture_output=True, text=True, check=True).stdout for hs in ("0", "1", "2")}
+    assert len(digests) == 1
+
+
+def test_nested_louvain_keeps_a_community_whose_split_is_weak(structured_actors):
+    # No real subgraph reaches modularity 0.99, so nothing is split and the result equals plain Louvain.
+    assert nested_louvain(structured_actors, seed=3, resolution=1.0, min_modularity=0.99) == louvain(structured_actors, 3, 1.0)
+
+
 def test_community_scoring_reports_purity_not_just_recall():
     truth = {
         "persons": [{"true_id": f"T{i}", "expected_node_id": f"Person:p{i}", "role": r, "cluster": c}
@@ -140,6 +176,8 @@ def test_time_ordered_shrinking_loop_is_flagged():
     result = detect_money_cycles(_money_graph([("A", "B", 1, 100000), ("B", "C", 2, 97000), ("C", "A", 3, 94000)]), AnalyticsSettings())
     assert len(result["topology_cycles"]) == 1 and len(result["flagged"]) == 1
     assert result["flagged"][0]["transactions"] == ["TXN-0", "TXN-1", "TXN-2"]
+    loop = result["topology_cycles"][0]
+    assert loop[0] == min(loop)  # fixed starting account, so output does not depend on hash order
 
 
 @pytest.mark.parametrize("hops, why", [
@@ -151,6 +189,18 @@ def test_time_ordered_shrinking_loop_is_flagged():
 def test_loops_failing_the_rule_are_found_by_topology_but_not_flagged(hops, why):
     result = detect_money_cycles(_money_graph(hops), AnalyticsSettings())
     assert len(result["topology_cycles"]) == 1 and result["flagged"] == [], why
+
+
+def test_time_check_alone_rejects_a_backwards_loop_with_shrinking_amounts():
+    graph = _money_graph([("A", "B", 5, 100000), ("B", "C", 3, 97000), ("C", "A", 1, 94000)])
+    assert detect_money_cycles(graph, AnalyticsSettings())["flagged"] == []
+    without_time = detect_money_cycles(graph, AnalyticsSettings(), require_time_order=False)["flagged"]
+    assert [f["transactions"] for f in without_time] == [["TXN-0", "TXN-1", "TXN-2"]]
+
+
+def test_turning_off_the_time_check_keeps_the_amount_check():
+    graph = _money_graph([("A", "B", 1, 100000), ("B", "C", 2, 120000), ("C", "A", 3, 119000)])
+    assert detect_money_cycles(graph, AnalyticsSettings(), require_time_order=False)["flagged"] == []
 
 
 def test_repayment_two_cycles_are_ignored():
@@ -187,3 +237,42 @@ def test_spike_on_named_persons_phones_is_flagged():
 def test_normal_volume_is_not_flagged():
     results = {r["event_ref"]: r for r in detect_call_spikes(_spike_graph(0), AnalyticsSettings())}
     assert not results["FIR-1"]["flagged"]
+
+
+def _two_named_people_graph(spike_between_named: bool):
+    b = GraphBuilder()
+    ravi, amit, neha = _person(b, "Ravi Kumar", "FIR-1"), _person(b, "Amit Joshi", "FIR-1"), _person(b, "Neha Rao")
+    p, q, r = _phone(b, ravi, "9876543210"), _phone(b, amit, "9123456789"), _phone(b, neha, "9988776655")
+    b.add_node(Event(event_ref="FIR-1", event_type="raid", occurred_at=T0 + timedelta(days=30), source_document_ids=["INC-1"]))
+    n = 0
+    for day in range(60):  # normal traffic: Ravi calls Amit and Neha once a day each
+        for dst in (q, r):
+            _call(b, p, dst, T0 + timedelta(days=day, hours=12), f"CDR-{n}")
+            n += 1
+    for i in range(20):  # the burst goes either to the other named person or to Neha, who is not named
+        _call(b, p, q if spike_between_named else r, T0 + timedelta(days=29, minutes=10 * i), f"CDR-{n}")
+        n += 1
+    return b.finalize()
+
+
+@pytest.mark.parametrize("between_named, flagged_by", [
+    (True, {"named_phones": True, "among_named": True}),
+    (False, {"named_phones": True, "among_named": False}),  # a burst to an unnamed contact only counts under the old scope
+])
+def test_spike_scope_decides_which_calls_count(between_named, flagged_by):
+    graph = _two_named_people_graph(between_named)
+    for scope, expected in flagged_by.items():
+        result = detect_call_spikes(graph, AnalyticsSettings(spike_scope=scope))[0]
+        assert result["flagged"] is expected and result["scope"] == scope
+
+
+def test_among_named_ignores_calls_between_one_persons_own_phones():
+    b = GraphBuilder()
+    ravi = _person(b, "Ravi Kumar", "FIR-1")
+    p, q = _phone(b, ravi, "9876543210"), _phone(b, ravi, "9123456789")
+    b.add_node(Event(event_ref="FIR-1", event_type="raid", occurred_at=T0 + timedelta(days=30), source_document_ids=["INC-1"]))
+    for i in range(30):
+        _call(b, p, q, T0 + timedelta(days=29, minutes=10 * i), f"CDR-{i}")
+    _call(b, p, q, T0 + timedelta(days=59), "CDR-late")  # stretches the data window
+    result = detect_call_spikes(b.finalize(), AnalyticsSettings(spike_scope="among_named"))[0]
+    assert result["observed_calls"] == 0 and not result["flagged"]

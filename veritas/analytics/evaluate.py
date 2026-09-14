@@ -19,6 +19,18 @@ EXPECTATIONS = {
 NOT_EXPECTED = ("Leaders are insulated by design (approved in Phase 1), so no metric is expected to rank them first; "
                 "their ranks are reported, not judged.")
 
+# Declared after Phase 4 was committed and before seed 11 was run through analytics. Seed 11 is the only test; one attempt each.
+REVISION_TEST_SEED = 11
+REVISED_EXPECTATIONS = {
+    "R1_spikes_among_named": ("Counting only calls between two different people named in the report (same window and "
+                              "thresholds), every incident with a planted spike is flagged and no other incident is."),
+    "R2_nested_communities": ("With Louvain re-run inside each community (split kept if its modularity >= 0.3), every "
+                              "planted cluster's best community has recall >= 0.8 and purity >= 0.5 (structured-only "
+                              "graph; the merged Rahul Sharma node is excluded)."),
+    "R3_time_only_decoy": ("The decoy whose amounts shrink like a laundering round but whose dates run backwards is found by "
+                           "topology, is not flagged by the full rule, and is flagged once the time check is turned off."),
+}
+
 
 def _truth_index(truth: dict[str, Any]) -> dict[str, Any]:
     by_true = {p["true_id"]: p for p in truth["persons"]}
@@ -116,12 +128,19 @@ def evaluate_spikes(spikes: list[dict[str, Any]], truth: dict[str, Any]) -> dict
     return {"true_positives": tp, "false_positives": fp, "false_negatives": fn, "events": rows}
 
 
-def evaluate_cycles(cycles: dict[str, Any], truth: dict[str, Any]) -> dict[str, Any]:
+def evaluate_cycles(cycles: dict[str, Any], truth: dict[str, Any], cycles_without_time: dict[str, Any] | None = None) -> dict[str, Any]:
     planted = truth["money_cycles"]["planted"][0]
-    decoy = truth["money_cycles"]["decoys"][0]
+    decoys = truth["money_cycles"]["decoys"]
+    decoy = decoys[0]
 
     def same_loop(a, b):
         return len(a) == len(b) and set(a) == set(b)
+
+    def touches(result, txns):
+        return any(set(f["transactions"]) & set(txns) for f in result["flagged"]) if result else None
+
+    def not_planted(result):
+        return [f for f in result["flagged"] if not any(set(f["transactions"]) == set(r["transactions"]) for r in planted["rounds"])]
 
     flagged_sets = [set(f["transactions"]) for f in cycles["flagged"]]
     rounds = [{"round": r["round"], "flagged_exactly": set(r["transactions"]) in flagged_sets} for r in planted["rounds"]]
@@ -134,9 +153,18 @@ def evaluate_cycles(cycles: dict[str, Any], truth: dict[str, Any]) -> dict[str, 
         "time_and_amount_rule": {
             "flagged": len(cycles["flagged"]),
             "planted_rounds": rounds,
-            "decoy_flagged": any(set(f["transactions"]) & set(decoy["transactions"]) for f in cycles["flagged"]),
-            "other_flagged": [f for f in cycles["flagged"] if not any(set(f["transactions"]) == set(r["transactions"])
-                                                                       for r in planted["rounds"])],
+            "decoy_flagged": touches(cycles, decoy["transactions"]),
+            "other_flagged": not_planted(cycles),
+        },
+        "decoys": [{
+            "pattern": d.get("pattern"), "why_decoy": d["why_decoy"],
+            "found_by_topology": any(same_loop(c, d["account_cycle"]) for c in cycles["topology_cycles"]),
+            "flagged": touches(cycles, d["transactions"]),
+            "flagged_without_time_check": touches(cycles_without_time, d["transactions"]),
+        } for d in decoys],
+        "without_time_check": None if cycles_without_time is None else {
+            "flagged": len(cycles_without_time["flagged"]),
+            "not_a_planted_round": len(not_planted(cycles_without_time)),
         },
     }
 
@@ -162,3 +190,25 @@ def check_expectations(centrality: dict, communities: dict, spikes: dict, cycles
                               f"flagged by rule: {cycles['time_and_amount_rule']['decoy_flagged']}"),
     }
     return {name: {"expectation": EXPECTATIONS[name], "met": met, "detail": detail} for name, (met, detail) in results.items()}
+
+
+def check_revisions(spikes_among_named: dict, nested_communities: dict, cycles: dict, seed: int) -> dict[str, Any]:
+    """Judges R1-R3. Only a run on REVISION_TEST_SEED counts as the test; other seeds are context."""
+    clusters = nested_communities["per_cluster"]
+    time_only = [d for d in cycles["decoys"] if d["pattern"] == {"time_ordered": False, "amounts_shrink_slightly": True}]
+    r3 = time_only[0] if time_only else None
+    results = {
+        "R1_spikes_among_named": (spikes_among_named["false_negatives"] == 0 and spikes_among_named["false_positives"] == 0,
+                                  f"{spikes_among_named['true_positives']} flagged, {spikes_among_named['false_negatives']} "
+                                  f"missed, {spikes_among_named['false_positives']} false alarms"),
+        "R2_nested_communities": (all(c["recall"] >= 0.8 and (c["purity"] or 0) >= 0.5 for c in clusters.values()),
+                                  ", ".join(f"{k}: recall {c['recall']:.2f} purity {c['purity'] or 0:.2f} (size {c['community_size']})"
+                                            for k, c in clusters.items())),
+        "R3_time_only_decoy": ((r3 is not None and r3["found_by_topology"] and r3["flagged"] is False
+                                and r3["flagged_without_time_check"] is True),
+                               "no time-only decoy in this dataset" if r3 is None else
+                               f"found by topology: {r3['found_by_topology']}; flagged: {r3['flagged']}; "
+                               f"flagged without time check: {r3['flagged_without_time_check']}"),
+    }
+    return {name: {"expectation": REVISED_EXPECTATIONS[name], "met": met, "detail": detail, "seed": seed,
+                   "counts_as_test": seed == REVISION_TEST_SEED} for name, (met, detail) in results.items()}

@@ -46,7 +46,7 @@ python -m veritas.synth --seed 42 --out data
 | `signal_visibility` | measured call-volume and contact ranks of key people. Computed from true identities. |
 | `bridges` | the 2 bridge people, plus the scoring rule for their community assignment |
 | `planted_collisions` | the two different "Rahul Sharma"s, and the expected false merge |
-| `money_cycles` | the planted laundering cycle (2 rounds), a decoy cycle, and any incidental cycles (expected: none) |
+| `money_cycles` | the planted laundering cycle (2 rounds), two decoy cycles (each with a `pattern`: one fails both time order and small deductions, one only time order), and any incidental cycles (expected: none) |
 | `events` | every incident, whether a call spike was planted, and how strong it came out |
 | `persons` | every person, with their true id, role, phones, account and vehicles |
 | `fir_annotations` | every entity mention (text, span, type, expected node id) and every relation stated in each report |

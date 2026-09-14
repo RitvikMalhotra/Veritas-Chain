@@ -30,10 +30,10 @@ def _iso(dt) -> str:
     return dt.isoformat(timespec="seconds")
 
 
-def _follow_cycle(txns) -> tuple[list[str], list]:
-    # Order a set of transactions that form one loop by following money, starting at the smallest account id.
+def _follow_cycle(txns, start: str | None = None) -> tuple[list[str], list]:
+    # Order a set of transactions that form one loop by following money, from `start` or else the smallest account id.
     by_source = {t.from_account: t for t in txns}
-    start = cur = min(by_source)
+    start = cur = start or min(by_source)
     accounts, ordered = [], []
     while True:
         accounts.append(cur)
@@ -173,13 +173,16 @@ def _ground_truth(world, scenarios, txns, txn_ids, reports, calls) -> dict[str, 
     planted_accounts = [P[i].account.node_id for i in chain_holders] + [front.account.node_id]
     planted_txns = [t for t in txns if t.tag.startswith("planted_cycle")]
     decoy_accounts, decoy_txns = _follow_cycle([t for t in txns if t.tag == "decoy_cycle"])
+    time_only = [t for t in txns if t.tag.startswith("decoy_time_only:")]
+    first_hop = next(t for t in time_only if t.tag.endswith(":1"))
+    time_only_accounts, time_only_txns = _follow_cycle(time_only, start=first_hop.from_account)
 
     def rotated(cycle):
         i = cycle.index(min(cycle))
         return cycle[i:] + cycle[:i]
 
     all_cycles = _cycles(txns)
-    known = [rotated(planted_accounts), rotated(decoy_accounts)]
+    known = [rotated(planted_accounts), rotated(decoy_accounts), rotated(time_only_accounts)]
     incidental = [c for c in all_cycles if c not in known]
 
     def person_entry(p):
@@ -257,6 +260,13 @@ def _ground_truth(world, scenarios, txns, txn_ids, reports, calls) -> dict[str, 
                 "account_cycle": decoy_accounts,
                 "transactions": [txn_ids[id(t)] for t in decoy_txns],  # in loop order, matching account_cycle
                 "why_decoy": "friends' payments: dates run backwards around the loop and amounts differ by over 5x",
+                "pattern": {"time_ordered": False, "amounts_shrink_slightly": False},
+            }, {
+                "account_cycle": time_only_accounts,
+                "transactions": [txn_ids[id(t)] for t in time_only_txns],  # loop order from the first payer
+                "why_decoy": ("merchants settling trade credit: amounts shrink 2-4% per hop like a laundering round, "
+                              "but each hop is 1-3 days earlier than the one before (added after Phase 4)"),
+                "pattern": {"time_ordered": False, "amounts_shrink_slightly": True},
             }],
             "incidental": incidental,
             "note": "loan repayments create 2-cycles (A->B->A) by design; only cycles of length 3+ are listed",

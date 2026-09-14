@@ -16,7 +16,7 @@ clusters, flags anomalies and records every graph change in a tamper-evident has
 | 1 | Synthetic data generator + ground truth | **Done, signed off** |
 | 2 | Entity extraction (spaCy NER + regex) | **Done, signed off** |
 | 3 | Relation extraction + graph construction + exact-match entity resolution | **Done, signed off** |
-| 4 | Centrality, Louvain communities, rule-based anomalies | **Done, signed off as-is (1 expectation not met, 2 met weakly)** |
+| 4 | Centrality, Louvain communities, rule-based anomalies | **Done, signed off** (1 expectation not met, 2 met weakly; follow-up revisions on seed 11: R3 met, R1 and R2 not met) |
 | 5 | SHA-256 hash-chain audit log (SQLite) + tamper demo | Not started |
 | 6 | FastAPI + Cytoscape.js frontend | Not started |
 
@@ -77,10 +77,10 @@ python -m pytest                               # all tests
 ### Phase 1: synthetic data
 
 - **Deterministic by seed.** Each part of the generator (world, scenarios, calls, transactions, reports) uses its own string-seeded random stream. Changing FIR wording therefore doesn't change the call data, and a test checks that output is byte-identical across processes and hash seeds.
-- **The ground truth is checked, not asserted.** `tests/test_synth.py` verifies the claims `ground_truth.json` makes against the generated files. It checks bridges (removing one disconnects its clusters), the planted cycle (time-ordered, amounts shrinking), the decoy (no time-respecting order), spikes (at least 2.5× baseline), the single name collision, exact mention spans, and schema conformance of every row. Deliberately breaking the generator (removing the spike multiplier, adding a direct link between clusters A and B) makes the relevant tests fail.
+- **The ground truth is checked, not asserted.** `tests/test_synth.py` verifies the claims `ground_truth.json` makes against the generated files. It checks bridges (removing one disconnects its clusters), the planted cycle (time-ordered, amounts shrinking), both decoys (no time-respecting order; the second shrinks like a planted round), spikes (at least 2.5× baseline), the single name collision, exact mention spans, and schema conformance of every row. Deliberately breaking the generator (removing the spike multiplier, adding a direct link between clusters A and B) makes the relevant tests fail.
 - **Leaders are insulated (approved design choice).** Members call lieutenants, and lieutenants call the leader, so the busiest phones are often not the leaders'. This is the realistic case and means degree centrality alone is not expected to find leaders. Measured ranks are stored in `ground_truth.json` under `signal_visibility`, and no per-metric outcome is promised in advance.
 - **Structured records and report text back each other up.** When a report says a fraud caller used a number, that call exists in the CDR, and fraud victims' payments exist in the bank data. Reports only describe cash as person-to-person transfers, following the schema rule that structured data never has Person→Person edges.
-- **Decoys and a planted collision.** A 3-cycle among friends has dates that run backwards around the loop and amounts that differ widely, so a cycle rule can't rely on topology alone. (Phase 4 found that because it breaks two rules at once, it doesn't show the time check specifically is needed.) Two unrelated "Rahul Sharma"s test the known false-merge weakness.
+- **Decoys and a planted collision.** A 3-cycle among friends has dates that run backwards around the loop and amounts that differ widely, so a cycle rule can't rely on topology alone. Phase 4 found that because it breaks two rules at once, it doesn't show the time check specifically is needed. A second decoy was added after Phase 4 (revision R3): Bengaluru merchants whose amounts shrink like a laundering round but whose dates run backwards. Two unrelated "Rahul Sharma"s test the known false-merge weakness.
 - **Faker is used for names only.** Faker's `en_IN` `phone_number()` produces invalid Indian mobile numbers (for example `5868344978`), so the generator creates numbers itself and validates them against the Phase 0 rules.
 - **Report employment claims are backed by bank data.** Background people have employers. Reports say "who works at X", and salary transfers in `transactions.csv` come from that same company. This was added at the start of Phase 2 to raise Organization mentions from 4 to 17, so ORG accuracy can actually be measured.
 
@@ -128,7 +128,7 @@ Relation results, micro-averaged over 7 relation types (103 annotated relations 
 
 Same-sentence edges that join people with a real tie (defined before scoring): 94.9% / 92.3% with gold entities, 74.4% / 69.4% end to end.
 
-Graph at seed 42: 530 nodes and 8,117 edges (8,012 structured, 105 from text).
+Graph at seed 42: 530 nodes and 8,120 edges (8,015 structured, 105 from text). Before the second decoy was added after Phase 4, it was 8,117 edges.
 
 | Check | Result |
 |---|---|
@@ -178,6 +178,46 @@ Graph at seed 42: 530 nodes and 8,117 edges (8,012 structured, 105 from text).
 - **The planted false merge shows up exactly as predicted.** `Person:rahul_sharma` ranks **5th on betweenness** on both seeds: merging two strangers created a fake broker between cluster A and Delhi.
 - **Text evidence has little effect.** It moves key individuals by at most 3 places on betweenness and 9 on PageRank, and no junk node from NER errors appears in any top 20.
 
+### Phase 4 revisions (declared before seed 11 was generated for analysis)
+
+Phase 4 was committed with the results above. Three revisions follow, each with its own expectation, tested once on **seed 11**. Seed 11 has only been through the Phase 1 generator sweep (data checks), never extraction, graph building or analytics. Seeds 42 and 7 shaped these revisions, so results on them are reported as context, not as tests. **One attempt each:** a revision that fails on seed 11 is recorded as failed and no further seeds are tried.
+
+**R1. Spike rule: calls among the people named in the report.**
+- **Change.** Count only calls whose two phones belong to two different people named in the incident's report. The baseline is the same phones' rate for such calls outside the window. The window (72h before, 24h after) and thresholds (≥ 5 calls, ≥ 2×, p ≤ 0.001) are unchanged.
+- **Why.** It is the question an analyst asks ("did these people talk to each other more than usual just before this?"). The original rule also counted every named person's calls with family and shops.
+- **Caveat, stated in advance.** The generator plants spikes on calls between spike participants, so this rule is closer to how spikes were planted. Success partly reflects that shared assumption. The named people still come from extraction, not ground truth.
+- **Expectation R1.** On seed 11, every incident with a planted spike is flagged and no other incident is.
+- **Adoption rule.** If R1 is met, the new scope becomes the default. Otherwise the original rule stays. Both are reported either way.
+
+**R2. Nested Louvain communities.**
+- **Change.** After top-level Louvain (resolution 1.0, seed 42), re-run Louvain inside each community on its own subgraph with the same settings. The split is kept only if it has ≥ 2 parts and modularity ≥ 0.3 on that subgraph (Newman and Girvan's rule of thumb for real community structure). One extra level only; no ground truth is used.
+- **Expectation R2.** On seed 11 (structured-only graph), for every planted cluster, the community holding most of its members has **recall ≥ 0.8 and purity ≥ 0.5**. The merged Rahul Sharma node is excluded, as before. Stability over 10 Louvain seeds is reported, not judged.
+- **Adoption rule.** If R2 is met, nested communities are reported alongside the city-level ones. Otherwise "Louvain finds geography" stays the documented result.
+
+**R3. A decoy that only the time check can reject.**
+- **Change (generator).** A second 3-account loop among Bengaluru's three merchants, like shops settling trade credit. Amounts shrink 2–4% per hop, like the planted rounds, and hops are 1–3 days apart, but the dates run backwards around the loop. It uses its own random stream, so every other record is unchanged; only transaction IDs renumber.
+- **Expectation R3.** On seed 11: (a) topology finds the loop, (b) the full rule does not flag it, and (c) with the time check turned off, the rule does flag it. Part (c) shows the time check alone stops it.
+- **Caveat, stated in advance.** This is a control built to isolate one check, so passing is close to guaranteed by construction. It can only fail through a bug or an interaction with other transactions. It closes the gap in expectation 6; it does not measure detection quality.
+- **Knock-on effect.** `data/` (seed 42) is regenerated for R3. The six original expectations are re-run on it, and any change is reported.
+
+**Results. Seed 11 is the test; seeds 42 and 7 are context only.**
+
+| Revision | Seed 11 (test) | Seed 42 | Seed 7 | Adopted? |
+|---|---|---|---|---|
+| R1. Spikes among named people | **Not met:** 3 of 6 flagged, 0 false alarms (original rule on seed 11: 2 of 6) | 3 of 6 (original 4) | 5 of 6 (original 4) | **No.** The original rule stays the default; both are reported. |
+| R2. Nested Louvain | **Not met:** recall/purity A 0.56/0.83, B 0.60/0.86, C 1.00/1.00, D 0.60/0.75. 0 of 10 Louvain seeds meet it for all clusters. | Not met (C 0.60) | Not met (A, B, D) | **No.** City-level communities stay the documented result. Nested results are kept only in `evaluation.json`. |
+| R3. Time-only decoy | **Met:** found by topology, not flagged, flagged once the time check is off | Met | Met | **Yes.** The decoy stays in the generator. |
+
+- **Why R1 failed, part 1: blind spots in the reports.** On every seed, report B1 names the leader and two members, but not the lieutenants who relay between them. Because leaders are insulated, those named people had **0 calls with each other in all 90 days** on seeds 11 and 7 (checked against the raw CDR). Seed 42 had 16 such calls, with 1 in the window. A rule restricted to named people can't see that spike.
+- **Why R1 failed, part 2: too few calls.** Narrowing to calls between named people raises the ratio (2.3–6.6× on every planted incident except B1), but it leaves only 7–11 calls on the misses. The p ≤ 0.001 test then fails (C3 on seed 11: 10 calls vs 3.1 expected, p = 0.0013). The original rule caught C3 with p = 2e-10. The two scopes miss different incidents.
+- **Why R2 failed: it splits clusters that have two crews.** The four clusters with one lieutenant came back whole on every seed (recall 1.00). All eight clusters with two lieutenants were split (recall 0.56–0.89). In five, the break runs between the crews, each lieutenant with their own members. In the other three, some members of one crew split off on their own. This fits the approved insulated hierarchy, where crews connect mainly through the leader. *This explanation was found after the run and has not been tested.*
+- **R3 confirms the time check does real work.** Beyond the new decoy, turning the time check off also flags loops stitched out of time order from the two laundering rounds (3 on seed 42, 6 on seeds 11 and 7).
+- **Seed 42 after regeneration.** Three transactions were added (822 → 825). All six original expectations have the same results and details. Key individuals' betweenness and PageRank ranks are identical. Two degree ranks moved by 1–2 places. FIR files and Phase 2 output are byte-identical, and the graph evaluation has the same content in a different list order.
+- **Bugs found while running seed 11. Both are fixed and neither changes a verdict.**
+  1. **Nested Louvain depended on the hash seed.** `graph.subgraph(set)` iterates in hash order, so two runs gave different R2 numbers. R2 failed under all 6 hash seeds tried before the fix. A regression test runs it under 3 hash seeds; the old code gave 3 different answers.
+  2. **The committed Phase 4 `analytics.json` listed each topology loop starting at a hash-dependent account.** Evaluation compared sets, so no result changed. Loops now start at their smallest account ID. Both output files are now byte-identical across hash seeds.
+- **Stopped as instructed.** No further seeds were tried after these results. Combining the two spike scopes is listed under future work as unvalidated.
+
 ## Known limitations
 
 - **Entity resolution is exact match only.** Common names collide (false merge). Initials, transliterations and aliases do not merge (false split). Full list in `schema.md` section 7.
@@ -188,9 +228,9 @@ Graph at seed 42: 530 nodes and 8,117 edges (8,012 structured, 105 from text).
 - **Pooled relation precision (seeds 42 and 7).** Pattern relations: 170/170 with gold entities, 143/144 end to end. Same-sentence edges: 73/78 with gold entities, 63/88 end to end.
 - **NER errors leak into the graph.** spaCy tagged cluster A's leader as ORG, which created a false `MEMBER_OF` edge to an organisation called "Daksh Bakshi". Junk Person nodes such as `Person:kyc` and `Person:royal_enfield_classic_350` picked up weak same-sentence edges to cluster members (up to 4 edges, confidence ≤ 0.4). These could slightly affect centrality in Phase 4.
 - **Entity resolution cannot separate "one person with two SIMs" from "two people sharing a name".** The build report lists both cases (cluster A's leader and the planted Rahul Sharma pair) under the same diagnostic.
-- **Community detection finds cities, not gangs.** Almost all calls and payments stay within one city, so Louvain at its default resolution groups each cluster with its city's ordinary residents (purity 19–33%). A resolution sweep (exploratory, not adopted) raises purity only by splitting clusters. No setting recovers all four clusters well, and modularity, the label-free way to choose a setting, prefers the city-level split.
-- **The spike rule misses a third of planted spikes.** Its window and "all calls on the named phones" dilute the signal. The Poisson test alone does not fix this: on seed 7, a planted spike (p = 0.006) and a non-planted incident (p = 0.007) overlap. Phase 4 thresholds are unvalidated analyst choices.
-- **The Phase 1 decoy loop fails two rules at once** (reversed dates and very different amounts), so it can't show that the time-order check is necessary. The unit tests now isolate each rule separately.
+- **Community detection finds cities, not gangs.** Almost all calls and payments stay within one city, so Louvain at its default resolution groups each cluster with its city's ordinary residents (purity 19–33%). A resolution sweep (exploratory, not adopted) raises purity only by splitting clusters. No setting recovers all four clusters well, and modularity, the label-free way to choose a setting, prefers the city-level split. Nested Louvain (revision R2) failed on seed 11: it recovers one-lieutenant clusters cleanly but splits two-lieutenant clusters.
+- **The spike rule misses a third to two thirds of planted spikes** (4, 4 and 2 of 6 on seeds 42, 7 and 11). Its window and "all calls on the named phones" dilute the signal. The Poisson test alone does not fix this: on seed 7, a planted spike (p = 0.006) and a non-planted incident (p = 0.007) overlap. Counting only calls between named people (revision R1) failed on seed 11 (3 of 6). It is blind when a report doesn't name the relaying lieutenants, and too few calls remain for the p-value test. Phase 4 thresholds are unvalidated analyst choices.
+- **The Phase 1 decoy loop fails two rules at once** (reversed dates and very different amounts), so on its own it can't show the time-order check is needed. A second decoy (revision R3) now fails only the time check, and it is flagged once that check is off.
 - **Some text context is approximated.** "met … two days before" is stamped with the incident time, and FIR references like "the complainant" are resolved by convention, not general coreference.
 - **Businesses used as meeting places are the largest NER error.** The schema labels "Sharma Tea Stall" or "Balan Warehouse" as Location, while spaCy (trained on OntoNotes) calls businesses ORG. This drives Location recall down to about 60% and Organization precision down to about 30%. It is a disagreement over label definitions, not missed text, and the ground truth has not been relabelled to hide it.
 - **spaCy sometimes tags people as ORG, including key people.** In the md run, cluster A's leader was tagged ORG in all 3 mentions. Vehicle models ("Maruti Suzuki Swift"), acronyms (KYC, CCTV, IMEI, UPI) and a bare "Smt" also come through as false Organization entities.
@@ -208,6 +248,7 @@ Graph at seed 42: 530 nodes and 8,117 edges (8,012 structured, 105 from text).
 - **Correcting NER types with the registries.** If a report span tagged ORG or LOC normalizes to the exact key of a Person in the subscriber, KYC or vehicle registry, it could be relabelled as that Person. This would have recovered the cluster A leader, whose ORG tag cost his phone link and three meeting edges in one report.
   - **Circularity caveat:** in this synthetic dataset, every person named in a report also exists in a registry, so this correction would score close to perfectly by construction. Any accuracy measured here would be circular. It could only be evaluated honestly on reports that name people who are absent from the registries.
   - **Risk:** it turns the name-collision weakness into a typing error. A company named after a person ("Sharma Traders" vs. a registered "Sharma") is safe only because keys must match exactly.
+- **Combining the two spike scopes (unvalidated).** This would flag an incident when *either* the original rule or the named-people rule (R1) flags it. It would have caught 4, 5 and 6 of 6 planted spikes on seeds 11, 42 and 7, with no false alarms. That number was worked out *after* seeing all three seeds, so it is not evidence. It would need a new unseen seed, declared in advance, and the one-attempt rule excluded that here. It would also run twice as many tests per incident, so the p ≤ 0.001 threshold would need revisiting for multiple comparisons.
 - **Relation extraction that generalises** beyond template phrasing, for example dependency-parse rules or a trained relation classifier, with negation handling. The challenge set shows current recall of 12.5% on new phrasing.
 
 ## What would change in production

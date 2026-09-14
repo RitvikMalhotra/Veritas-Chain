@@ -306,5 +306,17 @@ def generate_transactions(world: World, scenarios: list[Scenario]) -> list[Txn]:
     for d in range(rng.randint(5, 12), WINDOW_DAYS, rng.randint(10, 15)):
         pay(collector.account, P[D.leader].account, _rupees(rng.uniform(30000, 80000), 1000), day(d), "D_upstream")
 
+    # Second decoy, added after Phase 4: Bengaluru's merchants settling trade credit. Amounts shrink 2-4% per hop like the
+    # planted rounds, but dates run backwards around the loop, so only a time-order check can reject it.
+    # Its own random stream keeps every other record identical; merchants never pay anyone else, so no other loop closes.
+    decoy_rng = random.Random(f"{world.seed}:decoy_time_only")
+    shops = world.noise("Bengaluru", "merchant")[:3]
+    at = WINDOW_START + timedelta(days=decoy_rng.randint(20, 70), hours=decoy_rng.randint(10, 18), minutes=decoy_rng.randrange(60))
+    amount = _rupees(decoy_rng.uniform(40000, 90000), 500)
+    for hop in range(3):  # loop order shop0 -> shop1 -> shop2 -> shop0; each hop is 1-3 days *earlier* than the one before
+        pay(shops[hop].account, shops[(hop + 1) % 3].account, amount, at, f"decoy_time_only:{hop + 1}", _mode(decoy_rng, amount))
+        at -= timedelta(days=decoy_rng.randint(1, 3), hours=decoy_rng.randint(0, 5))
+        amount = _rupees(float(amount) * decoy_rng.uniform(0.96, 0.98), 100)
+
     txns.sort(key=lambda t: (t.at, t.from_account, t.to_account))
     return txns

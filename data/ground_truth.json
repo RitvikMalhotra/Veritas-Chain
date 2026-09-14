@@ -368,10 +368,10 @@
           {
             "round": 2,
             "transactions": [
-              "TXN-000594",
-              "TXN-000616",
-              "TXN-000620",
-              "TXN-000635"
+              "TXN-000597",
+              "TXN-000619",
+              "TXN-000623",
+              "TXN-000638"
             ]
           }
         ],
@@ -387,10 +387,31 @@
         ],
         "transactions": [
           "TXN-000109",
-          "TXN-000591",
+          "TXN-000594",
           "TXN-000347"
         ],
-        "why_decoy": "friends' payments: dates run backwards around the loop and amounts differ by over 5x"
+        "why_decoy": "friends' payments: dates run backwards around the loop and amounts differ by over 5x",
+        "pattern": {
+          "time_ordered": false,
+          "amounts_shrink_slightly": false
+        }
+      },
+      {
+        "account_cycle": [
+          "BankAccount:ZARV0108681:1518796178700345",
+          "BankAccount:ZKVR0827097:70129869916408",
+          "BankAccount:ZNMD0046497:944581900513"
+        ],
+        "transactions": [
+          "TXN-000451",
+          "TXN-000432",
+          "TXN-000414"
+        ],
+        "why_decoy": "merchants settling trade credit: amounts shrink 2-4% per hop like a laundering round, but each hop is 1-3 days earlier than the one before (added after Phase 4)",
+        "pattern": {
+          "time_ordered": false,
+          "amounts_shrink_slightly": true
+        }
       }
     ],
     "incidental": [],

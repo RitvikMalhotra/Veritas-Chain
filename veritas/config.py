@@ -1,6 +1,7 @@
 """Configurable confidence defaults. Override any value with an env var, e.g. VERITAS_CONF_TEXT_PATTERN=0.8."""
 
 from functools import lru_cache
+from typing import Literal
 
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -51,6 +52,9 @@ class AnalyticsSettings(BaseSettings):
     spike_min_calls: int = Field(5, ge=1)  # ignore tiny counts
     spike_min_ratio: float = Field(2.0, gt=1)  # observed / expected
     spike_max_p_value: float = Field(0.001, gt=0, lt=1)  # Poisson upper tail; strict because ~24 events are tested
+    # Which calls count. named_phones = any call on a named person's phone (Phase 4 as committed);
+    # among_named = only calls between two different named people (revision R1, adopted only if it passes on seed 11).
+    spike_scope: Literal["named_phones", "among_named"] = "named_phones"
 
     # Circular money flow: a time-ordered loop with small deductions per hop (layering typology).
     cycle_min_length: int = Field(3, ge=3)  # 2-cycles are ordinary repayments
@@ -60,3 +64,5 @@ class AnalyticsSettings(BaseSettings):
 
     louvain_seed: int = 42  # Louvain is randomised; the seed makes runs repeatable
     louvain_resolution: float = Field(1.0, gt=0)
+    # Revision R2: split a community again only if Louvain inside it reaches this modularity (Newman-Girvan rule of thumb).
+    community_split_min_modularity: float = Field(0.3, gt=0, lt=1)

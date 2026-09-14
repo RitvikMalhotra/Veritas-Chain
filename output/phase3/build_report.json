@@ -1,6 +1,6 @@
 {
   "nodes": 529,
-  "edges": 8117,
+  "edges": 8120,
   "nodes_by_type": {
     "BankAccount": 119,
     "Event": 24,
@@ -22,7 +22,7 @@
     "OWNS_VEHICLE (structured)": 44,
     "OWNS_VEHICLE (text_pattern)": 1,
     "PRESENT_AT_EVENT (text_pattern)": 21,
-    "TRANSFERRED_MONEY_TO (structured)": 822,
+    "TRANSFERRED_MONEY_TO (structured)": 825,
     "TRANSFERRED_MONEY_TO (text_pattern)": 2,
     "USES_PHONE (structured)": 137,
     "USES_PHONE (text_pattern)": 18
@@ -39,11 +39,11 @@
     "edges:OWNS_VEHICLE:structured": 44,
     "edges:OWNS_VEHICLE:text_pattern": 1,
     "edges:PRESENT_AT_EVENT:text_pattern": 21,
-    "edges:TRANSFERRED_MONEY_TO:structured": 822,
+    "edges:TRANSFERRED_MONEY_TO:structured": 825,
     "edges:TRANSFERRED_MONEY_TO:text_pattern": 2,
     "edges:USES_PHONE:structured": 137,
     "edges:USES_PHONE:text_pattern": 18,
-    "node_merges:BankAccount": 1644,
+    "node_merges:BankAccount": 1650,
     "node_merges:Event": 24,
     "node_merges:Location": 23,
     "node_merges:Organization": 47,

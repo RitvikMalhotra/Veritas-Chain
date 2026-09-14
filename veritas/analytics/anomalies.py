@@ -19,16 +19,20 @@ def _docs(attrs: dict[str, Any]) -> list[str]:
 
 
 def detect_call_spikes(graph: nx.MultiDiGraph, settings: AnalyticsSettings) -> list[dict[str, Any]]:
-    """For each incident: calls on the phones of people named in its report, inside the window vs. their normal rate."""
+    """For each incident: calls tied to people named in its report, inside the window vs. their normal rate.
+
+    settings.spike_scope picks which calls count: any call on a named person's phone, or only calls between two named people.
+    """
     calls = [(datetime.fromisoformat(a["timestamp"]), s, d) for s, d, a in graph.edges(data=True)
              if a["type"] == "CALLED" and a["extraction_method"] == "structured"]
     if not calls:
         return []
     data_start, data_end = min(t for t, _, _ in calls), max(t for t, _, _ in calls)
-    phones_of = defaultdict(set)
+    phones_of, users_of = defaultdict(set), defaultdict(set)
     for s, d, a in graph.edges(data=True):
         if a["type"] == "USES_PHONE":
             phones_of[s].add(d)
+            users_of[d].add(s)
     people_by_doc = defaultdict(set)
     for n, a in graph.nodes(data=True):
         if a["type"] == "Person":
@@ -44,12 +48,18 @@ def detect_call_spikes(graph: nx.MultiDiGraph, settings: AnalyticsSettings) -> l
         phones = set().union(*(phones_of[p] for p in people)) if people else set()
         lo = max(occurred - timedelta(hours=settings.spike_hours_before), data_start)
         hi = min(occurred + timedelta(hours=settings.spike_hours_after), data_end)
-        entry = {"event": node, "event_ref": a["event_ref"], "occurred_at": a["occurred_at"], "people": people,
-                 "phones": sorted(phones), "window": [lo.isoformat(), hi.isoformat()], "flagged": False}
+        entry = {"event": node, "event_ref": a["event_ref"], "occurred_at": a["occurred_at"], "scope": settings.spike_scope,
+                 "people": people, "phones": sorted(phones), "window": [lo.isoformat(), hi.isoformat()], "flagged": False}
         if not phones:
             results.append({**entry, "reason": "no phones known for people named in the report"})
             continue
-        times = [t for t, s, d in calls if s in phones or d in phones]
+        if settings.spike_scope == "among_named":
+            named = set(people)
+            # Both ends must be named people, and two different ones (not one person's two SIMs).
+            times = [t for t, s, d in calls if s in phones and d in phones
+                     and any(u != v for u in users_of[s] & named for v in users_of[d] & named)]
+        else:
+            times = [t for t, s, d in calls if s in phones or d in phones]
         observed = sum(lo <= t < hi for t in times)
         window_h = (hi - lo).total_seconds() / 3600
         rest_h = (data_end - data_start).total_seconds() / 3600 - window_h
@@ -63,8 +73,11 @@ def detect_call_spikes(graph: nx.MultiDiGraph, settings: AnalyticsSettings) -> l
     return results
 
 
-def detect_money_cycles(graph: nx.MultiDiGraph, settings: AnalyticsSettings) -> dict[str, Any]:
-    """Account-level loops. A loop is flagged only if one pass through it is time-ordered with small deductions."""
+def detect_money_cycles(graph: nx.MultiDiGraph, settings: AnalyticsSettings, require_time_order: bool = True) -> dict[str, Any]:
+    """Account-level loops. A loop is flagged only if one pass through it is time-ordered with small deductions.
+
+    require_time_order=False drops the time checks (order and gap); evaluation uses it to show what the time check stops.
+    """
     hops = defaultdict(list)  # (payer, payee) -> [(time, amount, txn_id)]
     for s, d, a in graph.edges(data=True):
         if a["type"] == "TRANSFERRED_MONEY_TO" and a["extraction_method"] == "structured":
@@ -77,7 +90,9 @@ def detect_money_cycles(graph: nx.MultiDiGraph, settings: AnalyticsSettings) -> 
             holders[d].append(s)
 
     accounts = nx.DiGraph(list(hops))
-    topology = sorted(c for c in nx.simple_cycles(accounts, length_bound=settings.cycle_max_length)
+    # simple_cycles picks each loop's starting account in hash order, so start every loop at its smallest id instead.
+    topology = sorted(c[c.index(min(c)):] + c[:c.index(min(c))]
+                      for c in nx.simple_cycles(accounts, length_bound=settings.cycle_max_length)
                       if len(c) >= settings.cycle_min_length)
     gap = timedelta(days=settings.cycle_max_hop_gap_days)
     flagged: dict[frozenset, dict[str, Any]] = {}
@@ -87,7 +102,7 @@ def detect_money_cycles(graph: nx.MultiDiGraph, settings: AnalyticsSettings) -> 
             yield chosen
             return
         for t, amount, txn in hops[(route[i], route[(i + 1) % len(route)])]:
-            if prev and not (prev[0] < t <= prev[0] + gap):
+            if prev and require_time_order and not (prev[0] < t <= prev[0] + gap):
                 continue  # each hop must follow the previous one within the gap
             if prev and not (settings.cycle_min_amount_retention * prev[1] <= amount <= prev[1]):
                 continue  # money shrinks a little per hop; it never grows

@@ -85,7 +85,7 @@
             "role": "leader",
             "group": "A",
             "node": "Person:daksh_bakshi",
-            "rank": 96
+            "rank": 98
           },
           {
             "true_id": "TP-0002",
@@ -141,7 +141,7 @@
             "role": "leader",
             "group": "D",
             "node": "Person:finn_shere",
-            "rank": 106
+            "rank": 107
           },
           {
             "true_id": "TP-0027",
@@ -483,7 +483,7 @@
             "role": "leader",
             "group": "A",
             "node": "Person:daksh_bakshi",
-            "rank": 95
+            "rank": 97
           },
           {
             "true_id": "TP-0002",
@@ -539,7 +539,7 @@
             "role": "leader",
             "group": "D",
             "node": "Person:finn_shere",
-            "rank": 104
+            "rank": 105
           },
           {
             "true_id": "TP-0027",
@@ -747,7 +747,7 @@
             "role": "leader",
             "group": "A",
             "node": "Person:daksh_bakshi",
-            "rank": 31
+            "rank": 32
           },
           {
             "true_id": "TP-0002",
@@ -803,7 +803,7 @@
             "role": "leader",
             "group": "D",
             "node": "Person:finn_shere",
-            "rank": 32
+            "rank": 33
           },
           {
             "true_id": "TP-0027",
@@ -881,7 +881,7 @@
             "role": "leader",
             "group": "A",
             "node": "Person:daksh_bakshi",
-            "rank": 94
+            "rank": 96
           },
           {
             "true_id": "TP-0002",
@@ -937,7 +937,7 @@
             "role": "leader",
             "group": "D",
             "node": "Person:finn_shere",
-            "rank": 101
+            "rank": 102
           },
           {
             "true_id": "TP-0027",
@@ -1456,6 +1456,18 @@
         1.0,
         1.0,
         1.0
+      ],
+      "purity_by_seed": [
+        0.18518518518518517,
+        0.18518518518518517,
+        0.18518518518518517,
+        0.18518518518518517,
+        0.18518518518518517,
+        0.18518518518518517,
+        0.18518518518518517,
+        0.18518518518518517,
+        0.18518518518518517,
+        0.18518518518518517
       ]
     },
     "B": {
@@ -1470,6 +1482,18 @@
         1.0,
         1.0,
         1.0
+      ],
+      "purity_by_seed": [
+        0.3103448275862069,
+        0.3103448275862069,
+        0.3103448275862069,
+        0.3103448275862069,
+        0.3103448275862069,
+        0.3103448275862069,
+        0.3103448275862069,
+        0.3103448275862069,
+        0.3103448275862069,
+        0.3103448275862069
       ]
     },
     "C": {
@@ -1484,6 +1508,18 @@
         1.0,
         1.0,
         1.0
+      ],
+      "purity_by_seed": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
       ]
     },
     "D": {
@@ -1498,6 +1534,18 @@
         1.0,
         1.0,
         1.0
+      ],
+      "purity_by_seed": [
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25
       ]
     }
   },
@@ -1822,7 +1870,7 @@
   },
   "money_cycles": {
     "topology_only": {
-      "cycles_found": 2,
+      "cycles_found": 3,
       "planted_loop_found": true,
       "decoy_loop_found": true
     },
@@ -1840,6 +1888,952 @@
       ],
       "decoy_flagged": false,
       "other_flagged": []
+    },
+    "decoys": [
+      {
+        "pattern": {
+          "time_ordered": false,
+          "amounts_shrink_slightly": false
+        },
+        "why_decoy": "friends' payments: dates run backwards around the loop and amounts differ by over 5x",
+        "found_by_topology": true,
+        "flagged": false,
+        "flagged_without_time_check": false
+      },
+      {
+        "pattern": {
+          "time_ordered": false,
+          "amounts_shrink_slightly": true
+        },
+        "why_decoy": "merchants settling trade credit: amounts shrink 2-4% per hop like a laundering round, but each hop is 1-3 days earlier than the one before (added after Phase 4)",
+        "found_by_topology": true,
+        "flagged": false,
+        "flagged_without_time_check": true
+      }
+    ],
+    "without_time_check": {
+      "flagged": 6,
+      "not_a_planted_round": 4
+    }
+  },
+  "revisions": {
+    "note": "Declared before seed 11 was run through analytics; only that seed counts as the test. This run is seed 42.",
+    "results": {
+      "R1_spikes_among_named": {
+        "expectation": "Counting only calls between two different people named in the report (same window and thresholds), every incident with a planted spike is flagged and no other incident is.",
+        "met": false,
+        "detail": "3 flagged, 3 missed, 0 false alarms",
+        "seed": 42,
+        "counts_as_test": false
+      },
+      "R2_nested_communities": {
+        "expectation": "With Louvain re-run inside each community (split kept if its modularity >= 0.3), every planted cluster's best community has recall >= 0.8 and purity >= 0.5 (structured-only graph; the merged Rahul Sharma node is excluded).",
+        "met": false,
+        "detail": "A: recall 1.00 purity 1.00 (size 6), B: recall 0.89 purity 0.89 (size 10), C: recall 0.60 purity 0.75 (size 8), D: recall 1.00 purity 1.00 (size 7)",
+        "seed": 42,
+        "counts_as_test": false
+      },
+      "R3_time_only_decoy": {
+        "expectation": "The decoy whose amounts shrink like a laundering round but whose dates run backwards is found by topology, is not flagged by the full rule, and is flagged once the time check is turned off.",
+        "met": true,
+        "detail": "found by topology: True; flagged: False; flagged without time check: True",
+        "seed": 42,
+        "counts_as_test": false
+      }
+    },
+    "call_spikes_among_named": {
+      "true_positives": 3,
+      "false_positives": 0,
+      "false_negatives": 3,
+      "events": [
+        {
+          "event_ref": "FIR-BLR-2025-0001",
+          "scenario": "N12",
+          "planted": false,
+          "generator_measured_ratio": null,
+          "flagged": false,
+          "observed": 0,
+          "expected": 0.0,
+          "ratio": null,
+          "p_value": 0.0,
+          "people_named": 2,
+          "note": null
+        },
+        {
+          "event_ref": "FIR-BLR-2025-0002",
+          "scenario": "N08",
+          "planted": false,
+          "generator_measured_ratio": null,
+          "flagged": false,
+          "observed": 0,
+          "expected": 0.0,
+          "ratio": null,
+          "p_value": 0.0,
+          "people_named": 1,
+          "note": null
+        },
+        {
+          "event_ref": "FIR-BLR-2025-0003",
+          "scenario": "N04",
+          "planted": false,
+          "generator_measured_ratio": null,
+          "flagged": false,
+          "observed": 0,
+          "expected": 0.0,
+          "ratio": null,
+          "p_value": 0.0,
+          "people_named": 1,
+          "note": null
+        },
+        {
+          "event_ref": "FIR-DEL-2025-0001",
+          "scenario": "N02",
+          "planted": false,
+          "generator_measured_ratio": null,
+          "flagged": false,
+          "observed": 0,
+          "expected": 0.0,
+          "ratio": null,
+          "p_value": 0.0,
+          "people_named": 1,
+          "note": null
+        },
+        {
+          "event_ref": "FIR-DEL-2025-0002",
+          "scenario": "N10",
+          "planted": false,
+          "generator_measured_ratio": null,
+          "flagged": false,
+          "observed": 0,
+          "expected": 0.0,
+          "ratio": null,
+          "p_value": 0.0,
+          "people_named": 3,
+          "note": null
+        },
+        {
+          "event_ref": "FIR-DEL-2025-0003",
+          "scenario": "N06",
+          "planted": false,
+          "generator_measured_ratio": null,
+          "flagged": false,
+          "observed": 0,
+          "expected": 0.0,
+          "ratio": null,
+          "p_value": 0.0,
+          "people_named": 2,
+          "note": null
+        },
+        {
+          "event_ref": "FIR-DEL-2025-0004",
+          "scenario": "D1",
+          "planted": false,
+          "generator_measured_ratio": null,
+          "flagged": false,
+          "observed": 3,
+          "expected": 1.07,
+          "ratio": 2.8,
+          "p_value": 0.09360006424033995,
+          "people_named": 4,
+          "note": null
+        },
+        {
+          "event_ref": "FIR-DEL-2025-0005",
+          "scenario": "D2",
+          "planted": true,
+          "generator_measured_ratio": 6.36,
+          "flagged": true,
+          "observed": 22,
+          "expected": 5.02,
+          "ratio": 4.38,
+          "p_value": 1.9771021994990564e-08,
+          "people_named": 6,
+          "note": null
+        },
+        {
+          "event_ref": "FIR-DEL-2025-0006",
+          "scenario": "D3",
+          "planted": false,
+          "generator_measured_ratio": null,
+          "flagged": false,
+          "observed": 4,
+          "expected": 2.65,
+          "ratio": 1.51,
+          "p_value": 0.27525079898561994,
+          "people_named": 2,
+          "note": null
+        },
+        {
+          "event_ref": "FIR-HYD-2025-0001",
+          "scenario": "N05",
+          "planted": false,
+          "generator_measured_ratio": null,
+          "flagged": false,
+          "observed": 3,
+          "expected": 1.26,
+          "ratio": 2.39,
+          "p_value": 0.1328743316645896,
+          "people_named": 3,
+          "note": null
+        },
+        {
+          "event_ref": "FIR-HYD-2025-0002",
+          "scenario": "C1",
+          "planted": false,
+          "generator_measured_ratio": null,
+          "flagged": false,
+          "observed": 0,
+          "expected": 0.0,
+          "ratio": null,
+          "p_value": 0.0,
+          "people_named": 1,
+          "note": null
+        },
+        {
+          "event_ref": "FIR-HYD-2025-0003",
+          "scenario": "N07",
+          "planted": false,
+          "generator_measured_ratio": null,
+          "flagged": false,
+          "observed": 0,
+          "expected": 0.0,
+          "ratio": null,
+          "p_value": 0.0,
+          "people_named": 1,
+          "note": null
+        },
+        {
+          "event_ref": "FIR-HYD-2025-0004",
+          "scenario": "C3",
+          "planted": true,
+          "generator_measured_ratio": 4.8,
+          "flagged": false,
+          "observed": 7,
+          "expected": 1.63,
+          "ratio": 4.3,
+          "p_value": 0.0014733023936854155,
+          "people_named": 6,
+          "note": null
+        },
+        {
+          "event_ref": "FIR-MUM-2025-0001",
+          "scenario": "A1",
+          "planted": true,
+          "generator_measured_ratio": 4.49,
+          "flagged": false,
+          "observed": 10,
+          "expected": 4.28,
+          "ratio": 2.34,
+          "p_value": 0.012527608870550702,
+          "people_named": 4,
+          "note": null
+        },
+        {
+          "event_ref": "FIR-MUM-2025-0002",
+          "scenario": "C2",
+          "planted": false,
+          "generator_measured_ratio": null,
+          "flagged": false,
+          "observed": 0,
+          "expected": 0.0,
+          "ratio": null,
+          "p_value": 0.0,
+          "people_named": 1,
+          "note": null
+        },
+        {
+          "event_ref": "FIR-MUM-2025-0003",
+          "scenario": "N01",
+          "planted": false,
+          "generator_measured_ratio": null,
+          "flagged": false,
+          "observed": 0,
+          "expected": 0.0,
+          "ratio": null,
+          "p_value": 0.0,
+          "people_named": 2,
+          "note": null
+        },
+        {
+          "event_ref": "FIR-MUM-2025-0004",
+          "scenario": "A2",
+          "planted": true,
+          "generator_measured_ratio": 4.72,
+          "flagged": true,
+          "observed": 16,
+          "expected": 3.95,
+          "ratio": 4.05,
+          "p_value": 4.2433378140963354e-06,
+          "people_named": 3,
+          "note": null
+        },
+        {
+          "event_ref": "FIR-MUM-2025-0005",
+          "scenario": "N09",
+          "planted": false,
+          "generator_measured_ratio": null,
+          "flagged": false,
+          "observed": 0,
+          "expected": 0.0,
+          "ratio": null,
+          "p_value": 0.0,
+          "people_named": 3,
+          "note": null
+        },
+        {
+          "event_ref": "FIR-MUM-2025-0006",
+          "scenario": "N14",
+          "planted": false,
+          "generator_measured_ratio": null,
+          "flagged": false,
+          "observed": 0,
+          "expected": 0.0,
+          "ratio": null,
+          "p_value": 0.0,
+          "people_named": 1,
+          "note": null
+        },
+        {
+          "event_ref": "FIR-PUN-2025-0001",
+          "scenario": "N03",
+          "planted": false,
+          "generator_measured_ratio": null,
+          "flagged": false,
+          "observed": 0,
+          "expected": 0.0,
+          "ratio": null,
+          "p_value": 0.0,
+          "people_named": 2,
+          "note": null
+        },
+        {
+          "event_ref": "FIR-PUN-2025-0002",
+          "scenario": "N13",
+          "planted": false,
+          "generator_measured_ratio": null,
+          "flagged": false,
+          "observed": 0,
+          "expected": 0.0,
+          "ratio": null,
+          "p_value": 0.0,
+          "people_named": 2,
+          "note": null
+        },
+        {
+          "event_ref": "FIR-PUN-2025-0003",
+          "scenario": "N11",
+          "planted": false,
+          "generator_measured_ratio": null,
+          "flagged": false,
+          "observed": null,
+          "expected": null,
+          "ratio": null,
+          "p_value": null,
+          "people_named": 0,
+          "note": "no phones known for people named in the report"
+        },
+        {
+          "event_ref": "FIR-PUN-2025-0004",
+          "scenario": "B1",
+          "planted": true,
+          "generator_measured_ratio": 3.75,
+          "flagged": false,
+          "observed": 1,
+          "expected": 0.7,
+          "ratio": 1.43,
+          "p_value": 0.50230575628683,
+          "people_named": 4,
+          "note": null
+        },
+        {
+          "event_ref": "FIR-PUN-2025-0005",
+          "scenario": "B2",
+          "planted": true,
+          "generator_measured_ratio": 5.68,
+          "flagged": true,
+          "observed": 32,
+          "expected": 7.68,
+          "ratio": 4.17,
+          "p_value": 4.826228797025194e-11,
+          "people_named": 5,
+          "note": null
+        }
+      ]
+    },
+    "nested_communities": {
+      "all_evidence": {
+        "communities": 40,
+        "communities_of_2_or_more": 23,
+        "per_cluster": {
+          "A": {
+            "members": 5,
+            "largest_share_in_one_community": 5,
+            "recall": 1.0,
+            "community": 8,
+            "community_size": 7,
+            "purity": 1.0
+          },
+          "B": {
+            "members": 9,
+            "largest_share_in_one_community": 8,
+            "recall": 0.8888888888888888,
+            "community": 0,
+            "community_size": 10,
+            "purity": 0.8888888888888888
+          },
+          "C": {
+            "members": 10,
+            "largest_share_in_one_community": 6,
+            "recall": 0.6,
+            "community": 2,
+            "community_size": 9,
+            "purity": 0.75
+          },
+          "D": {
+            "members": 7,
+            "largest_share_in_one_community": 7,
+            "recall": 1.0,
+            "community": 5,
+            "community_size": 8,
+            "purity": 1.0
+          }
+        },
+        "bridges": [
+          {
+            "true_id": "TP-0033",
+            "connects": [
+              "A",
+              "B"
+            ],
+            "community": 0,
+            "matches_cluster": [
+              "B"
+            ],
+            "correct": true
+          },
+          {
+            "true_id": "TP-0034",
+            "connects": [
+              "B",
+              "C"
+            ],
+            "community": 2,
+            "matches_cluster": [
+              "C"
+            ],
+            "correct": true
+          }
+        ],
+        "collision_node_community": {
+          "node": "Person:rahul_sharma",
+          "community": 8,
+          "clusters_in_that_community": [
+            "A"
+          ]
+        }
+      },
+      "no_cooccurrence": {
+        "communities": 44,
+        "communities_of_2_or_more": 23,
+        "per_cluster": {
+          "A": {
+            "members": 5,
+            "largest_share_in_one_community": 5,
+            "recall": 1.0,
+            "community": 7,
+            "community_size": 7,
+            "purity": 1.0
+          },
+          "B": {
+            "members": 9,
+            "largest_share_in_one_community": 8,
+            "recall": 0.8888888888888888,
+            "community": 0,
+            "community_size": 10,
+            "purity": 0.8888888888888888
+          },
+          "C": {
+            "members": 10,
+            "largest_share_in_one_community": 6,
+            "recall": 0.6,
+            "community": 4,
+            "community_size": 8,
+            "purity": 0.75
+          },
+          "D": {
+            "members": 7,
+            "largest_share_in_one_community": 7,
+            "recall": 1.0,
+            "community": 9,
+            "community_size": 7,
+            "purity": 1.0
+          }
+        },
+        "bridges": [
+          {
+            "true_id": "TP-0033",
+            "connects": [
+              "A",
+              "B"
+            ],
+            "community": 0,
+            "matches_cluster": [
+              "B"
+            ],
+            "correct": true
+          },
+          {
+            "true_id": "TP-0034",
+            "connects": [
+              "B",
+              "C"
+            ],
+            "community": 4,
+            "matches_cluster": [
+              "C"
+            ],
+            "correct": true
+          }
+        ],
+        "collision_node_community": {
+          "node": "Person:rahul_sharma",
+          "community": 7,
+          "clusters_in_that_community": [
+            "A"
+          ]
+        }
+      },
+      "structured_only": {
+        "communities": 45,
+        "communities_of_2_or_more": 23,
+        "per_cluster": {
+          "A": {
+            "members": 5,
+            "largest_share_in_one_community": 5,
+            "recall": 1.0,
+            "community": 13,
+            "community_size": 6,
+            "purity": 1.0
+          },
+          "B": {
+            "members": 9,
+            "largest_share_in_one_community": 8,
+            "recall": 0.8888888888888888,
+            "community": 0,
+            "community_size": 10,
+            "purity": 0.8888888888888888
+          },
+          "C": {
+            "members": 10,
+            "largest_share_in_one_community": 6,
+            "recall": 0.6,
+            "community": 3,
+            "community_size": 8,
+            "purity": 0.75
+          },
+          "D": {
+            "members": 7,
+            "largest_share_in_one_community": 7,
+            "recall": 1.0,
+            "community": 7,
+            "community_size": 7,
+            "purity": 1.0
+          }
+        },
+        "bridges": [
+          {
+            "true_id": "TP-0033",
+            "connects": [
+              "A",
+              "B"
+            ],
+            "community": 0,
+            "matches_cluster": [
+              "B"
+            ],
+            "correct": true
+          },
+          {
+            "true_id": "TP-0034",
+            "connects": [
+              "B",
+              "C"
+            ],
+            "community": 3,
+            "matches_cluster": [
+              "C"
+            ],
+            "correct": true
+          }
+        ],
+        "collision_node_community": {
+          "node": "Person:rahul_sharma",
+          "community": 13,
+          "clusters_in_that_community": [
+            "A"
+          ]
+        }
+      }
+    },
+    "nested_community_members_structured_only": [
+      [
+        "Organization:yohannan_logistics_pvt_ltd",
+        "Person:chakradhar_rai",
+        "Person:chasmum_parmer",
+        "Person:ekaraj_koshy",
+        "Person:faras_kale",
+        "Person:fariq_sami",
+        "Person:hardik_saini",
+        "Person:imaran_sen",
+        "Person:liam_ahuja",
+        "Person:onkar_mall"
+      ],
+      [
+        "Organization:goswami_services_pvt_ltd",
+        "Organization:sami_infra_pvt_ltd",
+        "Person:chandran_bhat",
+        "Person:darika_kothari",
+        "Person:gopal_gupta",
+        "Person:ishwar_kannan",
+        "Person:saksham_nori",
+        "Person:siddharth_roy",
+        "Person:vinaya_bhagat"
+      ],
+      [
+        "Person:aarini_bobal",
+        "Person:ayushman_karnik",
+        "Person:bahadurjit_balay",
+        "Person:jagat_mallick",
+        "Person:om_chaudry",
+        "Person:pallavi_bail",
+        "Person:tanveer_pandya",
+        "Person:watika_kala"
+      ],
+      [
+        "Person:bakhshi_bath",
+        "Person:balveer_kaul",
+        "Person:balveer_memon",
+        "Person:david_radhakrishnan",
+        "Person:karan_sangha",
+        "Person:liam_setty",
+        "Person:libni_randhawa",
+        "Person:reva_pant"
+      ],
+      [
+        "Organization:borah_services_pvt_ltd",
+        "Person:barkha_bedi",
+        "Person:girish_minhas",
+        "Person:janani_bhardwaj",
+        "Person:vasudha_mutti",
+        "Person:veer_chaudhry",
+        "Person:waida_thakkar"
+      ],
+      [
+        "Person:aarna_choudhury",
+        "Person:advik_gola",
+        "Person:anmol_parmar",
+        "Person:gaurang_sachar",
+        "Person:jagat_gaba",
+        "Person:siddharth_malhotra",
+        "Person:timothy_sane"
+      ],
+      [
+        "Person:adya_choudhury",
+        "Person:damyanti_misra",
+        "Person:dayita_memon",
+        "Person:ganga_prakash",
+        "Person:januja_devi",
+        "Person:karan_tella",
+        "Person:yashica_issac"
+      ],
+      [
+        "Person:amol_mutti",
+        "Person:ayaan_karnik",
+        "Person:bhavini_kakar",
+        "Person:finn_shere",
+        "Person:imaran_nair",
+        "Person:ranveer_madan",
+        "Person:sai_loyal"
+      ],
+      [
+        "Person:arunima_choudhary",
+        "Person:hemal_tripathi",
+        "Person:sanya_raj",
+        "Person:siddharth_bhatt",
+        "Person:urishilla_dugar",
+        "Person:vivaan_wadhwa",
+        "Person:zilmil_acharya"
+      ],
+      [
+        "Person:azaan_murthy",
+        "Person:bahadurjit_keer",
+        "Person:bina_andra",
+        "Person:chaitaly_saini",
+        "Person:girik_biswas",
+        "Person:kalpit_jayaraman",
+        "Person:naksh_khare"
+      ],
+      [
+        "Organization:bhardwaj_services_pvt_ltd",
+        "Person:dakshesh_yadav",
+        "Person:gaurika_zacharia",
+        "Person:ladli_apte",
+        "Person:vasana_aggarwal",
+        "Person:yatin_chand"
+      ],
+      [
+        "Organization:yogi_traders",
+        "Person:dominic_mital",
+        "Person:farhan_bhandari",
+        "Person:tamanna_dar",
+        "Person:yashoda_buch",
+        "Person:yutika_mutti"
+      ],
+      [
+        "Person:atharv_chanda",
+        "Person:eesha_barman",
+        "Person:ethan_sani",
+        "Person:henry_krish",
+        "Person:kritika_loke",
+        "Person:yash_krishnamurthy"
+      ],
+      [
+        "Person:daksh_bakshi",
+        "Person:dalaja_chahal",
+        "Person:isaac_dewan",
+        "Person:laksh_konda",
+        "Person:rahul_sharma",
+        "Person:udyati_balay"
+      ],
+      [
+        "Organization:barad_trading_pvt_ltd",
+        "Person:anthony_aggarwal",
+        "Person:bishakha_dixit",
+        "Person:gauri_chokshi",
+        "Person:karan_edwin"
+      ],
+      [
+        "Organization:lanka_trading_pvt_ltd",
+        "Person:chandresh_rai",
+        "Person:ishaan_mann",
+        "Person:pratyush_handa",
+        "Person:rajata_gaba"
+      ],
+      [
+        "Organization:raja_services_pvt_ltd",
+        "Person:charan_pandya",
+        "Person:mitesh_patla",
+        "Person:ojas_de",
+        "Person:tanvi_dubey"
+      ],
+      [
+        "Person:champak_chatterjee",
+        "Person:ekaja_solanki",
+        "Person:keya_solanki",
+        "Person:noah_bobal",
+        "Person:udarsh_dey"
+      ],
+      [
+        "Person:david_mital",
+        "Person:guneet_patla",
+        "Person:ikshita_kumar",
+        "Person:oni_murthy",
+        "Person:tejas_vaidya"
+      ],
+      [
+        "Organization:khatri_infra_pvt_ltd",
+        "Person:ganga_dutta",
+        "Person:radhika_mohanty",
+        "Person:sudiksha_pathak"
+      ],
+      [
+        "Organization:raghavan_trading_pvt_ltd",
+        "Person:anya_sarin",
+        "Person:tamanna_merchant",
+        "Person:tara_narain"
+      ],
+      [
+        "Organization:salvi_trading_pvt_ltd",
+        "Person:devansh_handa",
+        "Person:devika_rajan",
+        "Person:upasna_boase"
+      ],
+      [
+        "Person:aadi_venkatesh",
+        "Person:orinder_murthy"
+      ],
+      [
+        "Organization:ashok_leyland_dost"
+      ],
+      [
+        "Organization:cctv"
+      ],
+      [
+        "Organization:daksh_bakshi"
+      ],
+      [
+        "Organization:imei"
+      ],
+      [
+        "Organization:kyc"
+      ],
+      [
+        "Organization:maruti_suzuki_ertiga"
+      ],
+      [
+        "Organization:maruti_suzuki_swift"
+      ],
+      [
+        "Organization:smt"
+      ],
+      [
+        "Organization:tata"
+      ],
+      [
+        "Organization:upi"
+      ],
+      [
+        "Person:agate_marg_market"
+      ],
+      [
+        "Person:anita_pingle"
+      ],
+      [
+        "Person:kakar_warehouse"
+      ],
+      [
+        "Person:krishna_baral"
+      ],
+      [
+        "Person:kyc"
+      ],
+      [
+        "Person:lila_oak"
+      ],
+      [
+        "Person:maruti_suzuki_swift"
+      ],
+      [
+        "Person:neel_suresh"
+      ],
+      [
+        "Person:ojas_sabharwal"
+      ],
+      [
+        "Person:royal_enfield_classic_350"
+      ],
+      [
+        "Person:tanvi_gupta"
+      ],
+      [
+        "Person:zehaan_more"
+      ]
+    ],
+    "nested_stability_structured_only": {
+      "A": {
+        "recall_by_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "purity_by_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "B": {
+        "recall_by_seed": [
+          0.5555555555555556,
+          0.5555555555555556,
+          0.8888888888888888,
+          0.5555555555555556,
+          0.8888888888888888,
+          0.5555555555555556,
+          0.5555555555555556,
+          0.5555555555555556,
+          0.5555555555555556,
+          0.5555555555555556
+        ],
+        "purity_by_seed": [
+          0.7142857142857143,
+          0.7142857142857143,
+          0.8888888888888888,
+          0.7142857142857143,
+          0.8888888888888888,
+          0.625,
+          0.625,
+          0.7142857142857143,
+          0.7142857142857143,
+          0.625
+        ]
+      },
+      "C": {
+        "recall_by_seed": [
+          0.6,
+          0.6,
+          0.6,
+          0.6,
+          0.6,
+          0.6,
+          0.6,
+          0.6,
+          0.6,
+          0.6
+        ],
+        "purity_by_seed": [
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75
+        ]
+      },
+      "D": {
+        "recall_by_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "purity_by_seed": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
     }
   }
 }
