@@ -5,7 +5,7 @@ import json
 from collections import Counter
 from pathlib import Path
 
-from veritas.audit.chain import Anchor, AuditLog, verify_chain
+from veritas.audit.chain import Anchor, read_blocks, verify_chain
 from veritas.audit.replay import graph_differences, replay
 from veritas.graph.io import load_graphml
 
@@ -20,11 +20,7 @@ if not args.audit.exists():
     raise SystemExit(f"{args.audit} not found: run python -m veritas.graph first")
 anchor = Anchor(**json.loads(args.anchor.read_text(encoding="utf-8"))) if args.anchor.exists() else None
 result = verify_chain(args.audit, anchor)
-log = AuditLog(args.audit)
-try:
-    blocks = list(log.blocks())
-finally:
-    log.close()
+blocks = read_blocks(args.audit)  # read-only, so checking a tampered file never alters it
 rebuilt = replay(blocks)
 saved = load_graphml(args.graph)
 differences = graph_differences(saved, rebuilt)

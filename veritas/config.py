@@ -1,6 +1,7 @@
 """Configurable confidence defaults. Override any value with an env var, e.g. VERITAS_CONF_TEXT_PATTERN=0.8."""
 
 from functools import lru_cache
+from pathlib import Path
 from typing import Literal
 
 from pydantic import Field
@@ -66,3 +67,13 @@ class AnalyticsSettings(BaseSettings):
     louvain_resolution: float = Field(1.0, gt=0)
     # Revision R2: split a community again only if Louvain inside it reaches this modularity (Newman-Girvan rule of thumb).
     community_split_min_modularity: float = Field(0.3, gt=0, lt=1)
+
+
+class ApiSettings(BaseSettings):
+    """Phase 6 file locations; override with env vars, e.g. VERITAS_API_AUDIT_PATH=/tmp/copy.sqlite."""
+
+    model_config = SettingsConfigDict(env_prefix="VERITAS_API_")
+
+    graph_path: Path = Path("output/phase3/graph.graphml")
+    audit_path: Path = Path("output/phase5/audit.sqlite")
+    anchor_path: Path = Path("output/phase5/anchor.json")  # kept outside the database; see README Phase 5

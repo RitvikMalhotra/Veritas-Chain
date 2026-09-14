@@ -163,12 +163,42 @@ class AuditLog:
         return _verify(self.blocks(), anchor)
 
 
+def _read_only(path: Path | str) -> sqlite3.Connection:
+    if not Path(path).exists():
+        raise FileNotFoundError(path)  # mode=ro would fail with a less helpful message
+    return sqlite3.connect(Path(path).resolve().as_uri() + "?mode=ro", uri=True)
+
+
 def verify_chain(path: Path | str, anchor: Anchor | None = None) -> Verification:
     """Verifies a stored chain without writing to it."""
-    conn = sqlite3.connect(Path(path).resolve().as_uri() + "?mode=ro", uri=True)
+    conn = _read_only(path)
     try:
         rows = conn.execute(f"SELECT {', '.join(_COLUMNS)} FROM blocks ORDER BY idx")
         return _verify((Block(*row) for row in rows), anchor)
+    finally:
+        conn.close()
+
+
+def read_blocks(path: Path | str) -> list[Block]:
+    """Every block, read-only. Opening with AuditLog would re-run the schema script and could restore dropped triggers."""
+    conn = _read_only(path)
+    try:
+        return [Block(*row) for row in conn.execute(f"SELECT {', '.join(_COLUMNS)} FROM blocks ORDER BY idx")]
+    finally:
+        conn.close()
+
+
+def read_history(path: Path | str, entity_id: str, include_edges: bool = False, limit: int | None = None,
+                 offset: int = 0) -> tuple[int, list[Block]]:
+    """Read-only history for one entity: (total matching blocks, one page of blocks in chain order)."""
+    where = "entity_id = ?" + (" OR source_id = ? OR target_id = ?" if include_edges else "")
+    args = (entity_id,) * (3 if include_edges else 1)
+    conn = _read_only(path)
+    try:
+        total = conn.execute(f"SELECT COUNT(*) FROM blocks WHERE {where}", args).fetchone()[0]
+        rows = conn.execute(f"SELECT {', '.join(_COLUMNS)} FROM blocks WHERE {where} ORDER BY idx LIMIT ? OFFSET ?",
+                            (*args, -1 if limit is None else limit, offset))
+        return total, [Block(*row) for row in rows]
     finally:
         conn.close()
 

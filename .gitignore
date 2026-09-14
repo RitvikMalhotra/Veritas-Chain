@@ -10,3 +10,5 @@ output/holdout_seed*/
 output/phase3/graph.graphml
 # The audit database (*.sqlite, above) and its anchor are rebuilt with the graph; the anchor's hash changes every build
 output/phase5/anchor.json
+# Browser-check logs written by the Playwright tool
+.playwright-mcp/

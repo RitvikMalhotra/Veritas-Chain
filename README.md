@@ -17,10 +17,10 @@ clusters, flags anomalies and records every graph change in a tamper-evident has
 | 2 | Entity extraction (spaCy NER + regex) | **Done, signed off** |
 | 3 | Relation extraction + graph construction + exact-match entity resolution | **Done, signed off** |
 | 4 | Centrality, Louvain communities, rule-based anomalies | **Done, signed off** (1 expectation not met, 2 met weakly; follow-up revisions on seed 11: R3 met, R1 and R2 not met) |
-| 5 | SHA-256 hash-chain audit log (SQLite) + tamper demo | **Done, awaiting sign-off** |
-| 6 | FastAPI + Cytoscape.js frontend | Not started |
+| 5 | SHA-256 hash-chain audit log (SQLite) + tamper demo | **Done, signed off** |
+| 6 | FastAPI + Cytoscape.js frontend | **Done, awaiting sign-off** |
 
-## Architecture (planned)
+## Architecture
 
 ```
 data/ (synthetic CSVs + report text)
@@ -46,6 +46,7 @@ python -m veritas.graph --evaluate             # build the graph (GraphML) + its
 python -m veritas.analytics --evaluate         # centrality, communities, anomaly rules, validation vs ground truth
 python -m veritas.audit                        # verify the audit chain against its anchor; replay it against the saved graph
 python -m veritas.audit.tamper_demo            # tamper with copies of the audit log and show what verify_chain catches
+python -m veritas.api                          # serve the API and the graph explorer at http://127.0.0.1:8000
 python -m pytest                               # all tests
 ```
 
@@ -66,8 +67,10 @@ python -m pytest                               # all tests
 | [`output/phase3/`](output/phase3/) | Build report, relation and graph evaluations, evidence sentence for every text edge. `graph.graphml` is rebuilt, not committed. |
 | [`output/phase4/`](output/phase4/) | Rankings, communities, anomalies (`analytics.json`) and validation (`evaluation.json`) |
 | [`veritas/audit/`](veritas/audit/) | Hash chain (`chain.py`), replay of the log into a graph (`replay.py`), verify CLI, tamper demo |
+| [`veritas/api/`](veritas/api/) | FastAPI app (`app.py`) and the page (`static/`: HTML, CSS, JS, vendored Cytoscape.js 3.34.3 with its MIT licence) |
+| [`docs/`](docs/) | Screenshots from the Phase 6 browser check |
 | [`output/phase5/`](output/phase5/) | `audit_report.json` (verification and replay check) and `tamper_demo.json`. `audit.sqlite` and `anchor.json` are rebuilt, not committed. |
-| [`tests/`](tests/) | Tests for the schema, generator, extraction, relations, graph, analytics and audit log. `tests/fixtures/relation_challenge.json` is the hand-written relation probe. |
+| [`tests/`](tests/) | Tests for the schema, generator, extraction, relations, graph, analytics, audit log and API. `tests/fixtures/relation_challenge.json` is the hand-written relation probe. |
 
 ## Design decisions
 
@@ -265,6 +268,65 @@ The demo compares each scenario's problems with the expected set of (block, chec
 - **Bug found in earlier code while checking determinism.** `graph_evaluation.json` and `relations_evaluation.json` listed missed relations in hash order, because the scorer iterated a set. Their content was right; only the order changed from run to run. Fixed by sorting, with a regression test that fails on the old code. Every committed output is now byte-identical when the pipeline runs under two hash seeds.
 - **Doc fix.** The Phase 3 section said 530 nodes; the graph has always had 529.
 
+### Phase 6: API and frontend (validation protocol, written before the first run)
+
+- **Scope, as briefed.** Read-only FastAPI endpoints:
+  - the full graph;
+  - the subgraph around a node;
+  - centrality rankings;
+  - the audit history of a node or edge;
+  - chain verification.
+
+  One plain HTML/CSS/JS page (no build step) with a Cytoscape.js graph, a sidebar of top-ranked people and an audit panel with verification status. Cytoscape 3.34.3 is vendored from the npm tarball, checked against the registry's sha512, so the page needs no CDN.
+- **One source of truth.** At startup the API loads `graph.graphml` and computes rankings from it with the Phase 4 code, so rankings can't drift from the graph being shown. It never reads `ground_truth.json`.
+- **Display choice.** The graph view merges parallel edges of the same type between the same two nodes (8,120 edges become 1,633) and shows the count. The underlying edges, and their audit history, are one click away. `GET /api/graph?aggregate=false` still returns every edge.
+- **Checks, fixed before running:**
+  1. **API matches its sources.**
+     - `/api/graph` returns exactly the loaded graph's node and edge IDs, and merged counts add up to the edge total.
+     - A subgraph equals NetworkX's undirected neighbourhood of that node.
+     - Rankings equal `centrality_rankings` for the chosen variant.
+     - Audit history equals the log's own history query, block for block.
+  2. **Verification is real.** `/api/audit/verify` passes on the untampered log. On a tampered copy, it reports the tampered block. It also confirms that replaying the log rebuilds the graph being served.
+  3. **Awkward IDs and bad input.** IDs containing `+` and `:` (such as `Phone:+91…`) round-trip through URL encoding. Unknown IDs return 404, and bad metric or variant names return 422.
+  4. **The page works in a real browser** (Playwright), not just in principle:
+     - it loads with no console errors and draws every node;
+     - clicking a top-ranked person highlights their connections and shows their details and audit history;
+     - the verify button shows the result;
+     - pointed at a tampered copy of the log, the page shows the tampering.
+  5. **No HTML injection.** The page builds all data-driven text with `textContent`, never `innerHTML`, and a test enforces this.
+
+**Results (seed 42):**
+
+| # | Check | Result | Detail |
+|---|---|---|---|
+| 1 | API matches its sources | **Met** | Node and edge IDs are exact (529 and 8,120). The 1,633 merged edges cover every edge exactly once, and their counts add to 8,120. Subgraphs equal NetworkX's neighbourhood at depths 1 and 2. Rankings are identical to `centrality_rankings` for all 9 metric/variant pairs. History matches the log's own query, including paging. |
+| 2 | Verification is real | **Met** | Untampered log: passes with the anchor, and the served graph matches the log. Tampered copy: the hash check fails at the changed block only, the graph differs at exactly that edge, and checking does not restore the dropped trigger. |
+| 3 | Awkward IDs and bad input | **Met** | `Phone:+91…` and bank-account IDs round-trip. Three unknown-ID requests return 404 and three bad-parameter requests return 422. |
+| 4 | Real browser | **Met, after four fixes (below)** | See the list below the table. |
+| 5 | No HTML injection | **Met** | The test fails if `app.js` contains `innerHTML`, `outerHTML`, `insertAdjacentHTML`, `document.write` or `eval(`. |
+
+**What the browser check showed (check 4):**
+- **Drawing.** All 529 nodes and all 1,633 merged edges (8,120 records) appear, with 0 console messages.
+- **Clicking a ranked person.** Clicking the top-ranked person left exactly their neighbourhood highlighted (13 elements) and showed their details and 5 audit blocks.
+- **Real mouse clicks** on a node, on an edge and on empty canvas each did the right thing.
+- **Views.** The neighbourhood view (8 nodes) and the return to the full graph both worked.
+- **Verify** showed "Chain verified": 24,338 blocks, anchor checked, graph matches the log.
+- **Tampered copy.** The page showed "Tampering detected": block 23103 fails its hash check and the graph differs at that transfer. The transfer's audit trail shows the altered ₹5,050, while the graph still holds ₹505,000.
+
+Screenshots: [`docs/phase6-explorer.png`](docs/phase6-explorer.png) (the planted false merge selected, chain verified) and [`docs/phase6-tampered.png`](docs/phase6-tampered.png).
+
+![Graph explorer with the planted false-merge node selected and the chain verified](docs/phase6-explorer.png)
+
+- **The browser check found four problems, and all are fixed.**
+  1. **The layout froze the page for 6.6 seconds.** The browser was running Cytoscape's force layout on 529 nodes. The server now computes a seeded spring layout once at startup (about 1.8 s). Drawing takes 136 ms, and every load shows the same map.
+  2. **The browser kept running an old `app.js` after an edit.** Static files had no `Cache-Control` header, so the browser treated its cached copy as fresh. The page and its files are now sent with `no-cache` (revalidated cheaply by ETag), and a test checks the header.
+  3. **Clicking a ranked person zoomed in so far that 5 of their 8 neighbourhood nodes were off-screen.** The view now fits the whole neighbourhood (8 of 8 visible).
+  4. **A `favicon.ico` 404 showed up as a console error.** The page now declares an empty inline icon.
+- **Mutation checks on the API tests.** Each of these made a test fail: following edge direction in subgraphs, skipping the replay check in verify, and ignoring the history offset.
+- **The API reads the audit database read-only.** Opening it with `AuditLog` would re-run the schema script, and on a tampered copy that could quietly restore dropped triggers. The audit CLI now reads read-only too.
+- **Rankings are computed at startup from the graph being served**, using the Phase 4 code, rather than read from `analytics.json`, which could be stale.
+
+## Known limitations
 
 - **Entity resolution is exact match only.** Common names collide (false merge). Initials, transliterations and aliases do not merge (false split). Full list in `schema.md` section 7.
 - **Only Indian mobile numbers and standard or BH-series plates are accepted.** Landlines and foreign numbers are rejected.
@@ -284,6 +346,13 @@ The demo compares each scenario's problems with the expected set of (block, chec
   - Timestamps come from the local clock and are not checked for going backwards.
 - **Audit history is per build.** Rebuilding the graph deletes the old log and starts a new chain. So "history" means how this build assembled the graph, not a record of changes over months.
 - **There is no manual edit operation.** The only edits to an existing node are provenance merges made by the pipeline, attributed to `pipeline`. An earlier draft had `update_node` and `update_edge` for analyst corrections, but nothing called them, so they were removed before Phase 5 was committed. Analyst edits (with a reason, before/after values and an authenticated actor) are future work.
+- **The API has no authentication.** It binds to 127.0.0.1 by default. Anyone who can reach it can read the whole graph.
+- **The API loads the graph once at startup.** After rebuilding the graph, restart the server.
+- **The drawing is a force-directed picture.** Nearness on screen is not evidence of a relationship; only edges are.
+- **The browser receives the whole graph** (840 KB with parallel edges merged). That is fine at 529 nodes, but real case data would need server-side filtering.
+- **Each Verify click replays the whole log** (about 1.3 s for 24,338 blocks).
+- **The browser checks are not part of `pytest`.** They were run with Playwright during development and are recorded above with screenshots; Playwright is not a project dependency. The API tests do run in `pytest`.
+- **Starlette warns that `TestClient` will move from `httpx` to `httpx2`.** Tests pass; the warning is shown but not silenced.
 - **Some text context is approximated.** "met … two days before" is stamped with the incident time, and FIR references like "the complainant" are resolved by convention, not general coreference.
 - **Businesses used as meeting places are the largest NER error.** The schema labels "Sharma Tea Stall" or "Balan Warehouse" as Location, while spaCy (trained on OntoNotes) calls businesses ORG. This drives Location recall down to about 60% and Organization precision down to about 30%. It is a disagreement over label definitions, not missed text, and the ground truth has not been relabelled to hide it.
 - **spaCy sometimes tags people as ORG, including key people.** In the md run, cluster A's leader was tagged ORG in all 3 mentions. Vehicle models ("Maruti Suzuki Swift"), acronyms (KYC, CCTV, IMEI, UPI) and a bare "Smt" also come through as false Organization entities.
@@ -315,5 +384,8 @@ The demo compares each scenario's problems with the expected set of (block, chec
 | Anchor file next to the database | Head hash published periodically to a separate system: an RFC 3161 timestamping authority, a transparency log, or write-once (WORM) storage |
 | Anyone who can recompute SHA-256 can forge a rewrite | Blocks signed or HMAC'd with a key held in an HSM or KMS, so rewriting the chain also needs the key |
 | `actor` is a free-text string | An authenticated user or service identity on every write |
+| Local API with no authentication | Authenticated users with role-based access, and an audit trail of who viewed which person or case |
+| The whole graph sent to the browser | Case-scoped server-side queries (for example Cypher on Neo4j) with paging and filters |
+| Verify replays the entire log on each click | Scheduled, incremental verification from the last verified anchor, with alerts |
 | Single writer; a second writer fails on the index key | One serialized writer service, or a database transaction that reads the head and inserts in one step |
 | Rule-based anomaly detection | Rules plus statistical or ML models tuned against labelled cases |
