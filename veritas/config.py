@@ -38,3 +38,25 @@ class ConfidenceSettings(BaseSettings):
 def get_confidence_settings() -> ConfidenceSettings:
     # Cached: env vars are read once per process (tests call cache_clear()).
     return ConfidenceSettings()
+
+
+class AnalyticsSettings(BaseSettings):
+    """Phase 4 thresholds. All are unvalidated analyst choices; override with env vars, e.g. VERITAS_ANALYTICS_SPIKE_MIN_RATIO=3."""
+
+    model_config = SettingsConfigDict(env_prefix="VERITAS_ANALYTICS_")
+
+    # Call-spike window. Deliberately NOT the generator's planted 48h-before / 12h-after window, to avoid a circular test.
+    spike_hours_before: float = Field(72, gt=0)
+    spike_hours_after: float = Field(24, ge=0)
+    spike_min_calls: int = Field(5, ge=1)  # ignore tiny counts
+    spike_min_ratio: float = Field(2.0, gt=1)  # observed / expected
+    spike_max_p_value: float = Field(0.001, gt=0, lt=1)  # Poisson upper tail; strict because ~24 events are tested
+
+    # Circular money flow: a time-ordered loop with small deductions per hop (layering typology).
+    cycle_min_length: int = Field(3, ge=3)  # 2-cycles are ordinary repayments
+    cycle_max_length: int = Field(6, ge=3)
+    cycle_max_hop_gap_days: float = Field(7, gt=0)
+    cycle_min_amount_retention: float = Field(0.85, gt=0, le=1)  # each hop keeps at least 85% of the previous amount
+
+    louvain_seed: int = 42  # Louvain is randomised; the seed makes runs repeatable
+    louvain_resolution: float = Field(1.0, gt=0)
