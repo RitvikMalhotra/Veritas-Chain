@@ -13,7 +13,7 @@ from fastapi.testclient import TestClient
 
 from veritas.analytics.centrality import centrality_rankings
 from veritas.analytics.projection import VARIANTS, actor_graph
-from veritas.api.app import STATIC, create_app
+from veritas.api.app import create_app
 from veritas.audit.chain import AuditLog, read_history
 from veritas.config import ApiSettings
 from veritas.graph.builder import GraphBuilder
@@ -21,6 +21,7 @@ from veritas.graph.io import load_graphml, save_graphml
 from veritas.graph.loaders import load_structured, load_text
 
 ROOT = Path(__file__).resolve().parents[1]
+FRONTEND = ROOT / "frontend"
 
 
 @pytest.fixture(scope="module")
@@ -168,24 +169,25 @@ def test_unknown_ids_and_bad_parameters(client, path, status):
     assert client.get(path).status_code == status
 
 
-def test_page_and_vendored_library_are_served(client):
-    page = client.get("/")
-    assert page.status_code == 200 and "synthetic" in page.text.lower()
-    script = client.get("/static/app.js")
-    assert script.status_code == 200 and client.get("/static/vendor/cytoscape.min.js").status_code == 200
-    assert page.headers["cache-control"] == script.headers["cache-control"] == "no-cache"  # no stale app.js after updates
-
-
 # ---------- Guards ----------
 
 
+def frontend_sources():
+    """The React app's own code (not node_modules or build output); fails rather than passing on an empty tree."""
+    sources = [p for p in (FRONTEND / "src").rglob("*") if p.suffix in {".ts", ".tsx", ".js", ".jsx"}]
+    sources += [FRONTEND / "index.html", FRONTEND / "vite.config.ts"]
+    assert len(sources) > 2 and all(p.exists() for p in sources), "frontend sources not found"
+    return sources
+
+
 def test_frontend_never_writes_html_from_data():
-    source = (STATIC / "app.js").read_text(encoding="utf-8")
-    for sink in ("innerHTML", "outerHTML", "insertAdjacentHTML", "document.write", "eval("):
-        assert sink not in source, sink
+    # React escapes text by default; these are the ways around that.
+    for path in frontend_sources():
+        source = path.read_text(encoding="utf-8")
+        for sink in ("dangerouslySetInnerHTML", "innerHTML", "outerHTML", "insertAdjacentHTML", "document.write", "eval("):
+            assert sink not in source, f"{sink} in {path}"
 
 
-def test_api_never_reads_ground_truth():
-    for path in (ROOT / "veritas" / "api").rglob("*"):
-        if path.suffix in {".py", ".js", ".html"}:
-            assert not re.search(r"ground_truth", path.read_text(encoding="utf-8")), path
+def test_api_and_frontend_never_read_ground_truth():
+    for path in [*(ROOT / "veritas" / "api").rglob("*.py"), *frontend_sources()]:
+        assert not re.search(r"ground_truth", path.read_text(encoding="utf-8")), path

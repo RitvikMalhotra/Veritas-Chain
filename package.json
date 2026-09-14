@@ -1,0 +1,19 @@
+{
+  "name": "veritas-chain",
+  "private": true,
+  "description": "Starts the read-only FastAPI backend and the React explorer together. All data is synthetic.",
+  "workspaces": [
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently --kill-others --names api,web --prefix-colors cyan,magenta \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "python -m veritas.api",
+    "dev:web": "wait-on --timeout 60000 http-get://127.0.0.1:8000/api/meta && npm run dev --workspace frontend",
+    "build": "npm run build --workspace frontend",
+    "test": "npm test --workspace frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5",
+    "wait-on": "^9.1.0"
+  }
+}

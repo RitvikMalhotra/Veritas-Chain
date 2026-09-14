@@ -39,8 +39,9 @@ hash chain — with a read-only web UI to explore it all.
    fixed before each run.
 5. **Audits** every graph write in a SHA-256 hash chain (SQLite), with `verify_chain`, replay, and
    a tamper demo showing exactly what is and isn't detectable.
-6. **Serves** it all read-only through FastAPI, with a Cytoscape.js graph explorer, rankings panel
-   and audit trail.
+6. **Serves** it all read-only through a FastAPI JSON API and a React + Vite explorer: a Cytoscape.js
+   graph, rankings, an evidence pane showing where every node and link came from, and a
+   verification band that shows tampering at the exact block.
 
 ## Status
 
@@ -52,7 +53,7 @@ hash chain — with a read-only web UI to explore it all.
 | 3 | Relation extraction + graph construction + exact-match entity resolution | **Done, signed off** |
 | 4 | Centrality, Louvain communities, rule-based anomalies | **Done, signed off** (1 expectation not met, 2 met weakly; follow-up revisions on seed 11: R3 met, R1 and R2 not met) |
 | 5 | SHA-256 hash-chain audit log (SQLite) + tamper demo | **Done, signed off** |
-| 6 | FastAPI + Cytoscape.js frontend | **Done, signed off** |
+| 6 | FastAPI API + React/Vite explorer (Cytoscape.js) | **Done, signed off** (explorer rebuilt in React + Vite after the first sign-off; see [Design decisions](#design-decisions)) |
 
 ## Architecture
 
@@ -66,7 +67,7 @@ data/ (synthetic CSVs + report text)
                                                     │
                           Phase 4: analytics (centrality, communities, anomaly rules)
                                                     │
-                          Phase 6: FastAPI  ──►  Cytoscape.js UI
+                          Phase 6: FastAPI (read-only JSON)  ──►  React + Vite explorer (Cytoscape.js)
 ```
 
 ## Quickstart
@@ -80,9 +81,24 @@ python -m veritas.graph --evaluate             # build the graph (GraphML) + its
 python -m veritas.analytics --evaluate         # centrality, communities, anomaly rules, validation vs ground truth
 python -m veritas.audit                        # verify the audit chain against its anchor; replay it against the saved graph
 python -m veritas.audit.tamper_demo            # tamper with copies of the audit log and show what verify_chain catches
-python -m veritas.api                          # serve the API and the graph explorer at http://127.0.0.1:8000
-python -m pytest                               # all tests
+python -m pytest                               # Python tests
 ```
+
+### Run the explorer
+
+One command starts the API and the explorer together. It needs the graph and audit log built above
+(`python -m veritas.graph`), Node.js 22.12 or newer, and `python` on the path pointing at the environment
+you installed the requirements into.
+
+```bash
+npm install      # once, from the repository root
+npm run dev      # API on 127.0.0.1:8000 and explorer on http://127.0.0.1:5173; Ctrl+C stops both
+npm test         # frontend unit tests
+```
+
+The explorer's dev server starts once the API answers (about 5 seconds, while it computes the layout and
+rankings), and it proxies `/api` to FastAPI. To see tamper detection in the page, start it against a
+tampered copy of the log: `VERITAS_API_AUDIT_PATH=/path/to/tampered.sqlite npm run dev`.
 
 ## Repo layout
 
@@ -102,7 +118,9 @@ python -m pytest                               # all tests
 | [`output/phase4/`](output/phase4/) | Rankings, communities, anomalies (`analytics.json`) and validation (`evaluation.json`) |
 | [`veritas/audit/`](veritas/audit/) | Hash chain (`chain.py`), replay of the log into a graph (`replay.py`), verify CLI, tamper demo |
 | [`output/phase5/`](output/phase5/) | `audit_report.json` (verification and replay check) and `tamper_demo.json`. `audit.sqlite` and `anchor.json` are rebuilt, not committed. |
-| [`veritas/api/`](veritas/api/) | FastAPI app (`app.py`) and the page (`static/`: HTML, CSS, JS, vendored Cytoscape.js 3.34.3 with its MIT licence) |
+| [`veritas/api/`](veritas/api/) | FastAPI app (`app.py`): the read-only JSON API the explorer calls |
+| [`frontend/`](frontend/) | React + Vite explorer in TypeScript: Cytoscape.js graph, rankings, evidence pane, audit trail and verification band. [`DESIGN.md`](frontend/DESIGN.md) records its design system. |
+| [`package.json`](package.json) | Root scripts: `npm run dev` runs the API and the explorer together with `concurrently` |
 | [`docs/`](docs/) | Full methodology, portfolio summary, and Phase 6 screenshots |
 | [`tests/`](tests/) | Tests for the schema, generator, extraction, relations, graph, analytics, audit log and API. `tests/fixtures/relation_challenge.json` is the hand-written relation probe. |
 
@@ -114,6 +132,7 @@ python -m pytest                               # all tests
 - **IDs are derived from content.** Node ID = type + normalized key, so exact-match entity resolution is just ID equality. Edge ID = a hash of the edge's content, so loading the same record twice is harmless.
 - **Confidence is an ordinal weight, not a probability.** Set per method/label from measured precision, deliberately kept conservative.
 - **False splits are preferred over false merges.** A wrong merge invents links between strangers and distorts centrality.
+- **React + Vite for the explorer, replacing the first no-build-step page.** Phase 6 first shipped one plain HTML/CSS/JS page so there was nothing to build. It was rebuilt once the UI needed onboarding, an evidence pane and a prominent verification view. Components, typed API responses and instant reload make that kind of UI work much faster, and React + Vite is the standard tooling reviewers expect. The cost is Node as a development dependency and a dev server next to the API. The API's endpoints did not change.
 
 Full rationale, per-phase validation protocols (written before each run) and the revisions tested on a held-out seed: [docs/methodology.md](docs/methodology.md).
 
@@ -126,7 +145,7 @@ Full rationale, per-phase validation protocols (written before each run) and the
 | Relation extraction | 90.4 F1 with gold entities, 76.9 F1 end to end; 21.4 F1 on an unseen-phrasing challenge set |
 | Centrality/anomalies (Phase 4) | Bridges found (top 10% betweenness); both laundering rounds flagged exactly; decoy loop correctly rejected; spike rule flags 4 of 6 planted spikes; Louvain finds cities, not gangs (purity 19–33%) |
 | Audit chain (Phase 5) | 24,338 blocks; untampered chain verifies; replay reproduces the graph exactly; every tamper scenario caught except a full rewrite without an external anchor (by design, and shown) |
-| API + UI (Phase 6) | All API responses match their source of truth (graph, rankings, audit log) exactly; verified in a real browser with Playwright; no `innerHTML` anywhere in the frontend |
+| API + UI (Phase 6) | All API responses match their source of truth (graph, rankings, audit log) exactly; the explorer checked in a real browser with Playwright, including against a tampered log; no HTML-injection sinks in the frontend (test-enforced) |
 
 Full numbers, tables and per-phase validation results: [docs/methodology.md](docs/methodology.md).
 
@@ -138,6 +157,7 @@ Full numbers, tables and per-phase validation results: [docs/methodology.md](doc
 - **The call-spike rule misses roughly a third to two thirds of planted spikes**, depending on seed; thresholds are unvalidated analyst choices.
 - **The audit chain detects tampering but can't prevent it** — a full rewrite of every hash from a tampered block onward passes internal checks; only an external anchor catches it, and this demo's anchor sits next to the database.
 - **No authentication anywhere** — the API binds to localhost only, `actor` in the audit log is an unauthenticated free-text string.
+- **The explorer only runs on the Vite dev server** — `npm run build` type-checks and bundles it, but nothing serves that bundle. Serving it would need either static-file code back in the frozen FastAPI app or a separate host with the same `/api` proxy; neither is in scope for a local demo.
 - **Synthetic data is cleaner than reality** — 15 FIR templates, no typos/aliases, so extraction accuracy here is an upper bound, not a generalisation estimate.
 
 Full list (25+ items, one per component): [docs/methodology.md](docs/methodology.md#known-limitations-full-list).
@@ -172,4 +192,5 @@ Details and caveats: [docs/methodology.md](docs/methodology.md#future-work-not-i
 - [docs/methodology.md](docs/methodology.md) — full phase-by-phase design decisions, validation protocols and results
 - [docs/portfolio-summary.md](docs/portfolio-summary.md) — how this was built with Claude Code, and the mistakes caught along the way
 - [schema.md](schema.md) — node/edge types, ID rules, confidence rules, entity-resolution limits
+- [frontend/DESIGN.md](frontend/DESIGN.md) — the explorer's design system: palette (and how it was validated), type, layout, components
 - [data/README.md](data/README.md) — what the synthetic dataset contains and how to regenerate it

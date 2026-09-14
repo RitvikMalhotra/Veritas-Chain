@@ -213,6 +213,11 @@ The demo compares each scenario's problems with the expected set of (block, chec
   - chain verification.
 
   One plain HTML/CSS/JS page (no build step) with a Cytoscape.js graph, a sidebar of top-ranked people and an audit panel with verification status. Cytoscape 3.34.3 is vendored from the npm tarball, checked against the registry's sha512, so the page needs no CDN.
+
+  > **Superseded after sign-off: the explorer now has a build step.** The page above was replaced by a React + Vite app in `frontend/` (see [Phase 6 revision](#phase-6-revision-react--vite-explorer-validation-protocol-written-before-the-build)).
+  > - **Why.** UI development velocity: components, typed API responses and instant reload, which the single-file page was starting to resist once onboarding, an evidence pane and a prominent verification view were needed. Standard modern frontend tooling.
+  > - **Cost.** Node is now a development dependency, and `npm run dev` runs a Vite dev server next to the API.
+  > - **Unchanged.** Cytoscape.js (3.34.3, now from npm) and every JSON endpoint. FastAPI no longer serves a page.
 - **One source of truth.** At startup the API loads `graph.graphml` and computes rankings from it with the Phase 4 code, so rankings can't drift from the graph being shown. It never reads `ground_truth.json`.
 - **Display choice.** The graph view merges parallel edges of the same type between the same two nodes (8,120 edges become 1,633) and shows the count. The underlying edges, and their audit history, are one click away. `GET /api/graph?aggregate=false` still returns every edge.
 - **Checks, fixed before running:**
@@ -248,9 +253,7 @@ The demo compares each scenario's problems with the expected set of (block, chec
 - **Verify** showed "Chain verified": 24,338 blocks, anchor checked, graph matches the log.
 - **Tampered copy.** The page showed "Tampering detected": block 23103 fails its hash check and the graph differs at that transfer. The transfer's audit trail shows the altered ₹5,050, while the graph still holds ₹505,000.
 
-Screenshots: [`docs/phase6-explorer.png`](phase6-explorer.png) (the planted false merge selected, chain verified) and [`docs/phase6-tampered.png`](phase6-tampered.png).
-
-![Graph explorer with the planted false-merge node selected and the chain verified](phase6-explorer.png)
+The screenshots of this first page were replaced when the explorer was rebuilt; the current ones are in the [Phase 6 revision](#phase-6-revision-react--vite-explorer-validation-protocol-written-before-the-build) section.
 
 - **The browser check found four problems, and all are fixed.**
   1. **The layout froze the page for 6.6 seconds.** The browser was running Cytoscape's force layout on 529 nodes. The server now computes a seeded spring layout once at startup (about 2 s). Drawing takes 136 ms, and every load shows the same map.
@@ -269,6 +272,81 @@ After Phase 6, the README was read end to end, not phase by phase. Every number 
 - **Phase 2.** md's Organization-precision gap to sm is 9–14 points, not 10–14.
 - **Phase 6 numbers.** The 840 KB graph payload was measured before node positions were added; it is now about 880 KB. Verify took 1.3 s in that early measurement but 1.6–1.8 s in four re-runs now. The "5 of 8 off-screen" figure was measured on Rahul Sharma, not the top-ranked person, and now says so.
 - **Stale wording.** Phase 6 status still "awaiting sign-off"; "Phase 5's audit chain will hook in" (it did); "at a few thousand nodes" (529); "CI tests" (there is no CI); the Starlette entry named one of the two warnings; `schema.md` still described Phase 2 confidence and the Phase 3 edge rule as planned.
+
+## Phase 6 revision: React + Vite explorer (validation protocol, written before the build)
+
+- **Scope, as briefed.** Replace the plain page with a React + Vite app, same substance, presented properly. The requirements:
+  - a defined colour scale per node type, with a legend;
+  - a first-load panel with starting points;
+  - smooth highlight and fit, hover previews, a reset control and a loading state;
+  - an evidence pane showing provenance, never raw JSON;
+  - a verification and tamper result that looks like the project's headline feature.
+
+  Frozen: no new endpoints, no writes, no new analytics, and no changes to edge merging, the layout or Phase 4/5 output. One command must start both processes, and Ctrl+C must stop both.
+- **Decisions (approved at two checkpoints: structure, then a static mockup).**
+  - **Process runner.** A root `package.json` with npm workspaces. `concurrently --kill-others` runs both processes, and `wait-on` holds Vite back until `/api/meta` answers, because the API takes about 5 s to start. Vite proxies `/api`, so there is one origin and no CORS.
+  - **Language and graph code.** TypeScript. Direct Cytoscape integration through a small hook, because `react-cytoscapejs` has had no release since 2022.
+  - **The old page is deleted, not kept as a fallback.** That meant removing its serving code from `app.py`: the `/` route, the static mount and the no-cache middleware. No `/api/*` endpoint changed. One test that checked the old page was removed, and the no-HTML-injection and `ground_truth` guards now scan `frontend/src` (adding `dangerouslySetInnerHTML`). They fail if they find no source files.
+  - **Visual direction.** "Dissection", a dark packet-analyzer layout, chosen from a mockup drawn with the real seed-42 data.
+  - **Colour.** Entity colours were checked with a colour-vision validator, not by eye. Every pair of types that shares a link differs by ΔE ≥ 15.9 under protanopia and deuteranopia simulation, and ≥ 26.5 in normal vision. No assignment of seven hues passed, because people link to all six other types, so Person takes the ink colour. Links use three colour families (calls, money, affiliation), with line style for the evidence: solid for records, dashed for a report rule, dotted for a shared sentence.
+  - **Approved specifics.**
+    - "Inspect a shared name" is a curated, hard-coded starting point that hides itself if the node is missing.
+    - A money link compares the graph's amount with the audit log's, using the existing subgraph endpoint with `aggregate=false`.
+    - The explorer is dark only.
+- **Checks, fixed before running:**
+  1. The Python suite passes, with no API behaviour changed.
+  2. The frontend type-checks and builds, and its unit tests pass. The tests cover formatting, provenance grouping, audit-block sentences, verify-difference parsing, and that every node and edge type in the committed build report has a style.
+  3. In a real browser (Playwright, 1440×900):
+     - it loads with no console errors or warnings and draws the whole graph;
+     - each starting point works;
+     - node and link selection show provenance;
+     - neighbourhood depths match the API;
+     - Verify shows the verified state;
+     - pointed at a tampered copy of the log, the page shows the tampered block and the changed amount.
+  4. Ctrl+C in a real console stops both processes, and the API exiting also stops the explorer.
+
+**Results (seed 42):**
+
+| # | Check | Result | Detail |
+|---|---|---|---|
+| 1 | Python suite | **Met** | 211 passed (the old page's served-files test was removed; the two guards now scan `frontend/src` and fail on a planted `dangerouslySetInnerHTML` and a planted `ground_truth` path). The same two Starlette deprecation warnings as before. |
+| 2 | Frontend build and tests | **Met** | `tsc -b && vite build` passes; 10 Vitest tests pass. |
+| 3 | Real browser | **Met, after eight fixes (below)** | See the list below the table. |
+| 4 | One command, one Ctrl+C | **Met** | Vite started only after the API answered. GET and the POST to verify both went through the proxy. A console Ctrl+C event stopped both processes in about 1 s, and killing the API stopped Vite. On Windows, npm still shows its usual "Terminate batch job (Y/N)?" prompt afterwards. |
+
+**What the browser check showed (check 3):**
+- **Drawing.** All 529 nodes and 1,633 merged links appear, with 0 console errors or warnings. The first draw was ready in about 2.2 s against the dev server, including the 880 KB graph request.
+- **Follow the top broker.** Selecting Laksh Konda lit exactly the neighbourhood (7 nodes, 6 links), all 7 in view, rank 1, 5 audit blocks. This is the same neighbourhood the first page showed.
+- **Inspect a shared name.** Rahul Sharma: 8 nodes and 7 links lit, all 8 in view, 6 audit blocks (14 with the links that touch the node), marked on the chain strip.
+- **Neighbourhood view.** Depth 1 gave 8 nodes and 7 links; depth 2 gave 30 nodes and 46 links.
+- **A money link.** Record TXN-000068 (IMPS, ₹17,000.00): the graph and the audit log agree.
+- **Keyboard.**
+  - Arrow keys change the ranking metric.
+  - The evidence listbox works from the keyboard; "All evidence" reloads rankings, with Laksh Konda at 0.4196.
+  - Esc clears the selection, and focus rings are visible.
+- **Verify.** "Chain verified": 24,338 blocks, anchor matched, graph matches the log.
+- **Tampered copy.** The same edit as the Phase 5 demo: block 23103's transfer cut from ₹505,000 to ₹5,050.
+  - The band showed "Tampering detected", with a red tick at #23,103 and both findings: the hash check at 23103, and `edge edge:0d66aee4c3e2802a differs`.
+  - "Inspect the changed link" opened TXN-000597 (RTGS, 2025-03-04), showing ₹5,05,000.00 in the graph against ₹5,050.00 in the log, with the block in the bad-checksum style.
+- **Laptop sizes.** At 1280×800 the layout holds. Below 960 px wide, the page scrolls sideways and says so.
+
+![Explorer with the shared-name node selected and the chain verified](phase6-explorer.png)
+
+Also: [`docs/phase6-tampered.png`](phase6-tampered.png) (the tampered copy, with the changed link inspected) and [`docs/phase6-welcome.png`](phase6-welcome.png) (first load).
+
+- **The browser check and the design review found eight problems, and all are fixed.**
+  1. **On first load the graph sat hidden behind the welcome panel.** The fit was correct, but the panel covers the left of the canvas. The graph now fits beside the panel and re-centres when the panel closes.
+  2. **Reserving the legend's height shrank the whole graph.** Fits now keep clear of the legend by going above it or beside it, whichever allows the larger zoom.
+  3. **The welcome panel overflowed at 900 px tall**, so the third starting point was cut off. The copy was tightened.
+  4. **Cytoscape logged a warning** about the custom wheel sensitivity. The setting was removed.
+  5. **The tampered amounts were below the fold** in the evidence pane. A failing record now comes first, and the audit trail sizes to its blocks.
+  6. **Names in a lit neighbourhood printed over each other** ("Laksh Konda" over "Udyati Balay"). A label now moves above its node when the spot below is taken.
+  7. **Small uppercase type labels sat above the evidence and hover-card titles**, a pattern the design checklist rules out. The type line now goes under the title.
+  8. **The hover preview stayed open after a click.** It now closes on click.
+- **The design review was weaker than the skill intends, in two ways.**
+  - **It was not independent.** The design skill normally runs its finish review as a separate agent that sees only the screenshots, the design contract and the checklist. Here it ran in the same session that built the page, so the reviewer knew the builder's intent. Problems 6 and 7 above, and the narrow-screen notice, came from it; a blind spot the builder had would not have.
+  - **Its automated detector ran degraded.** The anti-pattern detector's HTML and CSS parser modules were not installed, so it reported nothing. That is an undercount, not a pass; the checklist was applied by hand instead.
+- **A contrast failure was found after the review, while preparing the commit.** Checking the product brief's WCAG AA target turned up the faintest text colour (`#5f6b77`) at 3.2–3.4:1 on its backgrounds. It is used for the audit trail's hash labels and actor names and for the loading log. It was raised to `#77838f` (4.6–5.0:1 on those backgrounds). Neither the review nor the colour validator caught it; the validator checks the node palette, not text. The screenshots above were retaken after the change.
 
 ## Known limitations (full list)
 
@@ -295,7 +373,12 @@ After Phase 6, the README was read end to end, not phase by phase. Every number 
 - **The drawing is a force-directed picture.** Nearness on screen is not evidence of a relationship; only edges are.
 - **The browser receives the whole graph** (about 880 KB with parallel edges merged and positions included). That is fine at 529 nodes, but real case data would need server-side filtering.
 - **Each Verify click re-checks and replays the whole log** (about 1.6–1.8 s for 24,338 blocks on the development machine).
-- **The browser checks are not part of `pytest`.** They were run with Playwright during development and are recorded above with screenshots; Playwright is not a project dependency. The API tests do run in `pytest`.
+- **The browser checks are not part of `pytest`.** They were run with Playwright during development and are recorded above with screenshots; Playwright is not a project dependency. The API tests do run in `pytest`, and the frontend's unit tests in `npm test`.
+- **The explorer runs on the Vite dev server.** `npm run build` type-checks and bundles it, but nothing serves the bundle. Deploying it would mean a static host with the same `/api` proxy.
+- **The explorer needs Node.js 22.12 or newer** as well as Python, because `concurrently` 10 requires Node 22.
+- **Laptop-first and dark only.** Below 960 px wide the page scrolls sideways (and says so); there is no light theme.
+- **Label placement is a heuristic.** Names in a selected neighbourhood move above their node when the spot below is taken, which handles small neighbourhoods; a dense one (a busy phone) can still overlap.
+- **"Inspect a shared name" is a hard-coded node ID** (`Person:rahul_sharma`, from the Phase 3 findings). It hides itself if a rebuilt graph lacks that node, but it will not find a different collision.
 - **The API tests show two deprecation warnings from Starlette's `TestClient`:** it asks for `httpx2` instead of `httpx`, and it uses a deprecated `anyio` alias. Tests pass; the warnings are shown, not silenced.
 - **Some text context is approximated.** "met … two days before" is stamped with the incident time, and FIR references like "the complainant" are resolved by convention, not general coreference.
 - **Businesses used as meeting places are the largest NER error.** The schema labels "Sharma Tea Stall" or "Balan Warehouse" as Location, while spaCy (trained on OntoNotes) calls businesses ORG. This drives Location recall down to about 60% and Organization precision down to about 30%. It is a disagreement over label definitions, not missed text, and the ground truth has not been relabelled to hide it.

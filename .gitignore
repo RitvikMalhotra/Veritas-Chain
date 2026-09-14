@@ -12,3 +12,8 @@ output/phase3/graph.graphml
 output/phase5/anchor.json
 # Browser-check logs written by the Playwright tool
 .playwright-mcp/
+# Frontend dependencies and build output (npm install and npm run build recreate them)
+node_modules/
+frontend/dist/
+# Design-skill working files (surface brief, review captures); DESIGN.md is the committed record
+.impeccable/

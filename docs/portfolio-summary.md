@@ -14,7 +14,7 @@ Veritas-Chain is a link-analysis pipeline for investigating criminal networks, b
 3. It records every graph change in a SHA-256 hash chain.
 4. A small web page lets you explore the graph and check that chain.
 
-It is built with Python, spaCy, NetworkX, SQLite, FastAPI and Cytoscape.js, and has 212 tests.
+It is built with Python, spaCy, NetworkX, SQLite and FastAPI, with a React + Vite explorer using Cytoscape.js, and has 211 Python tests and 10 frontend tests.
 
 On clean, templated synthetic data, the accuracy numbers are best-case figures. The better evidence is how each claim was checked, so this summary starts with what went wrong.
 

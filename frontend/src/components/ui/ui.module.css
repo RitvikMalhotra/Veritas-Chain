@@ -1,0 +1,373 @@
+/* ---------- Button ---------- */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 28px;
+  padding-inline: 10px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line-2);
+  background: var(--raised);
+  color: var(--ink);
+  font-size: var(--t-sm);
+  font-weight: 500;
+  white-space: nowrap;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease,
+    transform 160ms var(--ease-out);
+}
+.button svg {
+  width: 14px;
+  height: 14px;
+  flex: none;
+}
+.button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+.button:disabled {
+  opacity: 0.45;
+}
+@media (hover: hover) and (pointer: fine) {
+  .button:hover:not(:disabled) {
+    background: var(--hover);
+    border-color: #46556a;
+  }
+  .ghost:hover:not(:disabled) {
+    background: var(--raised);
+    border-color: transparent;
+    color: var(--ink);
+  }
+  .primary:hover:not(:disabled) {
+    background: #ffffff;
+    border-color: #ffffff;
+  }
+}
+.ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--ink-2);
+}
+.primary {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--canvas);
+  font-weight: 600;
+}
+.icon {
+  width: 28px;
+  padding: 0;
+}
+.small {
+  height: 24px;
+  padding-inline: 8px;
+  font-size: var(--t-xs);
+}
+@media (prefers-reduced-motion: reduce) {
+  .button:active:not(:disabled) {
+    transform: none;
+  }
+}
+
+/* ---------- Segmented control ---------- */
+.segmented {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 2px;
+  padding: 2px;
+  background: var(--sunken);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+}
+.segment {
+  height: 24px;
+  padding-inline: 8px;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--ink-2);
+  font-size: var(--t-xs);
+  font-weight: 500;
+  white-space: nowrap;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
+}
+.segment[aria-checked="true"] {
+  background: var(--line-2);
+  color: var(--ink);
+}
+.segment:disabled {
+  color: var(--ink-4);
+}
+.segment:focus-visible {
+  outline-offset: -1px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .segment:hover:not(:disabled):not([aria-checked="true"]) {
+    background: var(--raised);
+    color: var(--ink);
+  }
+}
+
+/* ---------- Select (listbox) ---------- */
+.select {
+  position: relative;
+}
+.selectButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  height: 28px;
+  padding-inline: 10px 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--raised);
+  font-size: var(--t-xs);
+  text-align: left;
+  transition: border-color 150ms ease;
+}
+.selectButton .selectLabel {
+  color: var(--ink-3);
+}
+.selectButton .selectValue {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.selectButton svg {
+  width: 14px;
+  height: 14px;
+  color: var(--ink-3);
+  transition: transform 150ms var(--ease-out);
+}
+.selectButton[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+@media (hover: hover) and (pointer: fine) {
+  .selectButton:hover {
+    border-color: var(--line-2);
+  }
+}
+.listbox {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  padding: 4px;
+  background: var(--raised);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-float);
+  transform-origin: top center;
+  transition:
+    opacity 140ms var(--ease-out),
+    transform 140ms var(--ease-out);
+  @starting-style {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+}
+.listbox:focus-visible {
+  outline: none;
+}
+.option {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  column-gap: 8px;
+  padding: 7px 8px;
+  border-radius: var(--r-sm);
+  font-size: var(--t-xs);
+  cursor: pointer;
+}
+.option svg {
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+  color: var(--ink);
+}
+.option small {
+  grid-column: 2;
+  color: var(--ink-3);
+  font-size: var(--t-2xs);
+  line-height: 1.35;
+}
+.option[data-active="true"] {
+  background: var(--hover);
+}
+
+/* ---------- Chip ---------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 20px;
+  padding-inline: 7px;
+  border-radius: var(--r-sm);
+  background: var(--raised);
+  border: 1px solid var(--line);
+  font-size: var(--t-2xs);
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+.chip svg {
+  width: 12px;
+  height: 12px;
+  flex: none;
+}
+.chipOk svg {
+  color: var(--good-ink);
+}
+.chipWarn svg {
+  color: var(--warn-ink);
+}
+.chipBad {
+  color: var(--crit-ink);
+  border-color: var(--crit-line);
+  background: var(--crit-ground);
+}
+
+/* ---------- Switch ---------- */
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink-2);
+  font-size: var(--t-2xs);
+  text-align: left;
+}
+.track {
+  position: relative;
+  width: 26px;
+  height: 14px;
+  flex: none;
+  border-radius: 7px;
+  background: var(--line-2);
+  transition: background-color 150ms ease;
+}
+.track::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ink-2);
+  transition:
+    transform 180ms var(--ease-out),
+    background-color 150ms ease;
+}
+.switch[aria-checked="true"] .track {
+  background: var(--ink);
+}
+.switch[aria-checked="true"] .track::after {
+  transform: translateX(12px);
+  background: var(--canvas);
+}
+.switch:disabled {
+  opacity: 0.5;
+}
+@media (prefers-reduced-motion: reduce) {
+  .track::after {
+    transition: background-color 150ms ease;
+  }
+}
+
+/* ---------- Dissection tree ---------- */
+.section {
+  border-bottom: 1px solid var(--line);
+}
+.summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  font-size: var(--t-xs);
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  user-select: none;
+}
+.summary::-webkit-details-marker {
+  display: none;
+}
+.summary svg {
+  width: 14px;
+  height: 14px;
+  color: var(--ink-3);
+  transition: transform 150ms var(--ease-out);
+}
+.section:not([open]) > .summary svg {
+  transform: rotate(-90deg);
+}
+.summary .meta {
+  margin-left: auto;
+  font-weight: 400;
+  color: var(--ink-3);
+  font-size: var(--t-2xs);
+}
+@media (hover: hover) and (pointer: fine) {
+  .summary:hover {
+    background: var(--raised);
+  }
+}
+.sectionBody {
+  padding: 0 14px 12px 34px;
+}
+.fields {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 3px 12px;
+  font-size: var(--t-xs);
+}
+.fields dt {
+  color: var(--ink-3);
+}
+.fields dd {
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+.derived {
+  color: var(--ink-3);
+}
+.group {
+  grid-column: 1 / -1;
+  margin-top: 6px;
+  font-size: var(--t-2xs);
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.group:first-child {
+  margin-top: 0;
+}
+
+/* ---------- Skeleton ---------- */
+.skeleton {
+  display: block;
+  height: 10px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--raised) 0%, var(--hover) 50%, var(--raised) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+@keyframes shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}

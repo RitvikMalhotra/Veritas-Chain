@@ -1,0 +1,63 @@
+.bar {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+  height: var(--topbar-h);
+  padding-inline: var(--s4) var(--s2);
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  min-width: 0;
+}
+
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.wordmark svg {
+  width: 18px;
+  height: 18px;
+}
+
+.capture {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink-3);
+  font-size: var(--t-xs);
+}
+
+.capture :global(.mono) {
+  color: var(--ink-2);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding-inline: 8px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-sm);
+  font-size: var(--t-2xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+.badge svg {
+  width: 13px;
+  height: 13px;
+}

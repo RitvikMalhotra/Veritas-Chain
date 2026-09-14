@@ -1,0 +1,104 @@
+.stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  background: var(--canvas);
+}
+
+.viewbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding-inline: 10px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  min-width: 0;
+}
+
+.mode {
+  width: 220px;
+  flex: none;
+}
+
+.depth {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--t-xs);
+  color: var(--ink-3);
+  flex: none;
+}
+
+.depthControl {
+  width: 84px;
+}
+
+.expr {
+  flex: 1;
+  min-width: 0;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-inline: 10px;
+  border-radius: var(--r-md);
+  background: var(--sunken);
+  border: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: var(--t-xs);
+  color: var(--ink-2);
+  white-space: pre;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.expr b {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.canvasWrap {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 240ms ease;
+}
+
+.canvas[data-ready="true"] {
+  opacity: 1;
+}
+
+.legendDock {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  z-index: 5;
+}
+
+.zoom {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 5;
+  display: grid;
+  gap: 4px;
+}
+
+.zoom button {
+  background: rgba(26, 34, 43, 0.92);
+}
+
+@media (max-width: 1180px) {
+  .mode {
+    width: 190px;
+  }
+}

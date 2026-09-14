@@ -1,0 +1,165 @@
+.pane {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--panel);
+  border-right: 1px solid var(--line);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 14px 8px;
+}
+
+.head h2 {
+  font-size: var(--t-md);
+  font-weight: 600;
+}
+
+.meta {
+  font-size: var(--t-2xs);
+  color: var(--ink-3);
+}
+
+.controls {
+  display: grid;
+  gap: 8px;
+  padding: 0 14px 10px;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  gap: 8px;
+  padding: 6px 14px;
+  border-block: 1px solid var(--line);
+  font-size: var(--t-2xs);
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+.columns span:last-child {
+  text-align: right;
+}
+
+.scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+.list {
+  transition: opacity 150ms ease;
+}
+
+.list[data-stale="true"] {
+  opacity: 0.5;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 5px 14px;
+  border: 0;
+  border-bottom: 1px solid var(--line-faint);
+  background: none;
+  text-align: left;
+  font-size: var(--t-sm);
+  color: var(--ink);
+  transition: background-color 120ms ease;
+}
+
+.row:focus-visible {
+  outline-offset: -2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .row:hover {
+    background: var(--raised);
+  }
+}
+
+.rank {
+  font-family: var(--mono);
+  font-size: var(--t-xs);
+  color: var(--ink-3);
+}
+
+.name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.score {
+  display: grid;
+  justify-items: end;
+  gap: 3px;
+  font-family: var(--mono);
+  font-size: var(--t-xs);
+  color: var(--ink-2);
+}
+
+.bar {
+  display: block;
+  width: 64px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--line-2);
+}
+
+.bar i {
+  display: block;
+  height: 100%;
+  border-radius: 1px;
+  background: var(--ink-3);
+}
+
+/* The selected person carries the Person colour (ink) into the list. */
+.row[aria-current="true"] {
+  background: var(--ink);
+  color: var(--canvas);
+  border-bottom-color: var(--ink);
+}
+
+.row[aria-current="true"] .rank,
+.row[aria-current="true"] .score {
+  color: #2b3540;
+}
+
+.row[aria-current="true"] .bar {
+  background: #b9c3cc;
+}
+
+.row[aria-current="true"] .bar i {
+  background: var(--canvas);
+}
+
+.note {
+  padding: 10px 14px 12px;
+  border-top: 1px solid var(--line);
+  font-size: var(--t-2xs);
+  line-height: 1.45;
+  color: var(--ink-3);
+}
+
+.skeletons {
+  display: grid;
+  gap: 14px;
+  padding: 12px 14px;
+}
+
+.error {
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+  padding: 12px 14px;
+  color: var(--crit-ink);
+  font-size: var(--t-xs);
+}

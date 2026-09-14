@@ -1,0 +1,234 @@
+.band {
+  display: grid;
+  grid-template-columns: minmax(250px, 330px) minmax(0, 1fr) minmax(300px, 370px);
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease;
+}
+
+.band[data-tone="bad"] {
+  background: var(--crit-ground);
+  border-bottom-color: var(--crit-line);
+}
+
+.state,
+.strip,
+.head {
+  padding: 12px 16px;
+  min-height: 76px;
+}
+
+.state {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  column-gap: 10px;
+  align-content: center;
+  border-right: 1px solid var(--line);
+}
+
+.stateIcon {
+  grid-row: span 2;
+  align-self: center;
+  width: 22px;
+  height: 22px;
+  color: var(--ink-3);
+}
+
+.state strong {
+  font-size: var(--t-xl);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.state span {
+  color: var(--ink-2);
+  font-size: var(--t-xs);
+  overflow-wrap: anywhere;
+}
+
+.band[data-tone="ok"] .stateIcon,
+.band[data-tone="ok"] .state strong {
+  color: var(--good-ink);
+}
+
+.band[data-tone="warn"] .stateIcon,
+.band[data-tone="warn"] .state strong {
+  color: var(--warn-ink);
+}
+
+.band[data-tone="bad"] .stateIcon,
+.band[data-tone="bad"] .state strong {
+  color: var(--crit-ink);
+}
+
+.band[data-tone="bad"] .state,
+.band[data-tone="bad"] .head {
+  border-color: var(--crit-line);
+}
+
+.strip {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 4px;
+  min-width: 0;
+  align-content: center;
+}
+
+.stripHead {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: var(--t-2xs);
+  color: var(--ink-3);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.stripHead span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stripHead b {
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+.scanning {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Indeterminate on purpose: the verify endpoint reports no progress, so the sweep promises none. */
+.scanning::after {
+  content: "";
+  position: absolute;
+  inset: 8px auto 12px 0;
+  width: 18%;
+  background: linear-gradient(90deg, transparent, rgba(228, 234, 239, 0.28), transparent);
+  animation: sweep 1.2s linear infinite;
+}
+
+@keyframes sweep {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(560%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanning::after {
+    animation: none;
+    transform: none;
+    width: 100%;
+    opacity: 0.35;
+  }
+}
+
+.head {
+  display: grid;
+  align-content: center;
+  gap: 6px;
+  border-left: 1px solid var(--line);
+  min-width: 0;
+}
+
+.headRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.headRow > :last-child {
+  margin-left: auto;
+}
+
+.label {
+  font-size: var(--t-2xs);
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.hash {
+  font-family: var(--mono);
+  font-size: var(--t-xs);
+  color: var(--ink-2);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.findings {
+  grid-column: 1 / -1;
+  padding: 0 16px 14px;
+  transition:
+    opacity 200ms var(--ease-out),
+    transform 200ms var(--ease-out);
+  @starting-style {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .findings {
+    @starting-style {
+      transform: none;
+    }
+  }
+}
+
+.findings table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--t-xs);
+}
+
+.findings th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--ink-3);
+  padding: 6px 12px 6px 0;
+  border-bottom: 1px solid var(--crit-line);
+}
+
+.findings td {
+  padding: 7px 12px 7px 0;
+  border-bottom: 1px solid #2a1518;
+  color: var(--crit-ink);
+  vertical-align: top;
+}
+
+.findings td:first-child {
+  white-space: nowrap;
+  width: 90px;
+}
+
+.findings td:nth-child(2) {
+  white-space: nowrap;
+  width: 150px;
+}
+
+.findings td:last-child {
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+@media (max-width: 1180px) {
+  .band {
+    grid-template-columns: minmax(230px, 280px) minmax(0, 1fr) minmax(290px, 330px);
+  }
+}

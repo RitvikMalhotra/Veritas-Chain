@@ -1,0 +1,63 @@
+/* Dark only by design: the graph's 1,633 hairline links read as structure on graphite, not as grey fog on white.
+   Entity-type colours live in src/graph/theme.ts, the single source for both the graph and its legend. */
+:root {
+  color-scheme: dark;
+
+  --ground: #0b0f13;
+  --canvas: #10151b;
+  --panel: #141a21;
+  --raised: #1a222b;
+  --hover: #1f2832;
+  --sunken: #0c1015;
+  --line: #232d37;
+  --line-2: #33404d;
+  --line-faint: #1a2129;
+
+  --ink: #e4eaef;
+  --ink-2: #aab5c0;
+  --ink-3: #85919d;
+  --ink-4: #77838f;
+
+  /* Chain state: the only saturated colour in the chrome. Always paired with an icon and a label. */
+  --good: #0ca30c;
+  --good-ink: #3cc75a;
+  --warn: #fab219;
+  --warn-ink: #f5b83d;
+  --crit: #e5484d;
+  --crit-ink: #ff8078;
+  --crit-ground: #1d1012;
+  --crit-ground-2: #140a0c;
+  --crit-line: #5c2227;
+
+  --sans: "Atkinson Hyperlegible Next Variable", "Segoe UI", system-ui, sans-serif;
+  --mono: "Atkinson Hyperlegible Mono Variable", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --t-2xs: 11px;
+  --t-xs: 12px;
+  --t-sm: 13px;
+  --t-md: 14px;
+  --t-lg: 16px;
+  --t-xl: 20px;
+  --t-2xl: 24px;
+
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+
+  --r-sm: 4px;
+  --r-md: 6px;
+  --r-lg: 8px;
+  --r-xl: 12px;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --shadow-float: 0 8px 24px rgba(0, 0, 0, 0.45);
+
+  --topbar-h: 44px;
+  --statusbar-h: 26px;
+  --rankings-w: clamp(232px, 19vw, 288px);
+  --evidence-w: clamp(330px, 27vw, 392px);
+}

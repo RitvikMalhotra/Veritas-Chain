@@ -1,0 +1,58 @@
+.legend {
+  display: grid;
+  gap: 6px;
+  padding: 8px 12px 10px;
+  background: rgba(20, 26, 33, 0.94);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  font-size: var(--t-2xs);
+  color: var(--ink-2);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: -8px;
+  height: 20px;
+}
+
+.legend h3 {
+  font-size: var(--t-2xs);
+  font-weight: 600;
+  color: var(--ink-3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.types,
+.lines {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 4px 16px;
+}
+
+/* Link kinds down the first column, evidence styles down the second. */
+.lines {
+  grid-template-rows: repeat(3, auto);
+  grid-auto-flow: column;
+}
+
+.types li,
+.lines li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.count {
+  margin-left: auto;
+  padding-left: 8px;
+  font-family: var(--mono);
+  color: var(--ink-3);
+}
+
+.collapsed {
+  background: rgba(26, 34, 43, 0.92);
+}

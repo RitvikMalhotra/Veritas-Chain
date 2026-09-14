@@ -11,8 +11,6 @@ from typing import Any, Literal
 
 import networkx as nx
 from fastapi import FastAPI, HTTPException, Query
-from fastapi.responses import FileResponse
-from fastapi.staticfiles import StaticFiles
 
 from veritas.analytics.centrality import centrality_rankings
 from veritas.analytics.projection import VARIANTS, actor_graph
@@ -21,7 +19,6 @@ from veritas.audit.replay import graph_differences, replay
 from veritas.config import ApiSettings
 from veritas.graph.io import load_graphml
 
-STATIC = Path(__file__).parent / "static"
 SYNTHETIC_NOTICE = "All data is synthetic. No real people, numbers, accounts or law-enforcement records."
 Metric = Literal["degree", "betweenness", "pagerank"]
 Variant = Literal["all_evidence", "no_cooccurrence", "structured_only"]
@@ -95,23 +92,10 @@ def create_app(settings: ApiSettings | None = None) -> FastAPI:
     loaded_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
 
     app = FastAPI(title="Veritas-Chain", description=SYNTHETIC_NOTICE, version="1.0")
-    app.mount("/static", StaticFiles(directory=STATIC), name="static")
-
-    @app.middleware("http")
-    async def revalidate_page_files(request, call_next):
-        # Without this, browsers may keep running an old app.js after an update; ETags keep revalidation cheap.
-        response = await call_next(request)
-        if not request.url.path.startswith("/api/"):
-            response.headers["Cache-Control"] = "no-cache"
-        return response
 
     def require_node(node_id: str) -> None:
         if node_id not in graph:
             raise HTTPException(404, f"no node {node_id!r}")
-
-    @app.get("/", include_in_schema=False)
-    def index() -> FileResponse:
-        return FileResponse(STATIC / "index.html")
 
     @app.get("/api/meta")
     def meta() -> dict[str, Any]:

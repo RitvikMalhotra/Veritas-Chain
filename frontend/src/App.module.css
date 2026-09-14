@@ -1,0 +1,45 @@
+.app {
+  height: 100%;
+  min-width: 960px; /* laptop-first: below this the page scrolls sideways rather than crushing the graph */
+  min-height: 560px;
+  display: grid;
+  grid-template-rows: var(--topbar-h) auto minmax(0, 1fr) var(--statusbar-h);
+  background: var(--ground);
+}
+
+.body {
+  display: grid;
+  grid-template-columns: var(--rankings-w) minmax(0, 1fr) var(--evidence-w);
+  min-height: 0;
+}
+
+.narrow {
+  display: none;
+}
+
+@media (max-width: 959px) {
+  .narrow {
+    display: block;
+    position: fixed;
+    z-index: 40;
+    left: 8px;
+    right: 8px;
+    bottom: calc(var(--statusbar-h) + 8px);
+    padding: 8px 12px;
+    border: 1px solid var(--line-2);
+    border-radius: var(--r-lg);
+    background: var(--raised);
+    box-shadow: var(--shadow-float);
+    color: var(--ink);
+    font-size: var(--t-xs);
+  }
+}
+
+.evidence {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  background: var(--panel);
+  border-left: 1px solid var(--line);
+}

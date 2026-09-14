@@ -1,0 +1,77 @@
+.wrap {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 20px;
+  padding: 24px;
+}
+
+.log {
+  display: grid;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: var(--t-xs);
+  color: var(--ink-4);
+}
+
+.log li {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 12px;
+}
+
+.log li[data-state="loading"] {
+  color: var(--ink-2);
+}
+
+.log li[data-state="loading"] b {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.log li[data-state="done"] {
+  color: var(--ink-2);
+}
+
+.log li[data-state="done"] b {
+  color: var(--good-ink);
+  font-weight: 500;
+}
+
+.log li[data-state="failed"] {
+  color: var(--crit-ink);
+}
+
+.log li[data-state="failed"] b {
+  font-weight: 600;
+}
+
+.cursor {
+  display: inline-block;
+  width: 7px;
+  height: 13px;
+  margin-left: 6px;
+  vertical-align: -2px;
+  background: var(--ink);
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+.error {
+  display: grid;
+  justify-items: start;
+  gap: 10px;
+  max-width: 52ch;
+  padding: 12px 14px;
+  border: 1px solid var(--crit-line);
+  border-radius: var(--r-lg);
+  background: var(--crit-ground);
+  color: var(--ink);
+  font-size: var(--t-sm);
+}

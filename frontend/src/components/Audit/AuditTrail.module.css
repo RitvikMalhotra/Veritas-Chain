@@ -1,0 +1,139 @@
+.trail {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 auto;
+  min-height: 0;
+  max-height: 45%; /* sized to its blocks, so a single record leaves the evidence above more room */
+  background: var(--sunken);
+  border-top: 1px solid var(--line-2);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 14px 6px;
+}
+
+.head h2 {
+  font-size: var(--t-md);
+  font-weight: 600;
+}
+
+.meta {
+  font-size: var(--t-2xs);
+  color: var(--ink-3);
+}
+
+.toggle {
+  padding: 0 14px 8px;
+}
+
+.empty {
+  padding: 4px 14px 14px;
+  color: var(--ink-3);
+  font-size: var(--t-xs);
+  line-height: 1.5;
+  max-width: 44ch;
+}
+
+.error {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+  padding: 4px 14px 14px;
+  color: var(--crit-ink);
+  font-size: var(--t-xs);
+}
+
+.blocks {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+.block {
+  display: grid;
+  gap: 3px;
+  padding: 7px 14px;
+  border-top: 1px solid #161d24;
+  font-size: var(--t-xs);
+  transition: background-color 120ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .block:hover {
+    background: #111820;
+  }
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+}
+
+.idx {
+  font-family: var(--mono);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.op {
+  padding: 0 5px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  font-family: var(--mono);
+  font-size: var(--t-2xs);
+  color: var(--ink-2);
+}
+
+.top time {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: var(--t-2xs);
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.what {
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+.dump,
+.actor {
+  font-family: var(--mono);
+  font-size: var(--t-2xs);
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dump span,
+.actor {
+  color: var(--ink-4);
+}
+
+.bad {
+  background: var(--crit-ground-2);
+  border-top-color: var(--crit-line);
+}
+
+.bad .idx,
+.bad .what {
+  color: var(--crit-ink);
+}
+
+.bad .op {
+  border-color: var(--crit-line);
+  color: var(--crit-ink);
+}
+
+.more {
+  padding: 8px 14px 12px;
+}
