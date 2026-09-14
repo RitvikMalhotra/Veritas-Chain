@@ -8,3 +8,5 @@ __pycache__/
 output/holdout_seed*/
 # Graph file is rebuilt in ~2s by python -m veritas.graph; reports next to it are committed
 output/phase3/graph.graphml
+# The audit database (*.sqlite, above) and its anchor are rebuilt with the graph; the anchor's hash changes every build
+output/phase5/anchor.json

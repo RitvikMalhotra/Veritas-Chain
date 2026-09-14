@@ -1,0 +1,155 @@
+{
+  "anchor_block": 24338,
+  "scenarios": [
+    {
+      "attack": "none (untouched copy)",
+      "expected": "verifies with and without the anchor",
+      "verify_without_anchor": {
+        "ok": true,
+        "problems": []
+      },
+      "verify_with_anchor": {
+        "ok": true,
+        "problems": []
+      },
+      "as_expected": true
+    },
+    {
+      "attack": "UPDATE a block through SQL",
+      "expected": "refused by the append-only trigger; chain still verifies",
+      "refused_with": "audit log is append-only",
+      "verify_without_anchor": {
+        "ok": true,
+        "problems": []
+      },
+      "verify_with_anchor": {
+        "ok": true,
+        "problems": []
+      },
+      "as_expected": true
+    },
+    {
+      "attack": "drop triggers; change transfer amount in block 23103 from 505000.00 to 5050.00",
+      "expected": "hash check fails at block 23103",
+      "verify_without_anchor": {
+        "ok": false,
+        "problems": [
+          {
+            "idx": 23103,
+            "check": "hash",
+            "detail": "stored hash does not match the block's contents"
+          }
+        ]
+      },
+      "verify_with_anchor": {
+        "ok": false,
+        "problems": [
+          {
+            "idx": 23103,
+            "check": "hash",
+            "detail": "stored hash does not match the block's contents"
+          }
+        ]
+      },
+      "as_expected": true
+    },
+    {
+      "attack": "same change, and recompute block 23103's hash",
+      "expected": "link check fails at block 23104",
+      "verify_without_anchor": {
+        "ok": false,
+        "problems": [
+          {
+            "idx": 23104,
+            "check": "link",
+            "detail": "prev_hash does not match the previous block's stored hash"
+          }
+        ]
+      },
+      "verify_with_anchor": {
+        "ok": false,
+        "problems": [
+          {
+            "idx": 23104,
+            "check": "link",
+            "detail": "prev_hash does not match the previous block's stored hash"
+          }
+        ]
+      },
+      "as_expected": true
+    },
+    {
+      "attack": "same change, and recompute all 1236 hashes from block 23103 to the end",
+      "expected": "passes without the anchor (known limitation); the anchor check fails",
+      "verify_without_anchor": {
+        "ok": true,
+        "problems": []
+      },
+      "verify_with_anchor": {
+        "ok": false,
+        "problems": [
+          {
+            "idx": 24338,
+            "check": "anchor",
+            "detail": "the anchored block's hash differs from the hash saved outside the database"
+          }
+        ]
+      },
+      "as_expected": true
+    },
+    {
+      "attack": "drop triggers; delete block 12169",
+      "expected": "sequence and link checks fail at block 12170",
+      "verify_without_anchor": {
+        "ok": false,
+        "problems": [
+          {
+            "idx": 12170,
+            "check": "sequence",
+            "detail": "expected block 12169; blocks are missing or reordered"
+          },
+          {
+            "idx": 12170,
+            "check": "link",
+            "detail": "prev_hash does not match the previous block's stored hash"
+          }
+        ]
+      },
+      "verify_with_anchor": {
+        "ok": false,
+        "problems": [
+          {
+            "idx": 12170,
+            "check": "sequence",
+            "detail": "expected block 12169; blocks are missing or reordered"
+          },
+          {
+            "idx": 12170,
+            "check": "link",
+            "detail": "prev_hash does not match the previous block's stored hash"
+          }
+        ]
+      },
+      "as_expected": true
+    },
+    {
+      "attack": "drop triggers; delete the last 100 blocks",
+      "expected": "passes without the anchor (known limitation); the anchor check fails",
+      "verify_without_anchor": {
+        "ok": true,
+        "problems": []
+      },
+      "verify_with_anchor": {
+        "ok": false,
+        "problems": [
+          {
+            "idx": 24338,
+            "check": "anchor",
+            "detail": "the anchored block no longer exists"
+          }
+        ]
+      },
+      "as_expected": true
+    }
+  ]
+}

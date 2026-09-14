@@ -39,7 +39,7 @@ def score_relations(gold: dict[str, set[tuple]], predicted: dict[str, list[TextR
             if key not in want:
                 errors["false_positive"].append({"document_id": doc_id, "type": key[0], "source": key[1],
                                                  "target": key[2], "rule": rel.rule, "sentence": rel.sentence})
-        for key in want - set(pred):
+        for key in sorted(want - set(pred)):  # sorted: set order follows the hash seed, which made reports differ per run
             counts[key[0]][2] += 1
             errors["false_negative"].append({"document_id": doc_id, "type": key[0], "source": key[1], "target": key[2]})
     per_type = {t: _prf(*c) for t, c in counts.items() if any(c)}

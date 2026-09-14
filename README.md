@@ -17,7 +17,7 @@ clusters, flags anomalies and records every graph change in a tamper-evident has
 | 2 | Entity extraction (spaCy NER + regex) | **Done, signed off** |
 | 3 | Relation extraction + graph construction + exact-match entity resolution | **Done, signed off** |
 | 4 | Centrality, Louvain communities, rule-based anomalies | **Done, signed off** (1 expectation not met, 2 met weakly; follow-up revisions on seed 11: R3 met, R1 and R2 not met) |
-| 5 | SHA-256 hash-chain audit log (SQLite) + tamper demo | Not started |
+| 5 | SHA-256 hash-chain audit log (SQLite) + tamper demo | **Done, awaiting sign-off** |
 | 6 | FastAPI + Cytoscape.js frontend | Not started |
 
 ## Architecture (planned)
@@ -42,8 +42,10 @@ pip install -r requirements.txt
 python -m veritas.synth --seed 42 --out data   # regenerate the synthetic dataset (deterministic)
 python -m veritas.extract --evaluate           # extract entities from FIRs, score against ground truth
 python -m veritas.extract.relation_eval        # score relation rules (gold entities, end to end, challenge set)
-python -m veritas.graph --evaluate             # build the graph (GraphML), entity-resolution report, graph evaluation
+python -m veritas.graph --evaluate             # build the graph (GraphML) + its audit log, entity-resolution report, graph evaluation
 python -m veritas.analytics --evaluate         # centrality, communities, anomaly rules, validation vs ground truth
+python -m veritas.audit                        # verify the audit chain against its anchor; replay it against the saved graph
+python -m veritas.audit.tamper_demo            # tamper with copies of the audit log and show what verify_chain catches
 python -m pytest                               # all tests
 ```
 
@@ -63,7 +65,9 @@ python -m pytest                               # all tests
 | [`veritas/analytics/`](veritas/analytics/) | Actor-graph projection, centrality, Louvain, spike and money-cycle rules, validation with fixed expectations |
 | [`output/phase3/`](output/phase3/) | Build report, relation and graph evaluations, evidence sentence for every text edge. `graph.graphml` is rebuilt, not committed. |
 | [`output/phase4/`](output/phase4/) | Rankings, communities, anomalies (`analytics.json`) and validation (`evaluation.json`) |
-| [`tests/`](tests/) | Tests for the schema, generator, extraction, relations, graph and analytics. `tests/fixtures/relation_challenge.json` is the hand-written relation probe. |
+| [`veritas/audit/`](veritas/audit/) | Hash chain (`chain.py`), replay of the log into a graph (`replay.py`), verify CLI, tamper demo |
+| [`output/phase5/`](output/phase5/) | `audit_report.json` (verification and replay check) and `tamper_demo.json`. `audit.sqlite` and `anchor.json` are rebuilt, not committed. |
+| [`tests/`](tests/) | Tests for the schema, generator, extraction, relations, graph, analytics and audit log. `tests/fixtures/relation_challenge.json` is the hand-written relation probe. |
 
 ## Design decisions
 
@@ -128,7 +132,7 @@ Relation results, micro-averaged over 7 relation types (103 annotated relations 
 
 Same-sentence edges that join people with a real tie (defined before scoring): 94.9% / 92.3% with gold entities, 74.4% / 69.4% end to end.
 
-Graph at seed 42: 530 nodes and 8,120 edges (8,015 structured, 105 from text). Before the second decoy was added after Phase 4, it was 8,117 edges.
+Graph at seed 42: 529 nodes (the Phase 3 README said 530, a typo; the build report has always said 529) and 8,120 edges (8,015 structured, 105 from text). Before the second decoy was added after Phase 4, it was 8,117 edges.
 
 | Check | Result |
 |---|---|
@@ -212,13 +216,55 @@ Phase 4 was committed with the results above. Three revisions follow, each with 
 - **Why R1 failed, part 2: too few calls.** Narrowing to calls between named people raises the ratio (2.3–6.6× on every planted incident except B1), but it leaves only 7–11 calls on the misses. The p ≤ 0.001 test then fails (C3 on seed 11: 10 calls vs 3.1 expected, p = 0.0013). The original rule caught C3 with p = 2e-10. The two scopes miss different incidents.
 - **Why R2 failed: it splits clusters that have two crews.** The four clusters with one lieutenant came back whole on every seed (recall 1.00). All eight clusters with two lieutenants were split (recall 0.56–0.89). In five, the break runs between the crews, each lieutenant with their own members. In the other three, some members of one crew split off on their own. This fits the approved insulated hierarchy, where crews connect mainly through the leader. *This explanation was found after the run and has not been tested.*
 - **R3 confirms the time check does real work.** Beyond the new decoy, turning the time check off also flags loops stitched out of time order from the two laundering rounds (3 on seed 42, 6 on seeds 11 and 7).
-- **Seed 42 after regeneration.** Three transactions were added (822 → 825). All six original expectations have the same results and details. Key individuals' betweenness and PageRank ranks are identical. Two degree ranks moved by 1–2 places. FIR files and Phase 2 output are byte-identical, and the graph evaluation has the same content in a different list order.
+- **Seed 42 after regeneration.** Three transactions were added (822 → 825). All six original expectations have the same results and details. Key individuals' betweenness and PageRank ranks are identical. Two degree ranks moved by 1–2 places. FIR files and Phase 2 output are byte-identical. The graph evaluation had the same content in a different list order. Phase 5 found the cause: a hash-order bug in the relation scorer, which was not related to the new data.
 - **Bugs found while running seed 11. Both are fixed and neither changes a verdict.**
   1. **Nested Louvain depended on the hash seed.** `graph.subgraph(set)` iterates in hash order, so two runs gave different R2 numbers. R2 failed under all 6 hash seeds tried before the fix. A regression test runs it under 3 hash seeds; the old code gave 3 different answers.
   2. **The committed Phase 4 `analytics.json` listed each topology loop starting at a hash-dependent account.** Evaluation compared sets, so no result changed. Loops now start at their smallest account ID. Both output files are now byte-identical across hash seeds.
 - **Stopped as instructed.** No further seeds were tried after these results. Combining the two spike scopes is listed under future work as unvalidated.
 
-## Known limitations
+### Phase 5: hash-chain audit log (validation protocol, written before the first run)
+
+- **What is recorded.** Every change the `GraphBuilder` makes to the graph becomes one block in SQLite:
+  - `node_created` and `edge_created`;
+  - `node_merged`, when exact-match resolution adds a source document to an existing node. This is the only kind of edit the pipeline makes.
+
+  A re-loaded duplicate edge, or a merge that adds nothing, changes nothing and gets no block. The block is written *before* the in-memory graph changes, so a failed audit write leaves the graph untouched.
+- **Block hash.** SHA-256 of canonical JSON (sorted keys, no spaces) over every stored column except the hash itself: index, UTC timestamp, operation, entity kind and ID, edge endpoints, actor, payload and the previous block's hash. The first block links to 64 zeros. Covering every column means no field can be changed without breaking the hash.
+- **`verify_chain`** checks, for each block, that the index follows on (no gaps or reordering), that `prev_hash` equals the previous block's stored hash, and that the stored hash matches a recomputation. Given an **anchor** (a block index and hash saved outside the database), it also checks that block still has that hash.
+- **Checks, fixed before running:**
+  1. The untampered seed-42 build verifies, with and without its anchor.
+  2. **The log is complete.** Replaying only the blocks rebuilds exactly the same graph as the builder: same nodes, edges, edge keys and attributes.
+  3. Block counts match the builder: one `node_created` per node and one `edge_created` per edge.
+  4. **Tamper demo:** an ordinary `UPDATE` is refused by the append-only triggers. After the triggers are dropped, each of these is caught at the right block:
+     - changing a payload;
+     - changing a payload and re-hashing that block;
+     - deleting a block.
+  5. **Expected limitation, shown rather than hidden.** An attacker who rewrites *every* hash from the tampered block to the end produces a chain that passes the internal checks. Only the anchor catches it.
+
+**Results (seed 42):**
+
+| # | Check | Result | Detail |
+|---|---|---|---|
+| 1 | Untampered build verifies | **Met** | 24,338 blocks, with and without the anchor |
+| 2 | Replay rebuilds the same graph | **Met** | 529 nodes and 8,120 edges from the log alone, identical to `graph.graphml` in keys and attributes |
+| 3 | Block counts match the builder | **Met** | 529 `node_created`, 8,120 `edge_created`, 15,689 `node_merged` (plus 20 merges that added nothing and got no block) |
+| 4 | Tamper cases caught at the right block | **Met** | SQL `UPDATE` refused ("audit log is append-only"). Cutting the largest transfer (block 23103) from ₹505,000 to ₹5,050: hash check fails at 23103. Also re-hashing that block: link check fails at 23104. Deleting block 12169: sequence and link checks fail at 12170. |
+| 5 | Full rewrite passes without the anchor | **Met (limitation confirmed)** | Re-hashing all 1,236 blocks from 23103 onward, or deleting the last 100 blocks, **verifies internally**. Only the anchor check fails. |
+
+The demo compares each scenario's problems with the expected set of (block, check) pairs exactly (7 of 7). It doesn't rely on reading printed output.
+
+- **Why a hash chain and not a blockchain.** There is one writer and no one to reach consensus with. A blockchain would add distribution and consensus without adding anything the anchor doesn't already give.
+- **Triggers and hashes do different jobs.** Triggers stop accidental edits through normal SQL. Hashes make deliberate edits *detectable*. An external anchor makes a full rewrite detectable. None of them *prevents* someone with the file from changing it.
+- **The audit block is written before the graph changes**, so a failed audit write leaves no unrecorded change in the graph (tested with a closed database).
+- **Replay deliberately doesn't use `GraphBuilder`.** That way a builder bug can't hide a gap in the log. A mutation check confirmed the tests catch the kinds of bug that matter. Each of these made the relevant tests fail:
+  - not recording merges;
+  - leaving a column out of the hash;
+  - writing the audit block after the graph change.
+- **Each build starts a new chain,** because the graph is rebuilt from scratch rather than updated. In production the graph would persist and the chain would continue.
+- **Cost.** The audit log adds about 2 seconds to a 1.1-second build (about 80 µs per block, SQLite committed once per build). The database is 11 MB, and 64% of blocks are provenance merges: every CDR row re-adds its two phones with the CDR record as a source.
+- **Bug found in earlier code while checking determinism.** `graph_evaluation.json` and `relations_evaluation.json` listed missed relations in hash order, because the scorer iterated a set. Their content was right; only the order changed from run to run. Fixed by sorting, with a regression test that fails on the old code. Every committed output is now byte-identical when the pipeline runs under two hash seeds.
+- **Doc fix.** The Phase 3 section said 530 nodes; the graph has always had 529.
+
 
 - **Entity resolution is exact match only.** Common names collide (false merge). Initials, transliterations and aliases do not merge (false split). Full list in `schema.md` section 7.
 - **Only Indian mobile numbers and standard or BH-series plates are accepted.** Landlines and foreign numbers are rejected.
@@ -231,6 +277,13 @@ Phase 4 was committed with the results above. Three revisions follow, each with 
 - **Community detection finds cities, not gangs.** Almost all calls and payments stay within one city, so Louvain at its default resolution groups each cluster with its city's ordinary residents (purity 19–33%). A resolution sweep (exploratory, not adopted) raises purity only by splitting clusters. No setting recovers all four clusters well, and modularity, the label-free way to choose a setting, prefers the city-level split. Nested Louvain (revision R2) failed on seed 11: it recovers one-lieutenant clusters cleanly but splits two-lieutenant clusters.
 - **The spike rule misses a third to two thirds of planted spikes** (4, 4 and 2 of 6 on seeds 42, 7 and 11). Its window and "all calls on the named phones" dilute the signal. The Poisson test alone does not fix this: on seed 7, a planted spike (p = 0.006) and a non-planted incident (p = 0.007) overlap. Counting only calls between named people (revision R1) failed on seed 11 (3 of 6). It is blind when a report doesn't name the relaying lieutenants, and too few calls remain for the p-value test. Phase 4 thresholds are unvalidated analyst choices.
 - **The Phase 1 decoy loop fails two rules at once** (reversed dates and very different amounts), so on its own it can't show the time-order check is needed. A second decoy (revision R3) now fails only the time check, and it is flagged once that check is off.
+- **The audit chain detects tampering, but can't prevent it or prove who did it.**
+  - Anyone with the database file can drop the triggers and rewrite every hash. Only a saved anchor catches that, and changes after the last anchor can be rewritten without detection.
+  - The demo anchor sits next to the database, so here it only illustrates the idea.
+  - `actor` is an unauthenticated string.
+  - Timestamps come from the local clock and are not checked for going backwards.
+- **Audit history is per build.** Rebuilding the graph deletes the old log and starts a new chain. So "history" means how this build assembled the graph, not a record of changes over months.
+- **There is no manual edit operation.** The only edits to an existing node are provenance merges made by the pipeline, attributed to `pipeline`. An earlier draft had `update_node` and `update_edge` for analyst corrections, but nothing called them, so they were removed before Phase 5 was committed. Analyst edits (with a reason, before/after values and an authenticated actor) are future work.
 - **Some text context is approximated.** "met … two days before" is stamped with the incident time, and FIR references like "the complainant" are resolved by convention, not general coreference.
 - **Businesses used as meeting places are the largest NER error.** The schema labels "Sharma Tea Stall" or "Balan Warehouse" as Location, while spaCy (trained on OntoNotes) calls businesses ORG. This drives Location recall down to about 60% and Organization precision down to about 30%. It is a disagreement over label definitions, not missed text, and the ground truth has not been relabelled to hide it.
 - **spaCy sometimes tags people as ORG, including key people.** In the md run, cluster A's leader was tagged ORG in all 3 mentions. Vehicle models ("Maruti Suzuki Swift"), acronyms (KYC, CCTV, IMEI, UPI) and a bare "Smt" also come through as false Organization entities.
@@ -258,5 +311,9 @@ Phase 4 was committed with the results above. Three revisions follow, each with 
 | NetworkX in memory | Neo4j (or another graph DB) with indexed lookups and a query language |
 | Exact-match entity resolution | Probabilistic record linkage (for example Splink or Dedupe) with human review of merges |
 | Fixed confidence per method | Confidence calibrated on labelled data, per source and per extractor |
-| SHA-256 hash chain in SQLite | An append-only ledger with external anchoring (for example a permissioned blockchain or signed timestamps) |
+| SHA-256 hash chain in SQLite | Append-only storage the application can't rewrite, for example a database role with INSERT-only rights or a managed ledger table. It would add the steps in the next three rows. |
+| Anchor file next to the database | Head hash published periodically to a separate system: an RFC 3161 timestamping authority, a transparency log, or write-once (WORM) storage |
+| Anyone who can recompute SHA-256 can forge a rewrite | Blocks signed or HMAC'd with a key held in an HSM or KMS, so rewriting the chain also needs the key |
+| `actor` is a free-text string | An authenticated user or service identity on every write |
+| Single writer; a second writer fails on the index key | One serialized writer service, or a database transaction that reads the head and inserts in one step |
 | Rule-based anomaly detection | Rules plus statistical or ML models tuned against labelled cases |

@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
+from veritas.audit.chain import AuditLog
 from veritas.graph.builder import GraphBuilder
 from veritas.graph.io import save_graphml
 from veritas.graph.loaders import load_structured, load_text
@@ -13,8 +14,12 @@ parser = argparse.ArgumentParser(description="Build the criminal-network graph f
 parser.add_argument("--data", type=Path, default=Path("data"))
 parser.add_argument("--entities", type=Path, default=Path("output/phase2/entities.en_core_web_md.json"))
 parser.add_argument("--out", type=Path, default=Path("output/phase3"))
+parser.add_argument("--audit", type=Path, default=None,
+                    help="hash-chain audit log of every graph write (default: <out>/../phase5/audit.sqlite); "
+                         "each build starts a new chain")
 parser.add_argument("--evaluate", action="store_true", help="score against data/ground_truth.json (evaluation only)")
 args = parser.parse_args()
+args.audit = args.audit or args.out.parent / "phase5" / "audit.sqlite"  # holdout builds keep their own log
 
 
 def write_json(name: str, payload) -> Path:
@@ -23,10 +28,16 @@ def write_json(name: str, payload) -> Path:
     return path
 
 
-builder = GraphBuilder()
-load_structured(builder, args.data)
-evidence = load_text(builder, args.data, args.entities)
-graph = builder.finalize()
+args.audit.unlink(missing_ok=True)  # the graph is rebuilt from scratch, so its history starts from scratch too
+with AuditLog(args.audit) as audit:
+    builder = GraphBuilder(audit=audit)
+    load_structured(builder, args.data)
+    evidence = load_text(builder, args.data, args.entities)
+    graph = builder.finalize()
+    head = audit.head()
+# The anchor belongs outside the database; next to it is only good enough for a demo (see README, production changes).
+anchor_path = args.audit.with_name("anchor.json")
+anchor_path.write_text(json.dumps({"idx": head.idx, "hash": head.hash}, indent=2) + "\n", encoding="utf-8", newline="\n")
 args.out.mkdir(parents=True, exist_ok=True)
 save_graphml(graph, args.out / "graph.graphml")
 report = build_report(graph, builder.stats, builder.name_variants)
@@ -34,6 +45,7 @@ write_json("build_report.json", report)
 write_json("text_edge_evidence.json", evidence)
 
 print(f"graph: {report['nodes']} nodes, {report['edges']} edges -> {args.out / 'graph.graphml'}")
+print(f"audit: {head.idx} blocks -> {args.audit} (anchor {anchor_path}: block {head.idx}, {head.hash[:16]}...)")
 for kind, count in report["nodes_by_type"].items():
     print(f"  node {kind:<14}{count}")
 for kind, count in report["edges_by_type"].items():

@@ -259,6 +259,12 @@
         {
           "document_id": "FIR-DEL-2025-0005",
           "type": "PRESENT_AT_EVENT",
+          "source": "Person:ayaan_karnik",
+          "target": "Event:fir_del_2025_0005"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "type": "PRESENT_AT_EVENT",
           "source": "Person:gaurang_sachar",
           "target": "Event:fir_del_2025_0005"
         },
@@ -275,15 +281,9 @@
           "target": "Event:fir_del_2025_0005"
         },
         {
-          "document_id": "FIR-DEL-2025-0005",
-          "type": "PRESENT_AT_EVENT",
-          "source": "Person:ayaan_karnik",
-          "target": "Event:fir_del_2025_0005"
-        },
-        {
           "document_id": "FIR-DEL-2025-0006",
-          "type": "USES_PHONE",
-          "source": "Person:timothy_sane",
+          "type": "CALLED",
+          "source": "Phone:+916424188799",
           "target": "Phone:+919714026682"
         },
         {
@@ -294,8 +294,8 @@
         },
         {
           "document_id": "FIR-DEL-2025-0006",
-          "type": "CALLED",
-          "source": "Phone:+916424188799",
+          "type": "USES_PHONE",
+          "source": "Person:timothy_sane",
           "target": "Phone:+919714026682"
         },
         {
@@ -319,14 +319,14 @@
         {
           "document_id": "FIR-MUM-2025-0001",
           "type": "MET_AT",
-          "source": "Person:dalaja_chahal",
+          "source": "Person:daksh_bakshi",
           "target": "Location:bala_circle_bus_depot:mumbai"
         },
         {
           "document_id": "FIR-MUM-2025-0001",
-          "type": "USES_PHONE",
-          "source": "Person:daksh_bakshi",
-          "target": "Phone:+916375107792"
+          "type": "MET_AT",
+          "source": "Person:dalaja_chahal",
+          "target": "Location:bala_circle_bus_depot:mumbai"
         },
         {
           "document_id": "FIR-MUM-2025-0001",
@@ -336,9 +336,9 @@
         },
         {
           "document_id": "FIR-MUM-2025-0001",
-          "type": "MET_AT",
+          "type": "USES_PHONE",
           "source": "Person:daksh_bakshi",
-          "target": "Location:bala_circle_bus_depot:mumbai"
+          "target": "Phone:+916375107792"
         },
         {
           "document_id": "FIR-MUM-2025-0003",
@@ -349,13 +349,13 @@
         {
           "document_id": "FIR-MUM-2025-0004",
           "type": "PRESENT_AT_EVENT",
-          "source": "Person:udyati_balay",
+          "source": "Person:rahul_sharma",
           "target": "Event:fir_mum_2025_0004"
         },
         {
           "document_id": "FIR-MUM-2025-0004",
           "type": "PRESENT_AT_EVENT",
-          "source": "Person:rahul_sharma",
+          "source": "Person:udyati_balay",
           "target": "Event:fir_mum_2025_0004"
         },
         {
@@ -378,12 +378,6 @@
         },
         {
           "document_id": "FIR-PUN-2025-0002",
-          "type": "USES_PHONE",
-          "source": "Person:ishwar_kannan",
-          "target": "Phone:+919994738491"
-        },
-        {
-          "document_id": "FIR-PUN-2025-0002",
           "type": "PRESENT_AT_EVENT",
           "source": "Person:gopal_gupta",
           "target": "Event:fir_pun_2025_0002"
@@ -393,6 +387,12 @@
           "type": "PRESENT_AT_EVENT",
           "source": "Person:ishwar_kannan",
           "target": "Event:fir_pun_2025_0002"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0002",
+          "type": "USES_PHONE",
+          "source": "Person:ishwar_kannan",
+          "target": "Phone:+919994738491"
         },
         {
           "document_id": "FIR-PUN-2025-0003",
@@ -408,18 +408,6 @@
         },
         {
           "document_id": "FIR-PUN-2025-0004",
-          "type": "USES_PHONE",
-          "source": "Person:pallavi_bail",
-          "target": "Phone:+917814266084"
-        },
-        {
-          "document_id": "FIR-PUN-2025-0004",
-          "type": "PRESENT_AT_EVENT",
-          "source": "Person:onkar_mall",
-          "target": "Event:fir_pun_2025_0004"
-        },
-        {
-          "document_id": "FIR-PUN-2025-0004",
           "type": "OWNS_VEHICLE",
           "source": "Person:pallavi_bail",
           "target": "Vehicle:MH12D9597"
@@ -429,6 +417,18 @@
           "type": "PRESENT_AT_EVENT",
           "source": "Person:fariq_sami",
           "target": "Event:fir_pun_2025_0004"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0004",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:onkar_mall",
+          "target": "Event:fir_pun_2025_0004"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0004",
+          "type": "USES_PHONE",
+          "source": "Person:pallavi_bail",
+          "target": "Phone:+917814266084"
         },
         {
           "document_id": "FIR-PUN-2025-0005",

@@ -1,0 +1,20 @@
+{
+  "verification": {
+    "ok": true,
+    "blocks_checked": 24338,
+    "anchor_checked": true,
+    "problems": []
+  },
+  "blocks_by_operation": {
+    "edge_created": 8120,
+    "node_created": 529,
+    "node_merged": 15689
+  },
+  "replay": {
+    "graph_file": "output/phase3/graph.graphml",
+    "nodes": 529,
+    "edges": 8120,
+    "matches_saved_graph": true,
+    "differences": []
+  }
+}

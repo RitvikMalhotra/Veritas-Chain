@@ -199,15 +199,37 @@ Structured data is loaded before text, so registry spellings win over report spe
 
 ---
 
-## 9. How the analytics layer will use this (preview, not built yet)
+## 9. How the analytics layer uses this (built in Phase 4)
 
 The graph mixes several node types. Running betweenness on it directly would rank busy phone
-numbers and popular locations as "key individuals". Phase 4 will therefore compute person-level
-centrality on a **Person projection**. Two people are connected if any of these hold:
+numbers and popular locations as "key individuals". Phase 4 therefore computes centrality on an
+**actor projection** (`veritas/analytics/projection.py`). Its nodes are Person and Organization.
+Two actors are connected if any of these hold:
 
-- their phones called each other (via `USES_PHONE`)
-- their accounts transacted (via `HOLDS_ACCOUNT`)
-- they were at the same place or event
-- they have a direct text-derived edge
+- their phones called each other (via `USES_PHONE`); a phone shared by several people splits its weight
+- their accounts transacted (via `HOLDS_ACCOUNT`); this is how money reaches companies
+- a `MEMBER_OF` edge, a text `ASSOCIATED_WITH` between people, or a direct text `CALLED` / `TRANSFERRED_MONEY_TO`
+- they were present at the same event, or met at the same place according to the same report
 
-Edge weights will take confidence into account. The exact weighting will be decided and documented in Phase 4.
+Each underlying record adds its confidence to the pair's weight (the smaller confidence when two
+records are chained, such as the phone link and the call). Every analysis runs on three variants:
+all evidence, without `text_cooccurrence` edges, and structured data only.
+
+## 10. Audit log (Phase 5)
+
+Every write made by `GraphBuilder` is one row in the SQLite table `blocks` (`veritas/audit/chain.py`).
+
+| Column | Meaning |
+|---|---|
+| `idx` | 1, 2, 3, … with no gaps (primary key, so a second writer can't fork the chain) |
+| `recorded_at` | UTC time of the write |
+| `operation` | `node_created`, `node_merged`, `edge_created` (the only writes `GraphBuilder` makes) |
+| `entity_kind`, `entity_id` | `node` or `edge`, and its ID |
+| `source_id`, `target_id` | edge endpoints (null for nodes), so a node's history can include its edges |
+| `actor` | who made the write; always `pipeline` today |
+| `payload` | canonical JSON: the full model for `*_created`; the added document IDs for `node_merged` |
+| `prev_hash` | the previous block's `hash` (64 zeros for block 1) |
+| `hash` | SHA-256 of canonical JSON over all the columns above |
+
+- **No-op writes get no block.** A duplicate edge, or a merge that adds no new document, doesn't change the graph, so nothing is recorded.
+- **Append-only triggers.** Triggers refuse `UPDATE` and `DELETE`. They guard against accidents, not attackers; the hashes and an external anchor are what detect tampering.

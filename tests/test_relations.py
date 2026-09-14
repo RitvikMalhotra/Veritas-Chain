@@ -3,7 +3,7 @@
 import json
 from pathlib import Path
 
-from veritas.extract.relation_eval import challenge_cases
+from veritas.extract.relation_eval import challenge_cases, score_relations
 from veritas.extract.relations import Mention, interpret_document, split_sentences
 from veritas.models import EDGE_ADAPTER
 
@@ -158,3 +158,10 @@ def test_challenge_fixture_is_well_formed():
         for edge_type, source, target in case["expected"]:
             assert source.split(":")[0] in ("Person", "Phone", "Vehicle")
             assert target == "EVENT" or ":" in target
+
+
+def test_missed_relations_are_listed_in_a_fixed_order():
+    # Regression: they came from a set, so reports reordered themselves with the hash seed.
+    gold = {"FIR-1": {("MEMBER_OF", f"Person:p{i}", "Organization:o") for i in (7, 3, 5, 1, 6, 2, 4, 0)}}
+    missed = score_relations(gold, {})["errors"]["false_negative"]
+    assert [m["source"] for m in missed] == [f"Person:p{i}" for i in range(8)]
