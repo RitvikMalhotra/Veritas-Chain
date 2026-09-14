@@ -126,11 +126,10 @@ The three NER values replaced a single unvalidated 0.6 (approved after Phase 2).
 They come from clean, templated text, so they are **upper bounds**. They were measured for `en_core_web_md` and would need re-measuring for any other model.
 
 **Caveat on NER confidence.** spaCy's standard NER pipeline does **not** give a probability for
-each entity. The Phase 2 "confidence scores" will therefore be a fixed value per method (and possibly
-per label). The honest way to set that value is to measure precision per label against the entities
-planted in Phase 1, then use the measured precision as the default. This is planned for Phase 2.
+each entity. Phase 2 "confidence scores" are therefore a fixed value per method and label, set to the
+precision measured per label against the entities planted in Phase 1 (the values above).
 
-**Planned rule for text-derived edges (Phase 3):**
+**Rule for text-derived edges (applied since Phase 3):**
 `edge.confidence = min(method_default, confidence of the source mention, confidence of the target mention)`.
 A relation can't be more trustworthy than the weaker of the two entities it connects.
 
