@@ -13,8 +13,10 @@ class ConfidenceSettings(BaseSettings):
 
     # Edge defaults, keyed by ExtractionMethod value.
     structured: float = Field(1.0, ge=0.0, le=1.0)
-    text_pattern: float = Field(0.7, ge=0.0, le=1.0)  # TODO: unvalidated prior, measure against Phase 1 ground truth
-    text_cooccurrence: float = Field(0.4, ge=0.0, le=1.0)  # TODO: unvalidated prior, measure against Phase 1 ground truth
+    # Checked in Phase 3 and deliberately kept (approved): template text scored 170/170 and 73/78 with gold entities,
+    # but that evidence is circular and the out-of-template probe fell to 3/4, so it can't justify higher trust.
+    text_pattern: float = Field(0.7, ge=0.0, le=1.0)
+    text_cooccurrence: float = Field(0.4, ge=0.0, le=1.0)
 
     # Mention defaults. Regex has one value; spaCy NER has one per label.
     mention_regex: float = Field(0.95, ge=0.0, le=1.0)  # deterministic pattern match, not planned for measurement

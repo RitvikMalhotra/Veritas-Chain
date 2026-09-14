@@ -6,3 +6,5 @@ __pycache__/
 *.db
 # Held-out evaluation data is regenerated on demand
 output/holdout_seed*/
+# Graph file is rebuilt in ~2s by python -m veritas.graph; reports next to it are committed
+output/phase3/graph.graphml

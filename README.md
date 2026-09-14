@@ -15,7 +15,7 @@ clusters, flags anomalies and records every graph change in a tamper-evident has
 | 0 | Data schema + models | **Done, signed off** |
 | 1 | Synthetic data generator + ground truth | **Done, signed off** |
 | 2 | Entity extraction (spaCy NER + regex) | **Done, signed off** |
-| 3 | Graph construction + exact-match entity resolution | Not started |
+| 3 | Relation extraction + graph construction + exact-match entity resolution | **Done, signed off** |
 | 4 | Centrality, Louvain communities, rule-based anomalies | Not started |
 | 5 | SHA-256 hash-chain audit log (SQLite) + tamper demo | Not started |
 | 6 | FastAPI + Cytoscape.js frontend | Not started |
@@ -41,7 +41,9 @@ data/ (synthetic CSVs + report text)
 pip install -r requirements.txt
 python -m veritas.synth --seed 42 --out data   # regenerate the synthetic dataset (deterministic)
 python -m veritas.extract --evaluate           # extract entities from FIRs, score against ground truth
-python -m pytest                               # schema, generator and extraction tests
+python -m veritas.extract.relation_eval        # score relation rules (gold entities, end to end, challenge set)
+python -m veritas.graph --evaluate             # build the graph (GraphML), entity-resolution report, graph evaluation
+python -m pytest                               # all tests
 ```
 
 ## Layout
@@ -54,9 +56,11 @@ python -m pytest                               # schema, generator and extractio
 | [`veritas/config.py`](veritas/config.py) | Confidence defaults, which can be overridden with env vars |
 | [`veritas/synth/`](veritas/synth/) | Synthetic data generator: population, incident scenarios, calls and money, FIR text |
 | [`data/`](data/) | Generated dataset (seed 42) and `ground_truth.json`. See [`data/README.md`](data/README.md). |
-| [`veritas/extract/`](veritas/extract/) | FIR parsing, regex extractors, spaCy NER, merge rules, evaluation |
+| [`veritas/extract/`](veritas/extract/) | FIR parsing, regex extractors, spaCy NER, relation rules (`relations.py`), evaluation |
+| [`veritas/graph/`](veritas/graph/) | Graph builder (single validated write path), CSV and text loaders, GraphML I/O, reports |
 | [`output/phase2/`](output/phase2/) | Extracted entities and evaluation reports for both spaCy models |
-| [`tests/`](tests/) | Schema tests (`test_models.py`), generator self-checks (`test_synth.py`), extraction tests (`test_extract.py`) |
+| [`output/phase3/`](output/phase3/) | Build report, relation and graph evaluations, evidence sentence for every text edge. `graph.graphml` is rebuilt, not committed. |
+| [`tests/`](tests/) | Tests for the schema, generator, extraction, relations and graph. `tests/fixtures/relation_challenge.json` is the hand-written relation probe. |
 
 ## Design decisions
 
@@ -64,7 +68,7 @@ python -m pytest                               # schema, generator and extractio
 - **Pydantic models with a closed type set.** Invalid endpoints, naive timestamps, unknown fields and out-of-range confidence all fail validation. They are not stored silently.
 - **Phones and accounts are their own nodes.** A call record links numbers, not people. The link from a person to a phone or account is a separate edge with its own source (details in `schema.md` section 1).
 - **IDs are derived from content.** Node ID = type + normalized key, so exact-match entity resolution is just ID equality. Edge ID = a hash of the edge's content, so loading the same record twice is harmless.
-- **Confidence is an ordinal weight, not a probability.** NER confidence is set per label from measured precision (Phase 2). The relation defaults are still placeholders until Phase 3 measures them.
+- **Confidence is an ordinal weight, not a probability.** NER confidence is set per label from measured precision (Phase 2). The relation defaults were measured in Phase 3 and deliberately kept conservative.
 - **False splits are preferred over false merges.** A wrong merge invents links between strangers and distorts centrality.
 
 ### Phase 1: synthetic data
@@ -96,12 +100,51 @@ Results (lenient match = overlapping span, same type; strict = exact span):
 | Phone (regex) | 32 | 100 / 100 / 100 | 100 / 100 / 100 | same |
 | Vehicle (regex) | 10 | 100 / 100 / 100 | 100 / 100 / 100 | same |
 
+### Phase 3: relation extraction and graph construction
+
+- **Relations come from explainable patterns, not a model.** Each sentence has its entities replaced by typed tokens (`⟦P3⟧ … who uses mobile number ⟦T4⟧`), and a small set of regexes reads the relation from the words between them. Every text edge has its rule name and evidence sentence recorded in `text_edge_evidence.json`.
+- **Cue words are limited to FIR phrasing.** They come from the report templates plus inflections of the same verbs. Nothing was added for the challenge set.
+- **Evaluation protocol.** The 22-sentence challenge set was written before the rules and scored once; rules were not changed to fix its misses. Two fixes were made after the first run on the synthetic reports, both because the code did not match the stated design:
+  1. The business-as-place rule treated the city as optional, which turned "who works at X" into a place.
+  2. "around" is used in the FIR templates but was missing from the place-preposition list.
+- **FIR conventions are resolved.** "the complainant" refers to the person introduced as complainant; "the vehicle" refers to the last vehicle mentioned.
+- **Businesses used as places (decision 2).** A business in a place phrase ("met … at X", "near X, City") becomes a Location, and "X, City" stores the city on the place node rather than creating a separate city node.
+- **Decision 3 is enforced in text too.** A Person→Person `CALLED` edge is only emitted when the sentence gives no number. A Person→Person cash transfer is only emitted when no bank channel (UPI, account, NEFT…) is named.
+- **Junk nodes are left in the graph (approved).** No filter was fitted to this data. Phase 4 reports centrality with and without same-sentence edges so their effect is visible instead of hidden.
+- **Text edge confidence** = min(method default, confidence of each entity). A membership in an NER-tagged organisation is therefore capped at 0.29. Event-like edges are stamped with the incident time, and state-like edges with the report time.
+- **Same-sentence edges (`ASSOCIATED_WITH`, 0.4)** only link people who have no pattern relation between them in that report.
+- **One write path.** Every node and edge goes through `GraphBuilder`: Pydantic validation, exact-match merge (first-seen fields, combined provenance), a check that both endpoints exist, and duplicate-edge skipping. Phase 5's audit chain will hook in there.
+
+Relation results, micro-averaged over 7 relation types (103 annotated relations per seed):
+
+| | seed 42: P / R / F1 | seed 7: P / R / F1 |
+|---|---|---|
+| Gold entities → rules | 100 / 82.5 / 90.4 | 100 / 82.5 / 90.4 |
+| spaCy md entities → rules (end to end) | 98.5 / 63.1 / 76.9 | 100 / 75.7 / 86.2 |
+| Challenge set (different phrasing, gold entities) | 75.0 / 12.5 / 21.4 | (same set) |
+
+Same-sentence edges that join people with a real tie (defined before scoring): 94.9% / 92.3% with gold entities, 74.4% / 69.4% end to end.
+
+Graph at seed 42: 530 nodes and 8,117 edges (8,012 structured, 105 from text).
+
+| Check | Result |
+|---|---|
+| True people present | 135/135 IDs (136 people; the planted pair shares one) |
+| Planted collision | merged into `Person:rahul_sharma` with both phones, as predicted |
+| Report mentions linked to the right node | Person 71/79, Location 50/53 (22 of them as a place's city), Organization, Phone and Vehicle all linked |
+| Junk nodes from NER errors | 10 Organization, 5 Person; 10 isolated, 2 with one edge, 3 with 2–4 weak same-sentence edges |
+
 ## Known limitations
 
 - **Entity resolution is exact match only.** Common names collide (false merge). Initials, transliterations and aliases do not merge (false split). Full list in `schema.md` section 7.
 - **Only Indian mobile numbers and standard or BH-series plates are accepted.** Landlines and foreign numbers are rejected.
 - **NER confidence is measured, but on easy text.** The per-label values (Person 0.92, Location 0.97, Organization 0.29) are `en_core_web_md` precision on clean, templated synthetic reports, so they are upper bounds. They replaced a single unvalidated 0.6 after Phase 2. The regex default (0.95) is accepted as-is.
-- **Two relation confidence defaults are still guesses:** `text_pattern` = 0.7 and `text_cooccurrence` = 0.4, pending the Phase 3 relation evaluation.
+- **Relation confidence defaults are conservative on purpose:** `text_pattern` = 0.7 and `text_cooccurrence` = 0.4. Phase 3 measured them (see below) and kept them (approved), because template text can't justify higher trust.
+- **Relation rules are brittle outside the template phrasing.** They recall 12.5% on the hand-written challenge set. They miss passive and reversed forms ("received … from"), other verbs ("arrested", "belongs to", "partner in"), and nominal phrases ("the meeting between"). They are also fooled by negation: "Neither X nor Y was present" produced a false presence edge. On the synthetic reports, 100% precision only shows the rules fit the template language.
+- **Pooled relation precision (seeds 42 and 7).** Pattern relations: 170/170 with gold entities, 143/144 end to end. Same-sentence edges: 73/78 with gold entities, 63/88 end to end.
+- **NER errors leak into the graph.** spaCy tagged cluster A's leader as ORG, which created a false `MEMBER_OF` edge to an organisation called "Daksh Bakshi". Junk Person nodes such as `Person:kyc` and `Person:royal_enfield_classic_350` picked up weak same-sentence edges to cluster members (up to 4 edges, confidence ≤ 0.4). These could slightly affect centrality in Phase 4.
+- **Entity resolution cannot separate "one person with two SIMs" from "two people sharing a name".** The build report lists both cases (cluster A's leader and the planted Rahul Sharma pair) under the same diagnostic.
+- **Some text context is approximated.** "met … two days before" is stamped with the incident time, and FIR references like "the complainant" are resolved by convention, not general coreference.
 - **Businesses used as meeting places are the largest NER error.** The schema labels "Sharma Tea Stall" or "Balan Warehouse" as Location, while spaCy (trained on OntoNotes) calls businesses ORG. This drives Location recall down to about 60% and Organization precision down to about 30%. It is a disagreement over label definitions, not missed text, and the ground truth has not been relabelled to hide it.
 - **spaCy sometimes tags people as ORG, including key people.** In the md run, cluster A's leader was tagged ORG in all 3 mentions. Vehicle models ("Maruti Suzuki Swift"), acronyms (KYC, CCTV, IMEI, UPI) and a bare "Smt" also come through as false Organization entities.
 - **Regex scores of 100% only show consistency.** The regexes and the generator's surface formats were written together. A bare `91` prefix (`919876543210`) is deliberately not matched in text, because it can't be told apart from a 12-digit account number.
@@ -112,6 +155,13 @@ Results (lenient match = overlapping span, same type; strict = exact span):
 - **Spikes are planted as a rate multiplier (5×), so how strong they come out is random.** Small groups can come out weak. In a 20-seed sweep, one spike in seed 9 reached only 2.35×. Measured strength is recorded per event.
 - **The generator is robust across seeds but not perfectly.** In a sweep of 20 seeds, all generate successfully and 19 pass every data check. The one failure is the weak spike above. CI tests run seeds 42 and 7.
 - **Header details are simplified.** FIR numbers are sequential per city, not per police station, and the acts and sections are illustrative.
+
+## Future work (not implemented)
+
+- **Correcting NER types with the registries.** If a report span tagged ORG or LOC normalizes to the exact key of a Person in the subscriber, KYC or vehicle registry, it could be relabelled as that Person. This would have recovered the cluster A leader, whose ORG tag cost his phone link and three meeting edges in one report.
+  - **Circularity caveat:** in this synthetic dataset, every person named in a report also exists in a registry, so this correction would score close to perfectly by construction. Any accuracy measured here would be circular. It could only be evaluated honestly on reports that name people who are absent from the registries.
+  - **Risk:** it turns the name-collision weakness into a typing error. A company named after a person ("Sharma Traders" vs. a registered "Sharma") is safe only because keys must match exactly.
+- **Relation extraction that generalises** beyond template phrasing, for example dependency-parse rules or a trained relation classifier, with negation handling. The challenge set shows current recall of 12.5% on new phrasing.
 
 ## What would change in production
 

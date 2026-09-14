@@ -1,0 +1,1067 @@
+{
+  "data": "data",
+  "oracle_entities": {
+    "per_type": {
+      "CALLED": {
+        "tp": 6,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "MET_AT": {
+        "tp": 6,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "TRANSFERRED_MONEY_TO": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "MEMBER_OF": {
+        "tp": 16,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "PRESENT_AT_EVENT": {
+        "tp": 28,
+        "fp": 0,
+        "fn": 17,
+        "precision": 1.0,
+        "recall": 0.6222222222222222,
+        "f1": 0.7671232876712328
+      },
+      "OWNS_VEHICLE": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "USES_PHONE": {
+        "tp": 25,
+        "fp": 0,
+        "fn": 1,
+        "precision": 1.0,
+        "recall": 0.9615384615384616,
+        "f1": 0.9803921568627451
+      }
+    },
+    "micro": {
+      "tp": 85,
+      "fp": 0,
+      "fn": 18,
+      "precision": 1.0,
+      "recall": 0.8252427184466019,
+      "f1": 0.9042553191489361
+    },
+    "errors": {
+      "false_positive": [],
+      "false_negative": [
+        {
+          "document_id": "FIR-BLR-2025-0002",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:devika_rajan",
+          "target": "Event:fir_blr_2025_0002"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0001",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:rahul_sharma",
+          "target": "Event:fir_del_2025_0001"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0004",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:ethan_sani",
+          "target": "Event:fir_del_2025_0004"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0004",
+          "type": "USES_PHONE",
+          "source": "Person:ayaan_karnik",
+          "target": "Phone:+916518301062"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:gaurang_sachar",
+          "target": "Event:fir_del_2025_0005"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0001",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:girik_biswas",
+          "target": "Event:fir_hyd_2025_0001"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0001",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:farhan_bhandari",
+          "target": "Event:fir_hyd_2025_0001"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0003",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:azaan_murthy",
+          "target": "Event:fir_hyd_2025_0003"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0003",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:sudiksha_pathak",
+          "target": "Event:fir_mum_2025_0003"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0004",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:rahul_sharma",
+          "target": "Event:fir_mum_2025_0004"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0004",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:udyati_balay",
+          "target": "Event:fir_mum_2025_0004"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0005",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:gaurika_zacharia",
+          "target": "Event:fir_mum_2025_0005"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0005",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:adya_choudhury",
+          "target": "Event:fir_mum_2025_0005"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0006",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:karan_tella",
+          "target": "Event:fir_mum_2025_0006"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0002",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:ishwar_kannan",
+          "target": "Event:fir_pun_2025_0002"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0002",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:gopal_gupta",
+          "target": "Event:fir_pun_2025_0002"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0004",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:onkar_mall",
+          "target": "Event:fir_pun_2025_0004"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0004",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:fariq_sami",
+          "target": "Event:fir_pun_2025_0004"
+        }
+      ]
+    }
+  },
+  "end_to_end": {
+    "entities": "output\\phase2\\entities.en_core_web_md.json",
+    "per_type": {
+      "CALLED": {
+        "tp": 4,
+        "fp": 0,
+        "fn": 2,
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1": 0.8
+      },
+      "MET_AT": {
+        "tp": 3,
+        "fp": 0,
+        "fn": 3,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666
+      },
+      "TRANSFERRED_MONEY_TO": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "MEMBER_OF": {
+        "tp": 16,
+        "fp": 1,
+        "fn": 0,
+        "precision": 0.9411764705882353,
+        "recall": 1.0,
+        "f1": 0.9696969696969697
+      },
+      "PRESENT_AT_EVENT": {
+        "tp": 21,
+        "fp": 0,
+        "fn": 24,
+        "precision": 1.0,
+        "recall": 0.4666666666666667,
+        "f1": 0.6363636363636364
+      },
+      "OWNS_VEHICLE": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 1,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666
+      },
+      "USES_PHONE": {
+        "tp": 18,
+        "fp": 0,
+        "fn": 8,
+        "precision": 1.0,
+        "recall": 0.6923076923076923,
+        "f1": 0.8181818181818181
+      }
+    },
+    "micro": {
+      "tp": 65,
+      "fp": 1,
+      "fn": 38,
+      "precision": 0.9848484848484849,
+      "recall": 0.6310679611650486,
+      "f1": 0.7692307692307693
+    },
+    "errors": {
+      "false_positive": [
+        {
+          "document_id": "FIR-MUM-2025-0004",
+          "type": "MEMBER_OF",
+          "source": "Person:laksh_konda",
+          "target": "Organization:daksh_bakshi",
+          "rule": "member_of",
+          "sentence": "During questioning, Rahul Sharma stated that the pouches had been handed over by Laksh Konda, who works for Daksh Bakshi."
+        }
+      ],
+      "false_negative": [
+        {
+          "document_id": "FIR-BLR-2025-0002",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:devika_rajan",
+          "target": "Event:fir_blr_2025_0002"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0001",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:rahul_sharma",
+          "target": "Event:fir_del_2025_0001"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0002",
+          "type": "USES_PHONE",
+          "source": "Person:aarna_choudhury",
+          "target": "Phone:+918981072749"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0004",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:ethan_sani",
+          "target": "Event:fir_del_2025_0004"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0004",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:imaran_nair",
+          "target": "Event:fir_del_2025_0004"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0004",
+          "type": "USES_PHONE",
+          "source": "Person:ayaan_karnik",
+          "target": "Phone:+916518301062"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0004",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Vehicle:DL4CB1155",
+          "target": "Event:fir_del_2025_0004"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:imaran_nair",
+          "target": "Event:fir_del_2025_0005"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:gaurang_sachar",
+          "target": "Event:fir_del_2025_0005"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Vehicle:DL4CB1155",
+          "target": "Event:fir_del_2025_0005"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:ayaan_karnik",
+          "target": "Event:fir_del_2025_0005"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0006",
+          "type": "USES_PHONE",
+          "source": "Person:timothy_sane",
+          "target": "Phone:+919714026682"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0006",
+          "type": "USES_PHONE",
+          "source": "Person:ranveer_madan",
+          "target": "Phone:+916424188799"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0006",
+          "type": "CALLED",
+          "source": "Phone:+916424188799",
+          "target": "Phone:+919714026682"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0001",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:girik_biswas",
+          "target": "Event:fir_hyd_2025_0001"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0001",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:farhan_bhandari",
+          "target": "Event:fir_hyd_2025_0001"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0003",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:azaan_murthy",
+          "target": "Event:fir_hyd_2025_0003"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "type": "USES_PHONE",
+          "source": "Person:daksh_bakshi",
+          "target": "Phone:+916375107792"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "type": "MET_AT",
+          "source": "Person:daksh_bakshi",
+          "target": "Location:bala_circle_bus_depot:mumbai"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "type": "MET_AT",
+          "source": "Person:dalaja_chahal",
+          "target": "Location:bala_circle_bus_depot:mumbai"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "type": "MET_AT",
+          "source": "Person:laksh_konda",
+          "target": "Location:bala_circle_bus_depot:mumbai"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0003",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:sudiksha_pathak",
+          "target": "Event:fir_mum_2025_0003"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0004",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:rahul_sharma",
+          "target": "Event:fir_mum_2025_0004"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0004",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:udyati_balay",
+          "target": "Event:fir_mum_2025_0004"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0005",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:gaurika_zacharia",
+          "target": "Event:fir_mum_2025_0005"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0005",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:adya_choudhury",
+          "target": "Event:fir_mum_2025_0005"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0006",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:karan_tella",
+          "target": "Event:fir_mum_2025_0006"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0002",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:ishwar_kannan",
+          "target": "Event:fir_pun_2025_0002"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0002",
+          "type": "USES_PHONE",
+          "source": "Person:ishwar_kannan",
+          "target": "Phone:+919994738491"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0002",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:gopal_gupta",
+          "target": "Event:fir_pun_2025_0002"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0003",
+          "type": "CALLED",
+          "source": "Phone:+918291688635",
+          "target": "Phone:+917190994262"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0003",
+          "type": "USES_PHONE",
+          "source": "Person:udarsh_dey",
+          "target": "Phone:+917190994262"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0004",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:onkar_mall",
+          "target": "Event:fir_pun_2025_0004"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0004",
+          "type": "OWNS_VEHICLE",
+          "source": "Person:pallavi_bail",
+          "target": "Vehicle:MH12D9597"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0004",
+          "type": "USES_PHONE",
+          "source": "Person:pallavi_bail",
+          "target": "Phone:+917814266084"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0004",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:fariq_sami",
+          "target": "Event:fir_pun_2025_0004"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0005",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:fariq_sami",
+          "target": "Event:fir_pun_2025_0005"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0005",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:onkar_mall",
+          "target": "Event:fir_pun_2025_0005"
+        }
+      ]
+    }
+  },
+  "cooccurrence_oracle": {
+    "edges": 39,
+    "tied": 37,
+    "precision": 0.9487179487179487,
+    "tie_definition": "same cluster; bridge and a member of a cluster it connects; same company; present at the same incident; or a stated person-to-person relation in any report",
+    "untied": [
+      {
+        "document_id": "FIR-DEL-2025-0006",
+        "source": "Person:timothy_sane",
+        "target": "Person:ranveer_madan",
+        "sentence": "The complainant Shri Timothy Sane (mobile no. +91-9714026682) reported that Ranveer Madan, an associate of Finn Shere, has been demanding money from shopkeepers around Sharma Tea Stall, Delhi."
+      },
+      {
+        "document_id": "FIR-DEL-2025-0006",
+        "source": "Person:timothy_sane",
+        "target": "Person:finn_shere",
+        "sentence": "The complainant Shri Timothy Sane (mobile no. +91-9714026682) reported that Ranveer Madan, an associate of Finn Shere, has been demanding money from shopkeepers around Sharma Tea Stall, Delhi."
+      }
+    ]
+  },
+  "cooccurrence_end_to_end": {
+    "edges": 39,
+    "tied": 29,
+    "precision": 0.7435897435897436,
+    "tie_definition": "same cluster; bridge and a member of a cluster it connects; same company; present at the same incident; or a stated person-to-person relation in any report",
+    "untied": [
+      {
+        "document_id": "FIR-DEL-2025-0002",
+        "source": "Person:aarna_choudhury",
+        "target": "Person:maruti_suzuki_swift",
+        "sentence": "On 7 January 2025 at about 09:52 hours, a red Maruti Suzuki Swift bearing registration number DL 3 CZ 3213, driven by Aarna Choudhury, an employee of Barad Trading Pvt Ltd, collided with a blue Maruti Suzuki Swift bearing registration number DL9CZ2042, driven by Tanvi Dubey, an employee of Raja Services Pvt Ltd, near Sharma Tea Stall, Delhi."
+      },
+      {
+        "document_id": "FIR-DEL-2025-0002",
+        "source": "Person:maruti_suzuki_swift",
+        "target": "Person:tanvi_dubey",
+        "sentence": "On 7 January 2025 at about 09:52 hours, a red Maruti Suzuki Swift bearing registration number DL 3 CZ 3213, driven by Aarna Choudhury, an employee of Barad Trading Pvt Ltd, collided with a blue Maruti Suzuki Swift bearing registration number DL9CZ2042, driven by Tanvi Dubey, an employee of Raja Services Pvt Ltd, near Sharma Tea Stall, Delhi."
+      },
+      {
+        "document_id": "FIR-DEL-2025-0004",
+        "source": "Person:imaran_nair",
+        "target": "Person:royal_enfield_classic_350",
+        "sentence": "Imaran Nair came on a maroon Royal Enfield Classic 350 bearing registration number DL 4 CB 1155."
+      },
+      {
+        "document_id": "FIR-DEL-2025-0005",
+        "source": "Person:imaran_nair",
+        "target": "Person:royal_enfield_classic_350",
+        "sentence": "On 28 February 2025 at about 16:16 hours, Imaran Nair and Ayaan Karnik arrived on a maroon Royal Enfield Classic 350 bearing registration number DL-4-CB-1155 at the shop of Shri Gaurang Sachar near D’Alia Auto Works, Delhi, damaged the shop counter and threatened Gaurang Sachar for not paying protection money."
+      },
+      {
+        "document_id": "FIR-DEL-2025-0005",
+        "source": "Person:ayaan_karnik",
+        "target": "Person:royal_enfield_classic_350",
+        "sentence": "On 28 February 2025 at about 16:16 hours, Imaran Nair and Ayaan Karnik arrived on a maroon Royal Enfield Classic 350 bearing registration number DL-4-CB-1155 at the shop of Shri Gaurang Sachar near D’Alia Auto Works, Delhi, damaged the shop counter and threatened Gaurang Sachar for not paying protection money."
+      },
+      {
+        "document_id": "FIR-DEL-2025-0005",
+        "source": "Person:royal_enfield_classic_350",
+        "target": "Person:gaurang_sachar",
+        "sentence": "On 28 February 2025 at about 16:16 hours, Imaran Nair and Ayaan Karnik arrived on a maroon Royal Enfield Classic 350 bearing registration number DL-4-CB-1155 at the shop of Shri Gaurang Sachar near D’Alia Auto Works, Delhi, damaged the shop counter and threatened Gaurang Sachar for not paying protection money."
+      },
+      {
+        "document_id": "FIR-HYD-2025-0004",
+        "source": "Person:balveer_kaul",
+        "target": "Person:kyc",
+        "sentence": "Balveer Kaul, Chandresh Rai and Liam Setty were found calling members of the public using scripts about bank KYC updates and were detained."
+      },
+      {
+        "document_id": "FIR-HYD-2025-0004",
+        "source": "Person:chandresh_rai",
+        "target": "Person:kyc",
+        "sentence": "Balveer Kaul, Chandresh Rai and Liam Setty were found calling members of the public using scripts about bank KYC updates and were detained."
+      },
+      {
+        "document_id": "FIR-HYD-2025-0004",
+        "source": "Person:liam_setty",
+        "target": "Person:kyc",
+        "sentence": "Balveer Kaul, Chandresh Rai and Liam Setty were found calling members of the public using scripts about bank KYC updates and were detained."
+      },
+      {
+        "document_id": "FIR-MUM-2025-0003",
+        "source": "Person:sudiksha_pathak",
+        "target": "Person:kakar_warehouse",
+        "sentence": "The complainant Smt. Sudiksha Pathak (mobile no. +91 96889 36655) reported that on 14 February 2025 at about 19:01 hours, while walking near Kakar Warehouse, Mumbai, two unidentified persons on a motorcycle snatched a gold chain weighing about 20 grams from the complainant's neck and fled."
+      }
+    ]
+  },
+  "challenge_set": {
+    "per_type": {
+      "CALLED": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 1,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666
+      },
+      "MET_AT": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 4,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null
+      },
+      "TRANSFERRED_MONEY_TO": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 3,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null
+      },
+      "MEMBER_OF": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 4,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null
+      },
+      "PRESENT_AT_EVENT": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 4,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": null
+      },
+      "OWNS_VEHICLE": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null
+      },
+      "USES_PHONE": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 3,
+        "precision": 1.0,
+        "recall": 0.4,
+        "f1": 0.5714285714285715
+      }
+    },
+    "micro": {
+      "tp": 3,
+      "fp": 1,
+      "fn": 21,
+      "precision": 0.75,
+      "recall": 0.125,
+      "f1": 0.21428571428571427
+    },
+    "errors": {
+      "false_positive": [
+        {
+          "document_id": "CH-16",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:pawan_kumar",
+          "target": "Event:ch_16",
+          "rule": "present_passive",
+          "sentence": "Neither Rakesh Sood nor Pawan Kumar was present at the spot."
+        }
+      ],
+      "false_negative": [
+        {
+          "document_id": "CH-02",
+          "type": "USES_PHONE",
+          "source": "Person:kavita_rao",
+          "target": "Phone:+919876501234"
+        },
+        {
+          "document_id": "CH-03",
+          "type": "MEMBER_OF",
+          "source": "Person:imran_qadri",
+          "target": "Organization:qadri_transport_company"
+        },
+        {
+          "document_id": "CH-04",
+          "type": "MEMBER_OF",
+          "source": "Person:priya_nair",
+          "target": "Organization:nair_exports_pvt_ltd"
+        },
+        {
+          "document_id": "CH-05",
+          "type": "MET_AT",
+          "source": "Person:rohit_menon",
+          "target": "Location:hotel_grand:pune"
+        },
+        {
+          "document_id": "CH-05",
+          "type": "MET_AT",
+          "source": "Person:vikas_rao",
+          "target": "Location:hotel_grand:pune"
+        },
+        {
+          "document_id": "CH-06",
+          "type": "MET_AT",
+          "source": "Person:sunil_karve",
+          "target": "Location:sai_dhaba:nashik"
+        },
+        {
+          "document_id": "CH-06",
+          "type": "MET_AT",
+          "source": "Person:anil_desai",
+          "target": "Location:sai_dhaba:nashik"
+        },
+        {
+          "document_id": "CH-07",
+          "type": "TRANSFERRED_MONEY_TO",
+          "source": "Person:ramesh_yadav",
+          "target": "Person:mahesh_gupta"
+        },
+        {
+          "document_id": "CH-08",
+          "type": "TRANSFERRED_MONEY_TO",
+          "source": "Person:ramesh_yadav",
+          "target": "Person:mahesh_gupta"
+        },
+        {
+          "document_id": "CH-09",
+          "type": "OWNS_VEHICLE",
+          "source": "Person:ajay_shinde",
+          "target": "Vehicle:MH15CD4321"
+        },
+        {
+          "document_id": "CH-10",
+          "type": "OWNS_VEHICLE",
+          "source": "Person:ajay_shinde",
+          "target": "Vehicle:MH15EF1111"
+        },
+        {
+          "document_id": "CH-10",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Vehicle:MH15EF1111",
+          "target": "Event:ch_10"
+        },
+        {
+          "document_id": "CH-11",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:farhan_ali",
+          "target": "Event:ch_11"
+        },
+        {
+          "document_id": "CH-11",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:deepak_jain",
+          "target": "Event:ch_11"
+        },
+        {
+          "document_id": "CH-12",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:nitin_kale",
+          "target": "Event:ch_12"
+        },
+        {
+          "document_id": "CH-14",
+          "type": "USES_PHONE",
+          "source": "Person:arjun_mehta",
+          "target": "Phone:+919811122334"
+        },
+        {
+          "document_id": "CH-15",
+          "type": "MEMBER_OF",
+          "source": "Person:kiran_bhatia",
+          "target": "Organization:bhatia_constructions"
+        },
+        {
+          "document_id": "CH-17",
+          "type": "USES_PHONE",
+          "source": "Person:mohan_tiwari",
+          "target": "Phone:+919988776655"
+        },
+        {
+          "document_id": "CH-19",
+          "type": "CALLED",
+          "source": "Phone:+919876500001",
+          "target": "Phone:+919876500002"
+        },
+        {
+          "document_id": "CH-21",
+          "type": "MEMBER_OF",
+          "source": "Person:rekha_pillai",
+          "target": "Organization:pillai_textiles"
+        },
+        {
+          "document_id": "CH-22",
+          "type": "TRANSFERRED_MONEY_TO",
+          "source": "Person:kunal_mistry",
+          "target": "Person:vivek_anand"
+        }
+      ]
+    },
+    "per_case": {
+      "CH-01": {
+        "text": "Accused Suresh Patil was using mobile number 98200 12345 to contact buyers.",
+        "expected": [
+          [
+            "USES_PHONE",
+            "Person:suresh_patil",
+            "Phone:+919820012345"
+          ]
+        ],
+        "predicted": [
+          [
+            "USES_PHONE",
+            "Person:suresh_patil",
+            "Phone:+919820012345"
+          ]
+        ]
+      },
+      "CH-02": {
+        "text": "Mobile number 9876501234 is registered in the name of Kavita Rao.",
+        "expected": [
+          [
+            "USES_PHONE",
+            "Person:kavita_rao",
+            "Phone:+919876501234"
+          ]
+        ],
+        "predicted": []
+      },
+      "CH-03": {
+        "text": "Imran Qadri, a partner in Qadri Transport Company, was questioned at length.",
+        "expected": [
+          [
+            "MEMBER_OF",
+            "Person:imran_qadri",
+            "Organization:qadri_transport_company"
+          ]
+        ],
+        "predicted": []
+      },
+      "CH-04": {
+        "text": "Priya Nair works as an accountant at Nair Exports Pvt Ltd.",
+        "expected": [
+          [
+            "MEMBER_OF",
+            "Person:priya_nair",
+            "Organization:nair_exports_pvt_ltd"
+          ]
+        ],
+        "predicted": []
+      },
+      "CH-05": {
+        "text": "Vikas Rao and Rohit Menon met at Hotel Grand, Pune on Sunday evening.",
+        "expected": [
+          [
+            "MET_AT",
+            "Person:rohit_menon",
+            "Location:hotel_grand:pune"
+          ],
+          [
+            "MET_AT",
+            "Person:vikas_rao",
+            "Location:hotel_grand:pune"
+          ]
+        ],
+        "predicted": []
+      },
+      "CH-06": {
+        "text": "The meeting between Anil Desai and Sunil Karve took place at Sai Dhaba, Nashik.",
+        "expected": [
+          [
+            "MET_AT",
+            "Person:anil_desai",
+            "Location:sai_dhaba:nashik"
+          ],
+          [
+            "MET_AT",
+            "Person:sunil_karve",
+            "Location:sai_dhaba:nashik"
+          ]
+        ],
+        "predicted": []
+      },
+      "CH-07": {
+        "text": "Ramesh Yadav transferred ₹40,000 in cash to Mahesh Gupta.",
+        "expected": [
+          [
+            "TRANSFERRED_MONEY_TO",
+            "Person:ramesh_yadav",
+            "Person:mahesh_gupta"
+          ]
+        ],
+        "predicted": []
+      },
+      "CH-08": {
+        "text": "Mahesh Gupta received ₹15,000 in cash from Ramesh Yadav last week.",
+        "expected": [
+          [
+            "TRANSFERRED_MONEY_TO",
+            "Person:ramesh_yadav",
+            "Person:mahesh_gupta"
+          ]
+        ],
+        "predicted": []
+      },
+      "CH-09": {
+        "text": "The white Bolero bearing number MH-15-CD-4321 belongs to Ajay Shinde.",
+        "expected": [
+          [
+            "OWNS_VEHICLE",
+            "Person:ajay_shinde",
+            "Vehicle:MH15CD4321"
+          ]
+        ],
+        "predicted": []
+      },
+      "CH-10": {
+        "text": "Ajay Shinde's motorcycle MH 15 EF 1111 was seen at the spot.",
+        "expected": [
+          [
+            "OWNS_VEHICLE",
+            "Person:ajay_shinde",
+            "Vehicle:MH15EF1111"
+          ],
+          [
+            "PRESENT_AT_EVENT",
+            "Vehicle:MH15EF1111",
+            "Event:ch_10"
+          ]
+        ],
+        "predicted": []
+      },
+      "CH-11": {
+        "text": "Deepak Jain and Farhan Ali were arrested from the spot.",
+        "expected": [
+          [
+            "PRESENT_AT_EVENT",
+            "Person:deepak_jain",
+            "Event:ch_11"
+          ],
+          [
+            "PRESENT_AT_EVENT",
+            "Person:farhan_ali",
+            "Event:ch_11"
+          ]
+        ],
+        "predicted": []
+      },
+      "CH-12": {
+        "text": "Police detained Nitin Kale at the scene of the crime.",
+        "expected": [
+          [
+            "PRESENT_AT_EVENT",
+            "Person:nitin_kale",
+            "Event:ch_12"
+          ]
+        ],
+        "predicted": []
+      },
+      "CH-13": {
+        "text": "Sanjay Verma called Arjun Mehta several times before the incident.",
+        "expected": [
+          [
+            "CALLED",
+            "Person:sanjay_verma",
+            "Person:arjun_mehta"
+          ]
+        ],
+        "predicted": [
+          [
+            "CALLED",
+            "Person:sanjay_verma",
+            "Person:arjun_mehta"
+          ]
+        ]
+      },
+      "CH-14": {
+        "text": "Sanjay Verma called Arjun Mehta on 98111 22334 before the incident.",
+        "expected": [
+          [
+            "USES_PHONE",
+            "Person:arjun_mehta",
+            "Phone:+919811122334"
+          ]
+        ],
+        "predicted": []
+      },
+      "CH-15": {
+        "text": "Kiran Bhatia, director of Bhatia Constructions, denied the allegations.",
+        "expected": [
+          [
+            "MEMBER_OF",
+            "Person:kiran_bhatia",
+            "Organization:bhatia_constructions"
+          ]
+        ],
+        "predicted": []
+      },
+      "CH-16": {
+        "text": "Neither Rakesh Sood nor Pawan Kumar was present at the spot.",
+        "expected": [],
+        "predicted": [
+          [
+            "PRESENT_AT_EVENT",
+            "Person:pawan_kumar",
+            "Event:ch_16"
+          ]
+        ]
+      },
+      "CH-17": {
+        "text": "Mohan Tiwari could not be contacted on mobile number 99887 76655.",
+        "expected": [
+          [
+            "USES_PHONE",
+            "Person:mohan_tiwari",
+            "Phone:+919988776655"
+          ]
+        ],
+        "predicted": []
+      },
+      "CH-18": {
+        "text": "The complainant Smt. Meena Iyer (mobile no. 90000 11111) stated that Rajiv Kurup had threatened her.",
+        "expected": [
+          [
+            "USES_PHONE",
+            "Person:meena_iyer",
+            "Phone:+919000011111"
+          ]
+        ],
+        "predicted": [
+          [
+            "USES_PHONE",
+            "Person:meena_iyer",
+            "Phone:+919000011111"
+          ]
+        ]
+      },
+      "CH-19": {
+        "text": "A call was made from 98765 00001 to 98765 00002 at about 22:30 hours.",
+        "expected": [
+          [
+            "CALLED",
+            "Phone:+919876500001",
+            "Phone:+919876500002"
+          ]
+        ],
+        "predicted": []
+      },
+      "CH-20": {
+        "text": "Gopal Rao handed over the keys of MH-01-AB-9999 to Suraj Nair.",
+        "expected": [],
+        "predicted": []
+      },
+      "CH-21": {
+        "text": "Rekha Pillai, the owner of Pillai Textiles, has been summoned for questioning.",
+        "expected": [
+          [
+            "MEMBER_OF",
+            "Person:rekha_pillai",
+            "Organization:pillai_textiles"
+          ]
+        ],
+        "predicted": []
+      },
+      "CH-22": {
+        "text": "Kunal Mistry paid Rs. 2,00,000 in cash to Vivek Anand.",
+        "expected": [
+          [
+            "TRANSFERRED_MONEY_TO",
+            "Person:kunal_mistry",
+            "Person:vivek_anand"
+          ]
+        ],
+        "predicted": []
+      }
+    }
+  }
+}

@@ -102,13 +102,25 @@ an environment variable, for example `VERITAS_CONF_TEXT_PATTERN=0.8`.
 |---|---|---|---|---|
 | `structured` | 1.0 | fixed by design | edges from CDR, bank and registry rows | The record exists exactly as stated. This does not mean the *person attribution* is true; that is what the separate `USES_PHONE`/`HOLDS_ACCOUNT` edges are for. |
 | `mention_regex` | 0.95 | accepted, no measurement planned | phone and plate mentions | A deterministic format match. A valid format still doesn't prove the number is real. |
-| `text_pattern` | 0.7 | **unvalidated prior** | edges from an explicit relation phrase | The text states the relationship, but parsing can be wrong. |
-| `text_cooccurrence` | 0.4 | **unvalidated prior** | `ASSOCIATED_WITH` from being in the same sentence | Being mentioned together is weak evidence. |
+| `text_pattern` | 0.7 | checked, kept conservative | edges from an explicit relation phrase | The text states the relationship, but parsing can be wrong. |
+| `text_cooccurrence` | 0.4 | checked, kept conservative | `ASSOCIATED_WITH` from being in the same sentence | Being mentioned together is weak evidence. |
 | `mention_spacy_ner_person` | 0.92 | measured (upper bound) | Person mentions | spaCy `en_core_web_md` precision, 146/159 |
 | `mention_spacy_ner_location` | 0.97 | measured (upper bound) | Location mentions | 65/67 |
 | `mention_spacy_ner_organization` | 0.29 | measured (upper bound) | Organization mentions | 34/116: businesses, acronyms and vehicle models tagged ORG |
 
-The two **unvalidated priors** are guesses, marked with a `TODO` in `config.py` until relation extraction (Phase 3) is scored against the Phase 1 ground truth.
+The two relation defaults were **checked in Phase 3 and deliberately kept at 0.7 and 0.4 (approved)**.
+The measurements below come from template text, so they are circular evidence and can't justify higher values. The one probe with different phrasing already dropped to 3/4.
+The measurements do confirm the ordering: pattern relations are more reliable than same-sentence edges.
+
+**Phase 3 measurement (pooled over seeds 42 and 7):**
+
+| | Gold entities | End to end |
+|---|---|---|
+| `text_pattern` precision | 170/170 | 143/144 |
+| `text_cooccurrence` (a real tie between the people) | 73/78 | 63/88 |
+
+The hand-written challenge set gave 3/4 pattern precision: the negation "Neither X nor Y was present" produced a false edge.
+Text edge confidence also applies the min rule below, so these method defaults act on top of the entity confidences.
 
 The three NER values replaced a single unvalidated 0.6 (approved after Phase 2). They are lenient precision pooled over seeds 42 and 7.
 They come from clean, templated text, so they are **upper bounds**. They were measured for `en_core_web_md` and would need re-measuring for any other model.
@@ -166,8 +178,13 @@ people with the same name. `ground_truth.json` records that they are separate pe
 this rule is expected to merge them wrongly, so the effect can be measured in Phases 3–4 instead of
 turning up as an unexplained bug.
 
-Planned merge policy when two records resolve to the same node (Phase 3): the display attributes
-seen first are kept, and `source_document_ids` is the union of both.
+**Merge policy (implemented in Phase 3, `veritas/graph/builder.py`):** the display attributes seen first are kept, and `source_document_ids` becomes the union of both.
+Structured data is loaded before text, so registry spellings win over report spellings. The build report lists every node that received more than one display-name variant.
+
+**Places in report text (Phase 3):**
+- In "X, City", the city is stored on X's Location node, so "Balan Warehouse, Mumbai" resolves to the same node as the registry place. The city is not created as a separate node.
+- A business in a place phrase ("met … at X", "near X, City") is a Location even if NER labelled it ORG.
+- A place mentioned without a city still splits from the registry place, as listed in the table above.
 
 ---
 

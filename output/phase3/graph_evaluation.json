@@ -1,0 +1,448 @@
+{
+  "true_persons_present": "135/135",
+  "planted_collision": {
+    "node": "Person:rahul_sharma",
+    "merged_as_expected": true,
+    "phones_on_merged_node": [
+      "Phone:+917346214717",
+      "Phone:+919600233059"
+    ],
+    "explanation": "two different people named Rahul Sharma became one node (known false merge, schema.md section 7)"
+  },
+  "text_mentions_linked_to_expected_node": {
+    "Location": {
+      "as_node": 28,
+      "as_city_of_place": 22,
+      "unlinked": 3,
+      "total": 53,
+      "rate": 0.9433962264150944
+    },
+    "Organization": {
+      "as_node": 17,
+      "as_city_of_place": 0,
+      "unlinked": 0,
+      "total": 17,
+      "rate": 1.0
+    },
+    "Person": {
+      "as_node": 71,
+      "as_city_of_place": 0,
+      "unlinked": 8,
+      "total": 79,
+      "rate": 0.8987341772151899
+    },
+    "Phone": {
+      "as_node": 32,
+      "as_city_of_place": 0,
+      "unlinked": 0,
+      "total": 32,
+      "rate": 1.0
+    },
+    "Vehicle": {
+      "as_node": 10,
+      "as_city_of_place": 0,
+      "unlinked": 0,
+      "total": 10,
+      "rate": 1.0
+    }
+  },
+  "unlinked_mentions": [
+    {
+      "document_id": "FIR-DEL-2025-0005",
+      "text": "D’Alia Auto Works",
+      "type": "Location",
+      "expected": "Location:d_alia_auto_works:delhi"
+    },
+    {
+      "document_id": "FIR-DEL-2025-0006",
+      "text": "Timothy Sane",
+      "type": "Person",
+      "expected": "Person:timothy_sane"
+    },
+    {
+      "document_id": "FIR-MUM-2025-0001",
+      "text": "Daksh Bakshi",
+      "type": "Person",
+      "expected": "Person:daksh_bakshi"
+    },
+    {
+      "document_id": "FIR-MUM-2025-0001",
+      "text": "Daksh Bakshi",
+      "type": "Person",
+      "expected": "Person:daksh_bakshi"
+    },
+    {
+      "document_id": "FIR-MUM-2025-0003",
+      "text": "Kakar Warehouse",
+      "type": "Location",
+      "expected": "Location:kakar_warehouse:mumbai"
+    },
+    {
+      "document_id": "FIR-MUM-2025-0004",
+      "text": "Daksh Bakshi",
+      "type": "Person",
+      "expected": "Person:daksh_bakshi"
+    },
+    {
+      "document_id": "FIR-PUN-2025-0002",
+      "text": "Ishwar Kannan",
+      "type": "Person",
+      "expected": "Person:ishwar_kannan"
+    },
+    {
+      "document_id": "FIR-PUN-2025-0003",
+      "text": "Udarsh Dey",
+      "type": "Person",
+      "expected": "Person:udarsh_dey"
+    },
+    {
+      "document_id": "FIR-PUN-2025-0004",
+      "text": "Pallavi Bail",
+      "type": "Person",
+      "expected": "Person:pallavi_bail"
+    },
+    {
+      "document_id": "FIR-PUN-2025-0004",
+      "text": "Agate Marg Market",
+      "type": "Location",
+      "expected": "Location:agate_marg_market:pune"
+    },
+    {
+      "document_id": "FIR-PUN-2025-0005",
+      "text": "Onkar Mall",
+      "type": "Person",
+      "expected": "Person:onkar_mall"
+    }
+  ],
+  "text_only_nodes_not_in_ground_truth": {
+    "Organization": [
+      "Organization:ashok_leyland_dost",
+      "Organization:cctv",
+      "Organization:daksh_bakshi",
+      "Organization:imei",
+      "Organization:kyc",
+      "Organization:maruti_suzuki_ertiga",
+      "Organization:maruti_suzuki_swift",
+      "Organization:smt",
+      "Organization:tata",
+      "Organization:upi"
+    ],
+    "Person": [
+      "Person:agate_marg_market",
+      "Person:kakar_warehouse",
+      "Person:kyc",
+      "Person:maruti_suzuki_swift",
+      "Person:royal_enfield_classic_350"
+    ]
+  },
+  "text_pattern_edges_vs_annotations": {
+    "per_type": {
+      "CALLED": {
+        "tp": 4,
+        "fp": 0,
+        "fn": 2,
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1": 0.8
+      },
+      "MET_AT": {
+        "tp": 3,
+        "fp": 0,
+        "fn": 3,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666
+      },
+      "TRANSFERRED_MONEY_TO": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "MEMBER_OF": {
+        "tp": 16,
+        "fp": 1,
+        "fn": 0,
+        "precision": 0.9411764705882353,
+        "recall": 1.0,
+        "f1": 0.9696969696969697
+      },
+      "PRESENT_AT_EVENT": {
+        "tp": 21,
+        "fp": 0,
+        "fn": 24,
+        "precision": 1.0,
+        "recall": 0.4666666666666667,
+        "f1": 0.6363636363636364
+      },
+      "OWNS_VEHICLE": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 1,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666
+      },
+      "USES_PHONE": {
+        "tp": 18,
+        "fp": 0,
+        "fn": 8,
+        "precision": 1.0,
+        "recall": 0.6923076923076923,
+        "f1": 0.8181818181818181
+      }
+    },
+    "micro": {
+      "tp": 65,
+      "fp": 1,
+      "fn": 38,
+      "precision": 0.9848484848484849,
+      "recall": 0.6310679611650486,
+      "f1": 0.7692307692307693
+    },
+    "errors": {
+      "false_positive": [
+        {
+          "document_id": "FIR-MUM-2025-0004",
+          "type": "MEMBER_OF",
+          "source": "Person:laksh_konda",
+          "target": "Organization:daksh_bakshi",
+          "rule": "",
+          "sentence": ""
+        }
+      ],
+      "false_negative": [
+        {
+          "document_id": "FIR-BLR-2025-0002",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:devika_rajan",
+          "target": "Event:fir_blr_2025_0002"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0001",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:rahul_sharma",
+          "target": "Event:fir_del_2025_0001"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0002",
+          "type": "USES_PHONE",
+          "source": "Person:aarna_choudhury",
+          "target": "Phone:+918981072749"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0004",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:ethan_sani",
+          "target": "Event:fir_del_2025_0004"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0004",
+          "type": "USES_PHONE",
+          "source": "Person:ayaan_karnik",
+          "target": "Phone:+916518301062"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0004",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Vehicle:DL4CB1155",
+          "target": "Event:fir_del_2025_0004"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0004",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:imaran_nair",
+          "target": "Event:fir_del_2025_0004"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:ayaan_karnik",
+          "target": "Event:fir_del_2025_0005"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Vehicle:DL4CB1155",
+          "target": "Event:fir_del_2025_0005"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:imaran_nair",
+          "target": "Event:fir_del_2025_0005"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0005",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:gaurang_sachar",
+          "target": "Event:fir_del_2025_0005"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0006",
+          "type": "USES_PHONE",
+          "source": "Person:timothy_sane",
+          "target": "Phone:+919714026682"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0006",
+          "type": "CALLED",
+          "source": "Phone:+916424188799",
+          "target": "Phone:+919714026682"
+        },
+        {
+          "document_id": "FIR-DEL-2025-0006",
+          "type": "USES_PHONE",
+          "source": "Person:ranveer_madan",
+          "target": "Phone:+916424188799"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0001",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:girik_biswas",
+          "target": "Event:fir_hyd_2025_0001"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0001",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:farhan_bhandari",
+          "target": "Event:fir_hyd_2025_0001"
+        },
+        {
+          "document_id": "FIR-HYD-2025-0003",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:azaan_murthy",
+          "target": "Event:fir_hyd_2025_0003"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "type": "USES_PHONE",
+          "source": "Person:daksh_bakshi",
+          "target": "Phone:+916375107792"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "type": "MET_AT",
+          "source": "Person:dalaja_chahal",
+          "target": "Location:bala_circle_bus_depot:mumbai"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "type": "MET_AT",
+          "source": "Person:daksh_bakshi",
+          "target": "Location:bala_circle_bus_depot:mumbai"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0001",
+          "type": "MET_AT",
+          "source": "Person:laksh_konda",
+          "target": "Location:bala_circle_bus_depot:mumbai"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0003",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:sudiksha_pathak",
+          "target": "Event:fir_mum_2025_0003"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0004",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:rahul_sharma",
+          "target": "Event:fir_mum_2025_0004"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0004",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:udyati_balay",
+          "target": "Event:fir_mum_2025_0004"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0005",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:gaurika_zacharia",
+          "target": "Event:fir_mum_2025_0005"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0005",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:adya_choudhury",
+          "target": "Event:fir_mum_2025_0005"
+        },
+        {
+          "document_id": "FIR-MUM-2025-0006",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:karan_tella",
+          "target": "Event:fir_mum_2025_0006"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0002",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:gopal_gupta",
+          "target": "Event:fir_pun_2025_0002"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0002",
+          "type": "USES_PHONE",
+          "source": "Person:ishwar_kannan",
+          "target": "Phone:+919994738491"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0002",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:ishwar_kannan",
+          "target": "Event:fir_pun_2025_0002"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0003",
+          "type": "USES_PHONE",
+          "source": "Person:udarsh_dey",
+          "target": "Phone:+917190994262"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0003",
+          "type": "CALLED",
+          "source": "Phone:+918291688635",
+          "target": "Phone:+917190994262"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0004",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:fariq_sami",
+          "target": "Event:fir_pun_2025_0004"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0004",
+          "type": "OWNS_VEHICLE",
+          "source": "Person:pallavi_bail",
+          "target": "Vehicle:MH12D9597"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0004",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:onkar_mall",
+          "target": "Event:fir_pun_2025_0004"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0004",
+          "type": "USES_PHONE",
+          "source": "Person:pallavi_bail",
+          "target": "Phone:+917814266084"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0005",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:onkar_mall",
+          "target": "Event:fir_pun_2025_0005"
+        },
+        {
+          "document_id": "FIR-PUN-2025-0005",
+          "type": "PRESENT_AT_EVENT",
+          "source": "Person:fariq_sami",
+          "target": "Event:fir_pun_2025_0005"
+        }
+      ]
+    }
+  }
+}

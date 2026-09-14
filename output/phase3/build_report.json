@@ -1,0 +1,139 @@
+{
+  "nodes": 529,
+  "edges": 8117,
+  "nodes_by_type": {
+    "BankAccount": 119,
+    "Event": 24,
+    "Location": 28,
+    "Organization": 22,
+    "Person": 140,
+    "Phone": 152,
+    "Vehicle": 44
+  },
+  "edges_by_type": {
+    "ASSOCIATED_WITH (structured)": 24,
+    "ASSOCIATED_WITH (text_cooccurrence)": 39,
+    "CALLED (structured)": 6848,
+    "CALLED (text_pattern)": 4,
+    "HOLDS_ACCOUNT (structured)": 119,
+    "MEMBER_OF (structured)": 18,
+    "MEMBER_OF (text_pattern)": 17,
+    "MET_AT (text_pattern)": 3,
+    "OWNS_VEHICLE (structured)": 44,
+    "OWNS_VEHICLE (text_pattern)": 1,
+    "PRESENT_AT_EVENT (text_pattern)": 21,
+    "TRANSFERRED_MONEY_TO (structured)": 822,
+    "TRANSFERRED_MONEY_TO (text_pattern)": 2,
+    "USES_PHONE (structured)": 137,
+    "USES_PHONE (text_pattern)": 18
+  },
+  "builder_stats": {
+    "edges:ASSOCIATED_WITH:structured": 24,
+    "edges:ASSOCIATED_WITH:text_cooccurrence": 39,
+    "edges:CALLED:structured": 6848,
+    "edges:CALLED:text_pattern": 4,
+    "edges:HOLDS_ACCOUNT:structured": 119,
+    "edges:MEMBER_OF:structured": 18,
+    "edges:MEMBER_OF:text_pattern": 17,
+    "edges:MET_AT:text_pattern": 3,
+    "edges:OWNS_VEHICLE:structured": 44,
+    "edges:OWNS_VEHICLE:text_pattern": 1,
+    "edges:PRESENT_AT_EVENT:text_pattern": 21,
+    "edges:TRANSFERRED_MONEY_TO:structured": 822,
+    "edges:TRANSFERRED_MONEY_TO:text_pattern": 2,
+    "edges:USES_PHONE:structured": 137,
+    "edges:USES_PHONE:text_pattern": 18,
+    "node_merges:BankAccount": 1644,
+    "node_merges:Event": 24,
+    "node_merges:Location": 23,
+    "node_merges:Organization": 47,
+    "node_merges:Person": 242,
+    "node_merges:Phone": 13713,
+    "node_merges:Vehicle": 10,
+    "nodes_created:BankAccount": 119,
+    "nodes_created:Event": 24,
+    "nodes_created:Location": 28,
+    "nodes_created:Organization": 22,
+    "nodes_created:Person": 140,
+    "nodes_created:Phone": 152,
+    "nodes_created:Vehicle": 44,
+    "text_mentions_used_as_city": 23
+  },
+  "entity_resolution": {
+    "rule": "exact match on canonical key (schema.md section 7); no fuzzy matching",
+    "persons_with_several_subscriber_records": {
+      "Person:daksh_bakshi": [
+        {
+          "phone": "Phone:+916375107792",
+          "record": "SUB-0001"
+        },
+        {
+          "phone": "Phone:+918771974035",
+          "record": "SUB-0002"
+        }
+      ],
+      "Person:rahul_sharma": [
+        {
+          "phone": "Phone:+919600233059",
+          "record": "SUB-0004"
+        },
+        {
+          "phone": "Phone:+917346214717",
+          "record": "SUB-0100"
+        }
+      ]
+    },
+    "note_on_several_subscriber_records": "either one person with several SIMs or several people sharing a name; exact matching cannot tell these apart",
+    "display_name_variants_merged": {
+      "Organization:yohannan_logistics_pvt_ltd": [
+        "Yohannan Logistics Pvt Ltd",
+        "Yohannan Logistics Pvt Ltd."
+      ],
+      "Person:aadi_venkatesh": [
+        "Aadi Venkatesh",
+        "Shri Aadi Venkatesh"
+      ],
+      "Person:karan_tella": [
+        "Karan Tella",
+        "Shri Karan Tella"
+      ],
+      "Person:orinder_murthy": [
+        "Orinder Murthy",
+        "Shri Orinder Murthy"
+      ],
+      "Person:rahul_sharma": [
+        "Rahul Sharma",
+        "Shri Rahul Sharma"
+      ]
+    },
+    "text_only_nodes": {
+      "Location": [
+        "Location:bala_circle_bus_depot:mumbai",
+        "Location:delhi",
+        "Location:hyderabad",
+        "Location:mumbai",
+        "Location:murty_dhaba:delhi",
+        "Location:pune"
+      ],
+      "Organization": [
+        "Organization:ashok_leyland_dost",
+        "Organization:cctv",
+        "Organization:daksh_bakshi",
+        "Organization:imei",
+        "Organization:kyc",
+        "Organization:maruti_suzuki_ertiga",
+        "Organization:maruti_suzuki_swift",
+        "Organization:smt",
+        "Organization:tata",
+        "Organization:upi"
+      ],
+      "Person": [
+        "Person:agate_marg_market",
+        "Person:kakar_warehouse",
+        "Person:kyc",
+        "Person:maruti_suzuki_swift",
+        "Person:royal_enfield_classic_350"
+      ]
+    }
+  }
+}

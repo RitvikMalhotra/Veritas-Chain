@@ -1,0 +1,1052 @@
+[
+  {
+    "edge_id": "edge:9faa7f436bcc0c7e",
+    "type": "USES_PHONE",
+    "source": "Person:orinder_murthy",
+    "target": "Phone:+916454474647",
+    "document_id": "FIR-BLR-2025-0001",
+    "rule": "uses_phone",
+    "confidence": 0.7,
+    "sentence": "The complainant Shri Orinder Murthy (mobile no. +91-6454474647) reported that on 23 January 2025 at about 19:43 hours, the lock of the complainant's house near Shroff Tea Stall, Bengaluru was found broken and cash and jewellery were missing."
+  },
+  {
+    "edge_id": "edge:2c2d812ff124f174",
+    "type": "MEMBER_OF",
+    "source": "Person:anya_sarin",
+    "target": "Organization:raghavan_trading_pvt_ltd",
+    "document_id": "FIR-BLR-2025-0001",
+    "rule": "member_of",
+    "confidence": 0.29,
+    "sentence": "The complainant suspects Anya Sarin, an employee of Raghavan Trading Pvt Ltd, who had visited the house a week earlier for repair work."
+  },
+  {
+    "edge_id": "edge:37da7ce3f2f482a3",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:orinder_murthy",
+    "target": "Person:anya_sarin",
+    "document_id": "FIR-BLR-2025-0001",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "The complainant suspects Anya Sarin, an employee of Raghavan Trading Pvt Ltd, who had visited the house a week earlier for repair work."
+  },
+  {
+    "edge_id": "edge:bc0a9176fe0746ff",
+    "type": "USES_PHONE",
+    "source": "Person:devika_rajan",
+    "target": "Phone:+918231336700",
+    "document_id": "FIR-BLR-2025-0002",
+    "rule": "uses_phone",
+    "confidence": 0.7,
+    "sentence": "The complainant Smt. Devika Rajan (mobile no. 82313 36700) reported that on 2 February 2025 at about 09:30 hours, while walking near Ravi Tea Stall, Bengaluru, two unidentified persons on a motorcycle snatched a gold chain weighing about 20 grams from the complainant's neck and fled."
+  },
+  {
+    "edge_id": "edge:e4408270389f25fa",
+    "type": "USES_PHONE",
+    "source": "Person:aadi_venkatesh",
+    "target": "Phone:+918684843529",
+    "document_id": "FIR-BLR-2025-0003",
+    "rule": "uses_phone",
+    "confidence": 0.7,
+    "sentence": "The complainant Shri Aadi Venkatesh (mobile no. 86848 43529), who lives near Modi Auto Works, Bengaluru, reported that on 2 March 2025 at about 13:52 hours, a caller using mobile number +91-6369374146 offered a part-time online job and asked for a registration fee."
+  },
+  {
+    "edge_id": "edge:fda20bbfacb655da",
+    "type": "CALLED",
+    "source": "Phone:+916369374146",
+    "target": "Phone:+918684843529",
+    "document_id": "FIR-BLR-2025-0003",
+    "rule": "call_to_complainant",
+    "confidence": 0.7,
+    "sentence": "The complainant Shri Aadi Venkatesh (mobile no. 86848 43529), who lives near Modi Auto Works, Bengaluru, reported that on 2 March 2025 at about 13:52 hours, a caller using mobile number +91-6369374146 offered a part-time online job and asked for a registration fee."
+  },
+  {
+    "edge_id": "edge:5209056a85c556be",
+    "type": "USES_PHONE",
+    "source": "Person:rahul_sharma",
+    "target": "Phone:+917346214717",
+    "document_id": "FIR-DEL-2025-0001",
+    "rule": "phone_belonging_to",
+    "confidence": 0.7,
+    "sentence": "The complainant Shri Rahul Sharma, who works at Raja Services Pvt Ltd, reported that on 7 January 2025 at about 13:07 hours, a mobile phone bearing number +91 73462 14717 belonging to the complainant was stolen from the complainant's bag in a crowd near Hotel Yadav Residency, Delhi."
+  },
+  {
+    "edge_id": "edge:2418e8038c5154c5",
+    "type": "MEMBER_OF",
+    "source": "Person:rahul_sharma",
+    "target": "Organization:raja_services_pvt_ltd",
+    "document_id": "FIR-DEL-2025-0001",
+    "rule": "member_of",
+    "confidence": 0.29,
+    "sentence": "The complainant Shri Rahul Sharma, who works at Raja Services Pvt Ltd, reported that on 7 January 2025 at about 13:07 hours, a mobile phone bearing number +91 73462 14717 belonging to the complainant was stolen from the complainant's bag in a crowd near Hotel Yadav Residency, Delhi."
+  },
+  {
+    "edge_id": "edge:c51046a08f277a7a",
+    "type": "MEMBER_OF",
+    "source": "Person:aarna_choudhury",
+    "target": "Organization:barad_trading_pvt_ltd",
+    "document_id": "FIR-DEL-2025-0002",
+    "rule": "member_of",
+    "confidence": 0.29,
+    "sentence": "On 7 January 2025 at about 09:52 hours, a red Maruti Suzuki Swift bearing registration number DL 3 CZ 3213, driven by Aarna Choudhury, an employee of Barad Trading Pvt Ltd, collided with a blue Maruti Suzuki Swift bearing registration number DL9CZ2042, driven by Tanvi Dubey, an employee of Raja Services Pvt Ltd, near Sharma Tea Stall, Delhi."
+  },
+  {
+    "edge_id": "edge:0193dea61131c9d5",
+    "type": "MEMBER_OF",
+    "source": "Person:tanvi_dubey",
+    "target": "Organization:raja_services_pvt_ltd",
+    "document_id": "FIR-DEL-2025-0002",
+    "rule": "member_of",
+    "confidence": 0.29,
+    "sentence": "On 7 January 2025 at about 09:52 hours, a red Maruti Suzuki Swift bearing registration number DL 3 CZ 3213, driven by Aarna Choudhury, an employee of Barad Trading Pvt Ltd, collided with a blue Maruti Suzuki Swift bearing registration number DL9CZ2042, driven by Tanvi Dubey, an employee of Raja Services Pvt Ltd, near Sharma Tea Stall, Delhi."
+  },
+  {
+    "edge_id": "edge:d281cd35edd6c186",
+    "type": "PRESENT_AT_EVENT",
+    "source": "Vehicle:DL3CZ3213",
+    "target": "Event:fir_del_2025_0002",
+    "document_id": "FIR-DEL-2025-0002",
+    "rule": "driven_by",
+    "confidence": 0.7,
+    "sentence": "On 7 January 2025 at about 09:52 hours, a red Maruti Suzuki Swift bearing registration number DL 3 CZ 3213, driven by Aarna Choudhury, an employee of Barad Trading Pvt Ltd, collided with a blue Maruti Suzuki Swift bearing registration number DL9CZ2042, driven by Tanvi Dubey, an employee of Raja Services Pvt Ltd, near Sharma Tea Stall, Delhi."
+  },
+  {
+    "edge_id": "edge:57f08e26a783393f",
+    "type": "PRESENT_AT_EVENT",
+    "source": "Person:aarna_choudhury",
+    "target": "Event:fir_del_2025_0002",
+    "document_id": "FIR-DEL-2025-0002",
+    "rule": "driven_by",
+    "confidence": 0.7,
+    "sentence": "On 7 January 2025 at about 09:52 hours, a red Maruti Suzuki Swift bearing registration number DL 3 CZ 3213, driven by Aarna Choudhury, an employee of Barad Trading Pvt Ltd, collided with a blue Maruti Suzuki Swift bearing registration number DL9CZ2042, driven by Tanvi Dubey, an employee of Raja Services Pvt Ltd, near Sharma Tea Stall, Delhi."
+  },
+  {
+    "edge_id": "edge:c6dc1b7b3b44ed70",
+    "type": "PRESENT_AT_EVENT",
+    "source": "Vehicle:DL9CZ2042",
+    "target": "Event:fir_del_2025_0002",
+    "document_id": "FIR-DEL-2025-0002",
+    "rule": "driven_by",
+    "confidence": 0.7,
+    "sentence": "On 7 January 2025 at about 09:52 hours, a red Maruti Suzuki Swift bearing registration number DL 3 CZ 3213, driven by Aarna Choudhury, an employee of Barad Trading Pvt Ltd, collided with a blue Maruti Suzuki Swift bearing registration number DL9CZ2042, driven by Tanvi Dubey, an employee of Raja Services Pvt Ltd, near Sharma Tea Stall, Delhi."
+  },
+  {
+    "edge_id": "edge:94c798c82ddd9835",
+    "type": "PRESENT_AT_EVENT",
+    "source": "Person:tanvi_dubey",
+    "target": "Event:fir_del_2025_0002",
+    "document_id": "FIR-DEL-2025-0002",
+    "rule": "driven_by",
+    "confidence": 0.7,
+    "sentence": "On 7 January 2025 at about 09:52 hours, a red Maruti Suzuki Swift bearing registration number DL 3 CZ 3213, driven by Aarna Choudhury, an employee of Barad Trading Pvt Ltd, collided with a blue Maruti Suzuki Swift bearing registration number DL9CZ2042, driven by Tanvi Dubey, an employee of Raja Services Pvt Ltd, near Sharma Tea Stall, Delhi."
+  },
+  {
+    "edge_id": "edge:645ce337bed9162e",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:aarna_choudhury",
+    "target": "Person:maruti_suzuki_swift",
+    "document_id": "FIR-DEL-2025-0002",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "On 7 January 2025 at about 09:52 hours, a red Maruti Suzuki Swift bearing registration number DL 3 CZ 3213, driven by Aarna Choudhury, an employee of Barad Trading Pvt Ltd, collided with a blue Maruti Suzuki Swift bearing registration number DL9CZ2042, driven by Tanvi Dubey, an employee of Raja Services Pvt Ltd, near Sharma Tea Stall, Delhi."
+  },
+  {
+    "edge_id": "edge:420e4e6f2c35a5be",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:aarna_choudhury",
+    "target": "Person:tanvi_dubey",
+    "document_id": "FIR-DEL-2025-0002",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "On 7 January 2025 at about 09:52 hours, a red Maruti Suzuki Swift bearing registration number DL 3 CZ 3213, driven by Aarna Choudhury, an employee of Barad Trading Pvt Ltd, collided with a blue Maruti Suzuki Swift bearing registration number DL9CZ2042, driven by Tanvi Dubey, an employee of Raja Services Pvt Ltd, near Sharma Tea Stall, Delhi."
+  },
+  {
+    "edge_id": "edge:58bd5fda5eff4a61",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:maruti_suzuki_swift",
+    "target": "Person:tanvi_dubey",
+    "document_id": "FIR-DEL-2025-0002",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "On 7 January 2025 at about 09:52 hours, a red Maruti Suzuki Swift bearing registration number DL 3 CZ 3213, driven by Aarna Choudhury, an employee of Barad Trading Pvt Ltd, collided with a blue Maruti Suzuki Swift bearing registration number DL9CZ2042, driven by Tanvi Dubey, an employee of Raja Services Pvt Ltd, near Sharma Tea Stall, Delhi."
+  },
+  {
+    "edge_id": "edge:a959354188c9d346",
+    "type": "USES_PHONE",
+    "source": "Person:charan_pandya",
+    "target": "Phone:+916005959219",
+    "document_id": "FIR-DEL-2025-0003",
+    "rule": "uses_phone",
+    "confidence": 0.7,
+    "sentence": "The complainant Shri Charan Pandya (mobile no. +91-6005959219) reported that on 12 January 2025 at about 10:22 hours, the lock of the complainant's house near Bajwa Ganj Garage, Delhi was found broken and cash and jewellery were missing."
+  },
+  {
+    "edge_id": "edge:8c9b445685c51d9e",
+    "type": "MEMBER_OF",
+    "source": "Person:atharv_chanda",
+    "target": "Organization:barad_trading_pvt_ltd",
+    "document_id": "FIR-DEL-2025-0003",
+    "rule": "member_of",
+    "confidence": 0.29,
+    "sentence": "The complainant suspects Atharv Chanda, an employee of Barad Trading Pvt Ltd, who had visited the house a week earlier for repair work."
+  },
+  {
+    "edge_id": "edge:d59c364881d8254f",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:charan_pandya",
+    "target": "Person:atharv_chanda",
+    "document_id": "FIR-DEL-2025-0003",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "The complainant suspects Atharv Chanda, an employee of Barad Trading Pvt Ltd, who had visited the house a week earlier for repair work."
+  },
+  {
+    "edge_id": "edge:6a2118aa4653eb5e",
+    "type": "USES_PHONE",
+    "source": "Person:ethan_sani",
+    "target": "Phone:+916406467692",
+    "document_id": "FIR-DEL-2025-0004",
+    "rule": "uses_phone",
+    "confidence": 0.7,
+    "sentence": "The complainant Shri Ethan Sani (mobile no. +91 64064 67692), who runs a shop near Singhal Tea Stall, Delhi, reported receiving threatening calls over the past two days from mobile number +91 65183 01062."
+  },
+  {
+    "edge_id": "edge:209a7705f8aa3a7a",
+    "type": "CALLED",
+    "source": "Phone:+916518301062",
+    "target": "Phone:+916406467692",
+    "document_id": "FIR-DEL-2025-0004",
+    "rule": "call_to_complainant",
+    "confidence": 0.7,
+    "sentence": "The complainant Shri Ethan Sani (mobile no. +91 64064 67692), who runs a shop near Singhal Tea Stall, Delhi, reported receiving threatening calls over the past two days from mobile number +91 65183 01062."
+  },
+  {
+    "edge_id": "edge:ebeeb1c9f9d6cd62",
+    "type": "TRANSFERRED_MONEY_TO",
+    "source": "Person:ethan_sani",
+    "target": "Person:imaran_nair",
+    "document_id": "FIR-DEL-2025-0004",
+    "rule": "cash_transfer",
+    "confidence": 0.7,
+    "sentence": "On 16 January 2025 at about 20:17 hours, out of fear, the complainant paid ₹20,000 in cash to Imaran Nair near the shop."
+  },
+  {
+    "edge_id": "edge:a96ab8fe4ac40217",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:imaran_nair",
+    "target": "Person:royal_enfield_classic_350",
+    "document_id": "FIR-DEL-2025-0004",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "Imaran Nair came on a maroon Royal Enfield Classic 350 bearing registration number DL 4 CB 1155."
+  },
+  {
+    "edge_id": "edge:0b0e3b44cbee2be5",
+    "type": "USES_PHONE",
+    "source": "Person:finn_shere",
+    "target": "Phone:+916852224261",
+    "document_id": "FIR-DEL-2025-0005",
+    "rule": "uses_phone",
+    "confidence": 0.7,
+    "sentence": "Finn Shere is known to use mobile number 06852224261."
+  },
+  {
+    "edge_id": "edge:8af6ed6453ca30e6",
+    "type": "MET_AT",
+    "source": "Person:imaran_nair",
+    "target": "Location:murty_dhaba:delhi",
+    "document_id": "FIR-DEL-2025-0005",
+    "rule": "met_at",
+    "confidence": 0.7,
+    "sentence": "As per information from local sources, Imaran Nair had met Finn Shere and Ranveer Madan at Murty Dhaba, Delhi on the previous evening."
+  },
+  {
+    "edge_id": "edge:5db14dc5b0021845",
+    "type": "MET_AT",
+    "source": "Person:finn_shere",
+    "target": "Location:murty_dhaba:delhi",
+    "document_id": "FIR-DEL-2025-0005",
+    "rule": "met_at",
+    "confidence": 0.7,
+    "sentence": "As per information from local sources, Imaran Nair had met Finn Shere and Ranveer Madan at Murty Dhaba, Delhi on the previous evening."
+  },
+  {
+    "edge_id": "edge:90a004393b129ba8",
+    "type": "MET_AT",
+    "source": "Person:ranveer_madan",
+    "target": "Location:murty_dhaba:delhi",
+    "document_id": "FIR-DEL-2025-0005",
+    "rule": "met_at",
+    "confidence": 0.7,
+    "sentence": "As per information from local sources, Imaran Nair had met Finn Shere and Ranveer Madan at Murty Dhaba, Delhi on the previous evening."
+  },
+  {
+    "edge_id": "edge:207f168b9d6f4748",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:imaran_nair",
+    "target": "Person:ayaan_karnik",
+    "document_id": "FIR-DEL-2025-0005",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "On 28 February 2025 at about 16:16 hours, Imaran Nair and Ayaan Karnik arrived on a maroon Royal Enfield Classic 350 bearing registration number DL-4-CB-1155 at the shop of Shri Gaurang Sachar near D’Alia Auto Works, Delhi, damaged the shop counter and threatened Gaurang Sachar for not paying protection money."
+  },
+  {
+    "edge_id": "edge:007196373c253a43",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:imaran_nair",
+    "target": "Person:royal_enfield_classic_350",
+    "document_id": "FIR-DEL-2025-0005",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "On 28 February 2025 at about 16:16 hours, Imaran Nair and Ayaan Karnik arrived on a maroon Royal Enfield Classic 350 bearing registration number DL-4-CB-1155 at the shop of Shri Gaurang Sachar near D’Alia Auto Works, Delhi, damaged the shop counter and threatened Gaurang Sachar for not paying protection money."
+  },
+  {
+    "edge_id": "edge:906ab6395a478ead",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:imaran_nair",
+    "target": "Person:gaurang_sachar",
+    "document_id": "FIR-DEL-2025-0005",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "On 28 February 2025 at about 16:16 hours, Imaran Nair and Ayaan Karnik arrived on a maroon Royal Enfield Classic 350 bearing registration number DL-4-CB-1155 at the shop of Shri Gaurang Sachar near D’Alia Auto Works, Delhi, damaged the shop counter and threatened Gaurang Sachar for not paying protection money."
+  },
+  {
+    "edge_id": "edge:d4a43bc7153e5872",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:ayaan_karnik",
+    "target": "Person:royal_enfield_classic_350",
+    "document_id": "FIR-DEL-2025-0005",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "On 28 February 2025 at about 16:16 hours, Imaran Nair and Ayaan Karnik arrived on a maroon Royal Enfield Classic 350 bearing registration number DL-4-CB-1155 at the shop of Shri Gaurang Sachar near D’Alia Auto Works, Delhi, damaged the shop counter and threatened Gaurang Sachar for not paying protection money."
+  },
+  {
+    "edge_id": "edge:d065a1f6107a2072",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:ayaan_karnik",
+    "target": "Person:gaurang_sachar",
+    "document_id": "FIR-DEL-2025-0005",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "On 28 February 2025 at about 16:16 hours, Imaran Nair and Ayaan Karnik arrived on a maroon Royal Enfield Classic 350 bearing registration number DL-4-CB-1155 at the shop of Shri Gaurang Sachar near D’Alia Auto Works, Delhi, damaged the shop counter and threatened Gaurang Sachar for not paying protection money."
+  },
+  {
+    "edge_id": "edge:887c11423ba277b2",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:royal_enfield_classic_350",
+    "target": "Person:gaurang_sachar",
+    "document_id": "FIR-DEL-2025-0005",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "On 28 February 2025 at about 16:16 hours, Imaran Nair and Ayaan Karnik arrived on a maroon Royal Enfield Classic 350 bearing registration number DL-4-CB-1155 at the shop of Shri Gaurang Sachar near D’Alia Auto Works, Delhi, damaged the shop counter and threatened Gaurang Sachar for not paying protection money."
+  },
+  {
+    "edge_id": "edge:ea5509b5a7502167",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:imaran_nair",
+    "target": "Person:finn_shere",
+    "document_id": "FIR-DEL-2025-0005",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "As per information from local sources, Imaran Nair had met Finn Shere and Ranveer Madan at Murty Dhaba, Delhi on the previous evening."
+  },
+  {
+    "edge_id": "edge:03194820a62a29c8",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:imaran_nair",
+    "target": "Person:ranveer_madan",
+    "document_id": "FIR-DEL-2025-0005",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "As per information from local sources, Imaran Nair had met Finn Shere and Ranveer Madan at Murty Dhaba, Delhi on the previous evening."
+  },
+  {
+    "edge_id": "edge:a8218a97239c026f",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:finn_shere",
+    "target": "Person:ranveer_madan",
+    "document_id": "FIR-DEL-2025-0005",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "As per information from local sources, Imaran Nair had met Finn Shere and Ranveer Madan at Murty Dhaba, Delhi on the previous evening."
+  },
+  {
+    "edge_id": "edge:e12eb23176afe916",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:ranveer_madan",
+    "target": "Person:finn_shere",
+    "document_id": "FIR-DEL-2025-0006",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "The complainant Shri Timothy Sane (mobile no. +91-9714026682) reported that Ranveer Madan, an associate of Finn Shere, has been demanding money from shopkeepers around Sharma Tea Stall, Delhi."
+  },
+  {
+    "edge_id": "edge:fbf5eefea41568d7",
+    "type": "USES_PHONE",
+    "source": "Person:farhan_bhandari",
+    "target": "Phone:+919349831082",
+    "document_id": "FIR-HYD-2025-0001",
+    "rule": "uses_phone",
+    "confidence": 0.7,
+    "sentence": "The complainant Shri Farhan Bhandari (mobile no. 93498 31082) reported that on 15 January 2025 at about 17:17 hours, Girik Biswas, a neighbour, quarrelled with the complainant over parking near Dugal Zila Market, Hyderabad and slapped the complainant."
+  },
+  {
+    "edge_id": "edge:c0449d9edd4cba16",
+    "type": "MEMBER_OF",
+    "source": "Person:dominic_mital",
+    "target": "Organization:borah_services_pvt_ltd",
+    "document_id": "FIR-HYD-2025-0001",
+    "rule": "member_of",
+    "confidence": 0.29,
+    "sentence": "Dominic Mital, who works at Borah Services Pvt Ltd, witnessed the incident."
+  },
+  {
+    "edge_id": "edge:0c28cf6e4c5bf61c",
+    "type": "PRESENT_AT_EVENT",
+    "source": "Person:dominic_mital",
+    "target": "Event:fir_hyd_2025_0001",
+    "document_id": "FIR-HYD-2025-0001",
+    "rule": "witnessed",
+    "confidence": 0.7,
+    "sentence": "Dominic Mital, who works at Borah Services Pvt Ltd, witnessed the incident."
+  },
+  {
+    "edge_id": "edge:342867be29bc9caa",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:farhan_bhandari",
+    "target": "Person:girik_biswas",
+    "document_id": "FIR-HYD-2025-0001",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "The complainant Shri Farhan Bhandari (mobile no. 93498 31082) reported that on 15 January 2025 at about 17:17 hours, Girik Biswas, a neighbour, quarrelled with the complainant over parking near Dugal Zila Market, Hyderabad and slapped the complainant."
+  },
+  {
+    "edge_id": "edge:71f02fc3ad747d90",
+    "type": "USES_PHONE",
+    "source": "Person:tamanna_dar",
+    "target": "Phone:+919772591901",
+    "document_id": "FIR-HYD-2025-0002",
+    "rule": "uses_phone",
+    "confidence": 0.7,
+    "sentence": "The complainant Smt. Tamanna Dar (mobile no. 9772591901), who works at Yogi Traders and lives near Dugal Zila Market, Hyderabad, reported that on 16 January 2025 at about 13:43 hours, a caller using mobile number 85246 24102 claimed to be a bank official and said that the complainant's KYC had expired."
+  },
+  {
+    "edge_id": "edge:7fddac6fff6b5d19",
+    "type": "CALLED",
+    "source": "Phone:+918524624102",
+    "target": "Phone:+919772591901",
+    "document_id": "FIR-HYD-2025-0002",
+    "rule": "call_to_complainant",
+    "confidence": 0.7,
+    "sentence": "The complainant Smt. Tamanna Dar (mobile no. 9772591901), who works at Yogi Traders and lives near Dugal Zila Market, Hyderabad, reported that on 16 January 2025 at about 13:43 hours, a caller using mobile number 85246 24102 claimed to be a bank official and said that the complainant's KYC had expired."
+  },
+  {
+    "edge_id": "edge:7eab8c80668e2c0e",
+    "type": "MEMBER_OF",
+    "source": "Person:tamanna_dar",
+    "target": "Organization:yogi_traders",
+    "document_id": "FIR-HYD-2025-0002",
+    "rule": "member_of",
+    "confidence": 0.29,
+    "sentence": "The complainant Smt. Tamanna Dar (mobile no. 9772591901), who works at Yogi Traders and lives near Dugal Zila Market, Hyderabad, reported that on 16 January 2025 at about 13:43 hours, a caller using mobile number 85246 24102 claimed to be a bank official and said that the complainant's KYC had expired."
+  },
+  {
+    "edge_id": "edge:7da55defb95281f2",
+    "type": "USES_PHONE",
+    "source": "Person:azaan_murthy",
+    "target": "Phone:+916926118120",
+    "document_id": "FIR-HYD-2025-0003",
+    "rule": "phone_belonging_to",
+    "confidence": 0.7,
+    "sentence": "The complainant Shri Azaan Murthy, who works at Yogi Traders, reported that on 27 February 2025 at about 11:54 hours, a mobile phone bearing number +91-6926118120 belonging to the complainant was stolen from the complainant's bag in a crowd near Deo Auto Works, Hyderabad."
+  },
+  {
+    "edge_id": "edge:e2261aaef52e179d",
+    "type": "MEMBER_OF",
+    "source": "Person:azaan_murthy",
+    "target": "Organization:yogi_traders",
+    "document_id": "FIR-HYD-2025-0003",
+    "rule": "member_of",
+    "confidence": 0.29,
+    "sentence": "The complainant Shri Azaan Murthy, who works at Yogi Traders, reported that on 27 February 2025 at about 11:54 hours, a mobile phone bearing number +91-6926118120 belonging to the complainant was stolen from the complainant's bag in a crowd near Deo Auto Works, Hyderabad."
+  },
+  {
+    "edge_id": "edge:bc237e9e0d2a036e",
+    "type": "USES_PHONE",
+    "source": "Person:david_radhakrishnan",
+    "target": "Phone:+918829009322",
+    "document_id": "FIR-HYD-2025-0004",
+    "rule": "uses_phone",
+    "confidence": 0.7,
+    "sentence": "Initial questioning revealed that the operation is run by David Radhakrishnan, who uses mobile number 8829009322 and is absconding."
+  },
+  {
+    "edge_id": "edge:61aac4481f7460dc",
+    "type": "PRESENT_AT_EVENT",
+    "source": "Person:balveer_kaul",
+    "target": "Event:fir_hyd_2025_0004",
+    "document_id": "FIR-HYD-2025-0004",
+    "rule": "present_passive",
+    "confidence": 0.7,
+    "sentence": "Balveer Kaul, Chandresh Rai and Liam Setty were found calling members of the public using scripts about bank KYC updates and were detained."
+  },
+  {
+    "edge_id": "edge:94c4e6eb51077871",
+    "type": "PRESENT_AT_EVENT",
+    "source": "Person:chandresh_rai",
+    "target": "Event:fir_hyd_2025_0004",
+    "document_id": "FIR-HYD-2025-0004",
+    "rule": "present_passive",
+    "confidence": 0.7,
+    "sentence": "Balveer Kaul, Chandresh Rai and Liam Setty were found calling members of the public using scripts about bank KYC updates and were detained."
+  },
+  {
+    "edge_id": "edge:ce68e09f8639b87e",
+    "type": "PRESENT_AT_EVENT",
+    "source": "Person:liam_setty",
+    "target": "Event:fir_hyd_2025_0004",
+    "document_id": "FIR-HYD-2025-0004",
+    "rule": "present_passive",
+    "confidence": 0.7,
+    "sentence": "Balveer Kaul, Chandresh Rai and Liam Setty were found calling members of the public using scripts about bank KYC updates and were detained."
+  },
+  {
+    "edge_id": "edge:a3b363654b05e754",
+    "type": "MEMBER_OF",
+    "source": "Person:ishaan_mann",
+    "target": "Organization:lanka_trading_pvt_ltd",
+    "document_id": "FIR-HYD-2025-0004",
+    "rule": "member_of",
+    "confidence": 0.29,
+    "sentence": "Ishaan Mann, a director of Lanka Trading Pvt Ltd, was also present at the office."
+  },
+  {
+    "edge_id": "edge:4d15b1da0cbb4341",
+    "type": "PRESENT_AT_EVENT",
+    "source": "Person:ishaan_mann",
+    "target": "Event:fir_hyd_2025_0004",
+    "document_id": "FIR-HYD-2025-0004",
+    "rule": "present_passive",
+    "confidence": 0.7,
+    "sentence": "Ishaan Mann, a director of Lanka Trading Pvt Ltd, was also present at the office."
+  },
+  {
+    "edge_id": "edge:4834335cee24fb02",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:balveer_kaul",
+    "target": "Person:chandresh_rai",
+    "document_id": "FIR-HYD-2025-0004",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "Balveer Kaul, Chandresh Rai and Liam Setty were found calling members of the public using scripts about bank KYC updates and were detained."
+  },
+  {
+    "edge_id": "edge:34e9f6cd9661cd19",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:balveer_kaul",
+    "target": "Person:liam_setty",
+    "document_id": "FIR-HYD-2025-0004",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "Balveer Kaul, Chandresh Rai and Liam Setty were found calling members of the public using scripts about bank KYC updates and were detained."
+  },
+  {
+    "edge_id": "edge:e5582da3b6ece7da",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:balveer_kaul",
+    "target": "Person:kyc",
+    "document_id": "FIR-HYD-2025-0004",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "Balveer Kaul, Chandresh Rai and Liam Setty were found calling members of the public using scripts about bank KYC updates and were detained."
+  },
+  {
+    "edge_id": "edge:83a31e2cd8545402",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:chandresh_rai",
+    "target": "Person:liam_setty",
+    "document_id": "FIR-HYD-2025-0004",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "Balveer Kaul, Chandresh Rai and Liam Setty were found calling members of the public using scripts about bank KYC updates and were detained."
+  },
+  {
+    "edge_id": "edge:a203f5d3cccf1a53",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:chandresh_rai",
+    "target": "Person:kyc",
+    "document_id": "FIR-HYD-2025-0004",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "Balveer Kaul, Chandresh Rai and Liam Setty were found calling members of the public using scripts about bank KYC updates and were detained."
+  },
+  {
+    "edge_id": "edge:aea12aa55363a3b0",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:liam_setty",
+    "target": "Person:kyc",
+    "document_id": "FIR-HYD-2025-0004",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "Balveer Kaul, Chandresh Rai and Liam Setty were found calling members of the public using scripts about bank KYC updates and were detained."
+  },
+  {
+    "edge_id": "edge:aa3e4af85beb0d09",
+    "type": "PRESENT_AT_EVENT",
+    "source": "Person:isaac_dewan",
+    "target": "Event:fir_mum_2025_0001",
+    "document_id": "FIR-MUM-2025-0001",
+    "rule": "present_passive",
+    "confidence": 0.7,
+    "sentence": "Isaac Dewan and Dalaja Chahal were apprehended at the spot and 240 grams of a white crystalline substance suspected to be mephedrone was recovered from their possession."
+  },
+  {
+    "edge_id": "edge:8cd1254bcf75bf4b",
+    "type": "PRESENT_AT_EVENT",
+    "source": "Person:dalaja_chahal",
+    "target": "Event:fir_mum_2025_0001",
+    "document_id": "FIR-MUM-2025-0001",
+    "rule": "present_passive",
+    "confidence": 0.7,
+    "sentence": "Isaac Dewan and Dalaja Chahal were apprehended at the spot and 240 grams of a white crystalline substance suspected to be mephedrone was recovered from their possession."
+  },
+  {
+    "edge_id": "edge:ff32b071ebcb6600",
+    "type": "PRESENT_AT_EVENT",
+    "source": "Vehicle:MH14LY7909",
+    "target": "Event:fir_mum_2025_0001",
+    "document_id": "FIR-MUM-2025-0001",
+    "rule": "present_passive",
+    "confidence": 0.7,
+    "sentence": "A black Ashok Leyland Dost bearing registration number MH14LY7909 was found parked at the spot and was seized."
+  },
+  {
+    "edge_id": "edge:e74e70dd8fb2ca9b",
+    "type": "MEMBER_OF",
+    "source": "Person:ekaraj_koshy",
+    "target": "Organization:yohannan_logistics_pvt_ltd",
+    "document_id": "FIR-MUM-2025-0001",
+    "rule": "member_of",
+    "confidence": 0.29,
+    "sentence": "As per registration records, the vehicle is registered to Ekaraj Koshy, a director of Yohannan Logistics Pvt Ltd."
+  },
+  {
+    "edge_id": "edge:11f890a56b672ce1",
+    "type": "OWNS_VEHICLE",
+    "source": "Person:ekaraj_koshy",
+    "target": "Vehicle:MH14LY7909",
+    "document_id": "FIR-MUM-2025-0001",
+    "rule": "registered_to",
+    "confidence": 0.7,
+    "sentence": "As per registration records, the vehicle is registered to Ekaraj Koshy, a director of Yohannan Logistics Pvt Ltd."
+  },
+  {
+    "edge_id": "edge:a8ccf35bc82cb0a9",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:isaac_dewan",
+    "target": "Person:dalaja_chahal",
+    "document_id": "FIR-MUM-2025-0001",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "Isaac Dewan and Dalaja Chahal were apprehended at the spot and 240 grams of a white crystalline substance suspected to be mephedrone was recovered from their possession."
+  },
+  {
+    "edge_id": "edge:f187e0e6abc7c252",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:dalaja_chahal",
+    "target": "Person:laksh_konda",
+    "document_id": "FIR-MUM-2025-0001",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "Dalaja Chahal further disclosed having met Daksh Bakshi and Laksh Konda at Bala Circle Bus Depot, Mumbai two days before the raid to collect the consignment."
+  },
+  {
+    "edge_id": "edge:6c3fc8de5cb38fdb",
+    "type": "USES_PHONE",
+    "source": "Person:yashica_issac",
+    "target": "Phone:+917844273643",
+    "document_id": "FIR-MUM-2025-0002",
+    "rule": "uses_phone",
+    "confidence": 0.7,
+    "sentence": "The complainant Smt. Yashica Issac (mobile no. 7844273643), who works at Bhardwaj Services Pvt Ltd and lives near Khosla Tea Stall, Mumbai, reported that on 9 February 2025 at about 17:22 hours, a caller using mobile number 7679658289 claimed to be a bank official and said that the complainant's KYC had expired."
+  },
+  {
+    "edge_id": "edge:9a07abb308f24241",
+    "type": "CALLED",
+    "source": "Phone:+917679658289",
+    "target": "Phone:+917844273643",
+    "document_id": "FIR-MUM-2025-0002",
+    "rule": "call_to_complainant",
+    "confidence": 0.7,
+    "sentence": "The complainant Smt. Yashica Issac (mobile no. 7844273643), who works at Bhardwaj Services Pvt Ltd and lives near Khosla Tea Stall, Mumbai, reported that on 9 February 2025 at about 17:22 hours, a caller using mobile number 7679658289 claimed to be a bank official and said that the complainant's KYC had expired."
+  },
+  {
+    "edge_id": "edge:9290e78029a3470d",
+    "type": "MEMBER_OF",
+    "source": "Person:yashica_issac",
+    "target": "Organization:bhardwaj_services_pvt_ltd",
+    "document_id": "FIR-MUM-2025-0002",
+    "rule": "member_of",
+    "confidence": 0.29,
+    "sentence": "The complainant Smt. Yashica Issac (mobile no. 7844273643), who works at Bhardwaj Services Pvt Ltd and lives near Khosla Tea Stall, Mumbai, reported that on 9 February 2025 at about 17:22 hours, a caller using mobile number 7679658289 claimed to be a bank official and said that the complainant's KYC had expired."
+  },
+  {
+    "edge_id": "edge:e9968a8ddbbb7f1d",
+    "type": "USES_PHONE",
+    "source": "Person:sudiksha_pathak",
+    "target": "Phone:+919688936655",
+    "document_id": "FIR-MUM-2025-0003",
+    "rule": "uses_phone",
+    "confidence": 0.7,
+    "sentence": "The complainant Smt. Sudiksha Pathak (mobile no. +91 96889 36655) reported that on 14 February 2025 at about 19:01 hours, while walking near Kakar Warehouse, Mumbai, two unidentified persons on a motorcycle snatched a gold chain weighing about 20 grams from the complainant's neck and fled."
+  },
+  {
+    "edge_id": "edge:d0016d3a73fcac65",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:sudiksha_pathak",
+    "target": "Person:kakar_warehouse",
+    "document_id": "FIR-MUM-2025-0003",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "The complainant Smt. Sudiksha Pathak (mobile no. +91 96889 36655) reported that on 14 February 2025 at about 19:01 hours, while walking near Kakar Warehouse, Mumbai, two unidentified persons on a motorcycle snatched a gold chain weighing about 20 grams from the complainant's neck and fled."
+  },
+  {
+    "edge_id": "edge:b65bd67a59b427f5",
+    "type": "USES_PHONE",
+    "source": "Person:udyati_balay",
+    "target": "Phone:+919384822654",
+    "document_id": "FIR-MUM-2025-0004",
+    "rule": "uses_phone",
+    "confidence": 0.7,
+    "sentence": "Udyati Balay was carrying a mobile phone bearing number 93848 22654."
+  },
+  {
+    "edge_id": "edge:921745944c10b8fc",
+    "type": "MEMBER_OF",
+    "source": "Person:laksh_konda",
+    "target": "Organization:daksh_bakshi",
+    "document_id": "FIR-MUM-2025-0004",
+    "rule": "member_of",
+    "confidence": 0.29,
+    "sentence": "During questioning, Rahul Sharma stated that the pouches had been handed over by Laksh Konda, who works for Daksh Bakshi."
+  },
+  {
+    "edge_id": "edge:3b3906d06ad2ef71",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:rahul_sharma",
+    "target": "Person:udyati_balay",
+    "document_id": "FIR-MUM-2025-0004",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "On 22 February 2025 at about 19:20 hours, a patrolling team noticed Rahul Sharma and Udyati Balay standing near Sarma Auto Works, Mumbai and acting suspiciously."
+  },
+  {
+    "edge_id": "edge:8bedf1c5cc52d2c4",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:rahul_sharma",
+    "target": "Person:laksh_konda",
+    "document_id": "FIR-MUM-2025-0004",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "During questioning, Rahul Sharma stated that the pouches had been handed over by Laksh Konda, who works for Daksh Bakshi."
+  },
+  {
+    "edge_id": "edge:2b884c0835d79c82",
+    "type": "USES_PHONE",
+    "source": "Person:gaurika_zacharia",
+    "target": "Phone:+916275552433",
+    "document_id": "FIR-MUM-2025-0005",
+    "rule": "uses_phone",
+    "confidence": 0.7,
+    "sentence": "The complainant Smt. Gaurika Zacharia (mobile no. +91 62755 52433) reported that on 27 February 2025 at about 18:45 hours, Adya Choudhury, a neighbour, quarrelled with the complainant over parking near Hotel Lanka Residency, Mumbai and slapped the complainant."
+  },
+  {
+    "edge_id": "edge:e019372c2be9ff30",
+    "type": "MEMBER_OF",
+    "source": "Person:sanya_raj",
+    "target": "Organization:khatri_infra_pvt_ltd",
+    "document_id": "FIR-MUM-2025-0005",
+    "rule": "member_of",
+    "confidence": 0.29,
+    "sentence": "Sanya Raj, who works at Khatri Infra Pvt Ltd, witnessed the incident."
+  },
+  {
+    "edge_id": "edge:4f42ae78b2606178",
+    "type": "PRESENT_AT_EVENT",
+    "source": "Person:sanya_raj",
+    "target": "Event:fir_mum_2025_0005",
+    "document_id": "FIR-MUM-2025-0005",
+    "rule": "witnessed",
+    "confidence": 0.7,
+    "sentence": "Sanya Raj, who works at Khatri Infra Pvt Ltd, witnessed the incident."
+  },
+  {
+    "edge_id": "edge:cd8a62f2b846c471",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:gaurika_zacharia",
+    "target": "Person:adya_choudhury",
+    "document_id": "FIR-MUM-2025-0005",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "The complainant Smt. Gaurika Zacharia (mobile no. +91 62755 52433) reported that on 27 February 2025 at about 18:45 hours, Adya Choudhury, a neighbour, quarrelled with the complainant over parking near Hotel Lanka Residency, Mumbai and slapped the complainant."
+  },
+  {
+    "edge_id": "edge:55a307cc3f025328",
+    "type": "USES_PHONE",
+    "source": "Person:karan_tella",
+    "target": "Phone:+917876457943",
+    "document_id": "FIR-MUM-2025-0006",
+    "rule": "phone_belonging_to",
+    "confidence": 0.7,
+    "sentence": "The complainant Shri Karan Tella, who works at Bhardwaj Services Pvt Ltd, reported that on 14 March 2025 at about 13:35 hours, a mobile phone bearing number 7876457943 belonging to the complainant was stolen from the complainant's bag in a crowd near Walia Tea Stall, Mumbai."
+  },
+  {
+    "edge_id": "edge:0b4d00a749b7099c",
+    "type": "MEMBER_OF",
+    "source": "Person:karan_tella",
+    "target": "Organization:bhardwaj_services_pvt_ltd",
+    "document_id": "FIR-MUM-2025-0006",
+    "rule": "member_of",
+    "confidence": 0.29,
+    "sentence": "The complainant Shri Karan Tella, who works at Bhardwaj Services Pvt Ltd, reported that on 14 March 2025 at about 13:35 hours, a mobile phone bearing number 7876457943 belonging to the complainant was stolen from the complainant's bag in a crowd near Walia Tea Stall, Mumbai."
+  },
+  {
+    "edge_id": "edge:eef5f97edb84de76",
+    "type": "USES_PHONE",
+    "source": "Person:darika_kothari",
+    "target": "Phone:+917863362137",
+    "document_id": "FIR-PUN-2025-0001",
+    "rule": "uses_phone",
+    "confidence": 0.7,
+    "sentence": "Darika Kothari (mobile no. 78633 62137) remained at the spot and cooperated with the police."
+  },
+  {
+    "edge_id": "edge:882db5cdedb0a1f6",
+    "type": "MEMBER_OF",
+    "source": "Person:darika_kothari",
+    "target": "Organization:sami_infra_pvt_ltd",
+    "document_id": "FIR-PUN-2025-0001",
+    "rule": "member_of",
+    "confidence": 0.29,
+    "sentence": "On 5 January 2025 at about 18:24 hours, a grey Mahindra Scorpio bearing registration number MH 12 V 9289, driven by Darika Kothari, an employee of Sami Infra Pvt Ltd, collided with a silver Maruti Suzuki Ertiga bearing registration number MH-12-A-8181, driven by Ekaja Solanki, an employee of Goswami Services Pvt Ltd, near Hotel Bedi Residency, Pune."
+  },
+  {
+    "edge_id": "edge:6ae9f98d6a158460",
+    "type": "MEMBER_OF",
+    "source": "Person:ekaja_solanki",
+    "target": "Organization:goswami_services_pvt_ltd",
+    "document_id": "FIR-PUN-2025-0001",
+    "rule": "member_of",
+    "confidence": 0.29,
+    "sentence": "On 5 January 2025 at about 18:24 hours, a grey Mahindra Scorpio bearing registration number MH 12 V 9289, driven by Darika Kothari, an employee of Sami Infra Pvt Ltd, collided with a silver Maruti Suzuki Ertiga bearing registration number MH-12-A-8181, driven by Ekaja Solanki, an employee of Goswami Services Pvt Ltd, near Hotel Bedi Residency, Pune."
+  },
+  {
+    "edge_id": "edge:d523be76ea1e2994",
+    "type": "PRESENT_AT_EVENT",
+    "source": "Vehicle:MH12V9289",
+    "target": "Event:fir_pun_2025_0001",
+    "document_id": "FIR-PUN-2025-0001",
+    "rule": "driven_by",
+    "confidence": 0.7,
+    "sentence": "On 5 January 2025 at about 18:24 hours, a grey Mahindra Scorpio bearing registration number MH 12 V 9289, driven by Darika Kothari, an employee of Sami Infra Pvt Ltd, collided with a silver Maruti Suzuki Ertiga bearing registration number MH-12-A-8181, driven by Ekaja Solanki, an employee of Goswami Services Pvt Ltd, near Hotel Bedi Residency, Pune."
+  },
+  {
+    "edge_id": "edge:962de26cbad06e6a",
+    "type": "PRESENT_AT_EVENT",
+    "source": "Person:darika_kothari",
+    "target": "Event:fir_pun_2025_0001",
+    "document_id": "FIR-PUN-2025-0001",
+    "rule": "driven_by",
+    "confidence": 0.7,
+    "sentence": "On 5 January 2025 at about 18:24 hours, a grey Mahindra Scorpio bearing registration number MH 12 V 9289, driven by Darika Kothari, an employee of Sami Infra Pvt Ltd, collided with a silver Maruti Suzuki Ertiga bearing registration number MH-12-A-8181, driven by Ekaja Solanki, an employee of Goswami Services Pvt Ltd, near Hotel Bedi Residency, Pune."
+  },
+  {
+    "edge_id": "edge:554373074af68ea6",
+    "type": "PRESENT_AT_EVENT",
+    "source": "Vehicle:MH12A8181",
+    "target": "Event:fir_pun_2025_0001",
+    "document_id": "FIR-PUN-2025-0001",
+    "rule": "driven_by",
+    "confidence": 0.7,
+    "sentence": "On 5 January 2025 at about 18:24 hours, a grey Mahindra Scorpio bearing registration number MH 12 V 9289, driven by Darika Kothari, an employee of Sami Infra Pvt Ltd, collided with a silver Maruti Suzuki Ertiga bearing registration number MH-12-A-8181, driven by Ekaja Solanki, an employee of Goswami Services Pvt Ltd, near Hotel Bedi Residency, Pune."
+  },
+  {
+    "edge_id": "edge:ac60bf51c4b94411",
+    "type": "PRESENT_AT_EVENT",
+    "source": "Person:ekaja_solanki",
+    "target": "Event:fir_pun_2025_0001",
+    "document_id": "FIR-PUN-2025-0001",
+    "rule": "driven_by",
+    "confidence": 0.7,
+    "sentence": "On 5 January 2025 at about 18:24 hours, a grey Mahindra Scorpio bearing registration number MH 12 V 9289, driven by Darika Kothari, an employee of Sami Infra Pvt Ltd, collided with a silver Maruti Suzuki Ertiga bearing registration number MH-12-A-8181, driven by Ekaja Solanki, an employee of Goswami Services Pvt Ltd, near Hotel Bedi Residency, Pune."
+  },
+  {
+    "edge_id": "edge:a2a8e80a6fc03857",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:darika_kothari",
+    "target": "Person:ekaja_solanki",
+    "document_id": "FIR-PUN-2025-0001",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "On 5 January 2025 at about 18:24 hours, a grey Mahindra Scorpio bearing registration number MH 12 V 9289, driven by Darika Kothari, an employee of Sami Infra Pvt Ltd, collided with a silver Maruti Suzuki Ertiga bearing registration number MH-12-A-8181, driven by Ekaja Solanki, an employee of Goswami Services Pvt Ltd, near Hotel Bedi Residency, Pune."
+  },
+  {
+    "edge_id": "edge:aa79a60c702ed2cf",
+    "type": "MEMBER_OF",
+    "source": "Person:jagat_mallick",
+    "target": "Organization:sami_infra_pvt_ltd",
+    "document_id": "FIR-PUN-2025-0002",
+    "rule": "member_of",
+    "confidence": 0.29,
+    "sentence": "Jagat Mallick, who works at Sami Infra Pvt Ltd, witnessed the incident."
+  },
+  {
+    "edge_id": "edge:0e8d4d83a3db6f84",
+    "type": "PRESENT_AT_EVENT",
+    "source": "Person:jagat_mallick",
+    "target": "Event:fir_pun_2025_0002",
+    "document_id": "FIR-PUN-2025-0002",
+    "rule": "witnessed",
+    "confidence": 0.7,
+    "sentence": "Jagat Mallick, who works at Sami Infra Pvt Ltd, witnessed the incident."
+  },
+  {
+    "edge_id": "edge:cd8c887ec1729657",
+    "type": "PRESENT_AT_EVENT",
+    "source": "Vehicle:MH14LY7909",
+    "target": "Event:fir_pun_2025_0004",
+    "document_id": "FIR-PUN-2025-0004",
+    "rule": "vehicle_waited",
+    "confidence": 0.7,
+    "sentence": "CCTV footage from a nearby shop shows two persons breaking into the car while a black Ashok Leyland Dost bearing registration number MH 14 LY 7909 waited nearby."
+  },
+  {
+    "edge_id": "edge:d67e551b5750b8eb",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:fariq_sami",
+    "target": "Person:onkar_mall",
+    "document_id": "FIR-PUN-2025-0004",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "A local resident identified the two persons as Fariq Sami and Onkar Mall, who are known associates of Hardik Saini."
+  },
+  {
+    "edge_id": "edge:5d856deaab6c1a89",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:fariq_sami",
+    "target": "Person:hardik_saini",
+    "document_id": "FIR-PUN-2025-0004",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "A local resident identified the two persons as Fariq Sami and Onkar Mall, who are known associates of Hardik Saini."
+  },
+  {
+    "edge_id": "edge:4617aa7008d0a506",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:onkar_mall",
+    "target": "Person:hardik_saini",
+    "document_id": "FIR-PUN-2025-0004",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "A local resident identified the two persons as Fariq Sami and Onkar Mall, who are known associates of Hardik Saini."
+  },
+  {
+    "edge_id": "edge:1679965aade02864",
+    "type": "USES_PHONE",
+    "source": "Person:imaran_sen",
+    "target": "Phone:+916665802686",
+    "document_id": "FIR-PUN-2025-0005",
+    "rule": "uses_phone",
+    "confidence": 0.7,
+    "sentence": "Imaran Sen can be contacted on mobile number +91-6665802686."
+  },
+  {
+    "edge_id": "edge:fac073d3e08f9684",
+    "type": "PRESENT_AT_EVENT",
+    "source": "Person:faras_kale",
+    "target": "Event:fir_pun_2025_0005",
+    "document_id": "FIR-PUN-2025-0005",
+    "rule": "present_passive",
+    "confidence": 0.7,
+    "sentence": "Fariq Sami, Onkar Mall and Faras Kale were found removing parts from motorcycles and were detained."
+  },
+  {
+    "edge_id": "edge:265a151db838637e",
+    "type": "PRESENT_AT_EVENT",
+    "source": "Vehicle:MH14P5172",
+    "target": "Event:fir_pun_2025_0005",
+    "document_id": "FIR-PUN-2025-0005",
+    "rule": "present_passive",
+    "confidence": 0.7,
+    "sentence": "A motorcycle bearing registration number MH 14 P 5172, whose owner is being traced, was recovered from the premises."
+  },
+  {
+    "edge_id": "edge:4a9a2703b5d86a47",
+    "type": "TRANSFERRED_MONEY_TO",
+    "source": "Person:hardik_saini",
+    "target": "Person:karan_sangha",
+    "document_id": "FIR-PUN-2025-0005",
+    "rule": "cash_transfer",
+    "confidence": 0.7,
+    "sentence": "During questioning, Fariq Sami disclosed that the gang is run by Hardik Saini and Imaran Sen, and that Hardik Saini handed over ₹3,50,000 in cash to Karan Sangha of Hyderabad last month for disposing of stolen vehicles."
+  },
+  {
+    "edge_id": "edge:58fe671c1288085a",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:fariq_sami",
+    "target": "Person:faras_kale",
+    "document_id": "FIR-PUN-2025-0005",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "Fariq Sami, Onkar Mall and Faras Kale were found removing parts from motorcycles and were detained."
+  },
+  {
+    "edge_id": "edge:4b2d27083090ee9f",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:fariq_sami",
+    "target": "Person:hardik_saini",
+    "document_id": "FIR-PUN-2025-0005",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "During questioning, Fariq Sami disclosed that the gang is run by Hardik Saini and Imaran Sen, and that Hardik Saini handed over ₹3,50,000 in cash to Karan Sangha of Hyderabad last month for disposing of stolen vehicles."
+  },
+  {
+    "edge_id": "edge:6a075f44b648bc72",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:fariq_sami",
+    "target": "Person:imaran_sen",
+    "document_id": "FIR-PUN-2025-0005",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "During questioning, Fariq Sami disclosed that the gang is run by Hardik Saini and Imaran Sen, and that Hardik Saini handed over ₹3,50,000 in cash to Karan Sangha of Hyderabad last month for disposing of stolen vehicles."
+  },
+  {
+    "edge_id": "edge:d6cfb2941c497efc",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:fariq_sami",
+    "target": "Person:karan_sangha",
+    "document_id": "FIR-PUN-2025-0005",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "During questioning, Fariq Sami disclosed that the gang is run by Hardik Saini and Imaran Sen, and that Hardik Saini handed over ₹3,50,000 in cash to Karan Sangha of Hyderabad last month for disposing of stolen vehicles."
+  },
+  {
+    "edge_id": "edge:30fbb618d22461bf",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:hardik_saini",
+    "target": "Person:imaran_sen",
+    "document_id": "FIR-PUN-2025-0005",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "During questioning, Fariq Sami disclosed that the gang is run by Hardik Saini and Imaran Sen, and that Hardik Saini handed over ₹3,50,000 in cash to Karan Sangha of Hyderabad last month for disposing of stolen vehicles."
+  },
+  {
+    "edge_id": "edge:b872090362acb28d",
+    "type": "ASSOCIATED_WITH",
+    "source": "Person:imaran_sen",
+    "target": "Person:karan_sangha",
+    "document_id": "FIR-PUN-2025-0005",
+    "rule": "same_sentence",
+    "confidence": 0.4,
+    "sentence": "During questioning, Fariq Sami disclosed that the gang is run by Hardik Saini and Imaran Sen, and that Hardik Saini handed over ₹3,50,000 in cash to Karan Sangha of Hyderabad last month for disposing of stolen vehicles."
+  }
+]
