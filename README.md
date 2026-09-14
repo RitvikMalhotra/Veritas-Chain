@@ -8,6 +8,8 @@ clusters, flags anomalies and records every graph change in a tamper-evident has
 > **All data is synthetic.** Every name, phone number, account, vehicle and report is generated.
 > Nothing here is, or claims to be, real law-enforcement data.
 
+**Project summary:** [docs/portfolio-summary.md](docs/portfolio-summary.md) explains how this was built with Claude Code, the mistakes caught along the way (and who or what caught each one), and the headline results.
+
 ## Status
 
 | Phase | Scope | Status |
