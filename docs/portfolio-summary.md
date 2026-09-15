@@ -120,7 +120,7 @@ Most items are recorded in the [README](../README.md) or the commit messages. Si
 24. **The page froze for 6.6 seconds** while the browser computed the graph layout.
     *What changed:* the server computes a seeded layout once, and the browser draws in 136 ms.
 25. **The browser kept running an old `app.js`** after it had changed.
-    *What changed:* a `no-cache` header, now covered by a test.
+    *What changed:* a `no-cache` header, with a test. Both were removed with the old page when the React explorer replaced it, so the check no longer applies.
 26. **Selecting a person left 5 of the 8 nodes in their neighbourhood off-screen.**
     *What changed:* the view fits the whole neighbourhood.
 27. **A missing favicon logged a console error.**
