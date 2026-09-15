@@ -25,7 +25,7 @@ Each item says who or what caught it:
 - **Claude Code**, usually in its own work before I saw it;
 - **an automated check**.
 
-Most items are recorded in the [README](../README.md) or the commit messages. Five are marked because they appear only in a phase report or were fixed before reaching me.
+Most items are recorded in the [README](../README.md) or the commit messages. Six are marked because they appear only in a phase report or were fixed before reaching me.
 
 ### Wrong claims in the documentation
 
@@ -125,6 +125,15 @@ Most items are recorded in the [README](../README.md) or the commit messages. Fi
     *What changed:* the view fits the whole neighbourhood.
 27. **A missing favicon logged a console error.**
     *What changed:* an inline icon.
+
+### Problems in the React explorer
+
+28. **Faint text failed WCAG AA contrast.** The faintest text colour, used for the audit trail's hash labels and actor names and for the loading log, measured 3.2–3.4:1 against its backgrounds; AA needs 4.5:1. The design review and the colour validator both missed it; the validator checks the node palette, not text.
+    *What caught it:* my challenge to Claude Code's claim that `frontend/PRODUCT.md` was redundant. To answer it, Claude Code checked that file's WCAG AA claim, computing the contrast of each text colour in the stylesheet against the backgrounds it is used on.
+    *What changed:* the colour went from `#5f6b77` to `#77838f` (4.6–5.0:1) before the explorer was committed.
+29. **The docs screenshots were out of date** (in a report to me, not elsewhere in the repo). The explorer and tampered screenshots still showed a small uppercase type label above the evidence title, which the design review had already moved below it.
+    *What caught it:* no dedicated check. Claude Code noticed it incidentally while retaking the screenshots for the contrast fix, which I had asked for.
+    *What changed:* all three screenshots were retaken and added to the explorer commit before it was pushed.
 
 ## How claims were kept honest
 
